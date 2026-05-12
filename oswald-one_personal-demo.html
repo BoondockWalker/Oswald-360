@@ -1,0 +1,3019 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OswaldONE — A Conceptual Client Hub for Oswald</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=DM+Sans:opsz,wght@9..40,300..700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0E1A26;
+    --ink-2: #1B2A3A;
+    --ink-soft: #4A5868;
+    --ink-faint: #8A95A2;
+    --paper: #F5EFE4;
+    --paper-2: #EFE7D6;
+    --paper-3: #E7DDC8;
+    --rule: #D4C8AE;
+    --rule-soft: #E2D7BE;
+    --brass: #A88A4F;
+    --brass-deep: #876D3B;
+    --brass-soft: #C9B07A;
+    --forest: #2F4F3A;
+    --clay: #B5634C;
+    --clay-soft: #D08A72;
+
+    --unison: #102f54;
+    --unison-deep: #061a35;
+    --unison-soft: #2a4d76;
+    --shadow-soft: 0 1px 2px rgba(14,26,38,.04), 0 8px 24px rgba(14,26,38,.06);
+    --shadow-card: 0 1px 1px rgba(14,26,38,.05), 0 12px 36px rgba(14,26,38,.08);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'DM Sans', -apple-system, sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    font-feature-settings: 'ss01', 'cv11';
+    -webkit-font-smoothing: antialiased;
+  }
+  body {
+    background:
+      radial-gradient(ellipse at top right, rgba(168,138,79,.07) 0%, transparent 50%),
+      radial-gradient(ellipse at bottom left, rgba(47,79,58,.04) 0%, transparent 60%),
+      var(--paper);
+    min-height: 100vh;
+    background-attachment: fixed;
+  }
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    pointer-events: none; opacity: .35; z-index: 0;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .055 0 0 0 0 .102 0 0 0 0 .149 0 0 0 .045 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  }
+
+  .display { font-family: 'Fraunces', Georgia, serif; font-feature-settings: 'ss01'; letter-spacing: -0.01em; }
+  .mono { font-family: 'IBM Plex Mono', monospace; font-feature-settings: 'tnum'; }
+  .eyebrow { font-family: 'DM Sans', sans-serif; font-size: 10px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--brass-deep); }
+
+  .container { max-width: 1440px; margin: 0 auto; padding: 0 56px; position: relative; z-index: 1; }
+
+  /* ============ NAV ============ */
+  nav { display: flex; align-items: center; justify-content: space-between; padding: 32px 0 28px; border-bottom: 1px solid var(--rule); }
+  .brand { display: flex; align-items: baseline; gap: 14px; }
+  .brand-mark { font-family: 'Fraunces', serif; font-weight: 400; font-style: italic; font-size: 28px; font-variation-settings: 'opsz' 144; color: var(--ink); letter-spacing: -0.02em; }
+  .brand-mark .ampersand { color: var(--brass); font-weight: 300; }
+  .brand-divider { width: 18px; height: 1px; background: var(--brass); }
+  .brand-pretitle { font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-soft); font-weight: 500; }
+  .nav-links { display: flex; gap: 36px; list-style: none; }
+  .nav-links a { font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft); text-decoration: none; font-weight: 500; padding-bottom: 4px; border-bottom: 1px solid transparent; transition: all .2s ease; cursor: pointer; }
+  .nav-links a:hover, .nav-links a.active { color: var(--ink); border-bottom-color: var(--brass); }
+  .nav-right { display: flex; align-items: center; gap: 20px; }
+  .icon-btn { width: 36px; height: 36px; display: grid; place-items: center; border: 1px solid var(--rule); border-radius: 50%; background: transparent; cursor: pointer; color: var(--ink-soft); transition: all .2s ease; }
+  .icon-btn:hover { border-color: var(--brass); color: var(--ink); }
+  .principal-avatar { width: 38px; height: 38px; border-radius: 50%; background: linear-gradient(135deg, var(--unison-deep) 0%, var(--unison) 100%); color: var(--paper); display: grid; place-items: center; font-family: 'Fraunces', serif; font-style: italic; font-size: 14px; border: 1.5px solid var(--brass); }
+
+  /* ============ HERO ============ */
+  .hero { padding: 56px 0 40px; display: grid; grid-template-columns: 1.4fr 1fr; gap: 72px; align-items: end; border-bottom: 1px solid var(--rule); }
+  .hero-greeting .eyebrow { margin-bottom: 16px; }
+  .hero-greeting h1 { font-family: 'Fraunces', serif; font-weight: 300; font-size: 64px; line-height: 1.05; letter-spacing: -0.025em; color: var(--ink); font-variation-settings: 'opsz' 144; }
+  .hero-greeting h1 em { font-style: italic; font-weight: 300; color: var(--brass-deep); }
+  .hero-meta { margin-top: 20px; font-size: 13px; color: var(--ink-soft); line-height: 1.6; max-width: 480px; }
+  .hero-stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px 32px; padding-bottom: 8px; }
+  .stat .stat-label { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 6px; }
+  .stat .stat-value { font-family: 'Fraunces', serif; font-size: 28px; font-weight: 400; color: var(--ink); letter-spacing: -0.015em; font-feature-settings: 'tnum'; }
+  .stat .stat-sub { font-size: 11px; color: var(--ink-soft); margin-top: 2px; }
+  .stat .stat-sub.brass { color: var(--brass-deep); }
+  .stat .stat-sub.clay { color: var(--clay); }
+
+  /* ============ MAIN GRIDS ============ */
+  main { padding: 48px 0 64px; }
+  .grid-primary { display: grid; grid-template-columns: 1.55fr 1fr; gap: 28px; margin-bottom: 28px; }
+  .grid-secondary { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; margin-bottom: 28px; }
+
+  /* ============ PANELS ============ */
+  .panel { background: rgba(255, 252, 245, 0.6); border: 1px solid var(--rule); border-radius: 2px; padding: 28px; position: relative; backdrop-filter: blur(2px); }
+  .panel.dark { background: var(--ink); color: var(--paper); border-color: var(--ink-2); }
+  .panel.elevated { box-shadow: var(--shadow-card); background: rgba(255, 252, 245, 0.85); }
+  .panel-header { display: flex; align-items: baseline; justify-content: space-between; padding-bottom: 16px; border-bottom: 1px solid var(--rule-soft); margin-bottom: 22px; }
+  .panel.dark .panel-header { border-bottom-color: rgba(168,138,79,.25); }
+  .panel-title { font-family: 'Fraunces', serif; font-weight: 400; font-size: 22px; color: var(--ink); letter-spacing: -0.01em; }
+  .panel.dark .panel-title { color: var(--paper); }
+  .panel-title em { font-style: italic; color: var(--brass-deep); }
+  .panel.dark .panel-title em { color: var(--brass-soft); }
+  .panel-action { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-soft); text-decoration: none; border-bottom: 1px solid var(--brass); padding-bottom: 2px; cursor: pointer; }
+  .panel.dark .panel-action { color: var(--brass-soft); }
+
+  /* ============ HOUSEHOLD MAP (dashboard) ============ */
+  .household-map { position: relative; min-height: 480px; }
+  .members-strip { display: flex; align-items: center; gap: 16px; margin-bottom: 28px; padding: 16px 20px; background: var(--paper-2); border-left: 2px solid var(--brass); flex-wrap: wrap; }
+  .member { display: flex; align-items: center; gap: 10px; }
+  .member-avatar { width: 32px; height: 32px; border-radius: 50%; background: var(--ink); color: var(--paper); display: grid; place-items: center; font-family: 'Fraunces', serif; font-style: italic; font-size: 12px; flex-shrink: 0; }
+  .member-avatar.junior { background: var(--brass); color: var(--ink); }
+  .member-name { font-size: 12px; font-weight: 500; color: var(--ink); }
+  .member-role { font-size: 10px; color: var(--ink-faint); letter-spacing: 0.04em; }
+  .properties-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .property { border: 1px solid var(--rule-soft); border-radius: 2px; padding: 18px; background: rgba(245, 239, 228, 0.4); position: relative; transition: all .25s ease; cursor: pointer; }
+  .property:hover { border-color: var(--brass); background: rgba(245, 239, 228, 0.8); transform: translateY(-1px); box-shadow: var(--shadow-soft); }
+  .property::before { content: ''; position: absolute; top: 14px; left: 14px; width: 6px; height: 6px; border-radius: 50%; background: var(--forest); }
+  .property.alert::before { background: var(--clay); animation: pulse 2s ease-in-out infinite; }
+  .property.watch::before { background: var(--brass); }
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(181, 99, 76, 0.4); }
+    50% { box-shadow: 0 0 0 6px rgba(181, 99, 76, 0); }
+  }
+  .property-header { padding-left: 16px; margin-bottom: 14px; }
+  .property-loc { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-faint); }
+  .property-name { font-family: 'Fraunces', serif; font-size: 18px; font-weight: 400; color: var(--ink); margin-top: 2px; letter-spacing: -0.01em; }
+  .property-meta { display: flex; justify-content: space-between; padding-top: 12px; border-top: 1px dashed var(--rule-soft); font-size: 11px; color: var(--ink-soft); }
+  .property-meta .value { color: var(--ink); font-weight: 500; font-family: 'IBM Plex Mono', monospace; font-size: 11px; }
+  .property-flag { margin-top: 10px; font-size: 11px; color: var(--clay); font-style: italic; }
+  .property-flag.watch { color: var(--brass-deep); }
+
+  /* ============ RISK WEATHER (dashboard) ============ */
+  .weather-list { display: flex; flex-direction: column; gap: 0; }
+  .weather-item { padding: 14px 0; border-bottom: 1px solid rgba(168, 138, 79, 0.15); display: grid; grid-template-columns: 16px 1fr auto; gap: 14px; align-items: start; }
+  .weather-item:last-child { border-bottom: none; }
+  .weather-dot { width: 8px; height: 8px; border-radius: 50%; margin-top: 6px; }
+  .weather-dot.alert { background: var(--clay-soft); box-shadow: 0 0 0 3px rgba(208, 138, 114, 0.18); }
+  .weather-dot.watch { background: var(--brass-soft); box-shadow: 0 0 0 3px rgba(201, 176, 122, 0.18); }
+  .weather-dot.steady { background: var(--forest); opacity: .7; }
+  .weather-text { font-size: 12.5px; line-height: 1.5; color: var(--paper); }
+  .weather-text strong { color: var(--paper); font-weight: 500; }
+  .weather-text .action { display: block; margin-top: 4px; font-size: 11px; color: var(--brass-soft); font-style: italic; }
+  .weather-time { font-size: 10px; letter-spacing: 0.08em; color: rgba(245, 239, 228, 0.5); font-family: 'IBM Plex Mono', monospace; text-transform: uppercase; white-space: nowrap; }
+
+  /* ============ EVENTS / VAULT (dashboard) ============ */
+  .events-list { display: flex; flex-direction: column; gap: 18px; }
+  .event { display: grid; grid-template-columns: 44px 1fr; gap: 16px; padding-bottom: 18px; border-bottom: 1px solid var(--rule-soft); }
+  .event:last-child { border-bottom: none; padding-bottom: 0; }
+  .event-date { font-family: 'Fraunces', serif; text-align: center; border-right: 1px solid var(--rule); padding-right: 16px; }
+  .event-date .day { font-size: 22px; color: var(--ink); line-height: 1; font-weight: 400; }
+  .event-date .mo { font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--brass-deep); margin-top: 4px; font-family: 'DM Sans', sans-serif; }
+  .event-body h4 { font-family: 'Fraunces', serif; font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 4px; letter-spacing: -0.005em; }
+  .event-body p { font-size: 12px; color: var(--ink-soft); line-height: 1.5; }
+  .event-cta { display: inline-block; margin-top: 8px; font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--brass-deep); border-bottom: 1px solid var(--brass); padding-bottom: 2px; text-decoration: none; cursor: pointer; }
+
+  /* ============ CONCIERGE CARD (dashboard) ============ */
+  .concierge-card { background: linear-gradient(135deg, var(--unison-deep) 0%, var(--unison) 100%); color: var(--paper); padding: 28px; border-radius: 2px; position: relative; overflow: hidden; }
+  .concierge-card::before { content: ''; position: absolute; top: -40px; right: -40px; width: 160px; height: 160px; background: radial-gradient(circle, rgba(168,138,79,.18) 0%, transparent 70%); }
+  .concierge-card .eyebrow { color: var(--brass-soft); }
+  .concierge-greeting { font-family: 'Fraunces', serif; font-style: italic; font-size: 22px; font-weight: 300; margin-top: 12px; line-height: 1.3; color: var(--paper); }
+  .concierge-greeting strong { font-style: normal; color: var(--brass-soft); font-weight: 400; }
+  .concierge-meta { margin-top: 18px; padding-top: 16px; border-top: 1px solid rgba(168,138,79,.25); display: flex; align-items: center; gap: 12px; }
+  .duty-avatar { width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, #847151 0%, var(--brass) 100%); color: var(--ink); display: grid; place-items: center; font-family: 'Fraunces', serif; font-size: 14px; }
+  .duty-info { font-size: 12px; line-height: 1.45; }
+  .duty-info .name { font-weight: 500; color: var(--paper); }
+  .duty-info .role { color: rgba(245,239,228,.6); font-size: 11px; }
+  .concierge-actions { margin-top: 22px; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .concierge-btn { border: 1px solid rgba(168,138,79,.35); background: transparent; color: var(--paper); padding: 12px 14px; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; font-family: 'DM Sans', sans-serif; cursor: pointer; transition: all .2s ease; }
+  .concierge-btn:hover { background: rgba(168,138,79,.12); border-color: var(--brass); }
+  .concierge-btn.primary { background: var(--brass); color: var(--ink); border-color: var(--brass); }
+  .concierge-btn.primary:hover { background: var(--brass-soft); }
+
+  /* ============ COVERAGE (dashboard) ============ */
+  .coverage-rows { display: flex; flex-direction: column; }
+  .cov-row { display: grid; grid-template-columns: 1fr auto auto; gap: 16px; align-items: center; padding: 14px 0; border-bottom: 1px solid var(--rule-soft); }
+  .cov-row:last-child { border-bottom: none; }
+  .cov-name { font-size: 13px; color: var(--ink); }
+  .cov-name .sub { display: block; font-size: 11px; color: var(--ink-faint); margin-top: 2px; }
+  .cov-bar-wrap { width: 100px; }
+  .cov-bar { height: 4px; background: var(--rule-soft); border-radius: 2px; overflow: hidden; }
+  .cov-fill { height: 100%; background: var(--forest); }
+  .cov-fill.warn { background: var(--brass); }
+  .cov-fill.gap { background: var(--clay); }
+  .cov-status { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--ink-soft); min-width: 60px; text-align: right; }
+  .cov-status.warn { color: var(--brass-deep); }
+  .cov-status.gap { color: var(--clay); }
+  .gap-callout { margin-top: 18px; padding: 14px 16px; background: rgba(181, 99, 76, 0.08); border-left: 2px solid var(--clay); font-size: 12px; color: var(--ink-2); line-height: 1.5; }
+  .gap-callout strong { color: var(--clay); font-weight: 500; }
+
+  /* ============ VAULT LIST (dashboard) ============ */
+  .vault-list { display: flex; flex-direction: column; }
+  .vault-item { display: grid; grid-template-columns: 28px 1fr auto; gap: 14px; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--rule-soft); }
+  .vault-item:last-child { border-bottom: none; }
+  .vault-icon { width: 28px; height: 28px; border: 1px solid var(--rule); display: grid; place-items: center; border-radius: 2px; color: var(--ink-soft); }
+  .vault-text { font-size: 12.5px; color: var(--ink); line-height: 1.4; }
+  .vault-text .src { display: block; font-size: 11px; color: var(--ink-faint); margin-top: 2px; }
+  .vault-time { font-size: 10px; color: var(--ink-faint); font-family: 'IBM Plex Mono', monospace; letter-spacing: 0.04em; }
+
+  /* ============ STEWARDSHIP STRIP (dashboard) ============ */
+  .review-strip { margin-top: 12px; background: var(--ink); color: var(--paper); padding: 48px 56px; display: grid; grid-template-columns: 1fr 280px; gap: 56px; align-items: center; border-radius: 2px; position: relative; overflow: hidden; }
+  .review-strip::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at right, rgba(168,138,79,.12) 0%, transparent 60%); pointer-events: none; }
+  .review-strip .eyebrow { color: var(--brass-soft); }
+  .review-strip h2 { font-family: 'Fraunces', serif; font-weight: 300; font-size: 44px; line-height: 1.1; margin-top: 14px; letter-spacing: -0.02em; color: var(--paper); }
+  .review-strip h2 em { font-style: italic; color: var(--brass-soft); }
+  .review-strip p { margin-top: 16px; font-size: 13.5px; line-height: 1.65; color: rgba(245,239,228,.78); max-width: 560px; }
+  .review-cta { display: inline-flex; align-items: center; gap: 12px; margin-top: 24px; padding: 14px 22px; background: var(--brass); color: var(--ink); text-decoration: none; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 500; transition: background .2s ease; cursor: pointer; }
+  .review-cta:hover { background: var(--brass-soft); }
+  .review-book { aspect-ratio: 3/4; background: linear-gradient(135deg, var(--unison) 0%, var(--unison-deep) 100%); border: 1px solid var(--brass); box-shadow: -16px 16px 32px rgba(0,0,0,.35), 0 1px 0 rgba(168,138,79,.3) inset; padding: 28px; display: flex; flex-direction: column; justify-content: space-between; position: relative; z-index: 1; }
+  .review-book::after { content: ''; position: absolute; top: 0; bottom: 0; left: 14px; width: 1px; background: rgba(168,138,79,.3); }
+  .review-book .top { font-family: 'Fraunces', serif; font-style: italic; font-size: 14px; color: var(--brass-soft); line-height: 1.3; }
+  .review-book .mid { font-family: 'Fraunces', serif; font-size: 22px; line-height: 1.15; color: var(--paper); letter-spacing: -0.01em; }
+  .review-book .bot { font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(168,138,79,.7); font-family: 'DM Sans', sans-serif; border-top: 1px solid rgba(168,138,79,.3); padding-top: 12px; }
+  .review-book .vol { font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--brass-soft); margin-top: 6px; }
+
+  /* ============ FOOTER ============ */
+  .footer-meta { margin-top: 48px; padding: 32px 0 56px; border-top: 1px solid var(--rule); display: flex; justify-content: space-between; align-items: center; font-size: 11px; color: var(--ink-faint); letter-spacing: 0.04em; }
+  .footer-meta .left { display: flex; gap: 24px; align-items: center; }
+  .footer-meta a { color: var(--ink-soft); text-decoration: none; border-bottom: 1px solid transparent; transition: all .2s; }
+  .footer-meta a:hover { color: var(--ink); border-bottom-color: var(--brass); }
+
+  /* ============ SCREEN SWITCHING ============ */
+  .screen { display: none; }
+  .screen.is-active { display: block; }
+  .screen.is-active .reveal { animation: reveal 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) backwards; }
+  @keyframes reveal {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ============ RIBBON ============ */
+  .ribbon { position: fixed; top: 16px; right: -56px; background: var(--clay); color: var(--paper); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; padding: 6px 64px; transform: rotate(35deg); z-index: 100; box-shadow: 0 4px 12px rgba(0,0,0,.15); font-family: 'DM Sans', sans-serif; font-weight: 500; }
+
+  /* ============ INTERIOR: ASSET DETAIL ============ */
+  .asset-hero { padding: 48px 0 36px; border-bottom: 1px solid var(--rule); display: grid; grid-template-columns: 1.5fr 1fr; gap: 56px; align-items: end; }
+  .asset-crumb { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 18px; }
+  .asset-crumb a { color: var(--brass-deep); text-decoration: none; cursor: pointer; }
+  .asset-crumb a:hover { color: var(--ink); }
+  .asset-title { font-family: 'Fraunces', serif; font-size: 56px; font-weight: 300; line-height: 1.05; color: var(--ink); letter-spacing: -0.025em; }
+  .asset-title em { font-style: italic; color: var(--brass-deep); }
+  .asset-sub { font-size: 14px; color: var(--ink-soft); margin-top: 16px; line-height: 1.6; max-width: 560px; }
+
+  .status-banner { display: flex; align-items: center; gap: 14px; padding: 16px 20px; background: linear-gradient(90deg, rgba(181,99,76,.12) 0%, rgba(181,99,76,.04) 100%); border: 1px solid rgba(181,99,76,.3); border-left: 3px solid var(--clay); border-radius: 2px; }
+  .status-pulse { width: 10px; height: 10px; border-radius: 50%; background: var(--clay); position: relative; flex-shrink: 0; }
+  .status-pulse::before { content: ''; position: absolute; inset: -4px; border-radius: 50%; background: var(--clay); opacity: .25; animation: ringPulse 1.6s ease-out infinite; }
+  @keyframes ringPulse { 0% { transform: scale(.8); opacity: .5; } 100% { transform: scale(2.4); opacity: 0; } }
+  .status-text { font-size: 13px; color: var(--ink-2); line-height: 1.4; }
+  .status-text strong { color: var(--clay); font-weight: 500; letter-spacing: 0.02em; }
+
+  .asset-stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px 28px; padding-bottom: 12px; }
+
+  .asset-grid { display: grid; grid-template-columns: 280px 1fr 320px; gap: 28px; margin-top: 40px; }
+
+  /* asset profile */
+  .profile-list { display: flex; flex-direction: column; }
+  .profile-row { padding: 12px 0; border-bottom: 1px solid var(--rule-soft); display: grid; grid-template-columns: 1fr 1fr; gap: 12px; align-items: baseline; }
+  .profile-row:last-child { border-bottom: none; }
+  .profile-row .k { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-faint); }
+  .profile-row .v { font-size: 13px; color: var(--ink); text-align: right; font-family: 'IBM Plex Mono', monospace; }
+  .profile-row .v.serif { font-family: 'Fraunces', serif; font-size: 14px; }
+
+  /* timeline */
+  .timeline { position: relative; padding-left: 28px; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: var(--rule); }
+  .tl-item { position: relative; padding: 0 0 24px 0; }
+  .tl-item:last-child { padding-bottom: 0; }
+  .tl-item::before { content: ''; position: absolute; left: -27px; top: 6px; width: 11px; height: 11px; border-radius: 50%; background: var(--paper); border: 2px solid var(--brass); }
+  .tl-item.system::before { border-color: var(--ink-faint); background: var(--paper); }
+  .tl-item.alert::before { background: var(--clay); border-color: var(--clay); }
+  .tl-item.now::before { background: var(--ink); border-color: var(--brass); box-shadow: 0 0 0 4px rgba(168,138,79,.2); }
+  .tl-time { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--ink-faint); letter-spacing: 0.04em; }
+  .tl-title { font-family: 'Fraunces', serif; font-size: 14px; font-weight: 500; margin: 4px 0 4px; color: var(--ink); }
+  .tl-body { font-size: 12.5px; color: var(--ink-soft); line-height: 1.55; }
+  .tl-body em { color: var(--brass-deep); font-style: normal; font-weight: 500; }
+  .tl-attach { display: inline-flex; gap: 8px; margin-top: 8px; font-size: 11px; color: var(--ink-soft); padding: 4px 10px; border: 1px solid var(--rule); border-radius: 2px; align-items: center; }
+
+  /* IoT panel */
+  .iot-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .iot-tile { padding: 14px; background: var(--paper-2); border: 1px solid var(--rule-soft); border-radius: 2px; }
+  .iot-tile .label { font-size: 9.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-faint); }
+  .iot-tile .reading { font-family: 'Fraunces', serif; font-size: 22px; color: var(--ink); margin-top: 6px; line-height: 1; letter-spacing: -0.015em; }
+  .iot-tile .reading .unit { font-size: 12px; color: var(--ink-soft); margin-left: 4px; }
+  .iot-tile .delta { font-size: 10px; margin-top: 6px; color: var(--forest); font-family: 'IBM Plex Mono', monospace; }
+  .iot-tile .delta.warn { color: var(--brass-deep); }
+  .iot-tile .delta.alert { color: var(--clay); }
+
+  .actions-stack { display: flex; flex-direction: column; gap: 12px; margin-top: 8px; }
+  .action-card { padding: 16px; border: 1px solid var(--rule); background: var(--paper-2); border-radius: 2px; }
+  .action-card.primary { border-color: var(--clay); background: rgba(181,99,76,.06); }
+  .action-card .ah { display: flex; justify-content: space-between; align-items: baseline; }
+  .action-card .ah .t { font-family: 'Fraunces', serif; font-size: 14px; font-weight: 500; color: var(--ink); }
+  .action-card .ah .c { font-size: 11px; color: var(--ink-soft); font-family: 'IBM Plex Mono', monospace; }
+  .action-card p { font-size: 12px; color: var(--ink-soft); margin-top: 6px; line-height: 1.5; }
+  .action-row { display: flex; gap: 8px; margin-top: 12px; }
+  .btn { flex: 1; padding: 11px 14px; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; font-family: 'DM Sans', sans-serif; font-weight: 500; cursor: pointer; border: 1px solid var(--rule); background: transparent; color: var(--ink); transition: all .2s ease; }
+  .btn:hover { border-color: var(--brass); }
+  .btn.primary { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+  .btn.primary:hover { background: var(--brass-deep); border-color: var(--brass-deep); }
+  .btn.danger { background: var(--clay); color: var(--paper); border-color: var(--clay); }
+  .btn.danger:hover { background: #9C5240; border-color: #9C5240; }
+
+  /* perimeter map */
+  .perimeter-map { aspect-ratio: 4/3; background: linear-gradient(180deg, #2a3d2f 0%, #1f2e23 100%); border-radius: 2px; position: relative; overflow: hidden; border: 1px solid var(--ink-2); margin-bottom: 16px; }
+  .perimeter-map svg { width: 100%; height: 100%; }
+  .perimeter-legend { display: flex; gap: 14px; font-size: 10.5px; color: var(--ink-soft); padding: 0 4px; }
+  .perimeter-legend span { display: inline-flex; align-items: center; gap: 6px; }
+  .perimeter-legend .dot { width: 8px; height: 8px; border-radius: 50%; }
+  .perimeter-legend .dot.fire { background: var(--clay); }
+  .perimeter-legend .dot.house { background: var(--brass); }
+
+  /* Coverage panel for asset */
+  .coverage-asset { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-top: 28px; padding-top: 28px; border-top: 1px solid var(--rule); }
+  .ca-block .label { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-faint); }
+  .ca-block .v { font-family: 'Fraunces', serif; font-size: 24px; color: var(--ink); margin-top: 6px; letter-spacing: -0.015em; }
+  .ca-block .sub { font-size: 11px; color: var(--ink-soft); margin-top: 4px; line-height: 1.45; }
+
+  /* ============ INTERIOR: VAULT ============ */
+  .vault-shell { display: grid; grid-template-columns: 240px 1fr 320px; gap: 28px; margin-top: 36px; }
+  .vault-side .eyebrow { margin-bottom: 16px; }
+  .vault-folders { display: flex; flex-direction: column; }
+  .v-folder { display: grid; grid-template-columns: 16px 1fr auto; gap: 10px; padding: 11px 0; border-bottom: 1px solid var(--rule-soft); align-items: center; cursor: pointer; transition: color .2s; }
+  .v-folder:hover { color: var(--brass-deep); }
+  .v-folder.active { color: var(--ink); font-weight: 500; }
+  .v-folder.active::before { content: '›'; color: var(--brass); }
+  .v-folder span:not(.cnt) { font-size: 12.5px; color: inherit; }
+  .v-folder .cnt { font-size: 10px; font-family: 'IBM Plex Mono', monospace; color: var(--ink-faint); }
+
+  .vault-main { padding: 0; }
+  .vault-toolbar { display: flex; gap: 10px; margin-bottom: 28px; align-items: center; flex-wrap: wrap; }
+  .v-search { flex: 1; min-width: 200px; padding: 10px 14px; border: 1px solid var(--rule); background: var(--paper-2); font-family: 'DM Sans', sans-serif; font-size: 12.5px; color: var(--ink); }
+  .v-search::placeholder { color: var(--ink-faint); font-style: italic; }
+  .chip { padding: 8px 14px; font-size: 11px; letter-spacing: 0.06em; border: 1px solid var(--rule); background: transparent; color: var(--ink-soft); cursor: pointer; transition: all .2s; }
+  .chip:hover { border-color: var(--brass); color: var(--ink); }
+  .chip.on { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+
+  .doc-list { display: flex; flex-direction: column; }
+  .doc-item { display: grid; grid-template-columns: 36px 1fr auto auto; gap: 16px; align-items: center; padding: 16px 18px; border: 1px solid transparent; border-bottom: 1px solid var(--rule-soft); cursor: pointer; transition: all .2s; }
+  .doc-item:hover { background: rgba(168,138,79,.05); }
+  .doc-item.selected { background: var(--paper-2); border: 1px solid var(--brass); }
+  .doc-icon { width: 36px; height: 44px; background: var(--paper-3); border: 1px solid var(--rule); display: grid; place-items: center; color: var(--ink-soft); position: relative; }
+  .doc-icon.confidential::after { content: ''; position: absolute; top: -2px; right: -2px; width: 8px; height: 8px; background: var(--clay); border-radius: 50%; border: 1.5px solid var(--paper); }
+  .doc-name { font-size: 13.5px; color: var(--ink); font-weight: 500; }
+  .doc-meta { font-size: 11px; color: var(--ink-faint); margin-top: 3px; }
+  .doc-tag { font-size: 9.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--brass-deep); padding: 4px 8px; border: 1px solid var(--brass-soft); border-radius: 1px; white-space: nowrap; }
+  .doc-time { font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; color: var(--ink-faint); white-space: nowrap; }
+
+  /* Permissions panel */
+  .perm-panel { background: var(--ink); color: var(--paper); padding: 28px; border-radius: 2px; position: sticky; top: 24px; }
+  .perm-panel .eyebrow { color: var(--brass-soft); }
+  .perm-doc-name { font-family: 'Fraunces', serif; font-size: 18px; margin-top: 10px; line-height: 1.3; color: var(--paper); letter-spacing: -0.01em; }
+  .perm-doc-sub { font-size: 11px; color: rgba(245,239,228,.55); margin-top: 6px; }
+  .perm-section { margin-top: 24px; padding-top: 20px; border-top: 1px solid rgba(168,138,79,.25); }
+  .perm-section .h { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--brass-soft); margin-bottom: 12px; }
+  .perm-row { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; font-size: 12px; }
+  .perm-row .who { color: var(--paper); }
+  .perm-row .who .role { display: block; font-size: 10px; color: rgba(245,239,228,.5); margin-top: 2px; }
+  .perm-row .lvl { font-family: 'IBM Plex Mono', monospace; font-size: 10px; padding: 3px 8px; border-radius: 1px; }
+  .lvl.full { background: rgba(47,79,58,.4); color: #B8D4BE; }
+  .lvl.read { background: rgba(168,138,79,.25); color: var(--brass-soft); }
+  .lvl.expires { background: rgba(181,99,76,.2); color: var(--clay-soft); }
+  .audit-row { display: grid; grid-template-columns: 1fr auto; gap: 10px; padding: 8px 0; font-size: 11.5px; line-height: 1.4; border-bottom: 1px dashed rgba(168,138,79,.15); }
+  .audit-row:last-child { border-bottom: none; }
+  .audit-row .a { color: rgba(245,239,228,.85); }
+  .audit-row .t { font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: rgba(245,239,228,.45); }
+
+  /* ============ INTERIOR: CONCIERGE THREAD ============ */
+  .concierge-shell { display: grid; grid-template-columns: 280px 1fr; gap: 28px; margin-top: 36px; min-height: 720px; }
+  .thread-list { display: flex; flex-direction: column; padding-top: 8px; border-right: 1px solid var(--rule-soft); padding-right: 24px; }
+  .thread-list .eyebrow { margin-bottom: 16px; }
+  .thread-card { padding: 14px 14px 14px 16px; cursor: pointer; border-left: 2px solid transparent; transition: all .2s; margin-bottom: 4px; }
+  .thread-card:hover { background: rgba(168,138,79,.06); }
+  .thread-card.active { background: var(--paper-2); border-left-color: var(--brass); }
+  .thread-top { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 4px; }
+  .thread-name { font-size: 12.5px; font-weight: 500; color: var(--ink); }
+  .thread-time { font-size: 10px; color: var(--ink-faint); font-family: 'IBM Plex Mono', monospace; }
+  .thread-snip { font-size: 11.5px; color: var(--ink-soft); line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .thread-card.active .thread-snip { color: var(--ink-2); }
+  .thread-card.unread .thread-name::after { content: ''; display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--clay); margin-left: 8px; vertical-align: middle; }
+
+  .thread-main { display: flex; flex-direction: column; }
+  .thread-header { padding: 0 0 18px; border-bottom: 1px solid var(--rule-soft); display: flex; align-items: center; gap: 16px; }
+  .thread-header-avatar { width: 52px; height: 52px; border-radius: 50%; background: linear-gradient(135deg, #847151 0%, var(--brass) 100%); color: var(--ink); display: grid; place-items: center; font-family: 'Fraunces', serif; font-size: 18px; }
+  .thread-header-info h3 { font-family: 'Fraunces', serif; font-size: 22px; font-weight: 400; color: var(--ink); letter-spacing: -0.01em; }
+  .thread-header-info .meta { font-size: 11.5px; color: var(--ink-soft); margin-top: 4px; display: flex; align-items: center; gap: 6px; }
+  .thread-header-info .meta .live-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--forest); display: inline-block; }
+  .thread-header-actions { margin-left: auto; display: flex; gap: 10px; }
+
+  .thread-body { padding: 32px 0; flex: 1; display: flex; flex-direction: column; gap: 22px; max-height: 580px; overflow-y: auto; }
+  .msg { display: grid; grid-template-columns: 36px 1fr; gap: 14px; max-width: 80%; }
+  .msg.from-self { grid-template-columns: 1fr 36px; margin-left: auto; }
+  .msg-avatar { width: 36px; height: 36px; border-radius: 50%; background: var(--brass); color: var(--ink); display: grid; place-items: center; font-family: 'Fraunces', serif; font-size: 12px; flex-shrink: 0; }
+  .msg.from-self .msg-avatar { background: var(--ink); color: var(--paper); border: 1.5px solid var(--brass); order: 2; }
+  .msg.from-system .msg-avatar { background: transparent; color: var(--ink-faint); border: 1px dashed var(--rule); }
+  .msg-bubble { padding: 14px 18px; background: var(--paper-2); border: 1px solid var(--rule-soft); border-radius: 2px; }
+  .msg.from-self .msg-bubble { background: var(--ink); color: var(--paper); border-color: var(--ink-2); order: 1; }
+  .msg.from-system .msg-bubble { background: transparent; border: 1px dashed var(--rule); }
+  .msg-name { font-size: 11px; font-weight: 500; color: var(--brass-deep); margin-bottom: 4px; letter-spacing: 0.04em; }
+  .msg.from-self .msg-name { color: var(--brass-soft); text-align: right; }
+  .msg.from-system .msg-name { color: var(--ink-faint); }
+  .msg-text { font-size: 13.5px; line-height: 1.55; color: var(--ink); }
+  .msg.from-self .msg-text { color: var(--paper); }
+  .msg.from-system .msg-text { color: var(--ink-soft); font-style: italic; font-size: 12.5px; }
+  .msg-attach { margin-top: 10px; padding: 10px 14px; background: var(--paper); border: 1px solid var(--rule); display: flex; gap: 10px; align-items: center; font-size: 12px; color: var(--ink-2); }
+  .msg-attach svg { color: var(--brass-deep); flex-shrink: 0; }
+  .msg-attach .name { font-weight: 500; }
+  .msg-attach .size { color: var(--ink-faint); font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; margin-left: auto; }
+  .msg-time { font-size: 10px; color: var(--ink-faint); font-family: 'IBM Plex Mono', monospace; margin-top: 6px; letter-spacing: 0.04em; }
+  .msg.from-self .msg-time { text-align: right; }
+
+  .msg-day-divider { display: flex; align-items: center; gap: 14px; margin: 12px 0; }
+  .msg-day-divider::before, .msg-day-divider::after { content: ''; flex: 1; height: 1px; background: var(--rule-soft); }
+  .msg-day-divider span { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-faint); }
+
+  .composer { border-top: 1px solid var(--rule); padding-top: 20px; }
+  .quick-actions { display: flex; gap: 8px; margin-bottom: 14px; flex-wrap: wrap; }
+  .composer-input { display: grid; grid-template-columns: 1fr auto; gap: 12px; align-items: center; }
+  .composer-textarea { padding: 14px 18px; border: 1px solid var(--rule); background: var(--paper-2); font-family: 'DM Sans', sans-serif; font-size: 13.5px; color: var(--ink); resize: none; min-height: 52px; }
+  .composer-textarea:focus { outline: none; border-color: var(--brass); }
+
+  /* ============ INTERIOR: STEWARDSHIP REVIEW ============ */
+  .review-hero { padding: 48px 0 36px; text-align: center; }
+  .review-hero .eyebrow { margin-bottom: 14px; }
+  .review-hero h1 { font-family: 'Fraunces', serif; font-size: 60px; font-weight: 300; color: var(--ink); line-height: 1.05; letter-spacing: -0.025em; }
+  .review-hero h1 em { font-style: italic; color: var(--brass-deep); }
+  .review-hero p { font-size: 14px; color: var(--ink-soft); max-width: 600px; margin: 18px auto 0; line-height: 1.65; }
+
+  .review-toolbar { display: flex; justify-content: center; gap: 24px; padding: 24px 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); margin-bottom: 56px; }
+  .review-toolbar a { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-soft); text-decoration: none; padding: 4px 0; border-bottom: 1px solid transparent; cursor: pointer; }
+  .review-toolbar a:hover, .review-toolbar a.active { color: var(--ink); border-bottom-color: var(--brass); }
+
+  .spread { display: grid; grid-template-columns: 1fr 1fr; max-width: 1100px; margin: 0 auto 64px; box-shadow: 0 30px 60px rgba(14,26,38,.18), 0 4px 12px rgba(14,26,38,.1); position: relative; background: var(--paper); border: 1px solid var(--rule); }
+  .spread::before { content: ''; position: absolute; top: 0; bottom: 0; left: 50%; width: 2px; background: linear-gradient(90deg, transparent, rgba(14,26,38,.08), transparent); transform: translateX(-50%); }
+  .page { padding: 56px 56px; min-height: 600px; position: relative; }
+  .page.cover { background: linear-gradient(135deg, var(--unison) 0%, var(--unison-deep) 100%); color: var(--paper); padding: 80px 56px; display: flex; flex-direction: column; justify-content: space-between; }
+  .page.cover::after { content: ''; position: absolute; top: 0; bottom: 0; right: 14px; width: 1px; background: rgba(168,138,79,.3); }
+  .page.cover .top-mark { font-family: 'Fraunces', serif; font-style: italic; color: var(--brass-soft); font-size: 16px; }
+  .page.cover .center { text-align: left; }
+  .page.cover .center .pre { font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(168,138,79,.7); margin-bottom: 18px; }
+  .page.cover h2 { font-family: 'Fraunces', serif; font-size: 38px; font-weight: 300; line-height: 1.1; color: var(--paper); letter-spacing: -0.02em; }
+  .page.cover h2 em { font-style: italic; color: var(--brass-soft); }
+  .page.cover .vol { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--brass-soft); letter-spacing: 0.12em; margin-top: 32px; }
+  .page.cover .bot { display: flex; justify-content: space-between; align-items: end; font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(168,138,79,.7); }
+
+  .page-num { position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--ink-faint); letter-spacing: 0.1em; }
+  .page-section { font-family: 'Fraunces', serif; font-style: italic; font-size: 13px; color: var(--brass-deep); position: absolute; top: 24px; right: 56px; letter-spacing: 0.04em; }
+  .page-section.left { right: auto; left: 56px; }
+
+  .page h3 { font-family: 'Fraunces', serif; font-size: 28px; font-weight: 400; color: var(--ink); margin-bottom: 18px; letter-spacing: -0.015em; line-height: 1.15; }
+  .page h3 em { font-style: italic; color: var(--brass-deep); }
+  .page .lede { font-family: 'Fraunces', serif; font-size: 17px; font-style: italic; color: var(--ink-2); line-height: 1.55; margin-bottom: 22px; font-weight: 300; }
+  .page .body-text { font-size: 13.5px; line-height: 1.7; color: var(--ink-2); }
+  .page .body-text p { margin-bottom: 12px; }
+  .page .body-text p:first-letter { font-family: 'Fraunces', serif; font-size: 38px; font-weight: 400; float: left; line-height: 0.9; padding-right: 6px; padding-top: 4px; color: var(--brass-deep); font-style: italic; }
+  .signature { margin-top: 32px; font-family: 'Fraunces', serif; font-style: italic; font-size: 18px; color: var(--ink); }
+  .signature .role { display: block; font-style: normal; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-faint); margin-top: 8px; font-family: 'DM Sans', sans-serif; }
+
+  .ornament { text-align: center; margin: 28px 0; color: var(--brass); font-size: 14px; letter-spacing: 0.5em; }
+
+  .year-stat { display: flex; justify-content: space-between; align-items: baseline; padding: 14px 0; border-bottom: 1px solid var(--rule-soft); }
+  .year-stat .l { font-size: 12.5px; color: var(--ink-2); }
+  .year-stat .v { font-family: 'Fraunces', serif; font-size: 22px; color: var(--ink); letter-spacing: -0.015em; }
+
+  .notable-list { display: flex; flex-direction: column; gap: 14px; }
+  .notable-item { display: grid; grid-template-columns: 60px 1fr; gap: 16px; padding: 12px 0; border-bottom: 1px solid var(--rule-soft); }
+  .notable-thumb { width: 60px; height: 60px; background: linear-gradient(135deg, var(--paper-3) 0%, var(--rule-soft) 100%); border: 1px solid var(--rule); }
+  .notable-info .h { font-family: 'Fraunces', serif; font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 4px; }
+  .notable-info .s { font-size: 11.5px; color: var(--ink-soft); line-height: 1.45; }
+  .notable-info .v { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--brass-deep); margin-top: 4px; }
+
+  .anticipated-list { display: flex; flex-direction: column; gap: 16px; }
+  .anticipated-item { padding: 14px 0 14px 18px; border-left: 1px solid var(--brass-soft); position: relative; }
+  .anticipated-item::before { content: ''; position: absolute; left: -4px; top: 18px; width: 7px; height: 7px; border-radius: 50%; background: var(--brass); }
+  .anticipated-item h4 { font-family: 'Fraunces', serif; font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 4px; }
+  .anticipated-item p { font-size: 12px; color: var(--ink-soft); line-height: 1.55; }
+  .anticipated-item .when { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.06em; color: var(--brass-deep); margin-top: 4px; }
+
+  /* ============ UNISON LOGO ============ */
+  .brand-logo { height: 26px; width: auto; display: block; opacity: .92; }
+  .brand-logo-wrap { display: flex; align-items: center; gap: 16px; }
+  .brand-vline { width: 1px; height: 24px; background: var(--unison); opacity: .35; }
+  .brand-platform { font-family: 'Fraunces', serif; font-style: italic; font-size: 22px; font-weight: 400; color: var(--unison); letter-spacing: -0.015em; font-variation-settings: 'opsz' 144; }
+  .brand-platform .ampersand { color: var(--brass); font-weight: 300; }
+  .brand-suffix-new { font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--unison); padding: 2px 7px; border: 1px solid rgba(16,47,84,.3); border-radius: 1px; margin-left: 4px; }
+  .footer-logo { height: 16px; width: auto; opacity: .45; margin-right: 8px; }
+  .footer-brand { display: flex; align-items: center; gap: 4px; }
+
+
+  /* ============================================================
+     OSWALDONE — WARMING LAYER
+     Overrides and additions on top of the original stylesheet.
+     ============================================================ */
+
+  :root {
+    --oswald-navy: #1B3454;
+    --oswald-navy-deep: #0E2240;
+    --oswald-red: #B5402C;
+    --peach: #F0DCC5;
+    --peach-deep: #E5C8A8;
+    --warm-cream: #FAF4E8;
+    --clay-warm: #C97F5E;
+    --rule-warm: #DECDB0;
+  }
+
+  /* Slightly warmer body bg, more peach undertone */
+  body {
+    background: linear-gradient(180deg, #F8F0E0 0%, #F5EAD6 100%) !important;
+  }
+
+  /* ============ OSWALD BRAND MARK ============ */
+  .oswald-brand {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    line-height: 1;
+  }
+  .oswald-wordmark {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-weight: 700;
+    font-size: 24px;
+    letter-spacing: -0.03em;
+    color: var(--oswald-navy);
+    line-height: 1;
+  }
+  .oswald-wordmark .dot {
+    color: var(--oswald-red);
+  }
+  .oswald-suffix-rule {
+    width: 1px;
+    height: 22px;
+    background: var(--oswald-navy);
+    opacity: 0.25;
+    align-self: center;
+  }
+  .oswald-one {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--oswald-navy);
+    letter-spacing: -0.015em;
+  }
+  .oswald-one-tag {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--oswald-navy);
+    opacity: 0.55;
+    padding-left: 6px;
+    align-self: center;
+  }
+
+  /* Footer brand */
+  .footer-oswald {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    color: var(--oswald-navy);
+    letter-spacing: -0.01em;
+  }
+  .footer-oswald .dot { color: var(--oswald-red); }
+
+  /* ============ THE 4 PILLARS — Home strip ============ */
+  .pillars-strip {
+    margin: 24px 0 32px;
+    padding: 28px 32px;
+    background: linear-gradient(135deg, #FAF4E8 0%, #F5E8D2 100%);
+    border: 1px solid var(--rule-warm);
+    border-radius: 4px;
+    position: relative;
+  }
+  .pillars-strip::before {
+    content: 'How we show up for you';
+    position: absolute;
+    top: -9px;
+    left: 28px;
+    background: #F8F0E0;
+    padding: 0 12px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--brass-deep);
+  }
+  .pillars-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 28px;
+  }
+  .pillar {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 0 14px 0 0;
+    border-right: 1px solid rgba(135, 109, 59, 0.18);
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+  .pillar:last-child { border-right: none; }
+  .pillar:hover { transform: translateY(-2px); }
+  .pillar-icon {
+    width: 36px;
+    height: 36px;
+    color: var(--oswald-navy);
+    stroke-width: 1.4;
+  }
+  .pillar-icon-circle {
+    width: 44px;
+    height: 44px;
+    background: rgba(135, 109, 59, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(135, 109, 59, 0.22);
+  }
+  .pillar-icon-circle svg {
+    width: 22px;
+    height: 22px;
+    color: var(--oswald-navy);
+  }
+  .pillar-label {
+    font-family: 'Fraunces', serif;
+    font-size: 17px;
+    font-weight: 500;
+    color: var(--oswald-navy);
+    letter-spacing: -0.01em;
+  }
+  .pillar-score {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--brass-deep);
+    letter-spacing: 0.04em;
+  }
+  .pillar-score .num {
+    color: var(--clay-warm);
+    font-weight: 600;
+  }
+  .pillar-blurb {
+    font-size: 12px;
+    color: var(--ink-soft);
+    line-height: 1.5;
+  }
+
+  /* ============ SCORECARD SCREEN ============ */
+  .scorecard-hero {
+    background: linear-gradient(135deg, var(--oswald-navy) 0%, var(--oswald-navy-deep) 100%);
+    color: #fff;
+    padding: 48px 56px;
+    border-radius: 4px;
+    margin-bottom: 28px;
+    position: relative;
+    overflow: hidden;
+  }
+  .scorecard-hero::after {
+    content: '';
+    position: absolute;
+    right: -80px;
+    bottom: -80px;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(201, 127, 94, 0.18) 0%, transparent 70%);
+  }
+  .scorecard-hero .eyebrow {
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 16px;
+  }
+  .scorecard-hero h1 {
+    font-family: 'Fraunces', serif;
+    font-size: 44px;
+    font-weight: 300;
+    color: #fff;
+    margin-bottom: 12px;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+  }
+  .scorecard-hero h1 em {
+    font-style: italic;
+    color: var(--clay-warm);
+  }
+  .scorecard-hero .sub {
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.75);
+    line-height: 1.55;
+    max-width: 580px;
+  }
+
+  .scorecard-aggregate {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+    margin: 28px 0 36px;
+  }
+  .stat-block {
+    background: #fff;
+    padding: 32px;
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    position: relative;
+  }
+  .stat-block .num {
+    font-family: 'Fraunces', serif;
+    font-size: 56px;
+    font-weight: 300;
+    color: var(--oswald-navy);
+    line-height: 1;
+    letter-spacing: -0.03em;
+  }
+  .stat-block .num .unit {
+    font-size: 28px;
+    color: var(--brass);
+    margin-left: 4px;
+  }
+  .stat-block .label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--brass-deep);
+    margin-top: 16px;
+  }
+  .stat-block .desc {
+    font-size: 12.5px;
+    color: var(--ink-soft);
+    line-height: 1.55;
+    margin-top: 6px;
+  }
+
+  .scorecard-rate-now {
+    background: #fff;
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    padding: 36px 40px;
+    margin-bottom: 36px;
+  }
+  .scorecard-rate-now h2 {
+    font-family: 'Fraunces', serif;
+    font-size: 28px;
+    font-weight: 400;
+    color: var(--oswald-navy);
+    margin-bottom: 6px;
+    letter-spacing: -0.01em;
+  }
+  .scorecard-rate-now .sub {
+    font-size: 13px;
+    color: var(--ink-soft);
+    margin-bottom: 24px;
+  }
+  .rate-dimensions {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-bottom: 24px;
+  }
+  .rate-dim {
+    padding: 20px;
+    background: var(--warm-cream);
+    border: 1px solid var(--rule-warm);
+    border-radius: 3px;
+  }
+  .rate-dim .ico-circle {
+    width: 38px;
+    height: 38px;
+    background: rgba(135, 109, 59, 0.12);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 14px;
+  }
+  .rate-dim .ico-circle svg { width: 20px; height: 20px; color: var(--oswald-navy); }
+  .rate-dim h4 {
+    font-family: 'Fraunces', serif;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--oswald-navy);
+    margin-bottom: 4px;
+  }
+  .rate-dim .desc {
+    font-size: 11.5px;
+    color: var(--ink-soft);
+    line-height: 1.5;
+    margin-bottom: 14px;
+  }
+  .rate-slider {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .rate-track {
+    flex: 1;
+    height: 4px;
+    background: var(--rule);
+    border-radius: 2px;
+    position: relative;
+  }
+  .rate-fill {
+    position: absolute;
+    left: 0; top: 0;
+    height: 100%;
+    background: linear-gradient(90deg, var(--clay-warm), var(--brass));
+    border-radius: 2px;
+  }
+  .rate-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--oswald-navy);
+    font-weight: 600;
+    min-width: 28px;
+    text-align: right;
+  }
+
+  .scorecard-history {
+    background: #fff;
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    padding: 36px 40px;
+    margin-bottom: 36px;
+  }
+  .history-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 28px;
+    margin-top: 24px;
+  }
+  .history-year {
+    text-align: left;
+  }
+  .history-year .yr {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--brass-deep);
+    margin-bottom: 8px;
+  }
+  .history-year .score {
+    font-family: 'Fraunces', serif;
+    font-size: 38px;
+    font-weight: 300;
+    color: var(--oswald-navy);
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+  .history-year .delta {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: #2F4F3A;
+    margin-top: 6px;
+  }
+  .history-year .delta.flat { color: var(--ink-faint); }
+
+  .testimonial-block {
+    background: linear-gradient(135deg, var(--warm-cream) 0%, var(--peach) 100%);
+    border-radius: 3px;
+    padding: 40px 44px;
+    margin-bottom: 36px;
+    position: relative;
+  }
+  .testimonial-block .eyebrow {
+    color: var(--brass-deep);
+    margin-bottom: 18px;
+  }
+  .testimonial-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 36px;
+  }
+  .testimonial {
+    border-left: 2px solid var(--clay-warm);
+    padding-left: 22px;
+  }
+  .testimonial .quote {
+    font-family: 'Fraunces', serif;
+    font-size: 17px;
+    font-style: italic;
+    color: var(--oswald-navy);
+    line-height: 1.5;
+    letter-spacing: -0.005em;
+  }
+  .testimonial .attr {
+    font-size: 11.5px;
+    color: var(--ink-soft);
+    margin-top: 14px;
+    letter-spacing: 0.02em;
+  }
+
+  /* Annual Recap (folded from Review) */
+  .annual-recap {
+    background: #fff;
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    padding: 36px 40px;
+    margin-bottom: 36px;
+  }
+  .recap-cover {
+    background: linear-gradient(135deg, var(--oswald-navy) 0%, var(--oswald-navy-deep) 100%);
+    color: #fff;
+    padding: 36px 40px;
+    border-radius: 3px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 24px;
+    margin-top: 18px;
+  }
+  .recap-cover h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 30px;
+    font-weight: 300;
+    line-height: 1.15;
+    letter-spacing: -0.015em;
+  }
+  .recap-cover h3 em { font-style: italic; color: var(--clay-warm); }
+  .recap-cover .sub { font-size: 13px; color: rgba(255,255,255,0.7); margin-top: 6px; }
+  .recap-cover button {
+    background: var(--clay-warm);
+    color: #fff;
+    border: none;
+    padding: 14px 24px;
+    border-radius: 2px;
+    font-size: 13px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    cursor: pointer;
+    letter-spacing: 0.02em;
+  }
+
+  /* ============ IN GOOD COMPANY SCREEN ============ */
+  .igc-hero {
+    background: linear-gradient(135deg, var(--peach) 0%, var(--peach-deep) 100%);
+    padding: 56px 60px;
+    border-radius: 4px;
+    margin-bottom: 32px;
+    position: relative;
+    overflow: hidden;
+  }
+  .igc-hero::after {
+    content: '';
+    position: absolute;
+    right: -100px;
+    top: -100px;
+    width: 380px;
+    height: 380px;
+    background: radial-gradient(circle, rgba(27, 52, 84, 0.08) 0%, transparent 70%);
+  }
+  .igc-hero .eyebrow {
+    color: var(--brass-deep);
+    margin-bottom: 16px;
+  }
+  .igc-hero h1 {
+    font-family: 'Fraunces', serif;
+    font-size: 48px;
+    font-weight: 300;
+    color: var(--oswald-navy);
+    margin-bottom: 12px;
+    letter-spacing: -0.025em;
+    line-height: 1.05;
+    max-width: 720px;
+  }
+  .igc-hero h1 em {
+    font-style: italic;
+    color: var(--clay-warm);
+  }
+  .igc-hero .sub {
+    font-size: 16px;
+    color: var(--oswald-navy);
+    opacity: 0.75;
+    line-height: 1.55;
+    max-width: 600px;
+  }
+
+  .igc-ask {
+    background: #fff;
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    padding: 36px 40px;
+    margin-bottom: 36px;
+  }
+  .igc-ask h2 {
+    font-family: 'Fraunces', serif;
+    font-size: 28px;
+    font-weight: 400;
+    color: var(--oswald-navy);
+    margin-bottom: 22px;
+    letter-spacing: -0.01em;
+  }
+  .igc-categories {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+  }
+  .igc-cat {
+    padding: 22px 20px;
+    background: var(--warm-cream);
+    border: 1px solid var(--rule-warm);
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .igc-cat:hover {
+    background: #fff;
+    border-color: var(--clay-warm);
+    transform: translateY(-1px);
+  }
+  .igc-cat .ico {
+    width: 22px;
+    height: 22px;
+    color: var(--clay-warm);
+    margin-bottom: 12px;
+  }
+  .igc-cat .cat-title {
+    font-family: 'Fraunces', serif;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--oswald-navy);
+    margin-bottom: 4px;
+  }
+  .igc-cat .cat-desc {
+    font-size: 11.5px;
+    color: var(--ink-soft);
+    line-height: 1.5;
+  }
+
+  .igc-matches {
+    background: #fff;
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    padding: 36px 40px;
+    margin-bottom: 36px;
+  }
+  .match-list {
+    margin-top: 20px;
+  }
+  .match-row {
+    display: grid;
+    grid-template-columns: 56px 1fr auto;
+    gap: 20px;
+    align-items: center;
+    padding: 18px 0;
+    border-bottom: 1px solid var(--rule-soft);
+  }
+  .match-row:last-child { border-bottom: none; }
+  .match-avatar {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--brass) 0%, var(--clay-warm) 100%);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Fraunces', serif;
+    font-size: 19px;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+  }
+  .match-info .name {
+    font-family: 'Fraunces', serif;
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--oswald-navy);
+    margin-bottom: 3px;
+  }
+  .match-info .what {
+    font-size: 12.5px;
+    color: var(--ink-soft);
+    line-height: 1.5;
+  }
+  .match-info .what strong {
+    color: var(--oswald-navy);
+    font-weight: 500;
+  }
+  .match-status {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 5px 11px;
+    border: 1px solid;
+    border-radius: 2px;
+    white-space: nowrap;
+  }
+  .match-status.intro { color: var(--clay-warm); border-color: var(--clay-warm); background: rgba(201, 127, 94, 0.06); }
+  .match-status.done { color: #2F4F3A; border-color: #2F4F3A; background: rgba(47, 79, 58, 0.06); }
+  .match-status.pending { color: var(--brass-deep); border-color: var(--brass-deep); background: rgba(135, 109, 59, 0.06); }
+
+  /* Podcast tile */
+  .igc-podcast {
+    background: linear-gradient(135deg, var(--oswald-navy) 0%, var(--oswald-navy-deep) 100%);
+    color: #fff;
+    padding: 36px 40px;
+    border-radius: 3px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 28px;
+    margin-bottom: 36px;
+    position: relative;
+    overflow: hidden;
+  }
+  .igc-podcast::after {
+    content: '';
+    position: absolute;
+    right: -60px;
+    bottom: -60px;
+    width: 220px;
+    height: 220px;
+    background: radial-gradient(circle, rgba(201, 127, 94, 0.18) 0%, transparent 70%);
+  }
+  .igc-podcast .eyebrow { color: rgba(255,255,255,0.5); margin-bottom: 10px; }
+  .igc-podcast h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 28px;
+    font-weight: 300;
+    margin-bottom: 6px;
+    letter-spacing: -0.015em;
+    line-height: 1.15;
+  }
+  .igc-podcast h3 em { font-style: italic; color: var(--clay-warm); }
+  .igc-podcast .ep {
+    font-size: 13px;
+    color: rgba(255,255,255,0.75);
+    line-height: 1.5;
+    max-width: 480px;
+  }
+  .play-btn {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: var(--clay-warm);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+  }
+  .play-btn svg { width: 24px; height: 24px; color: #fff; margin-left: 3px; }
+
+  /* Make existing buttons slightly warmer */
+  .btn.primary {
+    background: var(--clay-warm) !important;
+    border-color: var(--clay-warm) !important;
+  }
+  .btn.primary:hover {
+    background: #B36848 !important;
+    border-color: #B36848 !important;
+  }
+
+  /* Friendlier card corners */
+  .panel, .quick-action, .property-card { border-radius: 3px; }
+
+  /* "Your Oswald team" — softer Concierge avatar treatment */
+  .duty-avatar, .match-avatar { border-radius: 50%; }
+
+  /* ============ BOOK READER — Interactive annual edition ============ */
+  .book-reader {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.6s cubic-bezier(0.4, 0, 0.2, 1), margin-top 0.5s ease;
+    margin-top: 0;
+  }
+  .book-reader.is-open {
+    max-height: 1400px;
+    margin-top: 22px;
+  }
+
+  .book-stage {
+    background: linear-gradient(180deg, #1F1208 0%, #0E0805 100%);
+    padding: 36px 36px 26px;
+    border-radius: 3px;
+    position: relative;
+  }
+
+  .book-spread {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background: #FAF4E8;
+    box-shadow: 0 16px 50px rgba(0,0,0,0.5), 0 2px 10px rgba(0,0,0,0.3);
+    min-height: 560px;
+    position: relative;
+  }
+  .book-spread::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.18) 50%, transparent 100%);
+    transform: translateX(-50%);
+    pointer-events: none;
+  }
+  .book-spread:not(.is-current) { display: none; }
+
+  .book-page {
+    padding: 52px 50px 60px;
+    position: relative;
+    background: linear-gradient(135deg, #FAF4E8 0%, #F4EAD4 100%);
+  }
+  .book-page .page-eyebrow {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--brass-deep);
+    margin-bottom: 26px;
+  }
+  .book-page h2 {
+    font-family: 'Fraunces', serif;
+    font-size: 32px;
+    font-weight: 300;
+    color: var(--oswald-navy);
+    letter-spacing: -0.02em;
+    line-height: 1.12;
+    margin-bottom: 20px;
+  }
+  .book-page h2 em {
+    font-style: italic;
+    color: var(--clay-warm);
+  }
+  .book-page p {
+    font-family: 'Fraunces', serif;
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--oswald-navy);
+    margin-bottom: 13px;
+    font-weight: 400;
+  }
+  .book-page p:last-child { margin-bottom: 0; }
+
+  .book-page .page-num {
+    position: absolute;
+    bottom: 22px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--brass-deep);
+    opacity: 0.55;
+    letter-spacing: 0.08em;
+  }
+  .book-page.recto .page-num { right: 50px; }
+  .book-page.verso .page-num { left: 50px; }
+
+  /* Cover page (the left-hand cover of spread 1) */
+  .book-cover-page {
+    background: linear-gradient(135deg, var(--oswald-navy) 0%, var(--oswald-navy-deep) 100%);
+    color: #fff;
+    padding: 52px 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+  }
+  .book-cover-page::after {
+    content: '';
+    position: absolute;
+    inset: 18px;
+    border: 1px solid rgba(201, 127, 94, 0.32);
+    pointer-events: none;
+  }
+  .book-cover-page .cover-mark {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 12px;
+  }
+  .book-cover-page .cover-h {
+    font-family: 'Fraunces', serif;
+    font-size: 42px;
+    font-weight: 300;
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+  }
+  .book-cover-page .cover-h em { font-style: italic; color: var(--clay-warm); }
+  .book-cover-page .cover-foot {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
+  }
+
+  /* Data rows */
+  .book-numbers .num-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(135, 109, 59, 0.18);
+  }
+  .book-numbers .num-row:last-child { border-bottom: none; }
+  .book-numbers .num-label {
+    font-family: 'Fraunces', serif;
+    font-size: 13px;
+    color: var(--oswald-navy);
+  }
+  .book-numbers .num-val {
+    font-family: 'Fraunces', serif;
+    font-size: 17px;
+    color: var(--oswald-navy-deep);
+    font-weight: 400;
+  }
+  .book-numbers .num-val .delta {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--brass-deep);
+    margin-left: 8px;
+  }
+
+  /* Story list */
+  .book-list { margin-top: 12px; }
+  .book-item { margin-bottom: 18px; }
+  .book-item:last-child { margin-bottom: 0; }
+  .book-item .when {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9.5px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--brass-deep);
+    margin-bottom: 4px;
+  }
+  .book-item .what {
+    font-family: 'Fraunces', serif;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--oswald-navy);
+    margin-bottom: 4px;
+  }
+  .book-item .detail {
+    font-family: 'Fraunces', serif;
+    font-size: 13.5px;
+    color: var(--ink-soft);
+    line-height: 1.55;
+  }
+
+  /* Sign-off page */
+  .book-signoff {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 100%;
+    padding-top: 20px;
+  }
+  .book-signoff .ornament {
+    width: 60px;
+    height: 1px;
+    background: var(--clay-warm);
+    margin-bottom: 30px;
+  }
+  .book-signoff p {
+    font-size: 13.5px;
+    color: var(--ink-soft);
+    line-height: 1.7;
+    max-width: 280px;
+    margin-bottom: 14px;
+  }
+  .book-signoff .signature {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 19px;
+    color: var(--oswald-navy);
+    margin-top: 28px;
+  }
+
+  /* Controls */
+  .book-controls {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    margin-top: 18px;
+  }
+  .book-pages-indicator {
+    text-align: center;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
+  }
+  .book-nav { display: flex; gap: 10px; justify-self: start; }
+  .book-close-wrap { justify-self: end; }
+  .book-nav-btn {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.2);
+    color: rgba(255,255,255,0.88);
+    padding: 8px 18px;
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: 2px;
+    transition: all 0.2s;
+    letter-spacing: 0.04em;
+  }
+  .book-nav-btn:hover:not(:disabled) {
+    background: rgba(255,255,255,0.15);
+    border-color: rgba(255,255,255,0.32);
+  }
+  .book-nav-btn:disabled { opacity: 0.25; cursor: not-allowed; }
+  .book-close-btn {
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.22);
+    color: rgba(255,255,255,0.72);
+    padding: 6px 14px;
+    font-family: 'Inter', sans-serif;
+    font-size: 10.5px;
+    cursor: pointer;
+    border-radius: 2px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    transition: all 0.2s;
+  }
+  .book-close-btn:hover { border-color: rgba(255,255,255,0.4); color: #fff; }
+
+  /* Book chart styling — for the data spread */
+  .chart-stacked-bar svg { display: block; border-radius: 2px; overflow: hidden; }
+  .chart-legend { display: grid; gap: 0; margin-top: 22px; }
+  .legend-row {
+    display: grid;
+    grid-template-columns: 14px 1fr auto auto;
+    gap: 14px;
+    align-items: center;
+    font-family: 'Fraunces', serif;
+    font-size: 12.5px;
+    padding: 7px 0;
+    border-bottom: 1px solid rgba(135, 109, 59, 0.12);
+  }
+  .legend-row:last-child { border-bottom: none; }
+  .legend-row .sw { width: 12px; height: 12px; border-radius: 2px; }
+  .legend-row .lbl { color: var(--oswald-navy); }
+  .legend-row .pct {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--brass-deep);
+    letter-spacing: 0.06em;
+    text-align: right;
+    min-width: 32px;
+  }
+  .legend-row .amt {
+    font-family: 'Fraunces', serif;
+    font-size: 13px;
+    color: var(--oswald-navy-deep);
+    font-weight: 500;
+    text-align: right;
+    min-width: 56px;
+  }
+  .chart-key {
+    display: flex;
+    gap: 22px;
+    margin-top: 14px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--brass-deep);
+  }
+  .chart-key .swatch {
+    display: inline-block;
+    width: 14px;
+    height: 2px;
+    vertical-align: middle;
+    margin-right: 6px;
+  }
+  .chart-caption {
+    font-family: 'Fraunces', serif;
+    font-size: 13px;
+    color: var(--ink-soft);
+    line-height: 1.6;
+    margin-top: 18px;
+  }
+
+</style>
+</head>
+<body>
+<div class="ribbon">Concept Mockup</div>
+
+<div class="container">
+
+  <!-- =================== NAV =================== -->
+  <nav>
+    <div class="oswald-brand">
+      <span class="oswald-wordmark">Oswald<span class="dot">.</span></span>
+      <span class="oswald-suffix-rule"></span>
+      <span class="oswald-one">ONE</span>
+      <span class="oswald-one-tag">Client Hub</span>
+    </div>
+    <ul class="nav-links" id="nav">
+      <li><a data-screen="home" class="active">Home</a></li>
+      <li><a data-screen="risk">Household</a></li>
+      <li><a data-screen="scorecard">Scorecard</a></li>
+      <li><a data-screen="igc">In Good Company</a></li>
+      <li><a data-screen="vault">Vault</a></li>
+      <li><a data-screen="concierge">Your Team</a></li>
+    </ul>
+    <div class="nav-right">
+      <button class="icon-btn" aria-label="Search">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="11" cy="11" r="7"/><path d="m21 21-5-5"/></svg>
+      </button>
+      <button class="icon-btn" aria-label="Notifications">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 8a6 6 0 1 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>
+      </button>
+      <div class="principal-avatar" title="Robert Ellsworth">RE</div>
+    </div>
+  </nav>
+
+  <!-- =================== SCREEN: HOME / DASHBOARD =================== -->
+  <div class="screen is-active" id="screen-home">
+    <section class="hero reveal" style="animation-delay:0.1s">
+      <div class="hero-greeting">
+        <div class="eyebrow">Tuesday · 5 May · Cleveland</div>
+        <h1>Good morning,<br><em>Robert</em>.</h1>
+        <p class="hero-meta">Three matters need a moment of your attention this week. The household is in steady stewardship; Aspen is on watch. Charles is on duty until 9 PM ET.</p>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><div class="stat-label">Insured Value</div><div class="stat-value">$48.2M</div><div class="stat-sub">across 7 categories</div></div>
+        <div class="stat"><div class="stat-label">Annual Premium</div><div class="stat-value">$284,510</div><div class="stat-sub brass">↓ 3.2% vs. prior year</div></div>
+        <div class="stat"><div class="stat-label">Coverage Health</div><div class="stat-value">94<span style="color:var(--ink-faint);font-size:18px">/100</span></div><div class="stat-sub clay">2 gaps identified</div></div>
+        <div class="stat"><div class="stat-label">Open Matters</div><div class="stat-value">3</div><div class="stat-sub">2 in progress · 1 awaiting you</div></div>
+      </div>
+    </section>
+
+    <!-- =================== 4 PILLARS — How we show up =================== -->
+    <div class="pillars-strip">
+      <div class="pillars-grid">
+
+        <div class="pillar">
+          <div class="pillar-icon-circle">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M12 3 L20 7 L20 12 C20 16.5 16.5 20 12 21 C7.5 20 4 16.5 4 12 L4 7 Z" stroke-linejoin="round"/>
+              <path d="M9 12 L11 14.5 L15.5 10" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="pillar-label">Confidence</div>
+          <div class="pillar-blurb">You know what's covered, and what's not — and why.</div>
+          <div class="pillar-score"><span class="num">98</span> · <span style="opacity:.55">your last rating</span></div>
+        </div>
+
+        <div class="pillar">
+          <div class="pillar-icon-circle">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <circle cx="12" cy="12" r="9"/>
+              <path d="M12 6 L14.4 11.6 L12 16 L9.6 11.6 Z" fill="currentColor" stroke="none"/>
+              <circle cx="12" cy="12" r="1.5" fill="#FAF4E8" stroke="none"/>
+            </svg>
+          </div>
+          <div class="pillar-label">Guidance</div>
+          <div class="pillar-blurb">A real human, who knows your household, when you need one.</div>
+          <div class="pillar-score"><span class="num">100</span> · <span style="opacity:.55">your last rating</span></div>
+        </div>
+
+        <div class="pillar">
+          <div class="pillar-icon-circle">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M3 10 Q7.5 6 12 10 T21 10" stroke-linecap="round"/>
+              <path d="M3 15 Q7.5 11 12 15 T21 15" stroke-linecap="round" opacity="0.55"/>
+            </svg>
+          </div>
+          <div class="pillar-label">Ease</div>
+          <div class="pillar-blurb">The boring parts handled in the background. Your time, back.</div>
+          <div class="pillar-score"><span class="num">97</span> · <span style="opacity:.55">your last rating</span></div>
+        </div>
+
+        <div class="pillar">
+          <div class="pillar-icon-circle">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <rect x="3.5" y="14.5" width="4" height="6" rx="0.5"/>
+              <rect x="10" y="10" width="4" height="10.5" rx="0.5"/>
+              <rect x="16.5" y="5" width="4" height="15.5" rx="0.5"/>
+            </svg>
+          </div>
+          <div class="pillar-label">Quantifiable Value</div>
+          <div class="pillar-blurb">What you get back, measured — not just promised.</div>
+          <div class="pillar-score"><span class="num">$184k</span> · <span style="opacity:.55">recovered '24–'26</span></div>
+        </div>
+
+      </div>
+    </div>
+
+    <main>
+      <div class="grid-primary">
+        <section class="panel elevated reveal household-map" style="animation-delay:0.2s">
+          <div class="panel-header">
+            <div><div class="eyebrow" style="margin-bottom:6px">At a glance</div><h2 class="panel-title">The <em>Ellsworth</em> family</h2></div>
+            <a class="panel-action">Open map</a>
+          </div>
+          <div class="members-strip">
+            <div class="member"><div class="member-avatar">RE</div><div><div class="member-name">Robert</div><div class="member-role">You</div></div></div>
+            <div class="member"><div class="member-avatar">CE</div><div><div class="member-name">Catherine</div><div class="member-role">Spouse</div></div></div>
+            <div class="member"><div class="member-avatar junior">EE</div><div><div class="member-name">Elise · 21</div><div class="member-role">Yale, junior</div></div></div>
+            <div class="member"><div class="member-avatar junior">JE</div><div><div class="member-name">Jonathan · 18</div><div class="member-role">Hotchkiss, senior</div></div></div>
+            <div class="member"><div class="member-avatar junior">WE</div><div><div class="member-name">William · 15</div><div class="member-role">Hotchkiss, sophomore</div></div></div>
+          </div>
+          <div class="properties-grid">
+            <div class="property watch"><div class="property-header"><div class="property-loc">Shaker Heights, Ohio</div><div class="property-name">The Fairmount Residence</div></div><div class="property-meta"><span>Primary · 9,200 sq ft</span><span class="value">$6.4M</span></div><div class="property-flag watch">Pre-winter inspection · Nov 4</div></div>
+            <div class="property alert" data-target="risk" onclick="switchScreen('risk')"><div class="property-header"><div class="property-loc">Aspen, Colorado</div><div class="property-name">Red Mountain House</div></div><div class="property-meta"><span>Seasonal · 6,800 sq ft</span><span class="value">$14.2M</span></div><div class="property-flag">Wildfire perimeter advanced — board-up team on standby</div></div>
+            <div class="property"><div class="property-header"><div class="property-loc">Naples, Florida</div><div class="property-name">Gordon Drive Villa</div></div><div class="property-meta"><span>Seasonal · 7,400 sq ft</span><span class="value">$11.8M</span></div></div>
+            <div class="property"><div class="property-header"><div class="property-loc">New York, NY</div><div class="property-name">740 Park Pied‑à‑Terre</div></div><div class="property-meta"><span>Co-op · 2,100 sq ft</span><span class="value">$5.6M</span></div></div>
+          </div>
+        </section>
+
+        <section class="panel dark reveal" style="animation-delay:0.3s">
+          <div class="panel-header"><div><div class="eyebrow" style="color:var(--brass-soft);margin-bottom:6px">Live · Updated 4 min ago</div><h2 class="panel-title">Risk <em>Weather</em></h2></div><a class="panel-action" onclick="switchScreen('risk')">All signals</a></div>
+          <div class="weather-list">
+            <div class="weather-item" onclick="switchScreen('risk')" style="cursor:pointer"><span class="weather-dot alert"></span><div class="weather-text"><strong>Aspen.</strong> Wildfire perimeter advanced 4.1 miles toward Red Mountain. IoT sensors active; vetted contractor queued for board-up.<span class="action">› Awaiting your authorization to dispatch</span></div><span class="weather-time">12 min</span></div>
+            <div class="weather-item"><span class="weather-dot watch"></span><div class="weather-text"><strong>Digital perimeter.</strong> Impersonation account flagged on LinkedIn under your name. Takedown initiated.<span class="action">› We will confirm when removed (24–48h)</span></div><span class="weather-time">2h</span></div>
+            <div class="weather-item"><span class="weather-dot watch"></span><div class="weather-text"><strong>Yale, New Haven.</strong> Phishing campaign targeting students surfaced. Elise's identity monitoring is active; we have notified her.</div><span class="weather-time">6h</span></div>
+            <div class="weather-item"><span class="weather-dot steady"></span><div class="weather-text"><strong>Naples.</strong> Tropical system tracking south of cone. No action; we continue to monitor.</div><span class="weather-time">9h</span></div>
+            <div class="weather-item"><span class="weather-dot steady"></span><div class="weather-text"><strong>Carrier health.</strong> All carriers AM Best A or better. No watch items.</div><span class="weather-time">1d</span></div>
+          </div>
+        </section>
+      </div>
+
+      <div class="grid-secondary">
+        <section class="panel reveal" style="animation-delay:0.4s">
+          <div class="panel-header"><div><div class="eyebrow" style="margin-bottom:6px">Anticipated</div><h2 class="panel-title">Life <em>events</em></h2></div><a class="panel-action">All</a></div>
+          <div class="events-list">
+            <div class="event"><div class="event-date"><div class="day">14</div><div class="mo">May</div></div><div class="event-body"><h4>Twombly drawing departs for Milan loan</h4><p>Endorsement drafted with Galleria Borghese. Just needs your signature.</p><a class="event-cta" onclick="switchScreen('concierge')">Have a look →</a></div></div>
+            <div class="event"><div class="event-date"><div class="day">22</div><div class="mo">May</div></div><div class="event-body"><h4>Naples renovation — coverage alignment</h4><p>Builder's risk active through 12 Aug; contents schedule will adjust on completion.</p></div></div>
+            <div class="event"><div class="event-date"><div class="day">04</div><div class="mo">Jun</div></div><div class="event-body"><h4>Family travel · Tuscany & Lake Como</h4><p>Medical evac confirmed. K&R cover active. Pre-trip security brief prepared by Argosy.</p><a class="event-cta">Open itinerary →</a></div></div>
+          </div>
+        </section>
+
+        <section class="panel reveal" style="animation-delay:0.5s">
+          <div class="panel-header"><div><div class="eyebrow" style="margin-bottom:6px">CRO Dashboard</div><h2 class="panel-title">Coverage <em>position</em></h2></div><a class="panel-action">Detail</a></div>
+          <div class="coverage-rows">
+            <div class="cov-row"><div class="cov-name">Property & contents<span class="sub">Four residences</span></div><div class="cov-bar-wrap"><div class="cov-bar"><div class="cov-fill" style="width:96%"></div></div></div><div class="cov-status">Strong</div></div>
+            <div class="cov-row"><div class="cov-name">Personal umbrella<span class="sub">$50M tower</span></div><div class="cov-bar-wrap"><div class="cov-bar"><div class="cov-fill" style="width:92%"></div></div></div><div class="cov-status">Strong</div></div>
+            <div class="cov-row"><div class="cov-name">Fine art & collectibles<span class="sub">42 scheduled items</span></div><div class="cov-bar-wrap"><div class="cov-bar"><div class="cov-fill warn" style="width:74%"></div></div></div><div class="cov-status warn">Watch</div></div>
+            <div class="cov-row"><div class="cov-name">Cyber & reputation<span class="sub">Household + dependents</span></div><div class="cov-bar-wrap"><div class="cov-bar"><div class="cov-fill" style="width:88%"></div></div></div><div class="cov-status">Strong</div></div>
+            <div class="cov-row"><div class="cov-name">Watercraft & marine<span class="sub">Newport sloop</span></div><div class="cov-bar-wrap"><div class="cov-bar"><div class="cov-fill gap" style="width:48%"></div></div></div><div class="cov-status gap">Gap</div></div>
+            <div class="cov-row"><div class="cov-name">Household employees<span class="sub">5 staff · EPLI</span></div><div class="cov-bar-wrap"><div class="cov-bar"><div class="cov-fill" style="width:90%"></div></div></div><div class="cov-status">Strong</div></div>
+          </div>
+          <div class="gap-callout"><strong>Gap flagged ·</strong> Brancusi maquette acquired in October has not yet been added to the schedule. Sotheby's appraisal received yesterday — we'll prepare the endorsement on your approval.</div>
+        </section>
+
+        <section class="reveal" style="animation-delay:0.6s">
+          <div class="concierge-card">
+            <div class="eyebrow">Concierge</div>
+            <p class="concierge-greeting">"What can we help with today, <strong>Robert</strong>?"</p>
+            <div class="concierge-meta"><div class="duty-avatar">CW</div><div class="duty-info"><div class="name">Charles Whittaker</div><div class="role">Your Oswald team · on call until 9 PM ET</div></div></div>
+            <div class="concierge-actions"><button class="concierge-btn primary" onclick="switchScreen('concierge')">Speak now</button><button class="concierge-btn" onclick="switchScreen('concierge')">Send a note</button></div>
+          </div>
+        </section>
+      </div>
+
+      <div class="grid-secondary">
+        <section class="panel reveal" style="animation-delay:0.7s; grid-column: span 2;">
+          <div class="panel-header"><div><div class="eyebrow" style="margin-bottom:6px">Vault · Recent activity</div><h2 class="panel-title">Documents <em>in motion</em></h2></div><a class="panel-action" onclick="switchScreen('vault')">Open vault</a></div>
+          <div class="vault-list">
+            <div class="vault-item"><div class="vault-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></div><div class="vault-text">Trust amendment — Article VII (charitable remainder provisions)<span class="src">Uploaded by Michelman & Robinson · viewed by Catherine</span></div><span class="vault-time">2h ago</span></div>
+            <div class="vault-item"><div class="vault-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></div><div class="vault-text">Sotheby's appraisal — Brancusi (maquette, ed. 4/8)<span class="src">$1.42M · Received with provenance file</span></div><span class="vault-time">1d</span></div>
+            <div class="vault-item"><div class="vault-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/></svg></div><div class="vault-text">Naples renovation — architectural plans v3<span class="src">Shared with Skanska · permission expires 30 Jun</span></div><span class="vault-time">3d</span></div>
+            <div class="vault-item"><div class="vault-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2 2 7l10 5 10-5-10-5z"/><path d="m2 17 10 5 10-5"/><path d="m2 12 10 5 10-5"/></svg></div><div class="vault-text">Newport sloop — pre-season survey & layup checklist<span class="src">Hinckley yard · scheduled 12 Nov</span></div><span class="vault-time">1w</span></div>
+          </div>
+        </section>
+
+        <section class="panel reveal" style="animation-delay:0.8s">
+          <div class="panel-header"><div><div class="eyebrow" style="margin-bottom:6px">On the calendar</div><h2 class="panel-title">Upcoming</h2></div></div>
+          <div class="events-list">
+            <div class="event"><div class="event-date"><div class="day">12</div><div class="mo">Nov</div></div><div class="event-body"><h4>Newport · sloop lay-up survey</h4><p>Hinckley yard, 9 AM</p></div></div>
+            <div class="event"><div class="event-date"><div class="day">15</div><div class="mo">Nov</div></div><div class="event-body"><h4>Your 2026 recap</h4><p>Mailed to Fairmount</p></div></div>
+            <div class="event"><div class="event-date"><div class="day">18</div><div class="mo">Nov</div></div><div class="event-body"><h4>Aspen · pre-season inspection</h4><p>Snowmelt systems, security audit</p></div></div>
+          </div>
+        </section>
+      </div>
+
+      <div class="review-strip reveal" style="animation-delay:0.9s" onclick="openRecapFromHome()">
+        <div>
+          <div class="eyebrow">An annual edition</div>
+          <h2>Your 2026 <em>recap</em>.</h2>
+          <p>Bound, numbered, and delivered. A documented record of what was protected this year, what changed, and what is anticipated — the kind of artifact your family will keep on the shelf. Yours arrives at Fairmount on 15 November.</p>
+          <a class="review-cta">Open the digital edition →</a>
+        </div>
+        <div class="review-book">
+          <div><div class="top">An annual recap<br>prepared for</div><div class="mid" style="margin-top:14px">The Ellsworth Household</div></div>
+          <div><div class="bot">OswaldONE</div><div class="vol">2026</div></div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- =================== SCREEN: RISK / ASSET DETAIL =================== -->
+  <div class="screen" id="screen-risk">
+    <section class="asset-hero reveal">
+      <div>
+        <div class="asset-crumb"><a onclick="switchScreen('home')">Household</a> &nbsp;›&nbsp; Properties &nbsp;›&nbsp; Aspen &nbsp;›&nbsp; <span style="color:var(--ink)">Red Mountain House</span></div>
+        <h1 class="asset-title"><em>Red Mountain</em><br>House.</h1>
+        <p class="asset-sub">2741 Red Mountain Road, Aspen, Colorado. Seasonal residence. The household is monitoring an active wildfire to the southwest. Caretaker is sheltering off-site; sensors are clean as of the last reading.</p>
+      </div>
+      <div>
+        <div class="status-banner" style="margin-bottom:24px">
+          <span class="status-pulse"></span>
+          <div class="status-text"><strong>Active situation · Awaiting your authorization.</strong><br>Henderson Building Co. crew is staged. Authorize board-up to dispatch.</div>
+        </div>
+        <div class="asset-stats">
+          <div class="stat"><div class="stat-label">Dwelling Limit</div><div class="stat-value">$14.2M</div><div class="stat-sub">replacement cost basis</div></div>
+          <div class="stat"><div class="stat-label">Contents Limit</div><div class="stat-value">$3.8M</div><div class="stat-sub">incl. 6 scheduled items</div></div>
+          <div class="stat"><div class="stat-label">ALE</div><div class="stat-value">$580k</div><div class="stat-sub brass">12 mo · pre-approved</div></div>
+          <div class="stat"><div class="stat-label">Carrier</div><div class="stat-value" style="font-size:22px">AIG Private Client</div><div class="stat-sub">A.M. Best A · 12-yr relationship</div></div>
+        </div>
+      </div>
+    </section>
+
+    <main>
+      <div class="asset-grid">
+
+        <!-- ASSET PROFILE -->
+        <section class="reveal" style="animation-delay:0.05s">
+          <div class="eyebrow" style="margin-bottom:14px">Asset profile</div>
+          <div class="profile-list">
+            <div class="profile-row"><span class="k">Type</span><span class="v">Single-family seasonal</span></div>
+            <div class="profile-row"><span class="k">Year built</span><span class="v">1991, renovated 2017</span></div>
+            <div class="profile-row"><span class="k">Square footage</span><span class="v">6,800</span></div>
+            <div class="profile-row"><span class="k">Lot</span><span class="v">3.2 acres</span></div>
+            <div class="profile-row"><span class="k">Owner of record</span><span class="v serif">RMH Holdings LLC</span></div>
+            <div class="profile-row"><span class="k">Caretaker</span><span class="v serif">M. Henderson</span></div>
+            <div class="profile-row"><span class="k">Security firm</span><span class="v serif">Argosy Group</span></div>
+            <div class="profile-row"><span class="k">Last appraisal</span><span class="v">Mar 2025</span></div>
+            <div class="profile-row"><span class="k">Pre-season inspection</span><span class="v">18 Nov scheduled</span></div>
+          </div>
+
+          <div class="eyebrow" style="margin: 32px 0 14px">Notable contents</div>
+          <div class="profile-list">
+            <div class="profile-row"><span class="k serif" style="font-family:'Fraunces',serif;font-size:13px;text-transform:none;letter-spacing:0;color:var(--ink-2)">Twombly drawing</span><span class="v">$2.1M</span></div>
+            <div class="profile-row"><span class="k serif" style="font-family:'Fraunces',serif;font-size:13px;text-transform:none;letter-spacing:0;color:var(--ink-2)">Patek Philippe collection</span><span class="v">$840k</span></div>
+            <div class="profile-row"><span class="k serif" style="font-family:'Fraunces',serif;font-size:13px;text-transform:none;letter-spacing:0;color:var(--ink-2)">Wine cellar (1,400 bottles)</span><span class="v">$385k</span></div>
+            <div class="profile-row"><span class="k serif" style="font-family:'Fraunces',serif;font-size:13px;text-transform:none;letter-spacing:0;color:var(--ink-2)">'67 Porsche 911S</span><span class="v">$220k</span></div>
+          </div>
+        </section>
+
+        <!-- TIMELINE -->
+        <section class="reveal" style="animation-delay:0.1s">
+          <div class="panel-header" style="border:none; margin-bottom: 20px; padding: 0">
+            <div><div class="eyebrow" style="margin-bottom:6px">Today · Tuesday 5 May</div><h2 class="panel-title">Response <em>timeline</em></h2></div>
+            <a class="panel-action">Full log</a>
+          </div>
+
+          <div class="timeline">
+            <div class="tl-item system">
+              <div class="tl-time">06:14 ET · 04:14 MT</div>
+              <h3 class="tl-title">Smoke detected · west perimeter sensor</h3>
+              <p class="tl-body">Particulate exceeded threshold for 90 seconds. Neighborhood corroboration via Aspen Fire alert at 06:11. Automated alert routed to the Concierge desk.</p>
+            </div>
+            <div class="tl-item">
+              <div class="tl-time">06:18 ET</div>
+              <h3 class="tl-title">Reviewed and corroborated by Charles</h3>
+              <p class="tl-body"><em>Charles Whittaker</em> confirmed sensor reading against InciWeb feed. Initial perimeter 11.4 miles southwest. Wind from west-southwest at 14 mph; trajectory consistent with advance toward Red Mountain.</p>
+            </div>
+            <div class="tl-item">
+              <div class="tl-time">06:24 ET</div>
+              <h3 class="tl-title">Family principal notified · text and Cockpit alert</h3>
+              <p class="tl-body">Sent to Robert Ellsworth at preferred channel (mobile). Catherine notified via her preferred channel (Cockpit only). No call placed; matter deemed below escalation threshold at this stage.</p>
+            </div>
+            <div class="tl-item">
+              <div class="tl-time">07:00 ET</div>
+              <h3 class="tl-title">Caretaker contacted · perimeter walkthrough</h3>
+              <p class="tl-body">M. Henderson confirmed sheltering at family residence in Snowmass. Conducted remote IoT walkthrough — no smoke ingress, HVAC dampers closed, water shut-off ready. Argosy Group security on-site within 22 min, perimeter clear.</p>
+            </div>
+            <div class="tl-item">
+              <div class="tl-time">09:30 ET</div>
+              <h3 class="tl-title">IoT inspection complete · all readings nominal</h3>
+              <p class="tl-body">Smoke, temperature, humidity, occupancy, and security all within normal range. Wine cellar climate stable. Logged for the file.</p>
+              <span class="tl-attach"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66L9.41 17.41a2 2 0 0 1-2.83-2.83l8.49-8.49"/></svg>Sensor report · 09:30 ET</span>
+            </div>
+            <div class="tl-item alert">
+              <div class="tl-time">12:45 ET</div>
+              <h3 class="tl-title">Perimeter advanced 4.1 miles · now 7.3 mi from residence</h3>
+              <p class="tl-body">InciWeb update at 12:43 confirmed advance. Wind sustained west-southwest. Aspen Fire Protection District public notice issued for adjacent neighborhoods (not yet for Red Mountain).</p>
+            </div>
+            <div class="tl-item">
+              <div class="tl-time">13:02 ET</div>
+              <h3 class="tl-title">Adjuster prep call scheduled · AIG Private Client</h3>
+              <p class="tl-body">Scheduled with AIG senior adjuster <em>D. Markham</em> for 14:30 ET. Standard precautionary prep — no FNOL filed yet. AIG has been the carrier since 2014.</p>
+            </div>
+            <div class="tl-item">
+              <div class="tl-time">13:32 ET</div>
+              <h3 class="tl-title">Henderson Building Co. crew staged for board-up</h3>
+              <p class="tl-body">Vetted contractor on Oswald's vetted contractor list. Estimate <em>$14,200</em>, fully covered under emergency mitigation. Four-person crew, 35-min ETA when you give us the green light.</p>
+              <span class="tl-attach"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66L9.41 17.41a2 2 0 0 1-2.83-2.83l8.49-8.49"/></svg>Contractor estimate · $14,200</span>
+            </div>
+            <div class="tl-item now">
+              <div class="tl-time">NOW · 14:12 ET</div>
+              <h3 class="tl-title">Awaiting your authorization to dispatch</h3>
+              <p class="tl-body">Decision required by 15:00 ET to maintain crew positioning. Below this threshold no action is taken; escalation can be revisited as conditions evolve.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- IoT + ACTIONS -->
+        <section class="reveal" style="animation-delay:0.15s">
+          <div class="eyebrow" style="margin-bottom:14px">Perimeter · live</div>
+          <div class="perimeter-map">
+            <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+              <!-- terrain contours -->
+              <path d="M-20,180 Q80,140 180,170 T420,160" stroke="rgba(168,138,79,.18)" stroke-width="1" fill="none"/>
+              <path d="M-20,210 Q80,180 180,200 T420,190" stroke="rgba(168,138,79,.14)" stroke-width="1" fill="none"/>
+              <path d="M-20,240 Q80,210 180,230 T420,220" stroke="rgba(168,138,79,.1)" stroke-width="1" fill="none"/>
+              <!-- fire perimeter (dashed clay) -->
+              <path d="M40,220 Q80,160 130,150 Q180,145 220,160 Q210,210 170,250 Q120,260 70,250 Z" fill="rgba(181,99,76,.18)" stroke="var(--clay)" stroke-width="1.5" stroke-dasharray="4,3"/>
+              <!-- prior perimeter (faded) -->
+              <path d="M30,240 Q60,200 100,195 Q140,193 160,210 Q150,240 110,260 Q70,265 40,255 Z" fill="none" stroke="rgba(181,99,76,.4)" stroke-width="1" stroke-dasharray="2,2"/>
+              <!-- house marker -->
+              <circle cx="310" cy="110" r="6" fill="var(--brass)"/>
+              <circle cx="310" cy="110" r="14" fill="none" stroke="var(--brass)" stroke-width=".7" opacity=".5"/>
+              <text x="320" y="115" fill="rgba(245,239,228,.8)" font-family="Fraunces" font-style="italic" font-size="12">Red Mtn House</text>
+              <!-- distance line -->
+              <path d="M180,180 L308,114" stroke="rgba(168,138,79,.5)" stroke-width=".8" stroke-dasharray="2,3"/>
+              <text x="220" y="148" fill="var(--brass-soft)" font-family="IBM Plex Mono" font-size="10">7.3 mi</text>
+              <!-- wind -->
+              <g transform="translate(60,60)" opacity=".6">
+                <path d="M0,12 L24,12 M16,4 L24,12 L16,20" stroke="var(--brass-soft)" stroke-width="1" fill="none"/>
+                <text x="32" y="16" fill="rgba(245,239,228,.6)" font-family="DM Sans" font-size="10">14 mph WSW</text>
+              </g>
+              <!-- compass -->
+              <g transform="translate(360,260)" opacity=".5">
+                <text x="0" y="0" fill="rgba(245,239,228,.6)" font-family="Fraunces" font-style="italic" font-size="10">N ↑</text>
+              </g>
+            </svg>
+          </div>
+          <div class="perimeter-legend">
+            <span><span class="dot fire"></span>Fire perimeter</span>
+            <span><span class="dot house"></span>Residence</span>
+          </div>
+
+          <div class="eyebrow" style="margin: 28px 0 14px">Sensors · Red Mountain</div>
+          <div class="iot-grid">
+            <div class="iot-tile"><div class="label">Interior temp</div><div class="reading">68<span class="unit">°F</span></div><div class="delta">Steady</div></div>
+            <div class="iot-tile"><div class="label">Humidity</div><div class="reading">42<span class="unit">%</span></div><div class="delta">Nominal</div></div>
+            <div class="iot-tile"><div class="label">Smoke / particulate</div><div class="reading">0<span class="unit">ppm</span></div><div class="delta">Clear since 06:18</div></div>
+            <div class="iot-tile"><div class="label">Air intake</div><div class="reading">Sealed</div><div class="delta">Auto-engaged 06:18</div></div>
+            <div class="iot-tile"><div class="label">Wine cellar</div><div class="reading">55<span class="unit">°F</span></div><div class="delta">Stable</div></div>
+            <div class="iot-tile"><div class="label">Perimeter security</div><div class="reading">Armed</div><div class="delta">Argosy on-site</div></div>
+          </div>
+
+          <div class="eyebrow" style="margin: 28px 0 14px">Pre-approved actions · awaiting you</div>
+          <div class="actions-stack">
+            <div class="action-card primary">
+              <div class="ah"><span class="t">Dispatch board-up crew</span><span class="c">$14,200</span></div>
+              <p>Henderson Building Co. crew of four. Boards 9 windows and 3 doors on west and south elevations. Reimbursable under emergency mitigation. Decision required by 15:00 ET.</p>
+              <div class="action-row"><button class="btn primary">Authorize</button><button class="btn">Hold</button></div>
+            </div>
+            <div class="action-card">
+              <div class="ah"><span class="t">Move scheduled items off-site</span><span class="c">$2,850 transit</span></div>
+              <p>Twombly, Patek collection, and provenance archive to Oswald-vetted vault in Denver via secured transport. 6-hour notice; below threshold today.</p>
+              <div class="action-row"><button class="btn">Authorize</button><button class="btn">Decline for now</button></div>
+            </div>
+            <div class="action-card">
+              <div class="ah"><span class="t">Open precautionary FNOL with AIG</span><span class="c">No cost</span></div>
+              <p>Files a precautionary notice without a claim. Preserves rights and accelerates handling if conditions deteriorate. Recommended.</p>
+              <div class="action-row"><button class="btn primary">File precautionary</button><button class="btn">Decline</button></div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <div class="coverage-asset reveal">
+        <div class="ca-block"><div class="label">Wildfire defensible space</div><div class="v">Class A</div><div class="sub">Last graded by Oswald risk engineer · Sep 2025</div></div>
+        <div class="ca-block"><div class="label">Deductible</div><div class="v">$50,000</div><div class="sub">Per occurrence · standard private client</div></div>
+        <div class="ca-block"><div class="label">Wildfire defense svc</div><div class="v">Wildfire Defense Systems</div><div class="sub">Pre-positioned in evacuation tier; AIG endorsement</div></div>
+        <div class="ca-block"><div class="label">Last claim</div><div class="v">2018</div><div class="sub">Hail · roof replacement · $42k</div></div>
+      </div>
+    </main>
+  </div>
+
+  
+
+  <!-- =================== SCREEN: SCORECARD =================== -->
+  <div class="screen" id="screen-scorecard">
+
+    <div class="scorecard-hero">
+      <div class="eyebrow">Your scorecard · 2026</div>
+      <h1>How are we <em>doing</em>?</h1>
+      <p class="sub">Once a year we ask. The four things we measure — Confidence, Guidance, Ease, Quantifiable Value — because they're the four things that actually matter to you. Your last scorecard came in at 98 out of 100. We're not done yet.</p>
+    </div>
+
+    <!-- Aggregate proof points -->
+    <div class="scorecard-aggregate">
+      <div class="stat-block">
+        <div class="num">98.6<span class="unit">/100</span></div>
+        <div class="label">Average Oswald Score</div>
+        <div class="desc">87% of our clients rate us 98.6 out of 100. We're not going to round up.</div>
+      </div>
+      <div class="stat-block">
+        <div class="num">40<span class="unit">%</span></div>
+        <div class="label">Response Rate</div>
+        <div class="desc">Two-fifths of our clients fill this out every year. That's roughly 4× the industry average.</div>
+      </div>
+      <div class="stat-block">
+        <div class="num">$184<span class="unit">k</span></div>
+        <div class="label">Recovered for you · '24–'26</div>
+        <div class="desc">Claims, mitigation credits, and renegotiated premium that landed back with your family.</div>
+      </div>
+    </div>
+
+    <!-- Rate now — live scorecard -->
+    <div class="scorecard-rate-now">
+      <h2>Your turn — rate us, briefly.</h2>
+      <p class="sub">Four questions. Two minutes. We read every single one.</p>
+
+      <div class="rate-dimensions">
+        <div class="rate-dim">
+          <div class="ico-circle">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M12 3 L20 7 L20 12 C20 16.5 16.5 20 12 21 C7.5 20 4 16.5 4 12 L4 7 Z" stroke-linejoin="round"/>
+              <path d="M9 12 L11 14.5 L15.5 10" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h4>Confidence</h4>
+          <div class="desc">Do you know what's covered, and what's not — and why?</div>
+          <div class="rate-slider">
+            <div class="rate-track"><div class="rate-fill" style="width:98%"></div></div>
+            <div class="rate-num">98</div>
+          </div>
+        </div>
+
+        <div class="rate-dim">
+          <div class="ico-circle">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <circle cx="12" cy="12" r="9"/>
+              <path d="M12 6 L14.4 11.6 L12 16 L9.6 11.6 Z" fill="currentColor" stroke="none"/>
+            </svg>
+          </div>
+          <h4>Guidance</h4>
+          <div class="desc">Is your Oswald team there when you need them?</div>
+          <div class="rate-slider">
+            <div class="rate-track"><div class="rate-fill" style="width:100%"></div></div>
+            <div class="rate-num">100</div>
+          </div>
+        </div>
+
+        <div class="rate-dim">
+          <div class="ico-circle">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M3 10 Q7.5 6 12 10 T21 10" stroke-linecap="round"/>
+              <path d="M3 15 Q7.5 11 12 15 T21 15" stroke-linecap="round" opacity="0.55"/>
+            </svg>
+          </div>
+          <h4>Ease</h4>
+          <div class="desc">Is the friction out of the way? Is your time respected?</div>
+          <div class="rate-slider">
+            <div class="rate-track"><div class="rate-fill" style="width:97%"></div></div>
+            <div class="rate-num">97</div>
+          </div>
+        </div>
+
+        <div class="rate-dim">
+          <div class="ico-circle">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <rect x="3.5" y="14.5" width="4" height="6" rx="0.5"/>
+              <rect x="10" y="10" width="4" height="10.5" rx="0.5"/>
+              <rect x="16.5" y="5" width="4" height="15.5" rx="0.5"/>
+            </svg>
+          </div>
+          <h4>Quantifiable Value</h4>
+          <div class="desc">Can you see what you're getting back — in dollars and otherwise?</div>
+          <div class="rate-slider">
+            <div class="rate-track"><div class="rate-fill" style="width:96%"></div></div>
+            <div class="rate-num">96</div>
+          </div>
+        </div>
+      </div>
+
+      <textarea placeholder="Anything specific on your mind? (Optional — but we read all of it)" style="width:100%; padding:14px 16px; border:1px solid var(--rule); border-radius:3px; font-family:'Calibri', sans-serif; font-size:14px; min-height:80px; resize:vertical; background:#FAF4E8; color:var(--ink); margin-bottom:16px;"></textarea>
+
+      <button class="btn primary" style="padding:14px 32px;">Submit your 2026 scorecard</button>
+    </div>
+
+    <!-- Your history -->
+    <div class="scorecard-history">
+      <div class="eyebrow">Your scorecard history</div>
+      <h2 style="font-family:'Fraunces',serif; font-size:24px; font-weight:400; color:var(--oswald-navy); margin-top:4px;">Four years with Oswald.</h2>
+
+      <div class="history-grid">
+        <div class="history-year">
+          <div class="yr">2023</div>
+          <div class="score">94</div>
+          <div class="delta">First year</div>
+        </div>
+        <div class="history-year">
+          <div class="yr">2024</div>
+          <div class="score">96</div>
+          <div class="delta">↑ 2 pts</div>
+        </div>
+        <div class="history-year">
+          <div class="yr">2025</div>
+          <div class="score">97</div>
+          <div class="delta">↑ 1 pt</div>
+        </div>
+        <div class="history-year">
+          <div class="yr">2026</div>
+          <div class="score" style="color:var(--clay-warm);">98</div>
+          <div class="delta">↑ 1 pt · in progress</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Testimonials -->
+    <div class="testimonial-block">
+      <div class="eyebrow">What other families and businesses are telling us</div>
+      <h2 style="font-family:'Fraunces',serif; font-size:26px; font-weight:300; color:var(--oswald-navy); letter-spacing:-0.01em; margin-bottom:24px;">You're in <em style="font-style:italic; color:var(--clay-warm);">good company</em>.</h2>
+
+      <div class="testimonial-grid">
+        <div class="testimonial">
+          <div class="quote">"They actually picked up the phone at 11 PM on a Sunday when the basement flooded. I didn't even know that was a thing anymore."</div>
+          <div class="attr">— A family principal, Cleveland · 2025 scorecard</div>
+        </div>
+        <div class="testimonial">
+          <div class="quote">"In ten years with our previous broker, we never once had someone explain a policy line we didn't understand. In one year with Oswald, every line."</div>
+          <div class="attr">— CFO, manufacturing client · 2025 scorecard</div>
+        </div>
+        <div class="testimonial">
+          <div class="quote">"The annual recap they sent felt like it was made for our family — not pulled from a template. That's not a small thing."</div>
+          <div class="attr">— A family principal, Shaker Heights · 2026 scorecard</div>
+        </div>
+        <div class="testimonial">
+          <div class="quote">"Renewal used to take a week of back-and-forth. Now it takes a phone call and a signature. That's the whole story."</div>
+          <div class="attr">— Family-office director · 2026 scorecard</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Annual recap (folded from old Review) -->
+    <div class="annual-recap">
+      <div class="eyebrow">Your annual recap · 2026</div>
+      <h2 style="font-family:'Fraunces',serif; font-size:24px; font-weight:400; color:var(--oswald-navy); margin-top:4px;">A year, in your hands.</h2>
+      <p style="font-size:14px; color:var(--ink-soft); line-height:1.6; margin-top:10px; max-width:680px;">Every November we put together a recap of the year — what changed, what we caught, what we recovered, what's coming. It's printed, bound, and mailed to Fairmount. The digital version lives here.</p>
+
+      <div class="recap-cover">
+        <div>
+          <div style="font-family:'IBM Plex Mono', monospace; font-size:10px; letter-spacing:0.18em; text-transform:uppercase; color:rgba(255,255,255,0.5); margin-bottom:10px;">An annual recap for</div>
+          <h3>The Ellsworth <em>family</em>.</h3>
+          <div class="sub">2026 edition · 48 pages · Printed in Cleveland</div>
+        </div>
+        <button onclick="openBook()">Open the digital edition →</button>
+      </div>
+
+      <!-- ============ INTERACTIVE BOOK READER ============ -->
+      <div class="book-reader" id="book-reader">
+        <div class="book-stage">
+
+          <!-- SPREAD 1: Cover + Letter from your team -->
+          <div class="book-spread is-current" data-spread="0">
+            <div class="book-cover-page">
+              <div>
+                <div class="cover-mark">An annual recap, prepared for</div>
+                <div class="cover-h">The Ellsworth<br><em>family</em>.</div>
+              </div>
+              <div>
+                <div class="cover-foot" style="margin-bottom:6px;">Oswald · 2026</div>
+                <div class="cover-foot" style="opacity:0.5;">No. 0001 of one</div>
+              </div>
+            </div>
+            <div class="book-page recto">
+              <div class="page-eyebrow">A letter from your team</div>
+              <h2>Robert, <em>Catherine</em> —</h2>
+              <p>Another year handled. Here's what we caught, what we recovered, and what we're watching for 2027.</p>
+              <p>Your scorecard this year came in at 98 out of 100, up a point. We won't take credit for the one you didn't give us — that's on us, and we'll work on it.</p>
+              <p>A few things worth marking before you read on. Aspen held; no losses despite three active fire incidents in the valley. The Twombly traveled safely. Identity monitoring caught the LinkedIn impersonation within 24 hours.</p>
+              <p>We'll see you in January for the annual review at the residence. Until then.</p>
+              <p style="margin-top:22px; font-style:italic;">— Charles Whittaker</p>
+              <p style="font-family:'IBM Plex Mono', monospace; font-size:10px; color:var(--brass-deep); letter-spacing:0.1em; margin-top:-6px; text-transform:uppercase;">On behalf of your Oswald team</p>
+              <div class="page-num">3</div>
+            </div>
+          </div>
+
+          <!-- SPREAD 2: Year in Numbers + Things we caught -->
+          <div class="book-spread" data-spread="1">
+            <div class="book-page verso">
+              <div class="page-eyebrow">Your 2026, in numbers</div>
+              <h2>The year, on a <em>page</em>.</h2>
+              <div class="book-numbers" style="margin-top:18px;">
+                <div class="num-row"><span class="num-label">Insured value</span><span class="num-val">$48.2M<span class="delta">↑ $1.4M</span></span></div>
+                <div class="num-row"><span class="num-label">Annual premium</span><span class="num-val">$284,510<span class="delta">↓ 3.2%</span></span></div>
+                <div class="num-row"><span class="num-label">Claims closed</span><span class="num-val">3</span></div>
+                <div class="num-row"><span class="num-label">Value recovered</span><span class="num-val" style="color:var(--clay-warm);">$184,000</span></div>
+                <div class="num-row"><span class="num-label">Coverage health</span><span class="num-val">94 / 100</span></div>
+                <div class="num-row"><span class="num-label">Properties watched</span><span class="num-val">4</span></div>
+                <div class="num-row"><span class="num-label">Specialists on call</span><span class="num-val">11</span></div>
+                <div class="num-row"><span class="num-label">Days quiet</span><span class="num-val">312 of 365</span></div>
+              </div>
+              <div class="page-num">12</div>
+            </div>
+            <div class="book-page recto">
+              <div class="page-eyebrow">Things we caught this year</div>
+              <h2>Quiet <em>wins</em>.</h2>
+              <div class="book-list">
+                <div class="book-item">
+                  <div class="when">May · Aspen, Colorado</div>
+                  <div class="what">Red Mountain wildfire</div>
+                  <div class="detail">Perimeter advanced to 7.3 miles from the residence. Sensors and a pre-staged board-up crew kept losses at zero. We won't pretend it wasn't close.</div>
+                </div>
+                <div class="book-item">
+                  <div class="when">September · Rome</div>
+                  <div class="what">The Twombly loan</div>
+                  <div class="detail">Galleria Borghese requested the drawing. Endorsement signed, conservation reviewed, insured-for-loan in 72 hours.</div>
+                </div>
+                <div class="book-item">
+                  <div class="when">November · Online</div>
+                  <div class="what">LinkedIn impersonation</div>
+                  <div class="detail">An account using Robert's photo and name was active for 36 hours before our monitoring caught it. Takedown completed within 24.</div>
+                </div>
+                <div class="book-item">
+                  <div class="when">October · The schedule</div>
+                  <div class="what">The Brancusi maquette</div>
+                  <div class="detail">We caught the gap before you did. It's now scheduled and appraised.</div>
+                </div>
+              </div>
+              <div class="page-num">13</div>
+            </div>
+          </div>
+
+          <!-- SPREAD 3: Where premium goes + Five-year trend -->
+          <div class="book-spread" data-spread="2">
+            <div class="book-page verso">
+              <div class="page-eyebrow">Where your premium goes</div>
+              <h2>The shape of <em>coverage</em>.</h2>
+
+              <!-- Horizontal stacked bar -->
+              <div class="chart-stacked-bar" style="margin-top:24px;">
+                <svg viewBox="0 0 340 28" width="100%" height="28" preserveAspectRatio="none">
+                  <rect x="0"   y="0" width="170" height="28" fill="#1B3454"/>
+                  <rect x="170" y="0" width="75"  height="28" fill="#C97F5E"/>
+                  <rect x="245" y="0" width="34"  height="28" fill="#876D3B"/>
+                  <rect x="279" y="0" width="24"  height="28" fill="#A88A4F"/>
+                  <rect x="303" y="0" width="20"  height="28" fill="#C9B989"/>
+                  <rect x="323" y="0" width="17"  height="28" fill="#E5C8A8"/>
+                </svg>
+              </div>
+
+              <!-- Legend -->
+              <div class="chart-legend">
+                <div class="legend-row">
+                  <span class="sw" style="background:#1B3454"></span>
+                  <span class="lbl">Property · four residences</span>
+                  <span class="pct">50%</span>
+                  <span class="amt">$142k</span>
+                </div>
+                <div class="legend-row">
+                  <span class="sw" style="background:#C97F5E"></span>
+                  <span class="lbl">Art, collections &amp; valuables</span>
+                  <span class="pct">22%</span>
+                  <span class="amt">$63k</span>
+                </div>
+                <div class="legend-row">
+                  <span class="sw" style="background:#876D3B"></span>
+                  <span class="lbl">Excess liability · umbrella</span>
+                  <span class="pct">10%</span>
+                  <span class="amt">$28k</span>
+                </div>
+                <div class="legend-row">
+                  <span class="sw" style="background:#A88A4F"></span>
+                  <span class="lbl">Auto · seven vehicles</span>
+                  <span class="pct">7%</span>
+                  <span class="amt">$20k</span>
+                </div>
+                <div class="legend-row">
+                  <span class="sw" style="background:#C9B989"></span>
+                  <span class="lbl">Cyber &amp; identity</span>
+                  <span class="pct">6%</span>
+                  <span class="amt">$17k</span>
+                </div>
+                <div class="legend-row">
+                  <span class="sw" style="background:#E5C8A8"></span>
+                  <span class="lbl">K&amp;R, employment, other</span>
+                  <span class="pct">5%</span>
+                  <span class="amt">$14k</span>
+                </div>
+              </div>
+
+              <div class="page-num">22</div>
+            </div>
+
+            <div class="book-page recto">
+              <div class="page-eyebrow">Five years with Oswald</div>
+              <h2>The trend, <em>steady</em>.</h2>
+
+              <!-- Line chart -->
+              <div style="margin-top:24px;">
+                <svg viewBox="0 0 340 200" width="100%" height="200">
+                  <!-- horizontal grid lines -->
+                  <line x1="42" y1="25" x2="328" y2="25" stroke="#DECDB0" stroke-width="0.5"/>
+                  <line x1="42" y1="65" x2="328" y2="65" stroke="#DECDB0" stroke-width="0.5"/>
+                  <line x1="42" y1="105" x2="328" y2="105" stroke="#DECDB0" stroke-width="0.5"/>
+                  <line x1="42" y1="145" x2="328" y2="145" stroke="#DECDB0" stroke-width="0.5"/>
+                  <line x1="42" y1="178" x2="328" y2="178" stroke="#876D3B" stroke-width="0.7"/>
+
+                  <!-- y-axis labels -->
+                  <text x="38" y="28" text-anchor="end" font-size="9" font-family="IBM Plex Mono" fill="#876D3B" letter-spacing="0.04em">$360k</text>
+                  <text x="38" y="68" text-anchor="end" font-size="9" font-family="IBM Plex Mono" fill="#876D3B" letter-spacing="0.04em">$330k</text>
+                  <text x="38" y="108" text-anchor="end" font-size="9" font-family="IBM Plex Mono" fill="#876D3B" letter-spacing="0.04em">$300k</text>
+                  <text x="38" y="148" text-anchor="end" font-size="9" font-family="IBM Plex Mono" fill="#876D3B" letter-spacing="0.04em">$270k</text>
+
+                  <!-- x-axis labels -->
+                  <text x="60" y="194" text-anchor="middle" font-size="9" font-family="IBM Plex Mono" fill="#876D3B" letter-spacing="0.06em">2022</text>
+                  <text x="127" y="194" text-anchor="middle" font-size="9" font-family="IBM Plex Mono" fill="#876D3B" letter-spacing="0.06em">2023</text>
+                  <text x="194" y="194" text-anchor="middle" font-size="9" font-family="IBM Plex Mono" fill="#876D3B" letter-spacing="0.06em">2024</text>
+                  <text x="261" y="194" text-anchor="middle" font-size="9" font-family="IBM Plex Mono" fill="#876D3B" letter-spacing="0.06em">2025</text>
+                  <text x="320" y="194" text-anchor="middle" font-size="9" font-family="IBM Plex Mono" fill="#876D3B" letter-spacing="0.06em">2026</text>
+
+                  <!-- benchmark line (dashed, navy) -->
+                  <polyline points="60,98 127,80 194,57 261,38 320,28"
+                            fill="none" stroke="#1B3454" stroke-width="1.5" stroke-dasharray="3,3" opacity="0.55"/>
+                  <circle cx="60" cy="98" r="2.5" fill="#1B3454" opacity="0.55"/>
+                  <circle cx="127" cy="80" r="2.5" fill="#1B3454" opacity="0.55"/>
+                  <circle cx="194" cy="57" r="2.5" fill="#1B3454" opacity="0.55"/>
+                  <circle cx="261" cy="38" r="2.5" fill="#1B3454" opacity="0.55"/>
+                  <circle cx="320" cy="28" r="2.5" fill="#1B3454" opacity="0.55"/>
+
+                  <!-- Oswald premium line (solid, clay) -->
+                  <polyline points="60,80 127,95 194,108 261,118 320,125"
+                            fill="none" stroke="#C97F5E" stroke-width="2.2"/>
+                  <circle cx="60" cy="80" r="3" fill="#C97F5E"/>
+                  <circle cx="127" cy="95" r="3" fill="#C97F5E"/>
+                  <circle cx="194" cy="108" r="3" fill="#C97F5E"/>
+                  <circle cx="261" cy="118" r="3" fill="#C97F5E"/>
+                  <circle cx="320" cy="125" r="4.5" fill="#C97F5E" stroke="#FAF4E8" stroke-width="1.5"/>
+
+                  <!-- Value label on latest data point -->
+                  <text x="313" y="142" text-anchor="end" font-size="11" font-family="Fraunces" font-style="italic" fill="#1B3454" font-weight="500">$284k</text>
+                </svg>
+              </div>
+
+              <!-- Chart key -->
+              <div class="chart-key">
+                <div><span class="swatch" style="background:#C97F5E"></span>Your premium</div>
+                <div><span class="swatch" style="background:#1B3454; opacity:0.55"></span>HNW market peer</div>
+              </div>
+
+              <p class="chart-caption">The market for high-net-worth coverage has risen 18% over five years. Yours has come down 8%. The gap is what working with us is meant to look like.</p>
+
+              <div class="page-num">23</div>
+            </div>
+          </div>
+
+          <!-- SPREAD 4: Watching for 2027 + Sign-off -->
+          <div class="book-spread" data-spread="3">
+            <div class="book-page verso">
+              <div class="page-eyebrow">Watching for 2027</div>
+              <h2>What's on the <em>horizon</em>.</h2>
+              <div class="book-list">
+                <div class="book-item">
+                  <div class="when">May–August 2027</div>
+                  <div class="what">Aspen wildfire season</div>
+                  <div class="detail">Defensible space re-grading in May. Sensor network biennial calibration.</div>
+                </div>
+                <div class="book-item">
+                  <div class="when">November 2026</div>
+                  <div class="what">Twombly returns from Borghese</div>
+                  <div class="detail">Conservation specialist already lined up for the receipt review.</div>
+                </div>
+                <div class="book-item">
+                  <div class="when">December 2026</div>
+                  <div class="what">Robert turns sixty-five</div>
+                  <div class="detail">Medicare coordination with the executive medical plan. We'll walk through it with your CPA well before the date.</div>
+                </div>
+                <div class="book-item">
+                  <div class="when">Q1 2027</div>
+                  <div class="what">Trust amendment review</div>
+                  <div class="detail">Your counsel at Michelman &amp; Robinson has flagged a forthcoming review of generation-skipping provisions.</div>
+                </div>
+              </div>
+              <div class="page-num">42</div>
+            </div>
+            <div class="book-page recto">
+              <div class="book-signoff">
+                <div class="ornament"></div>
+                <p>Your full edition runs forty-eight pages, including the appendices, the carrier panel, and the claims register. It arrives at Fairmount on 15 November.</p>
+                <p>A digital copy lives in your Vault, watermarked and access-logged.</p>
+                <div class="signature">— Your Oswald team</div>
+                <div style="font-family:'IBM Plex Mono', monospace; font-size:10px; letter-spacing:0.14em; color:var(--brass-deep); margin-top:24px; text-transform:uppercase;">Oswald · 2026</div>
+              </div>
+              <div class="page-num">48</div>
+            </div>
+          </div>
+
+          <!-- Controls -->
+          <div class="book-controls">
+            <div class="book-nav">
+              <button class="book-nav-btn" id="book-prev" onclick="flipPage(-1)" disabled>← Previous</button>
+              <button class="book-nav-btn" id="book-next" onclick="flipPage(1)">Next →</button>
+            </div>
+            <div class="book-pages-indicator" id="book-pages-indicator">Spread 1 of 3</div>
+            <div class="book-close-wrap">
+              <button class="book-close-btn" onclick="closeBook()">Close</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+
+  <!-- =================== SCREEN: IN GOOD COMPANY =================== -->
+  <div class="screen" id="screen-igc">
+
+    <div class="igc-hero">
+      <div class="eyebrow">In Good Company</div>
+      <h1>The right person. The right introduction. <em>From a network you can trust.</em></h1>
+      <p class="sub">Insurance is what we do. The rest of it — the introductions, the trusted vendors, the people who can actually help — is the part nobody talks about. We do. When you need someone, we know someone.</p>
+    </div>
+
+    <!-- What are you looking for -->
+    <div class="igc-ask">
+      <h2>What can we help you find?</h2>
+      <div class="igc-categories">
+
+        <div class="igc-cat">
+          <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <circle cx="9" cy="8" r="3.5"/>
+            <path d="M3 20 C3 16 5.5 14 9 14 C12.5 14 15 16 15 20"/>
+            <circle cx="17" cy="10" r="2.5"/>
+            <path d="M14 19 C14 16.5 15.5 15.5 17 15.5 C18.5 15.5 21 16.5 21 19"/>
+          </svg>
+          <div class="cat-title">A trusted advisor</div>
+          <div class="cat-desc">Estate counsel, family CPA, wealth advisor, a second opinion on something complicated.</div>
+        </div>
+
+        <div class="igc-cat">
+          <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <rect x="3" y="6" width="18" height="14" rx="1"/>
+            <path d="M3 10 H21"/>
+            <path d="M8 6 V4"/>
+            <path d="M16 6 V4"/>
+          </svg>
+          <div class="cat-title">A vendor or specialist</div>
+          <div class="cat-desc">Art handler, security firm, conservator, household ops, contractors we've worked with for years.</div>
+        </div>
+
+        <div class="igc-cat">
+          <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <circle cx="12" cy="12" r="9"/>
+            <path d="M8 12 L11 15 L16 9" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <div class="cat-title">A board candidate</div>
+          <div class="cat-desc">Independent directors, advisory board members, governance specialists from our network.</div>
+        </div>
+
+        <div class="igc-cat">
+          <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M12 4 L4 12 L12 20 L20 12 Z"/>
+            <circle cx="12" cy="12" r="2"/>
+          </svg>
+          <div class="cat-title">A peer connection</div>
+          <div class="cat-desc">Another Oswald family or business owner navigating something similar. With both sides' permission, always.</div>
+        </div>
+
+        <div class="igc-cat">
+          <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M12 2 L14.5 8.5 L21 9 L16 13.5 L17.5 20 L12 16.5 L6.5 20 L8 13.5 L3 9 L9.5 8.5 Z"/>
+          </svg>
+          <div class="cat-title">A charitable partner</div>
+          <div class="cat-desc">Foundations, family-office giving advisors, organizations doing meaningful work in your areas of focus.</div>
+        </div>
+
+        <div class="igc-cat">
+          <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <circle cx="12" cy="12" r="9"/>
+            <path d="M12 7 V12 L15 14"/>
+          </svg>
+          <div class="cat-title">Something else entirely</div>
+          <div class="cat-desc">Tell us. Odds are we know someone — and if we don't, we'll find someone worth your time.</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Recent matches -->
+    <div class="igc-matches">
+      <div class="eyebrow">Recent introductions</div>
+      <h2 style="font-family:'Fraunces',serif; font-size:26px; font-weight:400; color:var(--oswald-navy); letter-spacing:-0.01em; margin-top:6px;">Who we've connected you with this year.</h2>
+
+      <div class="match-list">
+        <div class="match-row">
+          <div class="match-avatar">EH</div>
+          <div class="match-info">
+            <div class="name">Eleanor Hammond, Conservator</div>
+            <div class="what"><strong>For:</strong> Paper-works review when the Twombly returns from Borghese · <strong>Introduced:</strong> March 2026</div>
+          </div>
+          <div class="match-status done">Connected</div>
+        </div>
+
+        <div class="match-row">
+          <div class="match-avatar">DC</div>
+          <div class="match-info">
+            <div class="name">Daniel Chen, Family-office CPA</div>
+            <div class="what"><strong>For:</strong> Medicare integration ahead of Robert's 65th · <strong>Introduced:</strong> April 2026</div>
+          </div>
+          <div class="match-status done">Connected</div>
+        </div>
+
+        <div class="match-row">
+          <div class="match-avatar">MR</div>
+          <div class="match-info">
+            <div class="name">Maya Rosenberg, Independent Director</div>
+            <div class="what"><strong>For:</strong> Advisory board candidate for your operating company · <strong>Introduced:</strong> September 2026</div>
+          </div>
+          <div class="match-status intro">Intro made</div>
+        </div>
+
+        <div class="match-row">
+          <div class="match-avatar">JV</div>
+          <div class="match-info">
+            <div class="name">James Volker, Security Specialist</div>
+            <div class="what"><strong>For:</strong> Aspen residence perimeter assessment · <strong>Introduced:</strong> October 2026</div>
+          </div>
+          <div class="match-status pending">Awaiting your reply</div>
+        </div>
+
+        <div class="match-row">
+          <div class="match-avatar">SH</div>
+          <div class="match-info">
+            <div class="name">Sarah Hwang, Charitable-Giving Advisor</div>
+            <div class="what"><strong>For:</strong> Restructuring the family foundation around your three focus areas · <strong>Introduced:</strong> November 2026</div>
+          </div>
+          <div class="match-status intro">Intro made</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Podcast tile -->
+    <div class="igc-podcast">
+      <div>
+        <div class="eyebrow">From the podcast · Latest episode</div>
+        <h3><em>In Good Company</em> · Episode 14</h3>
+        <div class="ep">Three Cleveland family principals on what they wish they'd known about generational continuity at thirty-five. Hosted by Jessica Jung. 38 minutes.</div>
+      </div>
+      <button class="play-btn" aria-label="Play episode">
+        <svg viewBox="0 0 24 24" fill="currentColor" stroke="none">
+          <path d="M7 5 L19 12 L7 19 Z"/>
+        </svg>
+      </button>
+    </div>
+
+  </div>
+
+<!-- =================== SCREEN: VAULT =================== -->
+  <div class="screen" id="screen-vault">
+    <section class="asset-hero reveal" style="grid-template-columns: 1.5fr 1fr;">
+      <div>
+        <div class="eyebrow">Vault</div>
+        <h1 class="asset-title">Documents,<br><em>under stewardship</em>.</h1>
+        <p class="asset-sub">Trust documents, appraisals, plans, schedules, deeds, directives — held with the same discretion you would expect from your private banker. Every share is logged. Every access expires. Nothing leaves without your knowledge.</p>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><div class="stat-label">Documents</div><div class="stat-value">2,847</div><div class="stat-sub">across 8 categories</div></div>
+        <div class="stat"><div class="stat-label">Active shares</div><div class="stat-value">14</div><div class="stat-sub brass">3 expire this week</div></div>
+        <div class="stat"><div class="stat-label">Confidential</div><div class="stat-value">186</div><div class="stat-sub">principal access only</div></div>
+        <div class="stat"><div class="stat-label">Last access · others</div><div class="stat-value" style="font-size:22px">Michelman</div><div class="stat-sub">2h ago · trust amendment</div></div>
+      </div>
+    </section>
+
+    <main>
+      <div class="vault-shell">
+
+        <aside class="vault-side reveal">
+          <div class="eyebrow">Categories</div>
+          <div class="vault-folders">
+            <div class="v-folder"><span></span><span>All documents</span><span class="cnt">2,847</span></div>
+            <div class="v-folder active"><span></span><span>Trusts & estate</span><span class="cnt">147</span></div>
+            <div class="v-folder"><span></span><span>Insurance</span><span class="cnt">412</span></div>
+            <div class="v-folder"><span></span><span>Properties</span><span class="cnt">683</span></div>
+            <div class="v-folder"><span></span><span>Art & collectibles</span><span class="cnt">312</span></div>
+            <div class="v-folder"><span></span><span>Travel</span><span class="cnt">88</span></div>
+            <div class="v-folder"><span></span><span>Tax</span><span class="cnt">541</span></div>
+            <div class="v-folder"><span></span><span>Family records</span><span class="cnt">204</span></div>
+            <div class="v-folder"><span></span><span>Health directives</span><span class="cnt">42</span></div>
+            <div class="v-folder"><span></span><span>Household staff</span><span class="cnt">96</span></div>
+          </div>
+
+          <div class="eyebrow" style="margin-top:32px">By household member</div>
+          <div class="vault-folders" style="margin-top:14px">
+            <div class="v-folder"><span></span><span>Robert</span><span class="cnt">1,024</span></div>
+            <div class="v-folder"><span></span><span>Catherine</span><span class="cnt">832</span></div>
+            <div class="v-folder"><span></span><span>Elise</span><span class="cnt">214</span></div>
+            <div class="v-folder"><span></span><span>Jonathan</span><span class="cnt">186</span></div>
+            <div class="v-folder"><span></span><span>William</span><span class="cnt">142</span></div>
+            <div class="v-folder"><span></span><span>Joint / household</span><span class="cnt">449</span></div>
+          </div>
+        </aside>
+
+        <section class="vault-main reveal" style="animation-delay:0.1s">
+          <div class="vault-toolbar">
+            <input class="v-search" placeholder="Search · documents, dates, parties, contents…">
+            <button class="chip on">Recent</button>
+            <button class="chip">Shared</button>
+            <button class="chip">Confidential</button>
+            <button class="chip">Expiring</button>
+          </div>
+
+          <div class="doc-list">
+            <div class="doc-item selected">
+              <div class="doc-icon confidential">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
+              </div>
+              <div>
+                <div class="doc-name">Trust amendment — Article VII (charitable remainder provisions)</div>
+                <div class="doc-meta">Ellsworth Family Revocable Trust · current · 18 pages</div>
+              </div>
+              <div class="doc-tag">Confidential</div>
+              <div class="doc-time">2h ago</div>
+            </div>
+
+            <div class="doc-item">
+              <div class="doc-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></div>
+              <div>
+                <div class="doc-name">Sotheby's appraisal — Brancusi maquette, ed. 4/8</div>
+                <div class="doc-meta">$1,420,000 · provenance file attached · M. Cherwood, certified appraiser</div>
+              </div>
+              <div class="doc-tag">Pending schedule</div>
+              <div class="doc-time">1d</div>
+            </div>
+
+            <div class="doc-item">
+              <div class="doc-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/></svg></div>
+              <div>
+                <div class="doc-name">Naples renovation — architectural plans v3</div>
+                <div class="doc-meta">Coastal Architecture Group · shared with Skanska · expires 30 Jun</div>
+              </div>
+              <div class="doc-tag">Shared · expiring</div>
+              <div class="doc-time">3d</div>
+            </div>
+
+            <div class="doc-item">
+              <div class="doc-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2 2 7l10 5 10-5-10-5z"/><path d="m2 17 10 5 10-5"/><path d="m2 12 10 5 10-5"/></svg></div>
+              <div>
+                <div class="doc-name">Newport sloop — pre-season survey & layup checklist</div>
+                <div class="doc-meta">Hinckley yard · marine survey by Capt. R. Halsey, AMS</div>
+              </div>
+              <div class="doc-tag">Insurance</div>
+              <div class="doc-time">1w</div>
+            </div>
+
+            <div class="doc-item">
+              <div class="doc-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></div>
+              <div>
+                <div class="doc-name">Deed — 2741 Red Mountain Road, Aspen</div>
+                <div class="doc-meta">Held by RMH Holdings LLC · Pitkin County recording 2017-3441</div>
+              </div>
+              <div class="doc-tag">Property</div>
+              <div class="doc-time">2w</div>
+            </div>
+
+            <div class="doc-item">
+              <div class="doc-icon confidential"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M19 11H5a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7a2 2 0 0 0-2-2z"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+              <div>
+                <div class="doc-name">Healthcare directives — Robert & Catherine</div>
+                <div class="doc-meta">Cleveland Clinic on file · executed Mar 2024 · annual review Mar 2026</div>
+              </div>
+              <div class="doc-tag">Confidential</div>
+              <div class="doc-time">6w</div>
+            </div>
+
+            <div class="doc-item">
+              <div class="doc-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><polyline points="14 2 14 8 20 8"/><path d="M16 13H8M16 17H8M10 9H8"/><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg></div>
+              <div>
+                <div class="doc-name">Yale tuition · Elise · 2025–26 academic year</div>
+                <div class="doc-meta">Bursar's office · paid in full Aug 2025 · 529 distributions logged</div>
+              </div>
+              <div class="doc-tag">Family</div>
+              <div class="doc-time">2mo</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- PERMISSIONS PANEL -->
+        <aside class="reveal" style="animation-delay:0.15s">
+          <div class="perm-panel">
+            <div class="eyebrow">Selected · Permissions</div>
+            <div class="perm-doc-name">Trust amendment — Article VII</div>
+            <div class="perm-doc-sub">Confidential · watermarked · principal-tracked</div>
+
+            <div class="perm-section">
+              <div class="h">Who has access</div>
+              <div class="perm-row"><div class="who">Robert<span class="role">You</span></div><span class="lvl full">Full</span></div>
+              <div class="perm-row"><div class="who">Catherine<span class="role">Spouse</span></div><span class="lvl full">Full</span></div>
+              <div class="perm-row"><div class="who">Michelman & Robinson<span class="role">Counsel · S. Michelman</span></div><span class="lvl read">Read</span></div>
+              <div class="perm-row"><div class="who">D. Friedrich, CPA<span class="role">Family CPA</span></div><span class="lvl expires">Expires Nov 30</span></div>
+              <div class="perm-row"><div class="who">Charles Whittaker<span class="role">Concierge desk</span></div><span class="lvl read">Read · audit only</span></div>
+            </div>
+
+            <div class="perm-section">
+              <div class="h">Audit · last 30 days</div>
+              <div class="audit-row"><div class="a">Catherine viewed pp. 1–18</div><div class="t">2h</div></div>
+              <div class="audit-row"><div class="a">S. Michelman uploaded v4</div><div class="t">2h</div></div>
+              <div class="audit-row"><div class="a">D. Friedrich viewed pp. 12–14 (tax provisions)</div><div class="t">3d</div></div>
+              <div class="audit-row"><div class="a">Robert viewed pp. 1–18</div><div class="t">3d</div></div>
+              <div class="audit-row"><div class="a">S. Michelman uploaded v3 (superseded)</div><div class="t">5d</div></div>
+            </div>
+
+            <div class="perm-section">
+              <div class="h">Discretion settings</div>
+              <div style="font-size:12px;color:rgba(245,239,228,.8); line-height:1.6">
+                Watermarked on share · ON<br>
+                Screenshot-disabled in viewer · ON<br>
+                Auto-revoke on inactivity · 30 days<br>
+                Notification on view · Robert only<br>
+                Geofence · US only
+              </div>
+            </div>
+
+            <div style="margin-top:24px"><button class="btn primary" style="width:100%">Adjust permissions</button></div>
+          </div>
+        </aside>
+      </div>
+    </main>
+  </div>
+
+  <!-- =================== SCREEN: CONCIERGE =================== -->
+  <div class="screen" id="screen-concierge">
+    <section class="asset-hero reveal" style="grid-template-columns: 1fr 1fr;">
+      <div>
+        <div class="eyebrow">Concierge · Your Oswald team</div>
+        <h1 class="asset-title">Charles is <em>here</em>.</h1>
+        <p class="asset-sub">Charles Whittaker has led your Oswald team for four years. He knows the household, the collection, the family travel rhythm, and the carriers. We get it — nobody loves dealing with insurance. The tech does the busywork. The people do the work that matters.</p>
+      </div>
+      <div style="display:flex;align-items:end;justify-content:flex-end">
+        <div style="text-align:right">
+          <div class="eyebrow">On duty until 9 PM ET</div>
+          <div style="font-family:'Fraunces',serif;font-size:32px;font-weight:300;color:var(--ink);margin-top:10px;letter-spacing:-0.015em;">Avg. response · <em style="color:var(--brass-deep)">2 min 14 sec</em></div>
+          <div style="font-size:12px;color:var(--ink-soft);margin-top:8px">Across 312 conversations this year. After hours: Eleanor Saito, then on-call.</div>
+        </div>
+      </div>
+    </section>
+
+    <main>
+      <div class="concierge-shell">
+
+        <!-- THREAD LIST -->
+        <aside class="thread-list reveal">
+          <div class="eyebrow">Conversations</div>
+          <div class="thread-card active unread">
+            <div class="thread-top"><span class="thread-name">Charles Whittaker</span><span class="thread-time">14:08</span></div>
+            <div class="thread-snip">Robert — Charles here. We are tracking the perimeter advance toward Red Mountain. Sensors are clean…</div>
+          </div>
+          <div class="thread-card">
+            <div class="thread-top"><span class="thread-name">Charles Whittaker</span><span class="thread-time">Yesterday</span></div>
+            <div class="thread-snip">Sotheby's appraisal for the Brancusi came in at $1.42M. I have the endorsement drafted whenever you are ready…</div>
+          </div>
+          <div class="thread-card">
+            <div class="thread-top"><span class="thread-name">Charles Whittaker</span><span class="thread-time">Mon</span></div>
+            <div class="thread-snip">A note on Elise — Yale's identity monitoring service flagged a phishing attempt. We have reached out…</div>
+          </div>
+          <div class="thread-card">
+            <div class="thread-top"><span class="thread-name">Eleanor Saito</span><span class="thread-time">Fri</span></div>
+            <div class="thread-snip">Pre-trip security brief for Tuscany has been completed. Argosy Group will hand off on arrival to Sig. Marchetti's team in Rome…</div>
+          </div>
+          <div class="thread-card">
+            <div class="thread-top"><span class="thread-name">Margaret Vaughn</span><span class="thread-time">3w</span></div>
+            <div class="thread-snip">Confirmation that the Twombly drawing has been packed and is en route. Conservation team at Galleria Borghese will receive…</div>
+          </div>
+        </aside>
+
+        <!-- THREAD MAIN -->
+        <section class="thread-main reveal" style="animation-delay:0.1s">
+          <div class="thread-header">
+            <div class="thread-header-avatar">CW</div>
+            <div class="thread-header-info">
+              <h3>Charles Whittaker</h3>
+              <div class="meta"><span class="live-dot"></span> Online · Your Oswald team · 2 min response avg</div>
+            </div>
+            <div class="thread-header-actions">
+              <button class="icon-btn" title="Call"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></button>
+              <button class="icon-btn" title="Video"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg></button>
+              <button class="icon-btn" title="More"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg></button>
+            </div>
+          </div>
+
+          <div class="thread-body">
+
+            <div class="msg-day-divider"><span>Today · Tuesday 5 May</span></div>
+
+            <div class="msg from-system">
+              <div class="msg-avatar"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>
+              <div class="msg-bubble">
+                <div class="msg-name">System · automated</div>
+                <p class="msg-text">Smoke detected at Red Mountain perimeter sensor. Concierge desk paged. No interior smoke; no occupants on premises.</p>
+                <div class="msg-time">06:14 ET</div>
+              </div>
+            </div>
+
+            <div class="msg">
+              <div class="msg-avatar">CW</div>
+              <div class="msg-bubble">
+                <div class="msg-name">Charles Whittaker</div>
+                <p class="msg-text">Robert — Charles here. Sensor flagged smoke at Red Mountain at 06:14 ET. I have corroborated it against InciWeb and the Aspen Fire alert; perimeter is currently 11.4 miles southwest, advancing west-southwest at 14 mph. Mrs. Henderson is sheltering at her sister's in Snowmass and is safe.</p>
+                <p class="msg-text" style="margin-top:8px">No action needed from you yet. I will text again at 11:00 ET with an update or sooner if conditions change. Standing by.</p>
+                <div class="msg-time">06:24 ET</div>
+              </div>
+            </div>
+
+            <div class="msg from-self">
+              <div class="msg-bubble">
+                <p class="msg-text">Thank you. Loop Catherine. Keep me posted.</p>
+                <div class="msg-time">06:28 ET</div>
+              </div>
+              <div class="msg-avatar">RE</div>
+            </div>
+
+            <div class="msg">
+              <div class="msg-avatar">CW</div>
+              <div class="msg-bubble">
+                <div class="msg-name">Charles Whittaker</div>
+                <p class="msg-text">Catherine has been notified via her Cockpit. Argosy walked the perimeter at 07:00 — clean. IoT sweep at 09:30 — all readings nominal. I will check in at 11:00 as agreed.</p>
+                <div class="msg-time">09:32 ET</div>
+              </div>
+            </div>
+
+            <div class="msg">
+              <div class="msg-avatar">CW</div>
+              <div class="msg-bubble">
+                <div class="msg-name">Charles Whittaker</div>
+                <p class="msg-text">Robert — perimeter advanced 4.1 miles in the last 90 minutes. Now 7.3 miles from the residence. Sensors still clean and Argosy on-site, so the situation remains manageable, but I want to walk you through three precautionary actions and recommend authorizing the first.</p>
+                <p class="msg-text" style="margin-top:8px"><strong>Henderson Building Co.</strong> is staged for board-up. $14,200, fully reimbursable under emergency mitigation. Their crew can be on the property in 35 minutes from your authorization. Recommending we proceed.</p>
+                <p class="msg-text" style="margin-top:8px">I have also pre-positioned secured transport for the Twombly, the Patek collection, and the provenance archive — if you would like to move them to the Denver vault we can have a vehicle there in 6 hours. Below threshold today, but worth flagging.</p>
+                <p class="msg-text" style="margin-top:8px">Finally, I would recommend filing a precautionary FNOL with AIG. No cost, preserves your rights, accelerates any handling if conditions deteriorate. D. Markham at AIG is briefed and ready.</p>
+                <div class="msg-attach">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                  <span class="name">Henderson · estimate & insurance documents</span>
+                  <span class="size">3 files</span>
+                </div>
+                <div class="msg-time">13:56 ET</div>
+              </div>
+            </div>
+
+            <div class="msg from-system">
+              <div class="msg-avatar"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+              <div class="msg-bubble">
+                <div class="msg-name">Awaiting your decision · 14:08 ET</div>
+                <p class="msg-text">Charles has flagged a decision point. To maintain crew positioning, authorize by 15:00 ET.</p>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="composer">
+            <div class="quick-actions">
+              <button class="chip on">Authorize board-up</button>
+              <button class="chip">File precautionary FNOL</button>
+              <button class="chip">Hold all actions</button>
+              <button class="chip">Call Charles now</button>
+            </div>
+            <div class="composer-input">
+              <textarea class="composer-textarea" placeholder="A note to Charles…"></textarea>
+              <button class="btn primary" style="white-space:nowrap">Send</button>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <!-- =================== SCREEN: STEWARDSHIP REVIEW =================== -->
+  <div class="screen" id="screen-review">
+    <section class="review-hero reveal">
+      <div class="eyebrow">An Annual Edition · 2026</div>
+      <h1>The Ellsworth<br><em>Stewardship Review</em>.</h1>
+      <p>A complete record of what was protected this year, what changed, and what is anticipated. Bound, numbered, and delivered to Fairmount on 15 November. Below, a preview of this year's edition.</p>
+    </section>
+
+    <div class="review-toolbar">
+      <a class="active">Cover</a>
+      <a>A note from your team</a>
+      <a>The Year in Brief</a>
+      <a>Notable Items Added</a>
+      <a>Threats Anticipated</a>
+      <a>Forward</a>
+    </div>
+
+    <!-- SPREAD 1: Cover + Letter from the Maître d' -->
+    <div class="spread reveal">
+      <div class="page cover">
+        <div class="top-mark">A Stewardship Review</div>
+        <div class="center">
+          <div class="pre">Prepared with discretion for</div>
+          <h2>The <em>Ellsworth</em><br>Household.</h2>
+          <div class="vol">2026 EDITION</div>
+        </div>
+        <div class="bot"><span>OswaldONE</span><span>Cleveland · MMXXVI</span></div>
+      </div>
+      <div class="page">
+        <div class="page-section">A note from your team</div>
+        <h3>A note before <em>turning the page</em>.</h3>
+        <p class="lede">The work of stewardship is, more than anything, the work of attention. This year asked for a great deal of it.</p>
+        <div class="body-text">
+          <p>You will find within these pages a record of the year as we kept it: the things added to the household, the threats we watched for and, in most cases, did not have to meet. Aspen will be remembered for the May fire that came within seven miles of Red Mountain and turned away on a wind shift; we kept the boards in the truck for a week afterward, as a courtesy to the next storm.</p>
+          <p>Catherine's work with the Cleveland Clinic Foundation continued to reshape the trust architecture, and Article VII was revised twice — once in March, once in November. Elise's junior year passed without incident; we expect more of the same as she begins her senior year. Jonathan begins college this fall.</p>
+          <p>It has been our privilege, again, to be of service. Thank you for trusting us with what is most yours.</p>
+        </div>
+        <div class="signature">
+          Charles Whittaker
+          <span class="role">Maître d', On Behalf of the Concierge Desk</span>
+        </div>
+        <div class="page-num">— II —</div>
+      </div>
+    </div>
+
+    <!-- SPREAD 2: The Year in Brief + Notable Items Added -->
+    <div class="spread reveal">
+      <div class="page">
+        <div class="page-section left">The Year in Brief</div>
+        <h3>The year, <em>quantified</em>.</h3>
+        <p class="lede">A summary of stewardship — the figures behind a year of attention.</p>
+
+        <div style="margin-top: 28px">
+          <div class="year-stat"><span class="l">Insured value, year-end</span><span class="v">$48.2M</span></div>
+          <div class="year-stat"><span class="l">Insured value, year prior</span><span class="v">$44.9M</span></div>
+          <div class="year-stat"><span class="l">Annual premium</span><span class="v">$284,510</span></div>
+          <div class="year-stat"><span class="l">Premium vs. prior year</span><span class="v" style="color:var(--forest)">−3.2%</span></div>
+          <div class="year-stat"><span class="l">Items added to schedule</span><span class="v">5</span></div>
+          <div class="year-stat"><span class="l">Items released or sold</span><span class="v">2</span></div>
+          <div class="year-stat"><span class="l">Coverage gaps identified · closed</span><span class="v">7 · 6</span></div>
+          <div class="year-stat"><span class="l">Risk Weather signals raised</span><span class="v">142</span></div>
+          <div class="year-stat"><span class="l">— of which required action</span><span class="v">11</span></div>
+          <div class="year-stat"><span class="l">Concierge conversations</span><span class="v">312</span></div>
+          <div class="year-stat"><span class="l">Average concierge response</span><span class="v">2 min 14s</span></div>
+          <div class="year-stat"><span class="l">Claims filed</span><span class="v">0</span></div>
+        </div>
+
+        <div class="ornament">· · ·</div>
+        <div class="page-num">— IV —</div>
+      </div>
+      <div class="page">
+        <div class="page-section">Notable Items Added</div>
+        <h3>Notable additions to <em>the household</em>.</h3>
+        <p class="lede">A small but significant year for the collection. Five items added; provenance and appraisal are filed in the Vault.</p>
+
+        <div class="notable-list">
+          <div class="notable-item">
+            <div class="notable-thumb"></div>
+            <div class="notable-info">
+              <div class="h">Brancusi · maquette, ed. 4/8</div>
+              <div class="s">Acquired Galerie Maeght, October. Bronze with brown patina. Sotheby's appraisal Dec 14.</div>
+              <div class="v">$1,420,000</div>
+            </div>
+          </div>
+          <div class="notable-item">
+            <div class="notable-thumb" style="background:linear-gradient(135deg,#3a4a3e,#1f2e23)"></div>
+            <div class="notable-info">
+              <div class="h">Patek Philippe 2499 · perpetual chronograph</div>
+              <div class="s">Phillips November auction. Yellow gold case, original certificate.</div>
+              <div class="v">$385,000</div>
+            </div>
+          </div>
+          <div class="notable-item">
+            <div class="notable-thumb" style="background:linear-gradient(135deg,#5a4a3a,#3a2e1f)"></div>
+            <div class="notable-info">
+              <div class="h">A. Lange & Söhne · Datograph, 2005</div>
+              <div class="s">Acquired through Christie's Geneva, September. Platinum.</div>
+              <div class="v">$210,000</div>
+            </div>
+          </div>
+          <div class="notable-item">
+            <div class="notable-thumb" style="background:linear-gradient(135deg,#6e553f,#3e2c1c)"></div>
+            <div class="notable-info">
+              <div class="h">Alfa Romeo Giulia Sprint GTA · 1965</div>
+              <div class="s">Concours-condition. Touring custodianship file transferred. Garaged Aspen.</div>
+              <div class="v">$295,000</div>
+            </div>
+          </div>
+          <div class="notable-item">
+            <div class="notable-thumb" style="background:linear-gradient(135deg,#525c6e,#2a3140)"></div>
+            <div class="notable-info">
+              <div class="h">Cy Twombly · untitled drawing, 1962</div>
+              <div class="s">Loan to Galleria Borghese, Milan, May 14 — Nov 2. Conservation file in Vault.</div>
+              <div class="v">$2,100,000</div>
+            </div>
+          </div>
+        </div>
+        <div class="page-num">— V —</div>
+      </div>
+    </div>
+
+    <!-- SPREAD 3: Threats Anticipated + Forward -->
+    <div class="spread reveal">
+      <div class="page">
+        <div class="page-section left">Threats Anticipated</div>
+        <h3>What was watched for, <em>and met</em>.</h3>
+        <p class="lede">Of one hundred and forty-two signals raised this year, eleven required action. Each is held in the file for reference.</p>
+
+        <div class="body-text" style="margin-top:24px">
+          <p>The Aspen wildfire on the 5th of May reached within seven miles of Red Mountain before a wind shift turned it south. Henderson Building Co.'s board-up crew was dispatched and stood down without action; we kept them on retainer for the week. AIG was briefed and the precautionary FNOL was withdrawn on the 12th. The defensible-space grading we revised in 2025 carried the day.</p>
+          <p>An impersonation account on LinkedIn was flagged on the 5th and removed within twenty-six hours. We will note that this is the third such instance this year, the second on LinkedIn specifically; we recommend continued monitoring on this surface and have engaged a takedown service on retainer.</p>
+          <p>Yale University's identity protection service flagged a phishing campaign targeting students. Elise was alerted; no further activity. We extended monitoring through her senior year as a precaution.</p>
+          <p>Hurricane Idalia's path was watched for nine days in September. Naples remained outside the cone; the home was not affected. Pre-storm protocol was rehearsed; the household staff received refresher training.</p>
+        </div>
+        <div class="ornament">· · ·</div>
+        <div class="page-num">— XII —</div>
+      </div>
+      <div class="page">
+        <div class="page-section">Forward</div>
+        <h3>What we are <em>watching for</em>.</h3>
+        <p class="lede">A look ahead, with care. The year to come and the matters that will ask for attention.</p>
+
+        <div class="anticipated-list" style="margin-top:24px">
+          <div class="anticipated-item">
+            <h4>Jonathan begins university</h4>
+            <p>Off-premises personal articles coverage will activate in August. Identity monitoring will extend to him on his eighteenth birthday. We will prepare a brief on dorm-life risk and digital hygiene.</p>
+            <div class="when">AUG 2026</div>
+          </div>
+          <div class="anticipated-item">
+            <h4>Naples renovation completes</h4>
+            <p>Builder's risk releases on certificate of occupancy. Contents schedule will be reviewed and revised; replacement-cost basis will be re-anchored to current valuation.</p>
+            <div class="when">AUG 2026</div>
+          </div>
+          <div class="anticipated-item">
+            <h4>Trust amendment Article IX (anticipated)</h4>
+            <p>Your counsel at Michelman & Robinson has flagged an upcoming review of the generation-skipping provisions. We will coordinate the document flow and ensure access logs are clean before counsel begins.</p>
+            <div class="when">Q1 2027</div>
+          </div>
+          <div class="anticipated-item">
+            <h4>Aspen wildfire season</h4>
+            <p>National Interagency Fire Center early outlook indicates above-normal risk for Western Slope through August. Defensible space will be re-graded in May; sensor network will receive its biennial calibration.</p>
+            <div class="when">MAY–AUG 2026</div>
+          </div>
+          <div class="anticipated-item">
+            <h4>Twombly returns from loan</h4>
+            <p>Galleria Borghese will return the drawing in early November. We'll line up an independent paper-works specialist for a conservation review when it lands.</p>
+            <div class="when">NOV 2026</div>
+          </div>
+          <div class="anticipated-item">
+            <h4>Robert turns sixty-five</h4>
+            <p>We'll walk through how Medicare fits with your executive medical plan, together with your CPA, well before the date.</p>
+            <div class="when">DEC 2026</div>
+          </div>
+        </div>
+        <div class="page-num">— XIII —</div>
+      </div>
+    </div>
+
+    <div style="text-align:center; padding: 24px 0 80px">
+      <div class="eyebrow">Printed in Cleveland · delivered to Fairmount</div>
+      <p style="font-size:13px; color:var(--ink-soft); max-width: 560px; margin: 18px auto 0; line-height:1.65">Your full recap runs 48 pages, including appendices. It arrives at Fairmount on 15 November. The digital edition is here whenever you want it — watermarked and just for you.</p>
+      <button class="btn primary" style="margin-top:24px; padding:14px 28px;">Request a digital preview</button>
+    </div>
+  </div>
+
+  <!-- =================== FOOTER =================== -->
+  <div class="footer-meta">
+    <div class="left">
+      <span class="footer-brand"><span class="footer-oswald">Oswald<span class="dot">.</span></span><span style="opacity:.55"> · OswaldONE Client Hub · A conceptual mockup</span></span>
+      <a>Privacy by design</a>
+      <a>No data shared. Ever.</a>
+    </div>
+    <div>Session encrypted · Last activity by you · Just now</div>
+  </div>
+
+</div>
+
+<script>
+  function switchScreen(name) {
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('is-active'));
+    document.getElementById('screen-' + name).classList.add('is-active');
+    document.querySelectorAll('#nav a').forEach(a => a.classList.toggle('active', a.dataset.screen === name));
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+  document.querySelectorAll('#nav a').forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      switchScreen(link.dataset.screen);
+    });
+  });
+
+  // ============ BOOK READER ============
+  let bookSpread = 0;
+  const bookSpreadsTotal = 4;
+
+  function openBook() {
+    const reader = document.getElementById('book-reader');
+    reader.classList.add('is-open');
+    bookSpread = 0;
+    updateBookView();
+    setTimeout(() => {
+      reader.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 250);
+  }
+
+  function closeBook() {
+    document.getElementById('book-reader').classList.remove('is-open');
+  }
+
+  function flipPage(direction) {
+    bookSpread = Math.max(0, Math.min(bookSpreadsTotal - 1, bookSpread + direction));
+    updateBookView();
+  }
+
+  function updateBookView() {
+    document.querySelectorAll('.book-spread').forEach((spread, i) => {
+      spread.classList.toggle('is-current', i === bookSpread);
+    });
+    const indicator = document.getElementById('book-pages-indicator');
+    if (indicator) indicator.textContent = `Spread ${bookSpread + 1} of ${bookSpreadsTotal}`;
+    document.getElementById('book-prev').disabled = bookSpread === 0;
+    document.getElementById('book-next').disabled = bookSpread === bookSpreadsTotal - 1;
+  }
+
+  // From the home page review-strip — switch to Scorecard, then open the book
+  function openRecapFromHome() {
+    switchScreen('scorecard');
+    setTimeout(openBook, 500);
+  }
+</script>
+</body>
+</html>

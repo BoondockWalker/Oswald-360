@@ -1,0 +1,3070 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OswaldONE Business — A Conceptual Hub for Oswald Business Clients</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=DM+Sans:opsz,wght@9..40,300..700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0E1A26;
+    --ink-2: #1B2A3A;
+    --ink-soft: #4A5868;
+    --ink-faint: #8A95A2;
+    --paper: #F5EFE4;
+    --paper-2: #EFE7D6;
+    --paper-3: #E7DDC8;
+    --rule: #D4C8AE;
+    --rule-soft: #E2D7BE;
+    --brass: #A88A4F;
+    --brass-deep: #876D3B;
+    --brass-soft: #C9B07A;
+    --forest: #2F4F3A;
+    --forest-soft: #4E6E58;
+    --clay: #B5634C;
+    --clay-soft: #D08A72;
+    --slate: #455A6B;
+
+    --unison: #102f54;
+    --unison-deep: #061a35;
+    --unison-soft: #2a4d76;
+    --shadow-soft: 0 1px 2px rgba(14,26,38,.04), 0 8px 24px rgba(14,26,38,.06);
+    --shadow-card: 0 1px 1px rgba(14,26,38,.05), 0 12px 36px rgba(14,26,38,.08);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: var(--paper); color: var(--ink); font-family: 'DM Sans', -apple-system, sans-serif; font-size: 14px; line-height: 1.5; font-feature-settings: 'ss01', 'cv11'; -webkit-font-smoothing: antialiased; }
+  body { background: radial-gradient(ellipse at top right, rgba(168,138,79,.07) 0%, transparent 50%), radial-gradient(ellipse at bottom left, rgba(47,79,58,.04) 0%, transparent 60%), var(--paper); min-height: 100vh; background-attachment: fixed; }
+  body::before { content: ''; position: fixed; inset: 0; pointer-events: none; opacity: .35; z-index: 0; background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .055 0 0 0 0 .102 0 0 0 0 .149 0 0 0 .045 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>"); }
+
+  .display { font-family: 'Fraunces', Georgia, serif; font-feature-settings: 'ss01'; letter-spacing: -0.01em; }
+  .mono { font-family: 'IBM Plex Mono', monospace; font-feature-settings: 'tnum'; }
+  .eyebrow { font-family: 'DM Sans', sans-serif; font-size: 10px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--brass-deep); }
+
+  .container { max-width: 1440px; margin: 0 auto; padding: 0 56px; position: relative; z-index: 1; }
+
+  /* ============ NAV ============ */
+  nav { display: flex; align-items: center; justify-content: space-between; padding: 32px 0 28px; border-bottom: 1px solid var(--rule); }
+  .brand { display: flex; align-items: baseline; gap: 14px; }
+  .brand-mark { font-family: 'Fraunces', serif; font-weight: 400; font-style: italic; font-size: 28px; font-variation-settings: 'opsz' 144; color: var(--ink); letter-spacing: -0.02em; }
+  .brand-mark .ampersand { color: var(--brass); font-weight: 300; }
+  .brand-divider { width: 18px; height: 1px; background: var(--brass); }
+  .brand-pretitle { font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-soft); font-weight: 500; }
+  .brand-suffix { font-family: 'IBM Plex Mono', monospace; font-size: 9.5px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--unison); margin-left: 8px; padding: 3px 9px; border: 1px solid rgba(16,47,84,.3); border-radius: 1px; }
+  .nav-links { display: flex; gap: 36px; list-style: none; }
+  .nav-links a { font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft); text-decoration: none; font-weight: 500; padding-bottom: 4px; border-bottom: 1px solid transparent; transition: all .2s ease; cursor: pointer; }
+  .nav-links a:hover, .nav-links a.active { color: var(--ink); border-bottom-color: var(--brass); }
+  .nav-right { display: flex; align-items: center; gap: 20px; }
+  .icon-btn { width: 36px; height: 36px; display: grid; place-items: center; border: 1px solid var(--rule); border-radius: 50%; background: transparent; cursor: pointer; color: var(--ink-soft); transition: all .2s ease; }
+  .icon-btn:hover { border-color: var(--brass); color: var(--ink); }
+  .principal-avatar { width: 38px; height: 38px; border-radius: 50%; background: linear-gradient(135deg, var(--unison-deep) 0%, var(--unison) 100%); color: var(--paper); display: grid; place-items: center; font-family: 'Fraunces', serif; font-style: italic; font-size: 14px; border: 1.5px solid var(--brass); }
+
+  /* ============ HERO ============ */
+  .hero { padding: 56px 0 40px; display: grid; grid-template-columns: 1.4fr 1fr; gap: 72px; align-items: end; border-bottom: 1px solid var(--rule); }
+  .hero-greeting .eyebrow { margin-bottom: 16px; }
+  .hero-greeting h1 { font-family: 'Fraunces', serif; font-weight: 300; font-size: 60px; line-height: 1.05; letter-spacing: -0.025em; color: var(--ink); font-variation-settings: 'opsz' 144; }
+  .hero-greeting h1 em { font-style: italic; font-weight: 300; color: var(--brass-deep); }
+  .hero-meta { margin-top: 20px; font-size: 13px; color: var(--ink-soft); line-height: 1.6; max-width: 480px; }
+  .hero-stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px 32px; padding-bottom: 8px; }
+  .stat .stat-label { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 6px; }
+  .stat .stat-value { font-family: 'Fraunces', serif; font-size: 28px; font-weight: 400; color: var(--ink); letter-spacing: -0.015em; font-feature-settings: 'tnum'; }
+  .stat .stat-sub { font-size: 11px; color: var(--ink-soft); margin-top: 2px; }
+  .stat .stat-sub.brass { color: var(--brass-deep); }
+  .stat .stat-sub.clay { color: var(--clay); }
+  .stat .stat-sub.forest { color: var(--forest); }
+
+  /* ============ MAIN GRIDS ============ */
+  main { padding: 48px 0 64px; }
+  .grid-primary { display: grid; grid-template-columns: 1.55fr 1fr; gap: 28px; margin-bottom: 28px; }
+  .grid-secondary { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; margin-bottom: 28px; }
+
+  /* ============ PANELS ============ */
+  .panel { background: rgba(255, 252, 245, 0.6); border: 1px solid var(--rule); border-radius: 2px; padding: 28px; position: relative; backdrop-filter: blur(2px); }
+  .panel.dark { background: var(--ink); color: var(--paper); border-color: var(--ink-2); }
+  .panel.elevated { box-shadow: var(--shadow-card); background: rgba(255, 252, 245, 0.85); }
+  .panel-header { display: flex; align-items: baseline; justify-content: space-between; padding-bottom: 16px; border-bottom: 1px solid var(--rule-soft); margin-bottom: 22px; }
+  .panel.dark .panel-header { border-bottom-color: rgba(168,138,79,.25); }
+  .panel-title { font-family: 'Fraunces', serif; font-weight: 400; font-size: 22px; color: var(--ink); letter-spacing: -0.01em; }
+  .panel.dark .panel-title { color: var(--paper); }
+  .panel-title em { font-style: italic; color: var(--brass-deep); }
+  .panel.dark .panel-title em { color: var(--brass-soft); }
+  .panel-action { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-soft); text-decoration: none; border-bottom: 1px solid var(--brass); padding-bottom: 2px; cursor: pointer; }
+  .panel.dark .panel-action { color: var(--brass-soft); }
+
+  /* ============ ENTERPRISE FOOTPRINT (home) ============ */
+  .enterprise-strip { display: flex; gap: 28px; padding: 18px 22px; background: var(--paper-2); border-left: 2px solid var(--brass); margin-bottom: 24px; flex-wrap: wrap; }
+  .es-stat { display: flex; flex-direction: column; gap: 2px; }
+  .es-stat .l { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-faint); }
+  .es-stat .v { font-family: 'Fraunces', serif; font-size: 18px; color: var(--ink); letter-spacing: -0.01em; }
+
+  .div-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-bottom: 22px; }
+  .division { padding: 16px 18px; border: 1px solid var(--rule-soft); background: rgba(245,239,228,.4); position: relative; transition: all .2s; cursor: pointer; }
+  .division:hover { border-color: var(--brass); background: rgba(245,239,228,.85); }
+  .division::before { content: ''; position: absolute; top: 14px; left: 14px; width: 6px; height: 6px; border-radius: 50%; background: var(--forest); }
+  .division.alert::before { background: var(--clay); animation: pulse 2s ease-in-out infinite; }
+  @keyframes pulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(181, 99, 76, 0.4); } 50% { box-shadow: 0 0 0 6px rgba(181, 99, 76, 0); } }
+  .division-h { padding-left: 16px; margin-bottom: 12px; }
+  .division-h .l { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-faint); }
+  .division-h .n { font-family: 'Fraunces', serif; font-size: 16px; color: var(--ink); margin-top: 2px; letter-spacing: -0.005em; }
+  .division-meta { display: flex; justify-content: space-between; padding-top: 10px; border-top: 1px dashed var(--rule-soft); font-size: 11px; color: var(--ink-soft); }
+  .division-meta .v { color: var(--ink); font-weight: 500; font-family: 'IBM Plex Mono', monospace; }
+  .division-flag { margin-top: 8px; font-size: 11px; color: var(--clay); font-style: italic; }
+
+  /* ============ FACILITIES MAP ============ */
+  .facilities-map { aspect-ratio: 16/7; background: linear-gradient(180deg, #2a3d2f 0%, #1f2e23 100%); border: 1px solid var(--ink-2); border-radius: 2px; position: relative; overflow: hidden; }
+  .facilities-map svg { width: 100%; height: 100%; }
+  .fac-legend { display: flex; gap: 20px; margin-top: 12px; font-size: 11px; color: var(--ink-soft); }
+  .fac-legend span { display: inline-flex; align-items: center; gap: 6px; }
+  .fac-legend .dot { width: 8px; height: 8px; border-radius: 50%; }
+
+  /* ============ RISK WEATHER ============ */
+  .weather-list { display: flex; flex-direction: column; gap: 0; }
+  .weather-item { padding: 14px 0; border-bottom: 1px solid rgba(168, 138, 79, 0.15); display: grid; grid-template-columns: 16px 1fr auto; gap: 14px; align-items: start; }
+  .weather-item:last-child { border-bottom: none; }
+  .weather-dot { width: 8px; height: 8px; border-radius: 50%; margin-top: 6px; }
+  .weather-dot.alert { background: var(--clay-soft); box-shadow: 0 0 0 3px rgba(208, 138, 114, 0.18); }
+  .weather-dot.watch { background: var(--brass-soft); box-shadow: 0 0 0 3px rgba(201, 176, 122, 0.18); }
+  .weather-dot.steady { background: var(--forest); opacity: .7; }
+  .weather-text { font-size: 12.5px; line-height: 1.5; color: var(--paper); }
+  .weather-text strong { color: var(--paper); font-weight: 500; }
+  .weather-text .action { display: block; margin-top: 4px; font-size: 11px; color: var(--brass-soft); font-style: italic; }
+  .weather-time { font-size: 10px; letter-spacing: 0.08em; color: rgba(245, 239, 228, 0.5); font-family: 'IBM Plex Mono', monospace; text-transform: uppercase; white-space: nowrap; }
+
+  /* ============ MATTERS LIST ============ */
+  .matter { padding: 14px 0; border-bottom: 1px solid var(--rule-soft); display: grid; grid-template-columns: 1fr auto; gap: 12px; align-items: start; }
+  .matter:last-child { border-bottom: none; }
+  .matter-name { font-size: 13px; color: var(--ink); font-weight: 500; }
+  .matter-name .id { font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; color: var(--ink-faint); margin-right: 8px; letter-spacing: 0.04em; }
+  .matter-sub { font-size: 11.5px; color: var(--ink-soft); margin-top: 3px; line-height: 1.45; }
+  .matter-status { font-family: 'IBM Plex Mono', monospace; font-size: 10px; padding: 4px 9px; letter-spacing: 0.06em; }
+  .matter-status.active { background: rgba(181,99,76,.12); color: var(--clay); }
+  .matter-status.review { background: rgba(168,138,79,.16); color: var(--brass-deep); }
+  .matter-status.tracking { background: rgba(47,79,58,.12); color: var(--forest); }
+
+  /* ============ COVERAGE SNAPSHOT ============ */
+  .cov-mini { display: flex; flex-direction: column; }
+  .cov-row-mini { display: grid; grid-template-columns: 1fr auto auto; gap: 14px; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--rule-soft); }
+  .cov-row-mini:last-child { border-bottom: none; }
+  .cov-row-mini .n { font-size: 12.5px; color: var(--ink); }
+  .cov-row-mini .n .s { display: block; font-size: 10.5px; color: var(--ink-faint); margin-top: 2px; }
+  .cov-row-mini .lim { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--ink-2); }
+  .cov-row-mini .car { font-size: 10.5px; color: var(--ink-soft); font-style: italic; min-width: 88px; text-align: right; }
+
+  /* ============ BENCH CARD (home) ============ */
+  .bench-card { background: linear-gradient(135deg, var(--unison-deep) 0%, var(--unison) 100%); color: var(--paper); padding: 28px; border-radius: 2px; position: relative; overflow: hidden; }
+  .bench-card::before { content: ''; position: absolute; top: -40px; right: -40px; width: 160px; height: 160px; background: radial-gradient(circle, rgba(168,138,79,.18) 0%, transparent 70%); }
+  .bench-card .eyebrow { color: var(--brass-soft); }
+  .bench-card h3 { font-family: 'Fraunces', serif; font-style: italic; font-size: 22px; font-weight: 300; margin-top: 12px; line-height: 1.3; color: var(--paper); }
+  .bench-card h3 strong { font-style: normal; color: var(--brass-soft); font-weight: 400; }
+  .bench-roster { margin-top: 20px; padding-top: 18px; border-top: 1px solid rgba(168,138,79,.25); display: grid; gap: 12px; }
+  .bench-row { display: grid; grid-template-columns: 32px 1fr auto; gap: 12px; align-items: center; }
+  .bench-mini-avatar { width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(135deg, #847151, var(--brass)); color: var(--ink); display: grid; place-items: center; font-family: 'Fraunces', serif; font-size: 11px; }
+  .bench-mini-avatar.alt { background: linear-gradient(135deg, #4a6058, var(--forest-soft)); color: var(--paper); }
+  .bench-mini-info { font-size: 12px; line-height: 1.45; }
+  .bench-mini-info .nm { font-weight: 500; color: var(--paper); }
+  .bench-mini-info .rl { color: rgba(245,239,228,.55); font-size: 10.5px; }
+  .bench-mini-stat { font-family: 'IBM Plex Mono', monospace; font-size: 9.5px; color: rgba(245,239,228,.5); letter-spacing: 0.04em; }
+  .bench-action { margin-top: 22px; }
+  .bench-btn { width: 100%; border: 1px solid var(--brass); background: var(--brass); color: var(--ink); padding: 12px 14px; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; font-family: 'DM Sans', sans-serif; font-weight: 500; cursor: pointer; transition: all .2s ease; }
+  .bench-btn:hover { background: var(--brass-soft); }
+
+  /* ============ CLAIMS PANEL (home) ============ */
+  .claims-summary { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-bottom: 18px; padding-bottom: 18px; border-bottom: 1px solid var(--rule-soft); }
+  .claims-summary .s { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-faint); }
+  .claims-summary .v { font-family: 'Fraunces', serif; font-size: 22px; color: var(--ink); margin-top: 4px; letter-spacing: -0.015em; }
+  .claims-summary .d { font-size: 10.5px; color: var(--ink-soft); margin-top: 2px; }
+  .claim-row { display: grid; grid-template-columns: 1fr 80px auto; gap: 14px; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--rule-soft); }
+  .claim-row:last-child { border-bottom: none; }
+  .claim-row .nm { font-size: 12px; color: var(--ink); }
+  .claim-row .nm .s { display: block; font-size: 10.5px; color: var(--ink-faint); margin-top: 1px; font-family: 'IBM Plex Mono', monospace; letter-spacing: 0.04em; }
+  .claim-row .ln { font-size: 10.5px; color: var(--ink-soft); letter-spacing: 0.04em; text-transform: uppercase; }
+  .claim-row .am { font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; color: var(--ink-2); text-align: right; }
+
+  /* ============ EVENTS / RENEWALS ============ */
+  .events-list { display: flex; flex-direction: column; gap: 18px; }
+  .event { display: grid; grid-template-columns: 44px 1fr; gap: 16px; padding-bottom: 18px; border-bottom: 1px solid var(--rule-soft); }
+  .event:last-child { border-bottom: none; padding-bottom: 0; }
+  .event-date { font-family: 'Fraunces', serif; text-align: center; border-right: 1px solid var(--rule); padding-right: 16px; }
+  .event-date .day { font-size: 22px; color: var(--ink); line-height: 1; font-weight: 400; }
+  .event-date .mo { font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--brass-deep); margin-top: 4px; font-family: 'DM Sans', sans-serif; }
+  .event-body h4 { font-family: 'Fraunces', serif; font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 4px; letter-spacing: -0.005em; }
+  .event-body p { font-size: 12px; color: var(--ink-soft); line-height: 1.5; }
+  .event-cta { display: inline-block; margin-top: 8px; font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--brass-deep); border-bottom: 1px solid var(--brass); padding-bottom: 2px; text-decoration: none; cursor: pointer; }
+
+  /* ============ BRIEFING STRIP ============ */
+  .briefing-strip { margin-top: 12px; background: var(--ink); color: var(--paper); padding: 48px 56px; display: grid; grid-template-columns: 1fr 280px; gap: 56px; align-items: center; border-radius: 2px; position: relative; overflow: hidden; cursor: pointer; }
+  .briefing-strip::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at right, rgba(168,138,79,.12) 0%, transparent 60%); pointer-events: none; }
+  .briefing-strip .eyebrow { color: var(--brass-soft); }
+  .briefing-strip h2 { font-family: 'Fraunces', serif; font-weight: 300; font-size: 42px; line-height: 1.1; margin-top: 14px; letter-spacing: -0.02em; color: var(--paper); }
+  .briefing-strip h2 em { font-style: italic; color: var(--brass-soft); }
+  .briefing-strip p { margin-top: 16px; font-size: 13.5px; line-height: 1.65; color: rgba(245,239,228,.78); max-width: 560px; }
+  .briefing-cta { display: inline-flex; align-items: center; gap: 12px; margin-top: 24px; padding: 14px 22px; background: var(--brass); color: var(--ink); text-decoration: none; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 500; transition: background .2s ease; cursor: pointer; }
+  .briefing-cta:hover { background: var(--brass-soft); }
+  .briefing-book { aspect-ratio: 3/4; background: linear-gradient(135deg, var(--unison) 0%, var(--unison-deep) 100%); border: 1px solid var(--brass); box-shadow: -16px 16px 32px rgba(0,0,0,.35), 0 1px 0 rgba(168,138,79,.3) inset; padding: 28px; display: flex; flex-direction: column; justify-content: space-between; position: relative; z-index: 1; }
+  .briefing-book::after { content: ''; position: absolute; top: 0; bottom: 0; left: 14px; width: 1px; background: rgba(168,138,79,.3); }
+  .briefing-book .top { font-family: 'Fraunces', serif; font-style: italic; font-size: 13px; color: var(--brass-soft); line-height: 1.3; }
+  .briefing-book .mid { font-family: 'Fraunces', serif; font-size: 22px; line-height: 1.15; color: var(--paper); letter-spacing: -0.01em; }
+  .briefing-book .bot { font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(168,138,79,.7); font-family: 'DM Sans', sans-serif; border-top: 1px solid rgba(168,138,79,.3); padding-top: 12px; }
+  .briefing-book .vol { font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--brass-soft); margin-top: 6px; }
+
+  /* ============ FOOTER ============ */
+  .footer-meta { margin-top: 48px; padding: 32px 0 56px; border-top: 1px solid var(--rule); display: flex; justify-content: space-between; align-items: center; font-size: 11px; color: var(--ink-faint); letter-spacing: 0.04em; }
+  .footer-meta .left { display: flex; gap: 24px; align-items: center; }
+  .footer-meta a { color: var(--ink-soft); text-decoration: none; border-bottom: 1px solid transparent; transition: all .2s; cursor: pointer; }
+  .footer-meta a:hover { color: var(--ink); border-bottom-color: var(--brass); }
+
+  /* ============ SCREEN SWITCHING ============ */
+  .screen { display: none; }
+  .screen.is-active { display: block; }
+  .screen.is-active .reveal { animation: reveal 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) backwards; }
+  @keyframes reveal { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+  .ribbon { position: fixed; top: 16px; right: -56px; background: var(--clay); color: var(--paper); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; padding: 6px 64px; transform: rotate(35deg); z-index: 100; box-shadow: 0 4px 12px rgba(0,0,0,.15); font-weight: 500; }
+
+  /* ============ INTERIOR: INCIDENT (RISK) ============ */
+  .asset-hero { padding: 48px 0 36px; border-bottom: 1px solid var(--rule); display: grid; grid-template-columns: 1.5fr 1fr; gap: 56px; align-items: end; }
+  .asset-crumb { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 18px; }
+  .asset-crumb a { color: var(--brass-deep); text-decoration: none; cursor: pointer; }
+  .asset-crumb a:hover { color: var(--ink); }
+  .asset-title { font-family: 'Fraunces', serif; font-size: 52px; font-weight: 300; line-height: 1.05; color: var(--ink); letter-spacing: -0.025em; }
+  .asset-title em { font-style: italic; color: var(--brass-deep); }
+  .asset-sub { font-size: 14px; color: var(--ink-soft); margin-top: 16px; line-height: 1.6; max-width: 580px; }
+  .status-banner { display: flex; align-items: center; gap: 14px; padding: 16px 20px; background: linear-gradient(90deg, rgba(181,99,76,.12) 0%, rgba(181,99,76,.04) 100%); border: 1px solid rgba(181,99,76,.3); border-left: 3px solid var(--clay); border-radius: 2px; }
+  .status-pulse { width: 10px; height: 10px; border-radius: 50%; background: var(--clay); position: relative; flex-shrink: 0; }
+  .status-pulse::before { content: ''; position: absolute; inset: -4px; border-radius: 50%; background: var(--clay); opacity: .25; animation: ringPulse 1.6s ease-out infinite; }
+  @keyframes ringPulse { 0% { transform: scale(.8); opacity: .5; } 100% { transform: scale(2.4); opacity: 0; } }
+  .status-text { font-size: 13px; color: var(--ink-2); line-height: 1.4; }
+  .status-text strong { color: var(--clay); font-weight: 500; letter-spacing: 0.02em; }
+
+  .asset-stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px 28px; padding-bottom: 12px; }
+  .asset-grid { display: grid; grid-template-columns: 280px 1fr 320px; gap: 28px; margin-top: 40px; }
+
+  .profile-list { display: flex; flex-direction: column; }
+  .profile-row { padding: 12px 0; border-bottom: 1px solid var(--rule-soft); display: grid; grid-template-columns: 1fr 1fr; gap: 12px; align-items: baseline; }
+  .profile-row:last-child { border-bottom: none; }
+  .profile-row .k { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-faint); }
+  .profile-row .v { font-size: 12.5px; color: var(--ink); text-align: right; font-family: 'IBM Plex Mono', monospace; }
+  .profile-row .v.serif { font-family: 'Fraunces', serif; font-size: 14px; }
+
+  /* timeline */
+  .timeline { position: relative; padding-left: 28px; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: var(--rule); }
+  .tl-item { position: relative; padding: 0 0 22px 0; }
+  .tl-item:last-child { padding-bottom: 0; }
+  .tl-item::before { content: ''; position: absolute; left: -27px; top: 6px; width: 11px; height: 11px; border-radius: 50%; background: var(--paper); border: 2px solid var(--brass); }
+  .tl-item.system::before { border-color: var(--ink-faint); background: var(--paper); }
+  .tl-item.alert::before { background: var(--clay); border-color: var(--clay); }
+  .tl-item.now::before { background: var(--ink); border-color: var(--brass); box-shadow: 0 0 0 4px rgba(168,138,79,.2); }
+  .tl-time { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--ink-faint); letter-spacing: 0.04em; }
+  .tl-title { font-family: 'Fraunces', serif; font-size: 14px; font-weight: 500; margin: 4px 0 4px; color: var(--ink); }
+  .tl-body { font-size: 12.5px; color: var(--ink-soft); line-height: 1.55; }
+  .tl-body em { color: var(--brass-deep); font-style: normal; font-weight: 500; }
+  .tl-attach { display: inline-flex; gap: 8px; margin-top: 8px; font-size: 11px; color: var(--ink-soft); padding: 4px 10px; border: 1px solid var(--rule); border-radius: 2px; align-items: center; }
+
+  .iot-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .iot-tile { padding: 14px; background: var(--paper-2); border: 1px solid var(--rule-soft); border-radius: 2px; }
+  .iot-tile .label { font-size: 9.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-faint); }
+  .iot-tile .reading { font-family: 'Fraunces', serif; font-size: 20px; color: var(--ink); margin-top: 6px; line-height: 1; letter-spacing: -0.015em; }
+  .iot-tile .reading .unit { font-size: 11px; color: var(--ink-soft); margin-left: 4px; }
+  .iot-tile .delta { font-size: 10px; margin-top: 6px; color: var(--forest); font-family: 'IBM Plex Mono', monospace; }
+  .iot-tile .delta.warn { color: var(--brass-deep); }
+  .iot-tile .delta.alert { color: var(--clay); }
+
+  .actions-stack { display: flex; flex-direction: column; gap: 12px; margin-top: 8px; }
+  .action-card { padding: 16px; border: 1px solid var(--rule); background: var(--paper-2); border-radius: 2px; }
+  .action-card.primary { border-color: var(--clay); background: rgba(181,99,76,.06); }
+  .action-card .ah { display: flex; justify-content: space-between; align-items: baseline; }
+  .action-card .ah .t { font-family: 'Fraunces', serif; font-size: 14px; font-weight: 500; color: var(--ink); }
+  .action-card .ah .c { font-size: 11px; color: var(--ink-soft); font-family: 'IBM Plex Mono', monospace; }
+  .action-card p { font-size: 12px; color: var(--ink-soft); margin-top: 6px; line-height: 1.5; }
+  .action-row { display: flex; gap: 8px; margin-top: 12px; }
+  .btn { flex: 1; padding: 11px 14px; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; font-family: 'DM Sans', sans-serif; font-weight: 500; cursor: pointer; border: 1px solid var(--rule); background: transparent; color: var(--ink); transition: all .2s ease; }
+  .btn:hover { border-color: var(--brass); }
+  .btn.primary { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+  .btn.primary:hover { background: var(--brass-deep); border-color: var(--brass-deep); }
+  .btn.danger { background: var(--clay); color: var(--paper); border-color: var(--clay); }
+
+  .vendor-list { display: flex; flex-direction: column; }
+  .vendor-row { padding: 12px 0; border-bottom: 1px dashed var(--rule-soft); display: grid; grid-template-columns: 1fr auto; gap: 10px; align-items: start; }
+  .vendor-row:last-child { border-bottom: none; }
+  .vendor-row .nm { font-size: 12.5px; color: var(--ink); font-weight: 500; }
+  .vendor-row .nm .s { display: block; font-size: 11px; color: var(--ink-soft); font-weight: 400; margin-top: 2px; }
+  .vendor-row .st { font-family: 'IBM Plex Mono', monospace; font-size: 9.5px; padding: 3px 8px; letter-spacing: 0.06em; }
+  .vendor-row .st.engaged { background: rgba(47,79,58,.14); color: var(--forest); }
+  .vendor-row .st.standby { background: rgba(168,138,79,.16); color: var(--brass-deep); }
+  .vendor-row .st.contacted { background: rgba(69,90,107,.16); color: var(--slate); }
+
+  .coverage-asset { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-top: 28px; padding-top: 28px; border-top: 1px solid var(--rule); }
+  .ca-block .label { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-faint); }
+  .ca-block .v { font-family: 'Fraunces', serif; font-size: 22px; color: var(--ink); margin-top: 6px; letter-spacing: -0.015em; }
+  .ca-block .sub { font-size: 11px; color: var(--ink-soft); margin-top: 4px; line-height: 1.45; }
+
+  /* ============ TOWER SCREEN ============ */
+  .tower-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 36px; margin-top: 36px; align-items: start; }
+  .tower-viz { padding: 28px; border: 1px solid var(--rule); background: var(--paper-2); border-radius: 2px; }
+  .tower-stack { display: flex; flex-direction: column-reverse; gap: 4px; margin-top: 24px; }
+  .tower-layer { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; padding: 14px 18px; background: var(--paper); border: 1px solid var(--rule-soft); border-left: 3px solid var(--brass); position: relative; transition: all .2s; cursor: pointer; }
+  .tower-layer:hover { background: var(--paper-3); border-left-color: var(--brass-deep); }
+  .tower-layer.cyber { border-left-color: var(--slate); }
+  .tower-layer.do { border-left-color: var(--forest-soft); }
+  .tower-layer.prop { border-left-color: var(--clay-soft); }
+  .tower-layer.umb { border-left-color: var(--brass); }
+  .tower-layer .ll { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--ink-faint); }
+  .tower-layer .lm { font-family: 'Fraunces', serif; font-size: 14px; color: var(--ink); font-weight: 500; }
+  .tower-layer .lm .s { display: block; font-size: 10.5px; color: var(--ink-soft); font-family: 'DM Sans', sans-serif; font-weight: 400; margin-top: 2px; }
+  .tower-layer .lc { text-align: right; font-size: 11.5px; color: var(--ink-2); }
+  .tower-layer .lc .car { display: block; font-size: 10px; color: var(--ink-faint); margin-top: 2px; font-family: 'IBM Plex Mono', monospace; }
+
+  .tower-line { padding: 28px 0; border-top: 1px dashed var(--rule); margin-top: 8px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; text-align: center; }
+  .tower-line .l { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-faint); }
+  .tower-line .v { font-family: 'Fraunces', serif; font-size: 22px; color: var(--ink); margin-top: 4px; letter-spacing: -0.015em; }
+
+  .carrier-table { display: flex; flex-direction: column; }
+  .carrier-row { display: grid; grid-template-columns: 1fr auto auto auto; gap: 16px; align-items: center; padding: 13px 0; border-bottom: 1px solid var(--rule-soft); }
+  .carrier-row:last-child { border-bottom: none; }
+  .carrier-row .cn { font-size: 13px; color: var(--ink); font-weight: 500; }
+  .carrier-row .cn .s { display: block; font-size: 10.5px; color: var(--ink-faint); margin-top: 1px; }
+  .carrier-row .am { font-family: 'IBM Plex Mono', monospace; font-size: 10px; padding: 3px 8px; background: rgba(47,79,58,.12); color: var(--forest); letter-spacing: 0.06em; }
+  .carrier-row .am.warn { background: rgba(168,138,79,.16); color: var(--brass-deep); }
+  .carrier-row .ex { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--ink-2); text-align: right; }
+  .carrier-row .rd { font-size: 11px; color: var(--ink-soft); white-space: nowrap; }
+
+  .premium-table { display: flex; flex-direction: column; margin-top: 8px; }
+  .prem-row { display: grid; grid-template-columns: 1fr 220px auto auto; gap: 16px; align-items: center; padding: 11px 0; border-bottom: 1px solid var(--rule-soft); }
+  .prem-row:last-child { border-bottom: none; }
+  .prem-row .ln { font-size: 12.5px; color: var(--ink); }
+  .prem-bar-wrap { background: var(--rule-soft); height: 4px; border-radius: 2px; overflow: hidden; }
+  .prem-bar { height: 100%; background: var(--brass); }
+  .prem-row .am { font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: var(--ink-2); text-align: right; min-width: 70px; }
+  .prem-row .yo { font-size: 10.5px; color: var(--forest); font-family: 'IBM Plex Mono', monospace; min-width: 50px; text-align: right; }
+  .prem-row .yo.up { color: var(--clay); }
+
+  .renewal-cal { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 8px; }
+  .ren-card { padding: 14px; background: var(--paper-2); border: 1px solid var(--rule-soft); border-radius: 2px; }
+  .ren-card .qm { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--brass-deep); font-weight: 500; }
+  .ren-card .ct { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--ink-faint); margin-top: 2px; }
+  .ren-card .ls { margin-top: 12px; display: flex; flex-direction: column; gap: 6px; }
+  .ren-card .li { font-size: 11.5px; color: var(--ink); display: flex; justify-content: space-between; }
+  .ren-card .li span { font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--ink-soft); }
+
+  /* ============ BENCH SCREEN ============ */
+  .bench-hero { padding: 48px 0 36px; text-align: center; border-bottom: 1px solid var(--rule); }
+  .bench-hero h1 { font-family: 'Fraunces', serif; font-size: 56px; font-weight: 300; color: var(--ink); line-height: 1.05; letter-spacing: -0.025em; }
+  .bench-hero h1 em { font-style: italic; color: var(--brass-deep); }
+  .bench-hero p { font-size: 14px; color: var(--ink-soft); max-width: 640px; margin: 18px auto 0; line-height: 1.65; }
+  .bench-section-title { display: flex; align-items: center; justify-content: space-between; margin: 56px 0 22px; padding-bottom: 14px; border-bottom: 1px solid var(--rule); }
+  .bench-section-title h2 { font-family: 'Fraunces', serif; font-size: 26px; font-weight: 400; letter-spacing: -0.01em; color: var(--ink); }
+  .bench-section-title h2 em { font-style: italic; color: var(--brass-deep); }
+  .bench-section-title .meta { font-size: 11.5px; color: var(--ink-soft); font-style: italic; }
+
+  .core-team { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .person { padding: 22px; border: 1px solid var(--rule); background: rgba(255,252,245,.6); border-radius: 2px; transition: all .2s; cursor: pointer; }
+  .person:hover { border-color: var(--brass); box-shadow: var(--shadow-soft); transform: translateY(-1px); }
+  .person.featured { background: var(--ink); color: var(--paper); border-color: var(--ink-2); }
+  .person-top { display: flex; gap: 14px; align-items: center; padding-bottom: 16px; border-bottom: 1px solid var(--rule-soft); margin-bottom: 16px; }
+  .person.featured .person-top { border-bottom-color: rgba(168,138,79,.25); }
+  .person-avatar { width: 50px; height: 50px; border-radius: 50%; background: linear-gradient(135deg, #847151, var(--brass)); color: var(--ink); display: grid; place-items: center; font-family: 'Fraunces', serif; font-size: 16px; flex-shrink: 0; }
+  .person-avatar.alt1 { background: linear-gradient(135deg, #4a6058, var(--forest-soft)); color: var(--paper); }
+  .person-avatar.alt2 { background: linear-gradient(135deg, #6b4f48, var(--clay-soft)); color: var(--paper); }
+  .person-avatar.alt3 { background: linear-gradient(135deg, var(--slate), #5a7186); color: var(--paper); }
+  .person-name { font-family: 'Fraunces', serif; font-size: 17px; font-weight: 500; color: var(--ink); letter-spacing: -0.005em; }
+  .person.featured .person-name { color: var(--paper); }
+  .person-title { font-size: 11px; color: var(--ink-soft); margin-top: 2px; letter-spacing: 0.04em; }
+  .person.featured .person-title { color: var(--brass-soft); }
+  .person-platform { font-size: 9.5px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--brass-deep); margin-top: 6px; padding: 2px 8px; border: 1px solid var(--brass-soft); display: inline-block; border-radius: 1px; }
+  .person.featured .person-platform { color: var(--brass-soft); border-color: rgba(168,138,79,.4); }
+  .person-body { font-size: 12px; color: var(--ink-soft); line-height: 1.55; }
+  .person.featured .person-body { color: rgba(245,239,228,.7); }
+  .person-recent { margin-top: 12px; padding-top: 12px; border-top: 1px dashed var(--rule-soft); font-size: 10.5px; color: var(--ink-faint); font-family: 'IBM Plex Mono', monospace; letter-spacing: 0.04em; }
+  .person.featured .person-recent { border-top-color: rgba(168,138,79,.2); color: rgba(245,239,228,.45); }
+
+  .bench-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .specialty { padding: 18px; border: 1px solid var(--rule-soft); background: rgba(245,239,228,.45); border-radius: 2px; transition: all .2s; cursor: pointer; }
+  .specialty:hover { border-color: var(--brass); background: var(--paper-2); }
+  .specialty .sn { font-family: 'Fraunces', serif; font-size: 15px; font-weight: 500; color: var(--ink); margin-bottom: 6px; letter-spacing: -0.005em; }
+  .specialty .lead { font-size: 11.5px; color: var(--ink-2); }
+  .specialty .lead .pl { display: block; font-size: 9.5px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--brass-deep); margin-top: 4px; }
+  .specialty .cnt { font-size: 10.5px; color: var(--ink-faint); margin-top: 10px; padding-top: 10px; border-top: 1px dashed var(--rule-soft); font-family: 'IBM Plex Mono', monospace; letter-spacing: 0.04em; }
+
+  /* ============ BRIEFING (review) SCREEN ============ */
+  .review-hero { padding: 48px 0 36px; text-align: center; }
+  .review-hero .eyebrow { margin-bottom: 14px; }
+  .review-hero h1 { font-family: 'Fraunces', serif; font-size: 56px; font-weight: 300; color: var(--ink); line-height: 1.05; letter-spacing: -0.025em; }
+  .review-hero h1 em { font-style: italic; color: var(--brass-deep); }
+  .review-hero p { font-size: 14px; color: var(--ink-soft); max-width: 600px; margin: 18px auto 0; line-height: 1.65; }
+  .review-toolbar { display: flex; justify-content: center; gap: 24px; padding: 24px 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); margin-bottom: 56px; flex-wrap: wrap; }
+  .review-toolbar a { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-soft); text-decoration: none; padding: 4px 0; border-bottom: 1px solid transparent; cursor: pointer; }
+  .review-toolbar a:hover, .review-toolbar a.active { color: var(--ink); border-bottom-color: var(--brass); }
+
+  .spread { display: grid; grid-template-columns: 1fr 1fr; max-width: 1100px; margin: 0 auto 64px; box-shadow: 0 30px 60px rgba(14,26,38,.18), 0 4px 12px rgba(14,26,38,.1); position: relative; background: var(--paper); border: 1px solid var(--rule); }
+  .spread::before { content: ''; position: absolute; top: 0; bottom: 0; left: 50%; width: 2px; background: linear-gradient(90deg, transparent, rgba(14,26,38,.08), transparent); transform: translateX(-50%); }
+  .page { padding: 56px 56px; min-height: 600px; position: relative; }
+  .page.cover { background: linear-gradient(135deg, var(--unison) 0%, var(--unison-deep) 100%); color: var(--paper); padding: 80px 56px; display: flex; flex-direction: column; justify-content: space-between; }
+  .page.cover::after { content: ''; position: absolute; top: 0; bottom: 0; right: 14px; width: 1px; background: rgba(168,138,79,.3); }
+  .page.cover .top-mark { font-family: 'Fraunces', serif; font-style: italic; color: var(--brass-soft); font-size: 16px; }
+  .page.cover .center .pre { font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(168,138,79,.7); margin-bottom: 18px; }
+  .page.cover h2 { font-family: 'Fraunces', serif; font-size: 38px; font-weight: 300; line-height: 1.1; color: var(--paper); letter-spacing: -0.02em; }
+  .page.cover h2 em { font-style: italic; color: var(--brass-soft); }
+  .page.cover .vol { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--brass-soft); letter-spacing: 0.12em; margin-top: 32px; }
+  .page.cover .bot { display: flex; justify-content: space-between; align-items: end; font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(168,138,79,.7); }
+  .page-num { position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--ink-faint); letter-spacing: 0.1em; }
+  .page-section { font-family: 'Fraunces', serif; font-style: italic; font-size: 13px; color: var(--brass-deep); position: absolute; top: 24px; right: 56px; letter-spacing: 0.04em; }
+  .page-section.left { right: auto; left: 56px; }
+  .page h3 { font-family: 'Fraunces', serif; font-size: 26px; font-weight: 400; color: var(--ink); margin-bottom: 18px; letter-spacing: -0.015em; line-height: 1.15; }
+  .page h3 em { font-style: italic; color: var(--brass-deep); }
+  .page .lede { font-family: 'Fraunces', serif; font-size: 16px; font-style: italic; color: var(--ink-2); line-height: 1.55; margin-bottom: 22px; font-weight: 300; }
+  .page .body-text { font-size: 13px; line-height: 1.7; color: var(--ink-2); }
+  .page .body-text p { margin-bottom: 12px; }
+  .signature { margin-top: 28px; font-family: 'Fraunces', serif; font-style: italic; font-size: 17px; color: var(--ink); }
+  .signature .role { display: block; font-style: normal; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-faint); margin-top: 8px; font-family: 'DM Sans', sans-serif; }
+
+  .quarter-stat { display: flex; justify-content: space-between; align-items: baseline; padding: 12px 0; border-bottom: 1px solid var(--rule-soft); }
+  .quarter-stat .l { font-size: 12px; color: var(--ink-2); }
+  .quarter-stat .v { font-family: 'Fraunces', serif; font-size: 20px; color: var(--ink); letter-spacing: -0.015em; }
+  .quarter-stat .v.green { color: var(--forest); }
+  .quarter-stat .v.red { color: var(--clay); }
+
+  .ornament { text-align: center; margin: 24px 0; color: var(--brass); font-size: 14px; letter-spacing: 0.5em; }
+
+  .event-of-note { padding: 16px 0 16px 18px; border-left: 1px solid var(--brass-soft); position: relative; margin-bottom: 12px; }
+  .event-of-note::before { content: ''; position: absolute; left: -4px; top: 22px; width: 7px; height: 7px; border-radius: 50%; background: var(--brass); }
+  .event-of-note h4 { font-family: 'Fraunces', serif; font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 4px; }
+  .event-of-note p { font-size: 12px; color: var(--ink-soft); line-height: 1.55; }
+  .event-of-note .when { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.06em; color: var(--brass-deep); margin-bottom: 4px; display: block; }
+
+  .recommendation { padding: 14px 18px; background: rgba(168,138,79,.08); border-left: 2px solid var(--brass); margin-bottom: 12px; }
+  .recommendation .rh { font-family: 'Fraunces', serif; font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 4px; }
+  .recommendation p { font-size: 11.5px; color: var(--ink-2); line-height: 1.55; }
+  .recommendation .ra { display: inline-block; margin-top: 6px; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--brass-deep); font-family: 'DM Sans', sans-serif; }
+
+  /* ============ UNISON LOGO ============ */
+  .brand-logo { height: 26px; width: auto; display: block; opacity: .92; }
+  .brand-logo-wrap { display: flex; align-items: center; gap: 16px; }
+  .brand-vline { width: 1px; height: 24px; background: var(--unison); opacity: .35; }
+  .brand-platform { font-family: 'Fraunces', serif; font-style: italic; font-size: 22px; font-weight: 400; color: var(--unison); letter-spacing: -0.015em; font-variation-settings: 'opsz' 144; }
+  .brand-platform .ampersand { color: var(--brass); font-weight: 300; }
+  .brand-suffix-new { font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--unison); padding: 2px 7px; border: 1px solid rgba(16,47,84,.3); border-radius: 1px; margin-left: 4px; }
+  .footer-logo { height: 16px; width: auto; opacity: .45; margin-right: 8px; }
+  .footer-brand { display: flex; align-items: center; gap: 4px; }
+
+
+  /* ============================================================
+     OSWALDONE BUSINESS — WARMING LAYER
+     ============================================================ */
+
+  :root {
+    --oswald-navy: #1B3454;
+    --oswald-navy-deep: #0E2240;
+    --oswald-red: #B5402C;
+    --peach: #F0DCC5;
+    --peach-deep: #E5C8A8;
+    --warm-cream: #FAF4E8;
+    --clay-warm: #C97F5E;
+    --rule-warm: #DECDB0;
+  }
+
+  body {
+    background: linear-gradient(180deg, #F8F0E0 0%, #F5EAD6 100%) !important;
+  }
+
+  /* ============ OSWALD BRAND MARK ============ */
+  .oswald-brand {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    line-height: 1;
+  }
+  .oswald-wordmark {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-weight: 700;
+    font-size: 24px;
+    letter-spacing: -0.03em;
+    color: var(--oswald-navy);
+    line-height: 1;
+  }
+  .oswald-wordmark .dot {
+    color: var(--oswald-red);
+  }
+  .oswald-suffix-rule {
+    width: 1px;
+    height: 22px;
+    background: var(--oswald-navy);
+    opacity: 0.25;
+    align-self: center;
+  }
+  .oswald-one {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--oswald-navy);
+    letter-spacing: -0.015em;
+  }
+  .oswald-one-tag {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--oswald-navy);
+    opacity: 0.55;
+    padding-left: 6px;
+    align-self: center;
+  }
+
+  /* Footer brand */
+  .footer-oswald {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    color: var(--oswald-navy);
+    letter-spacing: -0.01em;
+  }
+  .footer-oswald .dot { color: var(--oswald-red); }
+
+  /* ============ THE 4 PILLARS — Home strip ============ */
+  .pillars-strip {
+    margin: 24px 0 32px;
+    padding: 28px 32px;
+    background: linear-gradient(135deg, #FAF4E8 0%, #F5E8D2 100%);
+    border: 1px solid var(--rule-warm);
+    border-radius: 4px;
+    position: relative;
+  }
+  .pillars-strip::before {
+    content: 'How we show up for Vandermark';
+    position: absolute;
+    top: -9px;
+    left: 28px;
+    background: #F8F0E0;
+    padding: 0 12px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--brass-deep);
+  }
+  .pillars-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 28px;
+  }
+  .pillar {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 0 14px 0 0;
+    border-right: 1px solid rgba(135, 109, 59, 0.18);
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+  .pillar:last-child { border-right: none; }
+  .pillar:hover { transform: translateY(-2px); }
+  .pillar-icon-circle {
+    width: 44px;
+    height: 44px;
+    background: rgba(135, 109, 59, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(135, 109, 59, 0.22);
+  }
+  .pillar-icon-circle svg {
+    width: 22px;
+    height: 22px;
+    color: var(--oswald-navy);
+  }
+  .pillar-label {
+    font-family: 'Fraunces', serif;
+    font-size: 17px;
+    font-weight: 500;
+    color: var(--oswald-navy);
+    letter-spacing: -0.01em;
+  }
+  .pillar-score {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--brass-deep);
+    letter-spacing: 0.04em;
+  }
+  .pillar-score .num {
+    color: var(--clay-warm);
+    font-weight: 600;
+  }
+  .pillar-blurb {
+    font-size: 12px;
+    color: var(--ink-soft);
+    line-height: 1.5;
+  }
+
+  /* ============ SCORECARD SCREEN ============ */
+  .scorecard-hero {
+    background: linear-gradient(135deg, var(--oswald-navy) 0%, var(--oswald-navy-deep) 100%);
+    color: #fff;
+    padding: 48px 56px;
+    border-radius: 4px;
+    margin-bottom: 28px;
+    position: relative;
+    overflow: hidden;
+  }
+  .scorecard-hero::after {
+    content: '';
+    position: absolute;
+    right: -80px;
+    bottom: -80px;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(201, 127, 94, 0.18) 0%, transparent 70%);
+  }
+  .scorecard-hero .eyebrow {
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 16px;
+  }
+  .scorecard-hero h1 {
+    font-family: 'Fraunces', serif;
+    font-size: 44px;
+    font-weight: 300;
+    color: #fff;
+    margin-bottom: 12px;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+  }
+  .scorecard-hero h1 em {
+    font-style: italic;
+    color: var(--clay-warm);
+  }
+  .scorecard-hero .sub {
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.75);
+    line-height: 1.55;
+    max-width: 620px;
+  }
+
+  .scorecard-aggregate {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+    margin: 28px 0 36px;
+  }
+  .stat-block {
+    background: #fff;
+    padding: 32px;
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    position: relative;
+  }
+  .stat-block .num {
+    font-family: 'Fraunces', serif;
+    font-size: 56px;
+    font-weight: 300;
+    color: var(--oswald-navy);
+    line-height: 1;
+    letter-spacing: -0.03em;
+  }
+  .stat-block .num .unit {
+    font-size: 28px;
+    color: var(--brass);
+    margin-left: 4px;
+  }
+  .stat-block .label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--brass-deep);
+    margin-top: 16px;
+  }
+  .stat-block .desc {
+    font-size: 12.5px;
+    color: var(--ink-soft);
+    line-height: 1.55;
+    margin-top: 6px;
+  }
+
+  .scorecard-rate-now {
+    background: #fff;
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    padding: 36px 40px;
+    margin-bottom: 36px;
+  }
+  .scorecard-rate-now h2 {
+    font-family: 'Fraunces', serif;
+    font-size: 28px;
+    font-weight: 400;
+    color: var(--oswald-navy);
+    margin-bottom: 6px;
+    letter-spacing: -0.01em;
+  }
+  .scorecard-rate-now .sub {
+    font-size: 13px;
+    color: var(--ink-soft);
+    margin-bottom: 24px;
+  }
+  .rate-dimensions {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-bottom: 24px;
+  }
+  .rate-dim {
+    padding: 20px;
+    background: var(--warm-cream);
+    border: 1px solid var(--rule-warm);
+    border-radius: 3px;
+  }
+  .rate-dim .ico-circle {
+    width: 38px;
+    height: 38px;
+    background: rgba(135, 109, 59, 0.12);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 14px;
+  }
+  .rate-dim .ico-circle svg { width: 20px; height: 20px; color: var(--oswald-navy); }
+  .rate-dim h4 {
+    font-family: 'Fraunces', serif;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--oswald-navy);
+    margin-bottom: 4px;
+  }
+  .rate-dim .desc {
+    font-size: 11.5px;
+    color: var(--ink-soft);
+    line-height: 1.5;
+    margin-bottom: 14px;
+  }
+  .rate-slider {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .rate-track {
+    flex: 1;
+    height: 4px;
+    background: var(--rule);
+    border-radius: 2px;
+    position: relative;
+  }
+  .rate-fill {
+    position: absolute;
+    left: 0; top: 0;
+    height: 100%;
+    background: linear-gradient(90deg, var(--clay-warm), var(--brass));
+    border-radius: 2px;
+  }
+  .rate-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--oswald-navy);
+    font-weight: 600;
+    min-width: 28px;
+    text-align: right;
+  }
+
+  .scorecard-history {
+    background: #fff;
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    padding: 36px 40px;
+    margin-bottom: 36px;
+  }
+  .history-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 28px;
+    margin-top: 24px;
+  }
+  .history-year .yr {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--brass-deep);
+    margin-bottom: 8px;
+  }
+  .history-year .score {
+    font-family: 'Fraunces', serif;
+    font-size: 38px;
+    font-weight: 300;
+    color: var(--oswald-navy);
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+  .history-year .delta {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: #2F4F3A;
+    margin-top: 6px;
+  }
+
+  .testimonial-block {
+    background: linear-gradient(135deg, var(--warm-cream) 0%, var(--peach) 100%);
+    border-radius: 3px;
+    padding: 40px 44px;
+    margin-bottom: 36px;
+  }
+  .testimonial-block .eyebrow {
+    color: var(--brass-deep);
+    margin-bottom: 18px;
+  }
+  .testimonial-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 36px;
+  }
+  .testimonial {
+    border-left: 2px solid var(--clay-warm);
+    padding-left: 22px;
+  }
+  .testimonial .quote {
+    font-family: 'Fraunces', serif;
+    font-size: 16.5px;
+    font-style: italic;
+    color: var(--oswald-navy);
+    line-height: 1.5;
+    letter-spacing: -0.005em;
+  }
+  .testimonial .attr {
+    font-size: 11.5px;
+    color: var(--ink-soft);
+    margin-top: 14px;
+    letter-spacing: 0.02em;
+  }
+
+  /* Quarterly briefing recap fold */
+  .quarterly-recap {
+    background: #fff;
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    padding: 36px 40px;
+    margin-bottom: 36px;
+  }
+  .recap-cover {
+    background: linear-gradient(135deg, var(--oswald-navy) 0%, var(--oswald-navy-deep) 100%);
+    color: #fff;
+    padding: 36px 40px;
+    border-radius: 3px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 24px;
+    margin-top: 18px;
+  }
+  .recap-cover h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 28px;
+    font-weight: 300;
+    line-height: 1.15;
+    letter-spacing: -0.015em;
+  }
+  .recap-cover h3 em { font-style: italic; color: var(--clay-warm); }
+  .recap-cover .sub { font-size: 13px; color: rgba(255,255,255,0.7); margin-top: 6px; }
+  .recap-cover button {
+    background: var(--clay-warm);
+    color: #fff;
+    border: none;
+    padding: 14px 24px;
+    border-radius: 2px;
+    font-size: 13px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    cursor: pointer;
+    letter-spacing: 0.02em;
+  }
+
+  /* ============ IN GOOD COMPANY SCREEN ============ */
+  .igc-hero {
+    background: linear-gradient(135deg, var(--peach) 0%, var(--peach-deep) 100%);
+    padding: 56px 60px;
+    border-radius: 4px;
+    margin-bottom: 32px;
+    position: relative;
+    overflow: hidden;
+  }
+  .igc-hero::after {
+    content: '';
+    position: absolute;
+    right: -100px;
+    top: -100px;
+    width: 380px;
+    height: 380px;
+    background: radial-gradient(circle, rgba(27, 52, 84, 0.08) 0%, transparent 70%);
+  }
+  .igc-hero .eyebrow {
+    color: var(--brass-deep);
+    margin-bottom: 16px;
+  }
+  .igc-hero h1 {
+    font-family: 'Fraunces', serif;
+    font-size: 46px;
+    font-weight: 300;
+    color: var(--oswald-navy);
+    margin-bottom: 12px;
+    letter-spacing: -0.025em;
+    line-height: 1.05;
+    max-width: 760px;
+  }
+  .igc-hero h1 em {
+    font-style: italic;
+    color: var(--clay-warm);
+  }
+  .igc-hero .sub {
+    font-size: 16px;
+    color: var(--oswald-navy);
+    opacity: 0.75;
+    line-height: 1.55;
+    max-width: 620px;
+  }
+
+  .igc-ask {
+    background: #fff;
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    padding: 36px 40px;
+    margin-bottom: 36px;
+  }
+  .igc-ask h2 {
+    font-family: 'Fraunces', serif;
+    font-size: 28px;
+    font-weight: 400;
+    color: var(--oswald-navy);
+    margin-bottom: 22px;
+    letter-spacing: -0.01em;
+  }
+  .igc-categories {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+  }
+  .igc-cat {
+    padding: 22px 20px;
+    background: var(--warm-cream);
+    border: 1px solid var(--rule-warm);
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .igc-cat:hover {
+    background: #fff;
+    border-color: var(--clay-warm);
+    transform: translateY(-1px);
+  }
+  .igc-cat .ico {
+    width: 22px;
+    height: 22px;
+    color: var(--clay-warm);
+    margin-bottom: 12px;
+  }
+  .igc-cat .cat-title {
+    font-family: 'Fraunces', serif;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--oswald-navy);
+    margin-bottom: 4px;
+  }
+  .igc-cat .cat-desc {
+    font-size: 11.5px;
+    color: var(--ink-soft);
+    line-height: 1.5;
+  }
+
+  .igc-matches {
+    background: #fff;
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    padding: 36px 40px;
+    margin-bottom: 36px;
+  }
+  .match-list { margin-top: 20px; }
+  .match-row {
+    display: grid;
+    grid-template-columns: 56px 1fr auto;
+    gap: 20px;
+    align-items: center;
+    padding: 18px 0;
+    border-bottom: 1px solid var(--rule-soft);
+  }
+  .match-row:last-child { border-bottom: none; }
+  .match-avatar {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--brass) 0%, var(--clay-warm) 100%);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Fraunces', serif;
+    font-size: 19px;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+  }
+  .match-info .name {
+    font-family: 'Fraunces', serif;
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--oswald-navy);
+    margin-bottom: 3px;
+  }
+  .match-info .what {
+    font-size: 12.5px;
+    color: var(--ink-soft);
+    line-height: 1.5;
+  }
+  .match-info .what strong {
+    color: var(--oswald-navy);
+    font-weight: 500;
+  }
+  .match-status {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 5px 11px;
+    border: 1px solid;
+    border-radius: 2px;
+    white-space: nowrap;
+  }
+  .match-status.intro { color: var(--clay-warm); border-color: var(--clay-warm); background: rgba(201, 127, 94, 0.06); }
+  .match-status.done { color: #2F4F3A; border-color: #2F4F3A; background: rgba(47, 79, 58, 0.06); }
+  .match-status.pending { color: var(--brass-deep); border-color: var(--brass-deep); background: rgba(135, 109, 59, 0.06); }
+
+  /* Podcast tile */
+  .igc-podcast {
+    background: linear-gradient(135deg, var(--oswald-navy) 0%, var(--oswald-navy-deep) 100%);
+    color: #fff;
+    padding: 36px 40px;
+    border-radius: 3px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 28px;
+    margin-bottom: 36px;
+    position: relative;
+    overflow: hidden;
+  }
+  .igc-podcast::after {
+    content: '';
+    position: absolute;
+    right: -60px;
+    bottom: -60px;
+    width: 220px;
+    height: 220px;
+    background: radial-gradient(circle, rgba(201, 127, 94, 0.18) 0%, transparent 70%);
+  }
+  .igc-podcast .eyebrow { color: rgba(255,255,255,0.5); margin-bottom: 10px; }
+  .igc-podcast h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 28px;
+    font-weight: 300;
+    margin-bottom: 6px;
+    letter-spacing: -0.015em;
+    line-height: 1.15;
+  }
+  .igc-podcast h3 em { font-style: italic; color: var(--clay-warm); }
+  .igc-podcast .ep {
+    font-size: 13px;
+    color: rgba(255,255,255,0.75);
+    line-height: 1.5;
+    max-width: 520px;
+  }
+  .play-btn {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: var(--clay-warm);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+  }
+  .play-btn svg { width: 24px; height: 24px; color: #fff; margin-left: 3px; }
+
+  /* Warmer buttons */
+  .btn.primary {
+    background: var(--clay-warm) !important;
+    border-color: var(--clay-warm) !important;
+  }
+  .btn.primary:hover {
+    background: #B36848 !important;
+    border-color: #B36848 !important;
+  }
+
+  /* Friendlier card corners */
+  .panel, .quick-action, .property-card, .division { border-radius: 3px; }
+
+  /* ============ BOOK READER — Interactive quarterly briefing ============ */
+  .book-reader {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.6s cubic-bezier(0.4, 0, 0.2, 1), margin-top 0.5s ease;
+    margin-top: 0;
+  }
+  .book-reader.is-open {
+    max-height: 1400px;
+    margin-top: 22px;
+  }
+
+  .book-stage {
+    background: linear-gradient(180deg, #1F1208 0%, #0E0805 100%);
+    padding: 36px 36px 26px;
+    border-radius: 3px;
+    position: relative;
+  }
+
+  .book-spread {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background: #FAF4E8;
+    box-shadow: 0 16px 50px rgba(0,0,0,0.5), 0 2px 10px rgba(0,0,0,0.3);
+    min-height: 560px;
+    position: relative;
+  }
+  .book-spread::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.18) 50%, transparent 100%);
+    transform: translateX(-50%);
+    pointer-events: none;
+  }
+  .book-spread:not(.is-current) { display: none; }
+
+  .book-page {
+    padding: 52px 50px 60px;
+    position: relative;
+    background: linear-gradient(135deg, #FAF4E8 0%, #F4EAD4 100%);
+  }
+  .book-page .page-eyebrow {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--brass-deep);
+    margin-bottom: 26px;
+  }
+  .book-page h2 {
+    font-family: 'Fraunces', serif;
+    font-size: 32px;
+    font-weight: 300;
+    color: var(--oswald-navy);
+    letter-spacing: -0.02em;
+    line-height: 1.12;
+    margin-bottom: 20px;
+  }
+  .book-page h2 em {
+    font-style: italic;
+    color: var(--clay-warm);
+  }
+  .book-page p {
+    font-family: 'Fraunces', serif;
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--oswald-navy);
+    margin-bottom: 13px;
+    font-weight: 400;
+  }
+  .book-page p:last-child { margin-bottom: 0; }
+
+  .book-page .page-num {
+    position: absolute;
+    bottom: 22px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--brass-deep);
+    opacity: 0.55;
+    letter-spacing: 0.08em;
+  }
+  .book-page.recto .page-num { right: 50px; }
+  .book-page.verso .page-num { left: 50px; }
+
+  /* Cover page */
+  .book-cover-page {
+    background: linear-gradient(135deg, var(--oswald-navy) 0%, var(--oswald-navy-deep) 100%);
+    color: #fff;
+    padding: 52px 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+  }
+  .book-cover-page::after {
+    content: '';
+    position: absolute;
+    inset: 18px;
+    border: 1px solid rgba(201, 127, 94, 0.32);
+    pointer-events: none;
+  }
+  .book-cover-page .cover-mark {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 12px;
+  }
+  .book-cover-page .cover-h {
+    font-family: 'Fraunces', serif;
+    font-size: 38px;
+    font-weight: 300;
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+  }
+  .book-cover-page .cover-h em { font-style: italic; color: var(--clay-warm); }
+  .book-cover-page .cover-foot {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
+  }
+
+  /* Data rows */
+  .book-numbers .num-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(135, 109, 59, 0.18);
+  }
+  .book-numbers .num-row:last-child { border-bottom: none; }
+  .book-numbers .num-label {
+    font-family: 'Fraunces', serif;
+    font-size: 13px;
+    color: var(--oswald-navy);
+  }
+  .book-numbers .num-val {
+    font-family: 'Fraunces', serif;
+    font-size: 17px;
+    color: var(--oswald-navy-deep);
+    font-weight: 400;
+  }
+  .book-numbers .num-val .delta {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--brass-deep);
+    margin-left: 8px;
+  }
+
+  /* Story list */
+  .book-list { margin-top: 12px; }
+  .book-item { margin-bottom: 18px; }
+  .book-item:last-child { margin-bottom: 0; }
+  .book-item .when {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9.5px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--brass-deep);
+    margin-bottom: 4px;
+  }
+  .book-item .what {
+    font-family: 'Fraunces', serif;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--oswald-navy);
+    margin-bottom: 4px;
+  }
+  .book-item .detail {
+    font-family: 'Fraunces', serif;
+    font-size: 13.5px;
+    color: var(--ink-soft);
+    line-height: 1.55;
+  }
+
+  /* Sign-off page */
+  .book-signoff {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 100%;
+    padding-top: 20px;
+  }
+  .book-signoff .ornament {
+    width: 60px;
+    height: 1px;
+    background: var(--clay-warm);
+    margin-bottom: 30px;
+  }
+  .book-signoff p {
+    font-size: 13.5px;
+    color: var(--ink-soft);
+    line-height: 1.7;
+    max-width: 300px;
+    margin-bottom: 14px;
+  }
+  .book-signoff .signature {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 19px;
+    color: var(--oswald-navy);
+    margin-top: 28px;
+  }
+
+  /* Controls */
+  .book-controls {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    margin-top: 18px;
+  }
+  .book-pages-indicator {
+    text-align: center;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
+  }
+  .book-nav { display: flex; gap: 10px; justify-self: start; }
+  .book-close-wrap { justify-self: end; }
+  .book-nav-btn {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.2);
+    color: rgba(255,255,255,0.88);
+    padding: 8px 18px;
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: 2px;
+    transition: all 0.2s;
+    letter-spacing: 0.04em;
+  }
+  .book-nav-btn:hover:not(:disabled) {
+    background: rgba(255,255,255,0.15);
+    border-color: rgba(255,255,255,0.32);
+  }
+  .book-nav-btn:disabled { opacity: 0.25; cursor: not-allowed; }
+  .book-close-btn {
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.22);
+    color: rgba(255,255,255,0.72);
+    padding: 6px 14px;
+    font-family: 'Inter', sans-serif;
+    font-size: 10.5px;
+    cursor: pointer;
+    border-radius: 2px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    transition: all 0.2s;
+  }
+  .book-close-btn:hover { border-color: rgba(255,255,255,0.4); color: #fff; }
+
+  /* Book chart styling — for the data spread */
+  .chart-stacked-bar svg { display: block; border-radius: 2px; overflow: hidden; }
+  .chart-legend { display: grid; gap: 0; margin-top: 22px; }
+  .legend-row {
+    display: grid;
+    grid-template-columns: 14px 1fr auto auto;
+    gap: 14px;
+    align-items: center;
+    font-family: 'Fraunces', serif;
+    font-size: 12.5px;
+    padding: 7px 0;
+    border-bottom: 1px solid rgba(135, 109, 59, 0.12);
+  }
+  .legend-row:last-child { border-bottom: none; }
+  .legend-row .sw { width: 12px; height: 12px; border-radius: 2px; }
+  .legend-row .lbl { color: var(--oswald-navy); }
+  .legend-row .pct {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--brass-deep);
+    letter-spacing: 0.06em;
+    text-align: right;
+    min-width: 32px;
+  }
+  .legend-row .amt {
+    font-family: 'Fraunces', serif;
+    font-size: 13px;
+    color: var(--oswald-navy-deep);
+    font-weight: 500;
+    text-align: right;
+    min-width: 60px;
+  }
+  .chart-key {
+    display: flex;
+    gap: 22px;
+    margin-top: 14px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--brass-deep);
+  }
+  .chart-key .swatch {
+    display: inline-block;
+    width: 14px;
+    height: 2px;
+    vertical-align: middle;
+    margin-right: 6px;
+  }
+  .chart-caption {
+    font-family: 'Fraunces', serif;
+    font-size: 13px;
+    color: var(--ink-soft);
+    line-height: 1.6;
+    margin-top: 18px;
+  }
+
+</style>
+</head>
+<body>
+<div class="ribbon">Concept Mockup</div>
+
+<div class="container">
+
+  <!-- =================== NAV =================== -->
+  <nav>
+    <div class="oswald-brand">
+      <span class="oswald-wordmark">Oswald<span class="dot">.</span></span>
+      <span class="oswald-suffix-rule"></span>
+      <span class="oswald-one">ONE</span>
+      <span class="oswald-one-tag">Business</span>
+    </div>
+    <ul class="nav-links" id="nav">
+      <li><a data-screen="home" class="active">Home</a></li>
+      <li><a data-screen="risk">Risk</a></li>
+      <li><a data-screen="tower">Tower</a></li>
+      <li><a data-screen="scorecard">Scorecard</a></li>
+      <li><a data-screen="igc">In Good Company</a></li>
+      <li><a data-screen="bench">Your Team</a></li>
+    </ul>
+    <div class="nav-right">
+      <button class="icon-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="11" cy="11" r="7"/><path d="m21 21-5-5"/></svg></button>
+      <button class="icon-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 8a6 6 0 1 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg></button>
+      <div class="principal-avatar" title="Sarah Chen">SC</div>
+    </div>
+  </nav>
+
+  <!-- =================== SCREEN: ENTERPRISE / DASHBOARD =================== -->
+  <div class="screen is-active" id="screen-home">
+    <section class="hero reveal">
+      <div class="hero-greeting">
+        <div class="eyebrow">Tuesday · 5 May · Cleveland</div>
+        <h1>Good morning,<br><em>Sarah</em>.</h1>
+        <p class="hero-meta">A possible ransomware event was flagged at Precision Components overnight. The team is on it — we have one decision waiting for you. Everything else is running clean.</p>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><div class="stat-label">Total Cost of Risk · YTD</div><div class="stat-value">$9.4M</div><div class="stat-sub forest">↓ 6.1% vs. plan</div></div>
+        <div class="stat"><div class="stat-label">Annual Premium</div><div class="stat-value">$5.21M</div><div class="stat-sub brass">23 policies · 9 carriers</div></div>
+        <div class="stat"><div class="stat-label">Open Claims</div><div class="stat-value">14</div><div class="stat-sub">3 reportable · 11 routine</div></div>
+        <div class="stat"><div class="stat-label">Coverage Health</div><div class="stat-value">91<span style="color:var(--ink-faint);font-size:18px">/100</span></div><div class="stat-sub clay">1 active incident</div></div>
+      </div>
+    </section>
+
+    <!-- =================== 4 PILLARS — How we show up =================== -->
+    <div class="pillars-strip">
+      <div class="pillars-grid">
+
+        <div class="pillar">
+          <div class="pillar-icon-circle">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M12 3 L20 7 L20 12 C20 16.5 16.5 20 12 21 C7.5 20 4 16.5 4 12 L4 7 Z" stroke-linejoin="round"/>
+              <path d="M9 12 L11 14.5 L15.5 10" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="pillar-label">Confidence</div>
+          <div class="pillar-blurb">Board-ready clarity on what's covered, what's not, and where the gaps are.</div>
+          <div class="pillar-score"><span class="num">99</span> · <span style="opacity:.55">your Q1 rating</span></div>
+        </div>
+
+        <div class="pillar">
+          <div class="pillar-icon-circle">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <circle cx="12" cy="12" r="9"/>
+              <path d="M12 6 L14.4 11.6 L12 16 L9.6 11.6 Z" fill="currentColor" stroke="none"/>
+              <circle cx="12" cy="12" r="1.5" fill="#FAF4E8" stroke="none"/>
+            </svg>
+          </div>
+          <div class="pillar-label">Guidance</div>
+          <div class="pillar-blurb">A team that knows your business — not a 1-800 number when it counts.</div>
+          <div class="pillar-score"><span class="num">100</span> · <span style="opacity:.55">your Q1 rating</span></div>
+        </div>
+
+        <div class="pillar">
+          <div class="pillar-icon-circle">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M3 10 Q7.5 6 12 10 T21 10" stroke-linecap="round"/>
+              <path d="M3 15 Q7.5 11 12 15 T21 15" stroke-linecap="round" opacity="0.55"/>
+            </svg>
+          </div>
+          <div class="pillar-label">Ease</div>
+          <div class="pillar-blurb">Renewals, COIs, audits — handled in the background. Your time, back.</div>
+          <div class="pillar-score"><span class="num">96</span> · <span style="opacity:.55">your Q1 rating</span></div>
+        </div>
+
+        <div class="pillar">
+          <div class="pillar-icon-circle">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <rect x="3.5" y="14.5" width="4" height="6" rx="0.5"/>
+              <rect x="10" y="10" width="4" height="10.5" rx="0.5"/>
+              <rect x="16.5" y="5" width="4" height="15.5" rx="0.5"/>
+            </svg>
+          </div>
+          <div class="pillar-label">Quantifiable Value</div>
+          <div class="pillar-blurb">Recovered claims, renegotiated premium, mitigation credits — in dollars.</div>
+          <div class="pillar-score"><span class="num">$4.2M</span> · <span style="opacity:.55">recovered '24–'26</span></div>
+        </div>
+
+      </div>
+    </div>
+
+
+    <main>
+      <div class="grid-primary">
+
+        <!-- ENTERPRISE FOOTPRINT -->
+        <section class="panel elevated reveal" style="animation-delay:0.05s">
+          <div class="panel-header">
+            <div><div class="eyebrow" style="margin-bottom:6px">At a glance</div><h2 class="panel-title"><em>Vandermark</em> Industries</h2></div>
+            <a class="panel-action">Open footprint</a>
+          </div>
+
+          <div class="enterprise-strip">
+            <div class="es-stat"><span class="l">Revenue · LTM</span><span class="v">$684M</span></div>
+            <div class="es-stat"><span class="l">Headcount</span><span class="v">2,418</span></div>
+            <div class="es-stat"><span class="l">Facilities</span><span class="v">11 · 3 countries</span></div>
+            <div class="es-stat"><span class="l">Divisions</span><span class="v">3</span></div>
+            <div class="es-stat"><span class="l">Operating model</span><span class="v">Manufacturing</span></div>
+          </div>
+
+          <div class="div-grid">
+            <div class="division alert" onclick="switchScreen('risk')">
+              <div class="division-h"><div class="l">Strongsville, OH · 4 facilities</div><div class="n">Precision Components</div></div>
+              <div class="division-meta"><span>1,142 employees · medical / aerospace</span><span class="v">$312M</span></div>
+              <div class="division-flag">Cyber incident in progress · awaiting your decision</div>
+            </div>
+            <div class="division">
+              <div class="division-h"><div class="l">Akron, OH · 3 facilities · Mexico</div><div class="n">Specialty Chemicals</div></div>
+              <div class="division-meta"><span>728 employees · industrial coatings</span><span class="v">$248M</span></div>
+            </div>
+            <div class="division">
+              <div class="division-h"><div class="l">Cleveland, OH · Poland</div><div class="n">Logistics & Distribution</div></div>
+              <div class="division-meta"><span>548 employees · 3PL & warehousing</span><span class="v">$124M</span></div>
+            </div>
+            <div class="division">
+              <div class="division-h"><div class="l">Cleveland, OH</div><div class="n">Corporate · HQ</div></div>
+              <div class="division-meta"><span>Executive, finance, IT, legal, HR</span><span class="v">—</span></div>
+            </div>
+          </div>
+
+          <div class="facilities-map">
+            <svg viewBox="0 0 800 350" xmlns="http://www.w3.org/2000/svg">
+              <!-- Stylized US outline (very abstract) -->
+              <path d="M50,200 Q100,140 200,135 Q300,130 400,140 Q500,135 600,150 Q700,160 750,200 Q740,250 680,270 Q580,280 480,280 Q380,290 280,285 Q180,280 100,260 Q60,240 50,200 Z" fill="rgba(168,138,79,.05)" stroke="rgba(168,138,79,.18)" stroke-width=".7"/>
+              <!-- mexico stub -->
+              <path d="M280,290 Q300,310 320,320 Q340,325 350,310 Q345,295 320,290 Z" fill="rgba(168,138,79,.04)" stroke="rgba(168,138,79,.15)" stroke-width=".5"/>
+              <!-- Poland (right side, stylized) -->
+              <path d="M730,170 Q750,160 770,165 Q775,180 765,195 Q745,200 730,190 Z" fill="rgba(168,138,79,.04)" stroke="rgba(168,138,79,.15)" stroke-width=".5"/>
+              <!-- facility markers -->
+              <!-- Cleveland HQ -->
+              <circle cx="490" cy="180" r="6" fill="var(--brass)"/>
+              <text x="500" y="178" fill="rgba(245,239,228,.7)" font-family="Fraunces" font-style="italic" font-size="11">Cleveland HQ</text>
+              <!-- Strongsville cluster -->
+              <circle cx="478" cy="195" r="5" fill="var(--clay)"/>
+              <circle cx="478" cy="195" r="11" fill="none" stroke="var(--clay)" stroke-width=".6" opacity=".6"/>
+              <text x="488" y="208" fill="var(--clay-soft)" font-family="DM Sans" font-size="10">Precision · alert</text>
+              <!-- Akron -->
+              <circle cx="500" cy="200" r="4" fill="var(--brass-soft)"/>
+              <text x="510" y="206" fill="rgba(245,239,228,.55)" font-family="DM Sans" font-size="9">Akron</text>
+              <!-- Mexico facility -->
+              <circle cx="320" cy="305" r="4" fill="var(--brass-soft)"/>
+              <text x="280" y="318" fill="rgba(245,239,228,.55)" font-family="DM Sans" font-size="9">Querétaro</text>
+              <!-- Poland -->
+              <circle cx="752" cy="178" r="4" fill="var(--brass-soft)"/>
+              <text x="700" y="160" fill="rgba(245,239,228,.55)" font-family="DM Sans" font-size="9">Wrocław</text>
+              <!-- other dots for the remaining facilities -->
+              <circle cx="465" cy="210" r="3.2" fill="var(--forest)"/>
+              <circle cx="510" cy="215" r="3.2" fill="var(--forest)"/>
+              <circle cx="455" cy="180" r="3.2" fill="var(--forest)"/>
+              <circle cx="490" cy="220" r="3.2" fill="var(--forest)"/>
+              <circle cx="475" cy="170" r="3.2" fill="var(--forest)"/>
+              <!-- compass -->
+              <text x="60" y="320" fill="rgba(245,239,228,.4)" font-family="IBM Plex Mono" font-size="9">11 facilities · 3 countries · 2,418 employees</text>
+            </svg>
+          </div>
+          <div class="fac-legend">
+            <span><span class="dot" style="background:var(--clay)"></span>Active matter</span>
+            <span><span class="dot" style="background:var(--brass)"></span>Headquarters</span>
+            <span><span class="dot" style="background:var(--brass-soft)"></span>Major facility</span>
+            <span><span class="dot" style="background:var(--forest)"></span>Steady</span>
+          </div>
+        </section>
+
+        <!-- RISK WEATHER -->
+        <section class="panel dark reveal" style="animation-delay:0.1s">
+          <div class="panel-header"><div><div class="eyebrow" style="color:var(--brass-soft);margin-bottom:6px">Live · Updated 6 min ago</div><h2 class="panel-title">Risk <em>Weather</em></h2></div><a class="panel-action" onclick="switchScreen('risk')">All signals</a></div>
+          <div class="weather-list">
+            <div class="weather-item" onclick="switchScreen('risk')" style="cursor:pointer">
+              <span class="weather-dot alert"></span>
+              <div class="weather-text"><strong>Precision Components · Strongsville Plant 2.</strong> Possible ransomware detected 02:47 ET. 3 systems isolated, production unaffected. Beazley breach response open; counsel and DFIR engaged.<span class="action">› Decision required: negotiation engagement</span></div>
+              <span class="weather-time">8h</span>
+            </div>
+            <div class="weather-item">
+              <span class="weather-dot watch"></span>
+              <div class="weather-text"><strong>Tier-1 supplier · Hartwell Alloys.</strong> Reuters reporting a fire at Hartwell's Alabama mill. CBI exposure to Precision through Q3 contract.<span class="action">› Risk Engineering preparing impact memo</span></div>
+              <span class="weather-time">3h</span>
+            </div>
+            <div class="weather-item">
+              <span class="weather-dot watch"></span>
+              <div class="weather-text"><strong>Workforce.</strong> EEOC reasonable-cause filing in the Specialty Chemicals matter (referenced in last quarter's briefing). Counsel coordinated; EPLI carrier on notice.</div>
+              <span class="weather-time">1d</span>
+            </div>
+            <div class="weather-item">
+              <span class="weather-dot watch"></span>
+              <div class="weather-text"><strong>Regulatory.</strong> SEC final rule on cyber incident disclosure published. Materiality threshold review scheduled with counsel and CFO 14 May.</div>
+              <span class="weather-time">2d</span>
+            </div>
+            <div class="weather-item">
+              <span class="weather-dot steady"></span>
+              <div class="weather-text"><strong>Carrier panel.</strong> All carriers AM Best A or better. Beazley reaffirmed A in March.</div>
+              <span class="weather-time">3d</span>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <div class="grid-secondary">
+
+        <!-- LIVE MATTERS -->
+        <section class="panel reveal" style="animation-delay:0.15s">
+          <div class="panel-header"><div><div class="eyebrow" style="margin-bottom:6px">Live matters</div><h2 class="panel-title">Open <em>files</em></h2></div><a class="panel-action">All</a></div>
+
+          <div class="matter">
+            <div>
+              <div class="matter-name"><span class="id">IT-2026-0173</span>Cyber incident · Precision Plant 2</div>
+              <div class="matter-sub">Ransomware suspected. Mullen Coughlin · Mandiant · Beazley engaged. Decision pending.</div>
+            </div>
+            <span class="matter-status active">Active</span>
+          </div>
+          <div class="matter">
+            <div>
+              <div class="matter-name"><span class="id">EPL-25-0089</span>EEOC · Specialty Chemicals · Akron</div>
+              <div class="matter-sub">Reasonable cause finding. Outside counsel responding. AIG EPL on notice; reserve $850k.</div>
+            </div>
+            <span class="matter-status review">Review</span>
+          </div>
+          <div class="matter">
+            <div>
+              <div class="matter-name"><span class="id">CBI-26-0012</span>Hartwell Alloys · supplier fire</div>
+              <div class="matter-sub">Tier-1 supplier disruption. Risk Engineering scoping CBI exposure under property-CBI extension.</div>
+            </div>
+            <span class="matter-status tracking">Tracking</span>
+          </div>
+          <div class="matter">
+            <div>
+              <div class="matter-name"><span class="id">PL-25-0214</span>Product liability · medical device customer</div>
+              <div class="matter-sub">Notice received from device OEM regarding allegation of latent component failure. Investigation phase.</div>
+            </div>
+            <span class="matter-status tracking">Tracking</span>
+          </div>
+        </section>
+
+        <!-- COVERAGE SNAPSHOT -->
+        <section class="panel reveal" style="animation-delay:0.2s">
+          <div class="panel-header"><div><div class="eyebrow" style="margin-bottom:6px">Tower preview</div><h2 class="panel-title">Coverage <em>position</em></h2></div><a class="panel-action" onclick="switchScreen('tower')">Open tower</a></div>
+
+          <div class="cov-mini">
+            <div class="cov-row-mini"><div class="n">Property & BI<span class="s">11 facilities · BI 18mo</span></div><div class="lim">$240M</div><div class="car">FM Global</div></div>
+            <div class="cov-row-mini"><div class="n">Cyber & privacy<span class="s">$50M tower · 2 layers</span></div><div class="lim">$50M</div><div class="car">Beazley · Coalition</div></div>
+            <div class="cov-row-mini"><div class="n">D&O · Side A DIC<span class="s">PE-backed structure</span></div><div class="lim">$50M</div><div class="car">Chubb · Berkshire</div></div>
+            <div class="cov-row-mini"><div class="n">Product liability<span class="s">incl. medical/aero excess</span></div><div class="lim">$25M</div><div class="car">AIG · Liberty</div></div>
+            <div class="cov-row-mini"><div class="n">Workers' compensation<span class="s">retention $500k · 4 jurisdictions</span></div><div class="lim">Statutory</div><div class="car">Travelers</div></div>
+            <div class="cov-row-mini"><div class="n">Umbrella / excess casualty<span class="s">$75M tower</span></div><div class="lim">$75M</div><div class="car">3-carrier stack</div></div>
+          </div>
+        </section>
+
+        <!-- BENCH CARD -->
+        <section class="reveal" style="animation-delay:0.25s">
+          <div class="bench-card">
+            <div class="eyebrow">Your bench · today</div>
+            <h3>Five on the team. <strong>Forty-two specialists</strong> on call.</h3>
+
+            <div class="bench-roster">
+              <div class="bench-row">
+                <div class="bench-mini-avatar">DR</div>
+                <div class="bench-mini-info"><div class="nm">David Reinhardt</div><div class="rl">Lead on your account · Oswald</div></div>
+                <span class="bench-mini-stat">Mon</span>
+              </div>
+              <div class="bench-row">
+                <div class="bench-mini-avatar alt">SL</div>
+                <div class="bench-mini-info"><div class="nm">Sarah Lin</div><div class="rl">Cyber & Privacy · Oswald</div></div>
+                <span class="bench-mini-stat">Now</span>
+              </div>
+              <div class="bench-row">
+                <div class="bench-mini-avatar">MK</div>
+                <div class="bench-mini-info"><div class="nm">Marcus Kowalski</div><div class="rl">Risk Engineer · RCM&D</div></div>
+                <span class="bench-mini-stat">Thu</span>
+              </div>
+              <div class="bench-row">
+                <div class="bench-mini-avatar alt">JT</div>
+                <div class="bench-mini-info"><div class="nm">Janelle Torres</div><div class="rl">Claims Advocate · Oswald</div></div>
+                <span class="bench-mini-stat">14 min</span>
+              </div>
+            </div>
+
+            <div class="bench-action">
+              <button class="bench-btn" onclick="switchScreen('bench')">Open the bench →</button>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <div class="grid-secondary">
+
+        <!-- CLAIMS -->
+        <section class="panel reveal" style="animation-delay:0.3s">
+          <div class="panel-header"><div><div class="eyebrow" style="margin-bottom:6px">YTD claims activity</div><h2 class="panel-title">Loss <em>experience</em></h2></div><a class="panel-action">Loss runs</a></div>
+
+          <div class="claims-summary">
+            <div><div class="s">Reported</div><div class="v">38</div><div class="d">YTD across all lines</div></div>
+            <div><div class="s">Incurred</div><div class="v">$1.84M</div><div class="d">−18% vs. prior YTD</div></div>
+            <div><div class="s">Loss ratio</div><div class="v">42%</div><div class="d">trailing 12 mo · all lines</div></div>
+          </div>
+
+          <div class="claim-row"><div class="nm">Cyber · Precision Plant 2<span class="s">IT-2026-0173 · open</span></div><div class="ln">Cyber</div><div class="am">Reserve $4.2M</div></div>
+          <div class="claim-row"><div class="nm">EEOC · Akron facility<span class="s">EPL-25-0089 · open</span></div><div class="ln">EPLI</div><div class="am">Reserve $850k</div></div>
+          <div class="claim-row"><div class="nm">Slip-and-fall · 3PL Warsaw<span class="s">WC-26-0044 · open</span></div><div class="ln">WC · Intl</div><div class="am">Reserve $145k</div></div>
+          <div class="claim-row"><div class="nm">Vehicle collision · sales fleet<span class="s">AUT-26-0118 · closed</span></div><div class="ln">Auto</div><div class="am">Paid $42k</div></div>
+        </section>
+
+        <!-- RENEWAL CALENDAR -->
+        <section class="panel reveal" style="animation-delay:0.35s">
+          <div class="panel-header"><div><div class="eyebrow" style="margin-bottom:6px">Renewal calendar</div><h2 class="panel-title">On the <em>schedule</em></h2></div></div>
+          <div class="events-list">
+            <div class="event"><div class="event-date"><div class="day">01</div><div class="mo">Jul</div></div><div class="event-body"><h4>Property & BI · FM Global</h4><p>Strategy session 12 May. Engineering survey complete. Pursuing 5% rate reduction.</p></div></div>
+            <div class="event"><div class="event-date"><div class="day">15</div><div class="mo">Sep</div></div><div class="event-body"><h4>D&O / Side A · Chubb-led</h4><p>PE structure update; Side A DIC market check with Berkshire and Allied World.</p></div></div>
+            <div class="event"><div class="event-date"><div class="day">01</div><div class="mo">Oct</div></div><div class="event-body"><h4>Cyber tower · Beazley + Coalition</h4><p>Mid-year incident may shift market view. Begin pre-renewal positioning by 1 July.</p></div></div>
+          </div>
+        </section>
+
+        <!-- KEY EVENTS -->
+        <section class="panel reveal" style="animation-delay:0.4s">
+          <div class="panel-header"><div><div class="eyebrow" style="margin-bottom:6px">Anticipated</div><h2 class="panel-title">In <em>view</em></h2></div></div>
+          <div class="events-list">
+            <div class="event"><div class="event-date"><div class="day">14</div><div class="mo">May</div></div><div class="event-body"><h4>SEC cyber-disclosure rule briefing</h4><p>Materiality threshold workshop with outside counsel and the CISO. Briefing memo for the audit committee.</p><a class="event-cta">Open agenda →</a></div></div>
+            <div class="event"><div class="event-date"><div class="day">22</div><div class="mo">May</div></div><div class="event-body"><h4>Captive feasibility · executive review</h4><p>Initial economics modeled. RCM&D captive practice presenting to the finance committee.</p></div></div>
+            <div class="event"><div class="event-date"><div class="day">10</div><div class="mo">Jun</div></div><div class="event-body"><h4>Q2 Risk Briefing · Board</h4><p>Bound briefings delivered to board members one week prior.</p></div></div>
+          </div>
+        </section>
+      </div>
+
+      <div class="briefing-strip reveal" onclick="openBriefingFromHome()">
+        <div>
+          <div class="eyebrow">Quarterly · prepared for the board</div>
+          <h2>The Q1 2026 <em>Risk Briefing</em>.</h2>
+          <p>A documented record of the quarter's risk position, claims activity, key events, and decisions for the board. Bound copies are delivered to each director one week before the meeting; a digital edition lives in the Vault under access-logged share.</p>
+          <a class="briefing-cta">Open the digital edition →</a>
+        </div>
+        <div class="briefing-book">
+          <div><div class="top">Q1 2026<br>Risk Briefing</div><div class="mid" style="margin-top:14px">Vandermark Industries</div></div>
+          <div><div class="bot">OswaldONE</div><div class="vol">Q1 2026</div></div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- =================== SCREEN: RISK / INCIDENT =================== -->
+  <div class="screen" id="screen-risk">
+    <section class="asset-hero reveal">
+      <div>
+        <div class="asset-crumb"><a onclick="switchScreen('home')">Enterprise</a> &nbsp;›&nbsp; Active matters &nbsp;›&nbsp; <span style="color:var(--ink)">IT-2026-0173 · Cyber incident</span></div>
+        <h1 class="asset-title">Cyber response.<br><em>Precision Plant 2</em>.</h1>
+        <p class="asset-sub">Possible ransomware detected on the Precision Components network at 02:47 ET. Three systems are isolated; production is unaffected; backups verified clean. The breach response panel is fully engaged. A negotiation engagement decision is needed by 15:00 ET.</p>
+      </div>
+      <div>
+        <div class="status-banner" style="margin-bottom:24px">
+          <span class="status-pulse"></span>
+          <div class="status-text"><strong>Active · Decision required by 15:00 ET.</strong><br>Coveware retainer authorization to begin negotiation diligence.</div>
+        </div>
+        <div class="asset-stats">
+          <div class="stat"><div class="stat-label">Affected systems</div><div class="stat-value">3 of 47</div><div class="stat-sub">file server, ERP node, DMS</div></div>
+          <div class="stat"><div class="stat-label">Operational impact</div><div class="stat-value">Limited</div><div class="stat-sub forest">production unaffected</div></div>
+          <div class="stat"><div class="stat-label">Cyber tower</div><div class="stat-value">$50M</div><div class="stat-sub">Beazley + Coalition · $250k retention</div></div>
+          <div class="stat"><div class="stat-label">Initial reserve</div><div class="stat-value">$4.2M</div><div class="stat-sub brass">subject to DFIR findings</div></div>
+        </div>
+      </div>
+    </section>
+
+    <main>
+      <div class="asset-grid">
+
+        <!-- LEFT: PROFILE & VENDORS -->
+        <section class="reveal" style="animation-delay:0.05s">
+          <div class="eyebrow" style="margin-bottom:14px">Incident profile</div>
+          <div class="profile-list">
+            <div class="profile-row"><span class="k">Type</span><span class="v">Ransomware (suspected)</span></div>
+            <div class="profile-row"><span class="k">Threat actor</span><span class="v">Under analysis</span></div>
+            <div class="profile-row"><span class="k">Detected</span><span class="v">02:47 ET · 5 May</span></div>
+            <div class="profile-row"><span class="k">Initial vector</span><span class="v">Phishing (suspected)</span></div>
+            <div class="profile-row"><span class="k">Demand</span><span class="v">$4.2M BTC</span></div>
+            <div class="profile-row"><span class="k">Backup status</span><span class="v" style="color:var(--forest)">Verified clean</span></div>
+            <div class="profile-row"><span class="k">Production</span><span class="v" style="color:var(--forest)">Unaffected</span></div>
+            <div class="profile-row"><span class="k">PHI / regulated data</span><span class="v" style="color:var(--brass-deep)">Under assessment</span></div>
+          </div>
+
+          <div class="eyebrow" style="margin: 32px 0 14px">Response panel · engaged</div>
+          <div class="vendor-list">
+            <div class="vendor-row"><div class="nm">Mullen Coughlin<span class="s">Breach coach · panel-approved</span></div><span class="st engaged">Engaged</span></div>
+            <div class="vendor-row"><div class="nm">Mandiant<span class="s">DFIR · forensic investigation</span></div><span class="st engaged">Engaged</span></div>
+            <div class="vendor-row"><div class="nm">Beazley Breach Response<span class="s">Carrier · 24/7 hotline</span></div><span class="st engaged">Engaged</span></div>
+            <div class="vendor-row"><div class="nm">Coveware<span class="s">Negotiation · panel-approved</span></div><span class="st standby">Standby</span></div>
+            <div class="vendor-row"><div class="nm">Edelman Smithfield<span class="s">Crisis communications</span></div><span class="st contacted">Contacted</span></div>
+            <div class="vendor-row"><div class="nm">FBI Cleveland Field Office<span class="s">Voluntary engagement</span></div><span class="st contacted">Notified</span></div>
+          </div>
+
+          <div class="eyebrow" style="margin: 32px 0 14px">Stakeholders briefed</div>
+          <div class="profile-list">
+            <div class="profile-row"><span class="k serif" style="font-family:'Fraunces',serif;font-size:13px;text-transform:none;letter-spacing:0;color:var(--ink-2)">M. Chen, CFO</span><span class="v">06:00 ET</span></div>
+            <div class="profile-row"><span class="k serif" style="font-family:'Fraunces',serif;font-size:13px;text-transform:none;letter-spacing:0;color:var(--ink-2)">R. Patel, GC</span><span class="v">06:00 ET</span></div>
+            <div class="profile-row"><span class="k serif" style="font-family:'Fraunces',serif;font-size:13px;text-transform:none;letter-spacing:0;color:var(--ink-2)">A. Brennan, CISO</span><span class="v">02:54 ET</span></div>
+            <div class="profile-row"><span class="k serif" style="font-family:'Fraunces',serif;font-size:13px;text-transform:none;letter-spacing:0;color:var(--ink-2)">James Vandermark, CEO</span><span class="v">07:15 ET</span></div>
+            <div class="profile-row"><span class="k serif" style="font-family:'Fraunces',serif;font-size:13px;text-transform:none;letter-spacing:0;color:var(--ink-2)">Audit committee chair</span><span class="v">Pending · 14:30</span></div>
+          </div>
+        </section>
+
+        <!-- CENTER: TIMELINE -->
+        <section class="reveal" style="animation-delay:0.1s">
+          <div class="panel-header" style="border:none; margin-bottom: 20px; padding: 0">
+            <div><div class="eyebrow" style="margin-bottom:6px">Today · Tuesday 5 May</div><h2 class="panel-title">Response <em>timeline</em></h2></div>
+            <a class="panel-action">Full log</a>
+          </div>
+
+          <div class="timeline">
+            <div class="tl-item system">
+              <div class="tl-time">02:47 ET</div>
+              <h3 class="tl-title">EDR alert · unusual encryption activity</h3>
+              <p class="tl-body">SentinelOne detected anomalous mass-encryption behavior on the Precision file server. Automated isolation triggered for the affected host within 6 seconds. Alert routed to Oswald Cyber Response Desk.</p>
+            </div>
+            <div class="tl-item">
+              <div class="tl-time">02:51 ET</div>
+              <h3 class="tl-title">Reviewed and corroborated by Sarah Lin</h3>
+              <p class="tl-body"><em>Sarah Lin</em> (Cyber Practice, Oswald) confirmed indicators of compromise consistent with known TTP. Two additional systems exhibited suspicious lateral movement; isolation extended.</p>
+            </div>
+            <div class="tl-item">
+              <div class="tl-time">02:54 ET</div>
+              <h3 class="tl-title">CISO engaged · A. Brennan</h3>
+              <p class="tl-body">CISO authorized full network segmentation of the Precision domain. Production systems on physically separate OT network; unaffected. Backup systems isolated and integrity-verified.</p>
+            </div>
+            <div class="tl-item">
+              <div class="tl-time">02:58 ET</div>
+              <h3 class="tl-title">Beazley breach hotline notified · file opened</h3>
+              <p class="tl-body">Carrier file opened. Breach coach panel activated. Beazley senior claims handler <em>D. Foster</em> assigned.</p>
+            </div>
+            <div class="tl-item">
+              <div class="tl-time">03:05 ET</div>
+              <h3 class="tl-title">Mullen Coughlin engaged as breach coach</h3>
+              <p class="tl-body">Privilege established. <em>K. Mullen</em> as lead. Communications and documentation flowing through counsel. Initial preservation order to IT.</p>
+            </div>
+            <div class="tl-item">
+              <div class="tl-time">03:18 ET</div>
+              <h3 class="tl-title">Mandiant DFIR deployed</h3>
+              <p class="tl-body">Remote DFIR engagement. On-site team en route to Strongsville Plant 2; expected by 11:00 ET. Initial scoping focused on entry vector and extent of staging.</p>
+              <span class="tl-attach"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66L9.41 17.41a2 2 0 0 1-2.83-2.83l8.49-8.49"/></svg>Mandiant SOW · executed</span>
+            </div>
+            <div class="tl-item alert">
+              <div class="tl-time">04:32 ET</div>
+              <h3 class="tl-title">Ransom note received · $4.2M BTC</h3>
+              <p class="tl-body">Note dropped on the affected file server with 72-hour countdown. Threat actor claiming exfiltration of 280GB of data. Mandiant analyzing claim against egress logs; no exfiltration corroborated as of 13:45 ET.</p>
+            </div>
+            <div class="tl-item">
+              <div class="tl-time">06:00 ET</div>
+              <h3 class="tl-title">CFO and GC briefed · Edelman engaged</h3>
+              <p class="tl-body">You and <em>R. Patel</em> briefed simultaneously. Edelman Smithfield engaged on standby for crisis communications; no public-facing communication recommended pending Mandiant findings.</p>
+            </div>
+            <div class="tl-item">
+              <div class="tl-time">07:15 ET</div>
+              <h3 class="tl-title">CEO briefed · audit committee chair next</h3>
+              <p class="tl-body">CEO James Vandermark briefed. Audit committee chair to be briefed at 14:30 ET. Board notice to follow if SEC materiality threshold is reached, per outside counsel guidance.</p>
+            </div>
+            <div class="tl-item">
+              <div class="tl-time">10:42 ET</div>
+              <h3 class="tl-title">Backup integrity verified · restoration runway exists</h3>
+              <p class="tl-body">Mandiant confirmed pre-incident backups (snapshot 04 May 22:30 ET) are clean and restorable. Estimated 14-hour restoration window if elected. Production unaffected throughout.</p>
+            </div>
+            <div class="tl-item">
+              <div class="tl-time">13:45 ET</div>
+              <h3 class="tl-title">Coveware retainer presented · standby</h3>
+              <p class="tl-body">Negotiation diligence retainer of <em>$25,000</em>. Recommended whether or not payment is contemplated, to surface threat-actor history and exfiltration veracity. Decision required by 15:00 ET.</p>
+            </div>
+            <div class="tl-item now">
+              <div class="tl-time">NOW · 14:12 ET</div>
+              <h3 class="tl-title">Awaiting your authorization · Coveware engagement</h3>
+              <p class="tl-body">Beazley supports the diligence engagement; cost is reimbursable under the breach-response sublimit. Engagement does not commit to ransom payment.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- RIGHT: WORKSTREAMS, TELEMETRY, ACTIONS -->
+        <section class="reveal" style="animation-delay:0.15s">
+          <div class="eyebrow" style="margin-bottom:14px">Network telemetry · live</div>
+          <div class="iot-grid">
+            <div class="iot-tile"><div class="label">Affected hosts</div><div class="reading">3<span class="unit">/47</span></div><div class="delta">Isolated since 02:54</div></div>
+            <div class="iot-tile"><div class="label">Lateral movement</div><div class="reading">None</div><div class="delta">Last 9h</div></div>
+            <div class="iot-tile"><div class="label">Data egress</div><div class="reading">0<span class="unit">GB</span></div><div class="delta">Mandiant verified</div></div>
+            <div class="iot-tile"><div class="label">Backup integrity</div><div class="reading">Clean</div><div class="delta">Snapshot 22:30 ET</div></div>
+            <div class="iot-tile"><div class="label">Production OT network</div><div class="reading">Online</div><div class="delta">Air-gapped</div></div>
+            <div class="iot-tile"><div class="label">Threat actor TTP</div><div class="reading">Pending</div><div class="delta warn">Mandiant analysis</div></div>
+          </div>
+
+          <div class="eyebrow" style="margin: 28px 0 14px">Decisions awaiting you</div>
+          <div class="actions-stack">
+            <div class="action-card primary">
+              <div class="ah"><span class="t">Authorize Coveware engagement</span><span class="c">$25,000</span></div>
+              <p>Negotiation diligence retainer. Surfaces threat-actor history, validates exfiltration claim, opens negotiation channel without committing to payment. Reimbursable under breach-response sublimit. Decision required by 15:00 ET.</p>
+              <div class="action-row"><button class="btn primary">Authorize</button><button class="btn">Hold</button></div>
+            </div>
+            <div class="action-card">
+              <div class="ah"><span class="t">Proceed with system restoration</span><span class="c">~14 hr</span></div>
+              <p>Restore from clean backup (22:30 ET, 4 May). Production unaffected; ERP and DMS would be back online within the day. Recommended path; Mandiant supports.</p>
+              <div class="action-row"><button class="btn primary">Approve restoration</button><button class="btn">Hold</button></div>
+            </div>
+            <div class="action-card">
+              <div class="ah"><span class="t">SEC materiality determination</span><span class="c">8-K · 4 days</span></div>
+              <p>Counsel preparing materiality memo. Current view: not yet material under final rule. Reassessment after Mandiant scoping (expected 14:30 ET briefing).</p>
+              <div class="action-row"><button class="btn">Open memo</button><button class="btn">Schedule call</button></div>
+            </div>
+            <div class="action-card">
+              <div class="ah"><span class="t">Customer & supplier notice</span><span class="c">CRM-managed</span></div>
+              <p>Edelman has drafted scenarios. No public-facing communication recommended at this hour. Customer-by-customer outreach plan ready if exfiltration is confirmed.</p>
+              <div class="action-row"><button class="btn">Review drafts</button><button class="btn">Defer</button></div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <div class="coverage-asset reveal">
+        <div class="ca-block"><div class="label">Cyber tower</div><div class="v">$50M</div><div class="sub">Beazley primary $25M · Coalition excess $25M</div></div>
+        <div class="ca-block"><div class="label">Retention</div><div class="v">$250k</div><div class="sub">Reduced 50% via panel use · pre-incident</div></div>
+        <div class="ca-block"><div class="label">Breach response sublimit</div><div class="v">$5M</div><div class="sub">Outside cyber tower limit · panel-only</div></div>
+        <div class="ca-block"><div class="label">Cyber maturity rating</div><div class="v">B+</div><div class="sub">Last scored Sep 2025 · MFA, EDR, backups verified</div></div>
+      </div>
+    </main>
+  </div>
+
+  <!-- =================== SCREEN: TOWER =================== -->
+  <div class="screen" id="screen-tower">
+    <section class="asset-hero reveal" style="grid-template-columns: 1.5fr 1fr;">
+      <div>
+        <div class="eyebrow">The 2026 program</div>
+        <h1 class="asset-title">The <em>Tower</em>.</h1>
+        <p class="asset-sub">Twenty-three policies across nine carriers. $5.21M in premium, $9.4M in total cost of risk year-to-date. The program is structured around a $250M property tower, a $50M cyber tower, and a $50M D&O architecture — with an $18M captive offsetting workers' compensation and general liability retention.</p>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><div class="stat-label">Total Cost of Risk · YTD</div><div class="stat-value">$9.4M</div><div class="stat-sub forest">↓ 6.1% vs. plan · ↓ 4.2% vs. PY</div></div>
+        <div class="stat"><div class="stat-label">Annual Premium</div><div class="stat-value">$5.21M</div><div class="stat-sub">23 policies · 9 carriers</div></div>
+        <div class="stat"><div class="stat-label">Limits in place</div><div class="stat-value">$565M</div><div class="stat-sub">aggregate, all lines</div></div>
+        <div class="stat"><div class="stat-label">Captive contribution</div><div class="stat-value">$1.8M</div><div class="stat-sub">offsetting WC & GL retention</div></div>
+      </div>
+    </section>
+
+    <main>
+      <div class="tower-grid">
+
+        <!-- TOWER VIZ -->
+        <section class="tower-viz reveal" style="animation-delay:0.05s">
+          <div class="panel-header" style="margin-bottom:14px"><div><div class="eyebrow" style="margin-bottom:6px">Layered structure</div><h2 class="panel-title">Coverage <em>tower</em></h2></div><a class="panel-action">As-of 5 May</a></div>
+
+          <div class="tower-stack">
+            <div class="tower-layer"><div class="ll">Primary</div><div class="lm">$25M Cyber<span class="s">Beazley · primary</span></div><div class="lc">$485k<span class="car">A · 2014</span></div></div>
+            <div class="tower-layer cyber"><div class="ll">$25M xs $25M</div><div class="lm">Cyber excess<span class="s">Coalition · excess layer</span></div><div class="lc">$215k<span class="car">A− · 2023</span></div></div>
+            <div class="tower-layer do"><div class="ll">Primary</div><div class="lm">$15M Side ABC D&O<span class="s">Chubb · primary</span></div><div class="lc">$210k<span class="car">A++ · 2018</span></div></div>
+            <div class="tower-layer do"><div class="ll">$10M xs $15M</div><div class="lm">D&O excess</div><div class="lc">$140k<span class="car">XL · A+</span></div></div>
+            <div class="tower-layer do"><div class="ll">$25M Side A DIC</div><div class="lm">Side A difference-in-conditions<span class="s">Berkshire · DIC for individual liability</span></div><div class="lc">$140k<span class="car">A++ · 2022</span></div></div>
+            <div class="tower-layer prop"><div class="ll">Primary</div><div class="lm">$240M Property & BI<span class="s">FM Global · single carrier · 18mo BI</span></div><div class="lc">$1.42M<span class="car">A · 2007</span></div></div>
+            <div class="tower-layer"><div class="ll">Primary</div><div class="lm">$25M Product liability<span class="s">AIG · medical/aero excess</span></div><div class="lc">$520k<span class="car">A · 2011</span></div></div>
+            <div class="tower-layer umb"><div class="ll">$25M xs $1M</div><div class="lm">Umbrella · Liberty Mutual</div><div class="lc">$310k<span class="car">A · 2019</span></div></div>
+            <div class="tower-layer umb"><div class="ll">$25M xs $26M</div><div class="lm">Excess casualty · Berkshire</div><div class="lc">$210k<span class="car">A++ · 2019</span></div></div>
+            <div class="tower-layer umb"><div class="ll">$25M xs $51M</div><div class="lm">Excess casualty · Markel</div><div class="lc">$165k<span class="car">A · 2024</span></div></div>
+            <div class="tower-layer"><div class="ll">Statutory · $500k retention</div><div class="lm">Workers' compensation<span class="s">Travelers · 4 jurisdictions + intl</span></div><div class="lc">$680k<span class="car">A++ · 1998</span></div></div>
+            <div class="tower-layer"><div class="ll">Primary · $25M</div><div class="lm">EPLI · $25M tower<span class="s">AIG primary · ICW excess</span></div><div class="lc">$185k<span class="car">A · 2016</span></div></div>
+          </div>
+
+          <div class="tower-line">
+            <div><div class="l">Aggregate limits</div><div class="v">$565M</div></div>
+            <div><div class="l">Premium · annual</div><div class="v">$5.21M</div></div>
+            <div><div class="l">Captive · WC & GL</div><div class="v">$18M</div></div>
+          </div>
+        </section>
+
+        <!-- CARRIER PANEL -->
+        <section class="panel reveal" style="animation-delay:0.1s">
+          <div class="panel-header"><div><div class="eyebrow" style="margin-bottom:6px">Counterparty</div><h2 class="panel-title">Carrier <em>panel</em></h2></div><a class="panel-action">All carriers</a></div>
+
+          <div class="carrier-table">
+            <div class="carrier-row"><div class="cn">FM Global<span class="s">Property · single-carrier · 19-yr</span></div><span class="am">A</span><span class="ex">$240M</span><span class="rd">Renew 1 Jul</span></div>
+            <div class="carrier-row"><div class="cn">Beazley<span class="s">Cyber primary · 12-yr</span></div><span class="am">A</span><span class="ex">$25M</span><span class="rd">Renew 1 Oct</span></div>
+            <div class="carrier-row"><div class="cn">Coalition<span class="s">Cyber excess</span></div><span class="am warn">A−</span><span class="ex">$25M</span><span class="rd">Renew 1 Oct</span></div>
+            <div class="carrier-row"><div class="cn">Chubb<span class="s">D&O primary · 8-yr</span></div><span class="am">A++</span><span class="ex">$15M</span><span class="rd">Renew 15 Sep</span></div>
+            <div class="carrier-row"><div class="cn">Berkshire / NICO<span class="s">D&O Side A DIC + casualty excess</span></div><span class="am">A++</span><span class="ex">$50M</span><span class="rd">15 Sep · 1 Mar</span></div>
+            <div class="carrier-row"><div class="cn">AIG<span class="s">Product liability + EPLI</span></div><span class="am">A</span><span class="ex">$50M</span><span class="rd">1 Mar</span></div>
+            <div class="carrier-row"><div class="cn">Liberty Mutual<span class="s">Primary umbrella</span></div><span class="am">A</span><span class="ex">$25M</span><span class="rd">Renew 1 Mar</span></div>
+            <div class="carrier-row"><div class="cn">Markel<span class="s">Excess casualty</span></div><span class="am">A</span><span class="ex">$25M</span><span class="rd">Renew 1 Mar</span></div>
+            <div class="carrier-row"><div class="cn">Travelers<span class="s">Workers' compensation · 28-yr</span></div><span class="am">A++</span><span class="ex">Statutory</span><span class="rd">Renew 1 Jan</span></div>
+          </div>
+        </section>
+      </div>
+
+      <!-- PREMIUM SPEND -->
+      <section class="panel reveal" style="animation-delay:0.15s; margin-top:28px">
+        <div class="panel-header"><div><div class="eyebrow" style="margin-bottom:6px">Premium · annual</div><h2 class="panel-title">Spend by <em>line</em></h2></div><a class="panel-action">Five-year trend</a></div>
+
+        <div class="premium-table">
+          <div class="prem-row"><div class="ln">Property & BI · FM Global</div><div class="prem-bar-wrap"><div class="prem-bar" style="width:100%; background:var(--clay-soft)"></div></div><div class="am">$1.42M</div><div class="yo">−2.1%</div></div>
+          <div class="prem-row"><div class="ln">Cyber · primary + excess</div><div class="prem-bar-wrap"><div class="prem-bar" style="width:49%; background:var(--slate)"></div></div><div class="am">$700k</div><div class="yo up">+18.4%</div></div>
+          <div class="prem-row"><div class="ln">Workers' compensation</div><div class="prem-bar-wrap"><div class="prem-bar" style="width:48%"></div></div><div class="am">$680k</div><div class="yo">−3.8%</div></div>
+          <div class="prem-row"><div class="ln">Product liability</div><div class="prem-bar-wrap"><div class="prem-bar" style="width:37%; background:var(--brass)"></div></div><div class="am">$520k</div><div class="yo">flat</div></div>
+          <div class="prem-row"><div class="ln">D&O · all layers</div><div class="prem-bar-wrap"><div class="prem-bar" style="width:34%; background:var(--forest-soft)"></div></div><div class="am">$490k</div><div class="yo">−4.2%</div></div>
+          <div class="prem-row"><div class="ln">Umbrella + excess casualty</div><div class="prem-bar-wrap"><div class="prem-bar" style="width:48%; background:var(--brass)"></div></div><div class="am">$685k</div><div class="yo">−2.0%</div></div>
+          <div class="prem-row"><div class="ln">EPLI</div><div class="prem-bar-wrap"><div class="prem-bar" style="width:13%"></div></div><div class="am">$185k</div><div class="yo up">+6.8%</div></div>
+          <div class="prem-row"><div class="ln">Auto · fleet</div><div class="prem-bar-wrap"><div class="prem-bar" style="width:12%"></div></div><div class="am">$172k</div><div class="yo">−1.0%</div></div>
+          <div class="prem-row"><div class="ln">Marine cargo · international</div><div class="prem-bar-wrap"><div class="prem-bar" style="width:10%"></div></div><div class="am">$140k</div><div class="yo">flat</div></div>
+          <div class="prem-row"><div class="ln">Environmental + other</div><div class="prem-bar-wrap"><div class="prem-bar" style="width:14%"></div></div><div class="am">$208k</div><div class="yo">−1.4%</div></div>
+        </div>
+      </section>
+
+      <!-- RENEWAL CALENDAR DETAIL -->
+      <section class="panel reveal" style="animation-delay:0.2s; margin-top:28px">
+        <div class="panel-header"><div><div class="eyebrow" style="margin-bottom:6px">Renewal calendar</div><h2 class="panel-title">The <em>year ahead</em></h2></div><a class="panel-action">Strategy calendar</a></div>
+
+        <div class="renewal-cal">
+          <div class="ren-card">
+            <div class="qm">Q3 2026</div>
+            <div class="ct">Jul · Aug · Sep</div>
+            <div class="ls">
+              <div class="li">Property + BI<span>1 Jul</span></div>
+              <div class="li">D&O tower<span>15 Sep</span></div>
+              <div class="li">Marine cargo<span>30 Sep</span></div>
+            </div>
+          </div>
+          <div class="ren-card">
+            <div class="qm">Q4 2026</div>
+            <div class="ct">Oct · Nov · Dec</div>
+            <div class="ls">
+              <div class="li">Cyber tower<span>1 Oct</span></div>
+              <div class="li">Environmental<span>15 Nov</span></div>
+              <div class="li">International EL<span>1 Dec</span></div>
+            </div>
+          </div>
+          <div class="ren-card">
+            <div class="qm">Q1 2027</div>
+            <div class="ct">Jan · Feb · Mar</div>
+            <div class="ls">
+              <div class="li">Workers' comp<span>1 Jan</span></div>
+              <div class="li">Auto fleet<span>15 Feb</span></div>
+              <div class="li">Casualty + EPLI<span>1 Mar</span></div>
+            </div>
+          </div>
+          <div class="ren-card">
+            <div class="qm">Q2 2027</div>
+            <div class="ct">Apr · May · Jun</div>
+            <div class="ls">
+              <div class="li">Product liability<span>15 Apr</span></div>
+              <div class="li">Captive review<span>30 Apr</span></div>
+              <div class="li">Aviation · NEW<span>tbd</span></div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- =================== SCREEN: BENCH =================== -->
+  
+
+  <!-- =================== SCREEN: SCORECARD =================== -->
+  <div class="screen" id="screen-scorecard">
+
+    <div class="scorecard-hero">
+      <div class="eyebrow">Vandermark scorecard · 2026</div>
+      <h1>How are we <em>doing</em>?</h1>
+      <p class="sub">Once a quarter we ask. The four things we measure — Confidence, Guidance, Ease, Quantifiable Value — because they're the four things that actually matter when you're running a business. Your last scorecard came in at 98 out of 100. We're not done yet.</p>
+    </div>
+
+    <!-- Aggregate proof points -->
+    <div class="scorecard-aggregate">
+      <div class="stat-block">
+        <div class="num">98.6<span class="unit">/100</span></div>
+        <div class="label">Average Oswald Score</div>
+        <div class="desc">87% of our clients rate us 98.6 out of 100. We're not going to round up.</div>
+      </div>
+      <div class="stat-block">
+        <div class="num">40<span class="unit">%</span></div>
+        <div class="label">Response Rate</div>
+        <div class="desc">Two-fifths of our clients fill this out every year. That's roughly 4× the industry average.</div>
+      </div>
+      <div class="stat-block">
+        <div class="num">$4.2<span class="unit">M</span></div>
+        <div class="label">Recovered for Vandermark · '24–'26</div>
+        <div class="desc">Claims, mitigation credits, captive premium savings, and renegotiated coverage that landed back on Vandermark's P&amp;L.</div>
+      </div>
+    </div>
+
+    <!-- Rate now — live scorecard -->
+    <div class="scorecard-rate-now">
+      <h2>Your turn — rate us, briefly.</h2>
+      <p class="sub">Four questions. Two minutes. Your audit committee chair sees this when she logs in too.</p>
+
+      <div class="rate-dimensions">
+        <div class="rate-dim">
+          <div class="ico-circle">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M12 3 L20 7 L20 12 C20 16.5 16.5 20 12 21 C7.5 20 4 16.5 4 12 L4 7 Z" stroke-linejoin="round"/>
+              <path d="M9 12 L11 14.5 L15.5 10" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h4>Confidence</h4>
+          <div class="desc">Do you know what's covered, what's not, and where the gaps are — in board-ready terms?</div>
+          <div class="rate-slider">
+            <div class="rate-track"><div class="rate-fill" style="width:99%"></div></div>
+            <div class="rate-num">99</div>
+          </div>
+        </div>
+
+        <div class="rate-dim">
+          <div class="ico-circle">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <circle cx="12" cy="12" r="9"/>
+              <path d="M12 6 L14.4 11.6 L12 16 L9.6 11.6 Z" fill="currentColor" stroke="none"/>
+            </svg>
+          </div>
+          <h4>Guidance</h4>
+          <div class="desc">When the call comes in at 2am, does the team know your business?</div>
+          <div class="rate-slider">
+            <div class="rate-track"><div class="rate-fill" style="width:100%"></div></div>
+            <div class="rate-num">100</div>
+          </div>
+        </div>
+
+        <div class="rate-dim">
+          <div class="ico-circle">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M3 10 Q7.5 6 12 10 T21 10" stroke-linecap="round"/>
+              <path d="M3 15 Q7.5 11 12 15 T21 15" stroke-linecap="round" opacity="0.55"/>
+            </svg>
+          </div>
+          <h4>Ease</h4>
+          <div class="desc">Renewals, COIs, audits, schedule additions — is the friction out of your way?</div>
+          <div class="rate-slider">
+            <div class="rate-track"><div class="rate-fill" style="width:96%"></div></div>
+            <div class="rate-num">96</div>
+          </div>
+        </div>
+
+        <div class="rate-dim">
+          <div class="ico-circle">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <rect x="3.5" y="14.5" width="4" height="6" rx="0.5"/>
+              <rect x="10" y="10" width="4" height="10.5" rx="0.5"/>
+              <rect x="16.5" y="5" width="4" height="15.5" rx="0.5"/>
+            </svg>
+          </div>
+          <h4>Quantifiable Value</h4>
+          <div class="desc">Can you defend the spend to the board with dollars, not promises?</div>
+          <div class="rate-slider">
+            <div class="rate-track"><div class="rate-fill" style="width:97%"></div></div>
+            <div class="rate-num">97</div>
+          </div>
+        </div>
+      </div>
+
+      <textarea placeholder="Anything specific on your mind? (Optional — but we read all of it)" style="width:100%; padding:14px 16px; border:1px solid var(--rule); border-radius:3px; font-family:'Calibri', sans-serif; font-size:14px; min-height:80px; resize:vertical; background:#FAF4E8; color:var(--ink); margin-bottom:16px;"></textarea>
+
+      <button class="btn primary" style="padding:14px 32px;">Submit your Q2 2026 scorecard</button>
+    </div>
+
+    <!-- Vandermark history -->
+    <div class="scorecard-history">
+      <div class="eyebrow">Vandermark scorecard history</div>
+      <h2 style="font-family:'Fraunces',serif; font-size:24px; font-weight:400; color:var(--oswald-navy); margin-top:4px;">Four quarters with Oswald.</h2>
+
+      <div class="history-grid">
+        <div class="history-year">
+          <div class="yr">Q2 '25</div>
+          <div class="score">95</div>
+          <div class="delta">First quarter</div>
+        </div>
+        <div class="history-year">
+          <div class="yr">Q3 '25</div>
+          <div class="score">97</div>
+          <div class="delta">↑ 2 pts</div>
+        </div>
+        <div class="history-year">
+          <div class="yr">Q4 '25</div>
+          <div class="score">97</div>
+          <div class="delta" style="color:var(--ink-faint)">— flat</div>
+        </div>
+        <div class="history-year">
+          <div class="yr">Q1 '26</div>
+          <div class="score" style="color:var(--clay-warm);">98</div>
+          <div class="delta">↑ 1 pt · most recent</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Testimonials -->
+    <div class="testimonial-block">
+      <div class="eyebrow">What other CFOs, GCs, and operations leaders are telling us</div>
+      <h2 style="font-family:'Fraunces',serif; font-size:26px; font-weight:300; color:var(--oswald-navy); letter-spacing:-0.01em; margin-bottom:24px;">You're in <em style="font-style:italic; color:var(--clay-warm);">good company</em>.</h2>
+
+      <div class="testimonial-grid">
+        <div class="testimonial">
+          <div class="quote">"The cyber team picked up at 2:51am and was running an incident bridge by 3:15. Our prior broker would have called us back at 8am. That's not the same product."</div>
+          <div class="attr">— GC, mid-cap manufacturer · 2025 scorecard</div>
+        </div>
+        <div class="testimonial">
+          <div class="quote">"Renewal used to consume two weeks of CFO time. Now I sign once and they hand me a one-pager for the board. That's worth the fee on its own."</div>
+          <div class="attr">— CFO, family-held distributor · 2025 scorecard</div>
+        </div>
+        <div class="testimonial">
+          <div class="quote">"They flagged a coverage gap in our M&amp;A target's tower three days before close. We negotiated a price reduction. The math more than paid for the broker."</div>
+          <div class="attr">— Head of Corporate Development · 2026 scorecard</div>
+        </div>
+        <div class="testimonial">
+          <div class="quote">"My audit committee asks me to defend the broker fee every year. With Oswald I have a one-page answer in dollars. Not a sales pitch."</div>
+          <div class="attr">— CFO, PE-backed services platform · 2026 scorecard</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quarterly briefing recap (folded from Briefing screen) -->
+    <div class="quarterly-recap">
+      <div class="eyebrow">Your most recent briefing · Q1 2026</div>
+      <h2 style="font-family:'Fraunces',serif; font-size:24px; font-weight:400; color:var(--oswald-navy); margin-top:4px;">A quarter, in your hands.</h2>
+      <p style="font-size:14px; color:var(--ink-soft); line-height:1.6; margin-top:10px; max-width:680px;">Every quarter we pull together a board-ready risk briefing — the quarter's claims activity, key events, recommendations, and what's coming. It's delivered one week before the board meeting on 10 June.</p>
+
+      <div class="recap-cover">
+        <div>
+          <div style="font-family:'IBM Plex Mono', monospace; font-size:10px; letter-spacing:0.18em; text-transform:uppercase; color:rgba(255,255,255,0.5); margin-bottom:10px;">A quarterly briefing for</div>
+          <h3>Vandermark Industries, <em>Inc.</em></h3>
+          <div class="sub">Q1 2026 · Audit committee edition · Prepared by your Oswald team</div>
+        </div>
+        <button onclick="openBook()">Open the digital edition →</button>
+      </div>
+
+      <!-- ============ INTERACTIVE BOOK READER ============ -->
+      <div class="book-reader" id="book-reader">
+        <div class="book-stage">
+
+          <!-- SPREAD 1: Cover + Letter for the audit committee -->
+          <div class="book-spread is-current" data-spread="0">
+            <div class="book-cover-page">
+              <div>
+                <div class="cover-mark">A quarterly risk briefing, prepared for</div>
+                <div class="cover-h">Vandermark Industries, <em>Inc.</em></div>
+              </div>
+              <div>
+                <div class="cover-foot" style="margin-bottom:6px;">Oswald · Q1 2026</div>
+                <div class="cover-foot" style="opacity:0.5;">No. 0001 of nine · Audit committee edition</div>
+              </div>
+            </div>
+            <div class="book-page recto">
+              <div class="page-eyebrow">A note for the committee</div>
+              <h2>Sarah, and the <em>committee</em> —</h2>
+              <p>This is your Q1 2026 risk briefing. The headline: one active matter, three closed claims, zero materiality threshold breaches in the quarter.</p>
+              <p>The Precision Plant 2 ransomware event detected at 02:47 ET on 2 May is contained. Backups verified clean, production unaffected, three of forty-seven systems isolated. Mandiant is on the DFIR; Beazley breach response is engaged. The materiality assessment is in progress and the full scope follows in the supplemental memo.</p>
+              <p>The carrier panel held. We renegotiated cyber primary effective 1 May — a 6.4% rate reduction with tightened ransomware sublimit language. The captive contribution covered our planned share of the Strongsville workers' comp severity.</p>
+              <p>A few items worth your attention ahead of the 10 June meeting.</p>
+              <p style="margin-top:22px; font-style:italic;">— David Reinhardt</p>
+              <p style="font-family:'IBM Plex Mono', monospace; font-size:10px; color:var(--brass-deep); letter-spacing:0.1em; margin-top:-6px; text-transform:uppercase;">Lead on your account · On behalf of your Oswald team</p>
+              <div class="page-num">3</div>
+            </div>
+          </div>
+
+          <!-- SPREAD 2: Q1 Numbers + What happened -->
+          <div class="book-spread" data-spread="1">
+            <div class="book-page verso">
+              <div class="page-eyebrow">Q1 2026, in numbers</div>
+              <h2>The quarter, on a <em>page</em>.</h2>
+              <div class="book-numbers" style="margin-top:18px;">
+                <div class="num-row"><span class="num-label">Annual premium</span><span class="num-val">$5.21M<span class="delta">flat vs. renewal</span></span></div>
+                <div class="num-row"><span class="num-label">Total Cost of Risk · YTD</span><span class="num-val">$9.4M<span class="delta">↓ 6.1% vs. plan</span></span></div>
+                <div class="num-row"><span class="num-label">Coverage tower</span><span class="num-val">$565M<span class="delta">aggregate</span></span></div>
+                <div class="num-row"><span class="num-label">Captive contribution</span><span class="num-val">$1.8M</span></div>
+                <div class="num-row"><span class="num-label">Recovered · YTD</span><span class="num-val" style="color:var(--clay-warm);">$1.2M</span></div>
+                <div class="num-row"><span class="num-label">Open claims</span><span class="num-val">14<span class="delta">3 reportable</span></span></div>
+                <div class="num-row"><span class="num-label">Coverage health</span><span class="num-val">91 / 100</span></div>
+                <div class="num-row"><span class="num-label">Materiality breaches</span><span class="num-val">0</span></div>
+              </div>
+              <div class="page-num">8</div>
+            </div>
+            <div class="book-page recto">
+              <div class="page-eyebrow">Q1 events of note</div>
+              <h2>What <em>happened</em>.</h2>
+              <div class="book-list">
+                <div class="book-item">
+                  <div class="when">February · Akron</div>
+                  <div class="what">EEOC charge · Specialty Chemicals</div>
+                  <div class="detail">Reasonable cause finding. Outside counsel responding under EPLI panel; reserve $850k. AIG on notice. Pursuing 5% rate reduction at next renewal.</div>
+                </div>
+                <div class="book-item">
+                  <div class="when">March · Strongsville</div>
+                  <div class="what">WC severity · Plant 1</div>
+                  <div class="detail">Return-to-work coordination reduced loss reserve 22%. Closed under retention. Captive covered the planned share.</div>
+                </div>
+                <div class="book-item">
+                  <div class="when">April · Carrier panel</div>
+                  <div class="what">Cyber primary renegotiated</div>
+                  <div class="detail">Beazley $25M primary, Coalition $25M excess. 6.4% rate reduction effective 1 May. Tightened ransomware sublimit language at our request.</div>
+                </div>
+                <div class="book-item">
+                  <div class="when">May · Precision Plant 2</div>
+                  <div class="what">Active · ransomware contained</div>
+                  <div class="detail">Detected 02:47 ET, 2 May. Three systems isolated; production unaffected. Mandiant on DFIR; Beazley breach response open. Materiality assessment in progress.</div>
+                </div>
+              </div>
+              <div class="page-num">9</div>
+            </div>
+          </div>
+
+          <!-- SPREAD 3: TCoR breakdown + Quarterly trend vs plan -->
+          <div class="book-spread" data-spread="2">
+            <div class="book-page verso">
+              <div class="page-eyebrow">Total Cost of Risk · Q1 2026 breakdown</div>
+              <h2>The full <em>picture</em>.</h2>
+
+              <!-- Horizontal stacked bar -->
+              <div class="chart-stacked-bar" style="margin-top:24px;">
+                <svg viewBox="0 0 340 28" width="100%" height="28" preserveAspectRatio="none">
+                  <rect x="0"   y="0" width="187" height="28" fill="#1B3454"/>
+                  <rect x="187" y="0" width="71"  height="28" fill="#C97F5E"/>
+                  <rect x="258" y="0" width="64"  height="28" fill="#876D3B"/>
+                  <rect x="322" y="0" width="11"  height="28" fill="#A88A4F"/>
+                  <rect x="333" y="0" width="7"   height="28" fill="#C9B989"/>
+                </svg>
+              </div>
+
+              <!-- Legend -->
+              <div class="chart-legend">
+                <div class="legend-row">
+                  <span class="sw" style="background:#1B3454"></span>
+                  <span class="lbl">Insurance premium · net</span>
+                  <span class="pct">55%</span>
+                  <span class="amt">$5.21M</span>
+                </div>
+                <div class="legend-row">
+                  <span class="sw" style="background:#C97F5E"></span>
+                  <span class="lbl">Retained losses · YTD</span>
+                  <span class="pct">21%</span>
+                  <span class="amt">$2.00M</span>
+                </div>
+                <div class="legend-row">
+                  <span class="sw" style="background:#876D3B"></span>
+                  <span class="lbl">Captive contribution</span>
+                  <span class="pct">19%</span>
+                  <span class="amt">$1.80M</span>
+                </div>
+                <div class="legend-row">
+                  <span class="sw" style="background:#A88A4F"></span>
+                  <span class="lbl">Risk engineering &amp; control</span>
+                  <span class="pct">3%</span>
+                  <span class="amt">$0.30M</span>
+                </div>
+                <div class="legend-row">
+                  <span class="sw" style="background:#C9B989"></span>
+                  <span class="lbl">Brokerage &amp; advisory</span>
+                  <span class="pct">2%</span>
+                  <span class="amt">$0.20M</span>
+                </div>
+              </div>
+
+              <p class="chart-caption" style="margin-top:16px;">Total Cost of Risk Q1: <strong style="color:var(--oswald-navy-deep); font-weight:500;">$9.51M</strong> · 6.1% under plan.</p>
+
+              <div class="page-num">14</div>
+            </div>
+
+            <div class="book-page recto">
+              <div class="page-eyebrow">Four quarters, against plan</div>
+              <h2>Trending the right <em>direction</em>.</h2>
+
+              <!-- Column chart with plan line -->
+              <div style="margin-top:24px;">
+                <svg viewBox="0 0 340 200" width="100%" height="200">
+                  <!-- horizontal grid lines -->
+                  <line x1="42" y1="25" x2="328" y2="25" stroke="#DECDB0" stroke-width="0.5"/>
+                  <line x1="42" y1="65" x2="328" y2="65" stroke="#DECDB0" stroke-width="0.5"/>
+                  <line x1="42" y1="105" x2="328" y2="105" stroke="#DECDB0" stroke-width="0.5"/>
+                  <line x1="42" y1="145" x2="328" y2="145" stroke="#DECDB0" stroke-width="0.5"/>
+                  <line x1="42" y1="178" x2="328" y2="178" stroke="#876D3B" stroke-width="0.7"/>
+
+                  <!-- y-axis labels -->
+                  <text x="38" y="28" text-anchor="end" font-size="9" font-family="IBM Plex Mono" fill="#876D3B" letter-spacing="0.04em">$3.0M</text>
+                  <text x="38" y="68" text-anchor="end" font-size="9" font-family="IBM Plex Mono" fill="#876D3B" letter-spacing="0.04em">$2.6M</text>
+                  <text x="38" y="108" text-anchor="end" font-size="9" font-family="IBM Plex Mono" fill="#876D3B" letter-spacing="0.04em">$2.2M</text>
+                  <text x="38" y="148" text-anchor="end" font-size="9" font-family="IBM Plex Mono" fill="#876D3B" letter-spacing="0.04em">$1.8M</text>
+
+                  <!-- Column bars (4 quarters) -->
+                  <!-- Q2 '25: $2.7M -->
+                  <rect x="65"  y="48" width="38" height="130" fill="#1B3454" opacity="0.78"/>
+                  <text x="84" y="194" text-anchor="middle" font-size="9" font-family="IBM Plex Mono" fill="#876D3B" letter-spacing="0.06em">Q2 '25</text>
+
+                  <!-- Q3 '25: $2.6M -->
+                  <rect x="128" y="58" width="38" height="120" fill="#1B3454" opacity="0.78"/>
+                  <text x="147" y="194" text-anchor="middle" font-size="9" font-family="IBM Plex Mono" fill="#876D3B" letter-spacing="0.06em">Q3 '25</text>
+
+                  <!-- Q4 '25: $2.4M -->
+                  <rect x="191" y="78" width="38" height="100" fill="#1B3454" opacity="0.78"/>
+                  <text x="210" y="194" text-anchor="middle" font-size="9" font-family="IBM Plex Mono" fill="#876D3B" letter-spacing="0.06em">Q4 '25</text>
+
+                  <!-- Q1 '26: $2.3M (highlighted in clay) -->
+                  <rect x="254" y="88" width="38" height="90" fill="#C97F5E"/>
+                  <text x="273" y="194" text-anchor="middle" font-size="9" font-family="IBM Plex Mono" fill="#1B3454" letter-spacing="0.06em" font-weight="600">Q1 '26</text>
+
+                  <!-- Plan line (dashed, navy) -->
+                  <line x1="55" y1="50" x2="113" y2="50" stroke="#1B3454" stroke-width="1.5" stroke-dasharray="3,3" opacity="0.7"/>
+                  <line x1="118" y1="55" x2="176" y2="55" stroke="#1B3454" stroke-width="1.5" stroke-dasharray="3,3" opacity="0.7"/>
+                  <line x1="181" y1="60" x2="239" y2="60" stroke="#1B3454" stroke-width="1.5" stroke-dasharray="3,3" opacity="0.7"/>
+                  <line x1="244" y1="78" x2="302" y2="78" stroke="#1B3454" stroke-width="1.5" stroke-dasharray="3,3" opacity="0.7"/>
+
+                  <!-- Value label on Q1 '26 -->
+                  <text x="273" y="82" text-anchor="middle" font-size="11" font-family="Fraunces" font-style="italic" fill="#1B3454" font-weight="500">$2.3M</text>
+                </svg>
+              </div>
+
+              <!-- Chart key -->
+              <div class="chart-key">
+                <div><span class="swatch" style="background:#C97F5E; height:8px; border-radius:1px;"></span>Actual TCoR</div>
+                <div><span class="swatch" style="background:#1B3454; opacity:0.7"></span>Plan</div>
+              </div>
+
+              <p class="chart-caption">Four quarters of steady improvement against plan. Q1 came in 6.1% under, driven by the Strongsville WC severity recovery and the cyber primary renegotiation effective 1 May.</p>
+
+              <div class="page-num">15</div>
+            </div>
+          </div>
+
+          <!-- SPREAD 4: Watching for Q2 + Sign-off -->
+          <div class="book-spread" data-spread="3">
+            <div class="book-page verso">
+              <div class="page-eyebrow">Watching for Q2 2026</div>
+              <h2>What's on the <em>horizon</em>.</h2>
+              <div class="book-list">
+                <div class="book-item">
+                  <div class="when">10 June 2026</div>
+                  <div class="what">Board meeting</div>
+                  <div class="detail">Bound briefings delivered to each director 3 June. Risk Engineering walk-through scheduled for the 10 June meeting.</div>
+                </div>
+                <div class="book-item">
+                  <div class="when">July 2026</div>
+                  <div class="what">Property &amp; BI renewal · FM Global</div>
+                  <div class="detail">Strategy session 12 May; engineering survey complete. Pursuing 5% rate reduction at renewal.</div>
+                </div>
+                <div class="book-item">
+                  <div class="when">September 2026</div>
+                  <div class="what">D&amp;O Side A renewal</div>
+                  <div class="detail">Mid-year market view ahead of mid-year quote. Pre-renewal positioning begins 1 July.</div>
+                </div>
+                <div class="book-item">
+                  <div class="when">Q3 2026</div>
+                  <div class="what">Captive feasibility · executive review</div>
+                  <div class="detail">Independent actuary engaged. Reviewing whether to bring first-dollar WC into the captive structure.</div>
+                </div>
+              </div>
+              <div class="page-num">22</div>
+            </div>
+            <div class="book-page recto">
+              <div class="book-signoff">
+                <div class="ornament"></div>
+                <p>Your full briefing runs nine sections, including the carrier panel, the claims register, the materiality memo, and the captive structure narrative.</p>
+                <p>Bound copies are delivered to each director one week ahead of the 10 June board meeting. A digital copy lives in your Vault, watermarked and access-logged.</p>
+                <div class="signature">— Your Oswald team</div>
+                <div style="font-family:'IBM Plex Mono', monospace; font-size:10px; letter-spacing:0.14em; color:var(--brass-deep); margin-top:24px; text-transform:uppercase;">Oswald · Q1 2026</div>
+              </div>
+              <div class="page-num">28</div>
+            </div>
+          </div>
+
+          <!-- Controls -->
+          <div class="book-controls">
+            <div class="book-nav">
+              <button class="book-nav-btn" id="book-prev" onclick="flipPage(-1)" disabled>← Previous</button>
+              <button class="book-nav-btn" id="book-next" onclick="flipPage(1)">Next →</button>
+            </div>
+            <div class="book-pages-indicator" id="book-pages-indicator">Spread 1 of 3</div>
+            <div class="book-close-wrap">
+              <button class="book-close-btn" onclick="closeBook()">Close</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+
+  <!-- =================== SCREEN: IN GOOD COMPANY =================== -->
+  <div class="screen" id="screen-igc">
+
+    <div class="igc-hero">
+      <div class="eyebrow">In Good Company</div>
+      <h1>The right person. The right introduction. <em>From a network you can trust.</em></h1>
+      <p class="sub">Insurance is what we do. The rest of it — the board candidates, the M&amp;A advisors, the specialist counsel, the peer CFO at a similar-size manufacturer — is the part nobody talks about. We do. When you need someone, we know someone.</p>
+    </div>
+
+    <!-- What are you looking for -->
+    <div class="igc-ask">
+      <h2>What can we help you find?</h2>
+      <div class="igc-categories">
+
+        <div class="igc-cat">
+          <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <circle cx="12" cy="12" r="9"/>
+            <path d="M8 12 L11 15 L16 9" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <div class="cat-title">An independent director</div>
+          <div class="cat-desc">Board candidates, advisory board members, audit committee chairs from our network of operators.</div>
+        </div>
+
+        <div class="igc-cat">
+          <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M5 4 H17 L19 6 V20 H5 Z"/>
+            <path d="M9 9 H15"/>
+            <path d="M9 13 H15"/>
+            <path d="M9 17 H13"/>
+          </svg>
+          <div class="cat-title">Specialist counsel</div>
+          <div class="cat-desc">M&amp;A, restructuring, regulatory, employment, IP — lawyers who do this every day, not occasionally.</div>
+        </div>
+
+        <div class="igc-cat">
+          <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <circle cx="9" cy="8" r="3.5"/>
+            <path d="M3 20 C3 16 5.5 14 9 14 C12.5 14 15 16 15 20"/>
+            <circle cx="17" cy="10" r="2.5"/>
+            <path d="M14 19 C14 16.5 15.5 15.5 17 15.5 C18.5 15.5 21 16.5 21 19"/>
+          </svg>
+          <div class="cat-title">A peer CFO or GC</div>
+          <div class="cat-desc">Another Oswald client at similar scale, in a similar sector — navigating something you're navigating. With both sides' permission, always.</div>
+        </div>
+
+        <div class="igc-cat">
+          <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <rect x="3" y="7" width="18" height="13" rx="1"/>
+            <path d="M3 11 H21"/>
+            <path d="M8 7 V4 L16 4 V7"/>
+          </svg>
+          <div class="cat-title">Executive talent</div>
+          <div class="cat-desc">Search firms, fractional executives, interim CFOs, division presidents — sourced from operators we know.</div>
+        </div>
+
+        <div class="igc-cat">
+          <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M3 10 L12 4 L21 10 V20 H3 Z" stroke-linejoin="round"/>
+            <path d="M9 20 V14 H15 V20"/>
+          </svg>
+          <div class="cat-title">Banking &amp; capital</div>
+          <div class="cat-desc">Commercial bankers, capital sources, debt advisors, family offices — relationship-led, not transactional.</div>
+        </div>
+
+        <div class="igc-cat">
+          <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <circle cx="12" cy="12" r="9"/>
+            <path d="M12 7 V12 L15 14"/>
+          </svg>
+          <div class="cat-title">Something else entirely</div>
+          <div class="cat-desc">Tell us. Odds are we know someone — and if we don't, we'll find someone worth your time.</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Recent matches -->
+    <div class="igc-matches">
+      <div class="eyebrow">Recent introductions</div>
+      <h2 style="font-family:'Fraunces',serif; font-size:26px; font-weight:400; color:var(--oswald-navy); letter-spacing:-0.01em; margin-top:6px;">Who we've connected Vandermark with this year.</h2>
+
+      <div class="match-list">
+        <div class="match-row">
+          <div class="match-avatar">PL</div>
+          <div class="match-info">
+            <div class="name">Patricia Lin, Independent Director</div>
+            <div class="what"><strong>For:</strong> Audit committee chair candidate · Manufacturing &amp; industrials background, former Big Four partner · <strong>Introduced:</strong> February 2026</div>
+          </div>
+          <div class="match-status done">Connected</div>
+        </div>
+
+        <div class="match-row">
+          <div class="match-avatar">MT</div>
+          <div class="match-info">
+            <div class="name">Marcus Thorne, M&amp;A Advisor</div>
+            <div class="what"><strong>For:</strong> The Q3 add-on transaction for Specialty Chemicals · Has closed 14 deals in your sector · <strong>Introduced:</strong> March 2026</div>
+          </div>
+          <div class="match-status done">Connected</div>
+        </div>
+
+        <div class="match-row">
+          <div class="match-avatar">HR</div>
+          <div class="match-info">
+            <div class="name">Dr. Helena Ramos, Cybersecurity Specialist</div>
+            <div class="what"><strong>For:</strong> Post-incident review of Precision Components ransomware event · 22 years incident response · <strong>Introduced:</strong> May 2026</div>
+          </div>
+          <div class="match-status intro">Intro made</div>
+        </div>
+
+        <div class="match-row">
+          <div class="match-avatar">TW</div>
+          <div class="match-info">
+            <div class="name">Tom Whitaker, peer CFO</div>
+            <div class="what"><strong>For:</strong> Peer to compare notes on captive structures · $720M revenue precision manufacturer, also Cleveland-area · <strong>Introduced:</strong> June 2026</div>
+          </div>
+          <div class="match-status pending">Awaiting your reply</div>
+        </div>
+
+        <div class="match-row">
+          <div class="match-avatar">SB</div>
+          <div class="match-info">
+            <div class="name">Sarah Becker, Banking Relationships</div>
+            <div class="what"><strong>For:</strong> Adding a second banking relationship ahead of the 2027 revolver renewal · Lead at a regional commercial bank · <strong>Introduced:</strong> July 2026</div>
+          </div>
+          <div class="match-status intro">Intro made</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Podcast tile -->
+    <div class="igc-podcast">
+      <div>
+        <div class="eyebrow">From the podcast · Latest episode</div>
+        <h3><em>In Good Company</em> · Episode 14</h3>
+        <div class="ep">Three Cleveland-area CFOs on what they wish they'd known about cyber, captive structures, and board reporting at $500M revenue. Hosted by Jessica Jung. 42 minutes.</div>
+      </div>
+      <button class="play-btn" aria-label="Play episode">
+        <svg viewBox="0 0 24 24" fill="currentColor" stroke="none">
+          <path d="M7 5 L19 12 L7 19 Z"/>
+        </svg>
+      </button>
+    </div>
+
+  </div>
+
+  <div class="screen" id="screen-bench">
+    <section class="bench-hero reveal">
+      <div class="eyebrow">Your team · today</div>
+      <h1><em>Your</em> Oswald team.</h1>
+      <p>Five named people work on Vandermark every day. Forty-two specialists across eleven Oswald practices are on the bench, available within hours when the work calls for depth. The list below is yours; their phones are answered, their calendars accessible.</p>
+    </section>
+
+    <div class="bench-section-title">
+      <h2>The <em>core team</em></h2>
+      <span class="meta">Five people · together for an average of 4.2 years on this account</span>
+    </div>
+
+    <div class="core-team reveal">
+      <div class="person featured">
+        <div class="person-top">
+          <div class="person-avatar">DR</div>
+          <div>
+            <div class="person-name">David Reinhardt</div>
+            <div class="person-title">Lead Account Executive</div>
+            <span class="person-platform">Oswald · 19 yrs</span>
+          </div>
+        </div>
+        <p class="person-body">Owns the relationship and the program strategy. Sits on Vandermark's annual risk committee. Has run your account since 2018; led the captive feasibility work in 2024.</p>
+        <div class="person-recent">Last engaged · Mon 11:42 ET · captive feasibility prep</div>
+      </div>
+
+      <div class="person">
+        <div class="person-top">
+          <div class="person-avatar alt1">SL</div>
+          <div>
+            <div class="person-name">Sarah Lin</div>
+            <div class="person-title">Cyber & Privacy Practice Lead</div>
+            <span class="person-platform">Oswald · 11 yrs</span>
+          </div>
+        </div>
+        <p class="person-body">Cyber technical and program lead. CISSP, JD. Spent six years before Oswald at a national breach-response firm. Active on the live Plant 2 incident — led the 02:51 corroboration call.</p>
+        <div class="person-recent">Active · today · IT-2026-0173</div>
+      </div>
+
+      <div class="person">
+        <div class="person-top">
+          <div class="person-avatar alt2">MK</div>
+          <div>
+            <div class="person-name">Marcus Kowalski</div>
+            <div class="person-title">Senior Risk Engineer</div>
+            <span class="person-platform">RCM&D · 14 yrs</span>
+          </div>
+        </div>
+        <p class="person-body">Property and operational risk engineer. Surveys all 11 facilities annually. Manufacturing background; spent eight years at FM Global before crossing to brokerage. Strongest single voice in property renewal.</p>
+        <div class="person-recent">Last engaged · Thu · Q2 facility survey</div>
+      </div>
+
+      <div class="person">
+        <div class="person-top">
+          <div class="person-avatar alt3">JT</div>
+          <div>
+            <div class="person-name">Janelle Torres</div>
+            <div class="person-title">Senior Claims Advocate</div>
+            <span class="person-platform">Oswald · 8 yrs</span>
+          </div>
+        </div>
+        <p class="person-body">Owns the claims experience end-to-end across all lines. Quietly the most-thanked person on the account. Reduced WC severity 22% over four years through aggressive return-to-work coordination.</p>
+        <div class="person-recent">Active · today · WC-26-0044 + 2 others</div>
+      </div>
+
+      <div class="person">
+        <div class="person-top">
+          <div class="person-avatar">RG</div>
+          <div>
+            <div class="person-name">Rebecca Greene</div>
+            <div class="person-title">Account Manager · Day-to-day</div>
+            <span class="person-platform">Oswald · 6 yrs</span>
+          </div>
+        </div>
+        <p class="person-body">The first call for COIs, contract reviews, fleet additions, headcount changes. Knows everyone in your insurance department by first name. Manages the document flow through the Vault.</p>
+        <div class="person-recent">Last engaged · Mon · COI for Tier-1 supplier</div>
+      </div>
+
+      <div class="person">
+        <div class="person-top">
+          <div class="person-avatar alt1">AT</div>
+          <div>
+            <div class="person-name">Aaron Thurston</div>
+            <div class="person-title">Data & Analytics Lead</div>
+            <span class="person-platform">Oswald Platform · 4 yrs</span>
+          </div>
+        </div>
+        <p class="person-body">Builds and maintains the analytics layer beneath the Cockpit. Owns the loss-forecast model, the captive contribution analysis, and the quarterly briefing data set. Quiet but indispensable.</p>
+        <div class="person-recent">Last engaged · Fri · Q1 briefing data</div>
+      </div>
+    </div>
+
+    <div class="bench-section-title">
+      <h2>The <em>extended bench</em></h2>
+      <span class="meta">42 specialists across 11 Oswald practices · drawn on when the work calls for depth</span>
+    </div>
+
+    <div class="bench-grid reveal" style="animation-delay:0.1s">
+      <div class="specialty">
+        <div class="sn">Cyber & Privacy</div>
+        <div class="lead">Sarah Lin · Practice Lead<span class="pl">Oswald · 6 specialists</span></div>
+        <div class="cnt">Engaged today · IT-2026-0173</div>
+      </div>
+      <div class="specialty">
+        <div class="sn">Captives</div>
+        <div class="lead">Marcus Webb · Practice Lead<span class="pl">RCM&D · 4 specialists</span></div>
+        <div class="cnt">Last engaged · Apr · feasibility</div>
+      </div>
+      <div class="specialty">
+        <div class="sn">M&A · Reps & Warranties</div>
+        <div class="lead">Daniel Carter · Practice Lead<span class="pl">Avondale · MGU bench</span></div>
+        <div class="cnt">Last engaged · Q4 2024 · acquisition</div>
+      </div>
+      <div class="specialty">
+        <div class="sn">Executive Risk · D&O / EPLI</div>
+        <div class="lead">Patrick Whelan · Practice Lead<span class="pl">RCM&D · 5 specialists</span></div>
+        <div class="cnt">Active · EPL-25-0089</div>
+      </div>
+      <div class="specialty">
+        <div class="sn">Surety & Bonds</div>
+        <div class="lead">Theresa Park · Practice Lead<span class="pl">Oswald · 3 specialists</span></div>
+        <div class="cnt">Last engaged · Jan · bid bond</div>
+      </div>
+      <div class="specialty">
+        <div class="sn">Environmental</div>
+        <div class="lead">Henry Osei · Practice Lead<span class="pl">RCM&D · 3 specialists</span></div>
+        <div class="cnt">Quiet · last review Sep 2025</div>
+      </div>
+      <div class="specialty">
+        <div class="sn">Marine Cargo · Intl</div>
+        <div class="lead">Lin Tao · Practice Lead<span class="pl">RCM&D · 2 specialists</span></div>
+        <div class="cnt">Active · Wrocław shipping lanes</div>
+      </div>
+      <div class="specialty">
+        <div class="sn">Employee Benefits</div>
+        <div class="lead">Karen Lim · Practice Lead<span class="pl">Oswald · 7 specialists</span></div>
+        <div class="cnt">Active · 2026 plan year</div>
+      </div>
+      <div class="specialty">
+        <div class="sn">International Programs</div>
+        <div class="lead">Marco Esposito · Practice Lead<span class="pl">RCM&D · 4 specialists</span></div>
+        <div class="cnt">Active · Mexico, Poland</div>
+      </div>
+      <div class="specialty">
+        <div class="sn">Construction · Builder's Risk</div>
+        <div class="lead">Robert Hayes · Practice Lead<span class="pl">Enders · 4 specialists</span></div>
+        <div class="cnt">Last engaged · Akron expansion 2024</div>
+      </div>
+      <div class="specialty">
+        <div class="sn">Aviation · UAS</div>
+        <div class="lead">Stephen Galt · Practice Lead<span class="pl">NSI · 2 specialists</span></div>
+        <div class="cnt">Tracking · facility-inspection drones</div>
+      </div>
+      <div class="specialty">
+        <div class="sn">Loss Control · OSH</div>
+        <div class="lead">Patricia Devlin · Practice Lead<span class="pl">Gibson · 2 specialists</span></div>
+        <div class="cnt">Active · WC severity program</div>
+      </div>
+    </div>
+
+    <div style="text-align:center; margin: 56px 0 24px;">
+      <p style="font-size:13px; color:var(--ink-soft); max-width:560px; margin: 0 auto; line-height:1.65; font-style:italic; font-family:'Fraunces', serif;">
+        "The platform structure is invisible to the client by design — but visible to those who want to see it. Eleven practices. One team. One number to call."
+      </p>
+      <button class="btn primary" style="margin-top:24px; padding:14px 28px;">Open the full directory</button>
+    </div>
+  </div>
+
+  <!-- =================== SCREEN: BRIEFING =================== -->
+  <div class="screen" id="screen-briefing">
+    <section class="review-hero reveal">
+      <div class="eyebrow">Quarterly · Q1 2026</div>
+      <h1>The Vandermark<br><em>Q1 Risk Briefing</em>.</h1>
+      <p>Prepared for the Vandermark board of directors. The quarter's risk position, claims activity, key events, and recommendations for committee review. Bound copies are delivered one week before the board meeting on 10 June.</p>
+    </section>
+
+    <div class="review-toolbar">
+      <a class="active">Cover</a>
+      <a>Letter from the Lead</a>
+      <a>The Quarter in Numbers</a>
+      <a>Events of Note</a>
+      <a>Recommendations</a>
+      <a>Forward Look</a>
+    </div>
+
+    <!-- SPREAD 1: Cover + Letter -->
+    <div class="spread reveal">
+      <div class="page cover">
+        <div class="top-mark">A Quarterly Risk Briefing</div>
+        <div class="center">
+          <div class="pre">Prepared for the Board of</div>
+          <h2>Vandermark<br>Industries, <em>Inc.</em></h2>
+          <div class="vol">Q1 2026 · COPY № 0001 OF 9</div>
+        </div>
+        <div class="bot"><span>OswaldONE</span><span>Cleveland · 2026</span></div>
+      </div>
+      <div class="page">
+        <div class="page-section">From the Lead</div>
+        <h3>A note before the <em>quarter's record</em>.</h3>
+        <p class="lede">A quiet quarter on the surface, with one matter that mattered. The discipline of the program held.</p>
+        <div class="body-text">
+          <p>This briefing accompanies the Q1 board materials. It is meant to be read, not skimmed: the quarter's risk position, the matters that asked for our attention, the recommendations we are bringing forward for the board's consideration.</p>
+          <p>The defining matter of the quarter is the Specialty Chemicals EEOC filing, which moved from charge to reasonable-cause finding in February. The reserve held; counsel is responding; the carrier is on notice. We expect resolution before year-end and have priced an appropriate range into the captive's Q2 contribution.</p>
+          <p>Total cost of risk is tracking 6.1% under plan, principally from favorable workers' compensation development and a 2.1% reduction at the property renewal. Cyber premium increased 18.4% at last renewal, which we anticipated and which the live cyber matter at Plant 2 — which will be the defining matter of Q2 — may revisit.</p>
+          <p>We recommend three actions for the board's review on page eight.</p>
+        </div>
+        <div class="signature">
+          David Reinhardt
+          <span class="role">Lead on your account · On behalf of your Oswald team</span>
+        </div>
+        <div class="page-num">— II —</div>
+      </div>
+    </div>
+
+    <!-- SPREAD 2: Quarter in Numbers + Events of Note -->
+    <div class="spread reveal">
+      <div class="page">
+        <div class="page-section left">The Quarter in Numbers</div>
+        <h3>The quarter, <em>quantified</em>.</h3>
+        <p class="lede">The figures behind the quarter. Where they vary from plan, we have noted the reason.</p>
+
+        <div style="margin-top: 24px">
+          <div class="quarter-stat"><span class="l">Total Cost of Risk · Q1 actual</span><span class="v">$2.31M</span></div>
+          <div class="quarter-stat"><span class="l">Total Cost of Risk · Q1 plan</span><span class="v">$2.46M</span></div>
+          <div class="quarter-stat"><span class="l">Variance to plan</span><span class="v green">−$148k · −6.0%</span></div>
+          <div class="quarter-stat"><span class="l">Premium · Q1</span><span class="v">$1.31M</span></div>
+          <div class="quarter-stat"><span class="l">Claims incurred · Q1</span><span class="v">$612k</span></div>
+          <div class="quarter-stat"><span class="l">Loss ratio · Q1</span><span class="v">39%</span></div>
+          <div class="quarter-stat"><span class="l">Loss ratio · trailing 12 mo</span><span class="v">42%</span></div>
+          <div class="quarter-stat"><span class="l">New claims · Q1</span><span class="v">11</span></div>
+          <div class="quarter-stat"><span class="l">— of which reportable</span><span class="v">2</span></div>
+          <div class="quarter-stat"><span class="l">Captive contribution · Q1</span><span class="v">$420k</span></div>
+          <div class="quarter-stat"><span class="l">Risk Weather signals raised</span><span class="v">38</span></div>
+          <div class="quarter-stat"><span class="l">— of which required action</span><span class="v">3</span></div>
+          <div class="quarter-stat"><span class="l">Concierge engagements · Q1</span><span class="v">87</span></div>
+        </div>
+
+        <div class="ornament">· · ·</div>
+        <div class="page-num">— IV —</div>
+      </div>
+      <div class="page">
+        <div class="page-section">Events of Note</div>
+        <h3>The matters that <em>asked for attention</em>.</h3>
+        <p class="lede">Three events shaped the quarter. Each is held in the file with the full record.</p>
+
+        <div class="event-of-note" style="margin-top:24px">
+          <span class="when">FEB · EPL-25-0089</span>
+          <h4>EEOC reasonable-cause finding · Specialty Chemicals · Akron</h4>
+          <p>The Q4 2025 charge was elevated to a reasonable-cause finding. Outside counsel (Frantz Ward) responding; AIG EPL on notice; reserve held at $850k. Counsel and the EPL practice estimate resolution before year-end within the reserved range.</p>
+        </div>
+
+        <div class="event-of-note">
+          <span class="when">MAR · CAP-26-FEAS</span>
+          <h4>Captive feasibility · Phase II completion</h4>
+          <p>RCM&D's captive practice completed the Phase II economic modeling. Projected $1.8M annual contribution offsetting WC and GL retention. Bermuda domicile recommended. Materials prepared for the May 22 finance committee review.</p>
+        </div>
+
+        <div class="event-of-note">
+          <span class="when">MAR · REG-26-0004</span>
+          <h4>SEC cyber-disclosure rule · finalized</h4>
+          <p>The SEC published the final form of the cyber-incident disclosure rule. Materiality threshold workshop scheduled with counsel and CISO for May 14. Applicable to any material incident on a four-day window from determination of materiality.</p>
+        </div>
+
+        <div class="event-of-note">
+          <span class="when">MAR · WC-26-0044</span>
+          <h4>Workers' compensation · Wrocław facility</h4>
+          <p>A slip-and-fall at the Wrocław 3PL facility resulted in a soft-tissue injury claim. Reserve $145k. Polish counsel coordinated; international EL endorsement responding. Return-to-work plan in place, anticipated full recovery within 90 days.</p>
+        </div>
+
+        <div class="page-num">— V —</div>
+      </div>
+    </div>
+
+    <!-- SPREAD 3: Recommendations + Forward Look -->
+    <div class="spread reveal">
+      <div class="page">
+        <div class="page-section left">Recommendations · for the Board</div>
+        <h3>Three matters for the <em>board's review</em>.</h3>
+        <p class="lede">Each recommendation is supported by the analysis on the referenced pages. We will be prepared to discuss in committee.</p>
+
+        <div class="recommendation" style="margin-top:24px">
+          <div class="rh">1 · Approve captive formation · Bermuda domicile</div>
+          <p>Phase II analysis supports formation. Annual contribution offsetting WC and GL retention projected at $1.8M, with a five-year payback. Recommended action: authorize finance committee to proceed with formation, pending tax review.</p>
+          <span class="ra">Decision · See pp. 12–14</span>
+        </div>
+
+        <div class="recommendation">
+          <div class="rh">2 · Restructure D&O Side A architecture · September renewal</div>
+          <p>Current $25M Side A DIC is unchanged for three years. PE structure has matured; market conditions favor restructure with potential 8–12% premium reduction. Recommended action: authorize team to market broadly for September renewal.</p>
+          <span class="ra">Approval · See p. 16</span>
+        </div>
+
+        <div class="recommendation">
+          <div class="rh">3 · Adopt SEC cyber-disclosure materiality framework</div>
+          <p>The final rule requires a documented materiality determination process. We have drafted a framework with outside counsel and the CISO. Recommended action: audit committee to adopt the framework at the June meeting, ahead of the next reportable incident.</p>
+          <span class="ra">Adoption · See p. 18</span>
+        </div>
+
+        <div class="ornament">· · ·</div>
+        <div class="page-num">— VIII —</div>
+      </div>
+      <div class="page">
+        <div class="page-section">Forward Look</div>
+        <h3>What we are <em>watching for</em>.</h3>
+        <p class="lede">A look across Q2 and into the second half. Where we expect events to ask for the board's attention, we have noted them.</p>
+
+        <div class="event-of-note" style="margin-top:24px">
+          <span class="when">Q2 2026 · ACTIVE</span>
+          <h4>Plant 2 cyber incident</h4>
+          <p>The 5 May incident will be the defining matter of Q2. Resolution within Beazley's $50M tower is expected; impact on Q2 cyber loss ratio is being scoped. A supplemental briefing will be prepared if the matter is determined to be SEC-reportable.</p>
+        </div>
+
+        <div class="event-of-note">
+          <span class="when">JUL 2026</span>
+          <h4>Property & BI renewal · FM Global</h4>
+          <p>Engineering survey complete. Single-carrier relationship at 19 years. Pursuing a 5% rate reduction; FM positioning is favorable. We will brief in advance if the market shifts.</p>
+        </div>
+
+        <div class="event-of-note">
+          <span class="when">SEP 2026</span>
+          <h4>D&O tower renewal</h4>
+          <p>Per recommendation 2, we will market the Side A DIC and excess layers. Initial market reads are favorable. Expect to bring the structure recommendation to the September meeting.</p>
+        </div>
+
+        <div class="event-of-note">
+          <span class="when">OCT 2026</span>
+          <h4>Cyber tower renewal · post-incident</h4>
+          <p>The Plant 2 incident will inform the renewal. Pre-renewal positioning begins 1 July. Expect to discuss whether to expand the tower above $50M given threat-actor activity in the manufacturing sector.</p>
+        </div>
+
+        <div class="event-of-note">
+          <span class="when">Q3 · ANTICIPATED</span>
+          <h4>Acquisition pipeline · two LOIs in diligence</h4>
+          <p>The M&A practice (Avondale specialty bench) is engaged on two reps & warranties placements. We anticipate adding R&W coverage in Q3 if either transaction closes. Will advise the board at the relevant meeting.</p>
+        </div>
+
+        <div class="page-num">— IX —</div>
+      </div>
+    </div>
+
+    <div style="text-align:center; padding: 24px 0 80px">
+      <div class="eyebrow">Bound by hand · printed in Cleveland · delivered one week before the meeting</div>
+      <p style="font-size:13px; color:var(--ink-soft); max-width: 560px; margin: 18px auto 0; line-height:1.65">A complete edition runs twenty-four pages, including the loss-run appendix and the carrier-strength annex. Nine numbered copies have been printed for the board, the CFO, the GC, and the audit committee chair. A digital edition is available in the Vault, watermarked and access-logged.</p>
+      <button class="btn primary" style="margin-top:24px; padding:14px 28px;">Request a digital preview</button>
+    </div>
+  </div>
+
+  <!-- =================== FOOTER =================== -->
+  <div class="footer-meta">
+    <div class="left">
+      <span class="footer-brand"><span class="footer-oswald">Oswald<span class="dot">.</span></span><span style="opacity:.55"> · OswaldONE Business · A conceptual mockup</span></span>
+      <a>Privacy by design</a>
+      <a>Audit-logged · access-controlled</a>
+    </div>
+    <div>Session encrypted · M. Chen · Just now</div>
+  </div>
+
+</div>
+
+<script>
+  function switchScreen(name) {
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('is-active'));
+    document.getElementById('screen-' + name).classList.add('is-active');
+    document.querySelectorAll('#nav a').forEach(a => a.classList.toggle('active', a.dataset.screen === name));
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+  document.querySelectorAll('#nav a').forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      switchScreen(link.dataset.screen);
+    });
+  });
+
+  // ============ BOOK READER ============
+  let bookSpread = 0;
+  const bookSpreadsTotal = 4;
+
+  function openBook() {
+    const reader = document.getElementById('book-reader');
+    reader.classList.add('is-open');
+    bookSpread = 0;
+    updateBookView();
+    setTimeout(() => {
+      reader.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 250);
+  }
+
+  function closeBook() {
+    document.getElementById('book-reader').classList.remove('is-open');
+  }
+
+  function flipPage(direction) {
+    bookSpread = Math.max(0, Math.min(bookSpreadsTotal - 1, bookSpread + direction));
+    updateBookView();
+  }
+
+  function updateBookView() {
+    document.querySelectorAll('.book-spread').forEach((spread, i) => {
+      spread.classList.toggle('is-current', i === bookSpread);
+    });
+    const indicator = document.getElementById('book-pages-indicator');
+    if (indicator) indicator.textContent = `Spread ${bookSpread + 1} of ${bookSpreadsTotal}`;
+    document.getElementById('book-prev').disabled = bookSpread === 0;
+    document.getElementById('book-next').disabled = bookSpread === bookSpreadsTotal - 1;
+  }
+
+  // From the home page spotlight strip — switch to Scorecard, then open the book
+  function openBriefingFromHome() {
+    switchScreen('scorecard');
+    setTimeout(openBook, 500);
+  }
+</script>
+</body>
+</html>
