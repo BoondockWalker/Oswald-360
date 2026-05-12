@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>OswaldONE · Conceptual Prototypes</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --oswald-navy: #1B3454;
+    --oswald-navy-deep: #0E2240;
+    --oswald-red: #B5402C;
+    --peach: #F0DCC5;
+    --warm-cream: #FAF4E8;
+    --clay-warm: #C97F5E;
+    --rule-warm: #DECDB0;
+    --ink: #1B3454;
+    --ink-soft: #5F6B7A;
+    --brass-deep: #876D3B;
+  }
+
+  body {
+    background: linear-gradient(180deg, #F8F0E0 0%, #F5EAD6 100%);
+    min-height: 100vh;
+    font-family: 'Inter', system-ui, sans-serif;
+    color: var(--ink);
+    padding: 60px 24px;
+  }
+
+  .container { max-width: 1100px; margin: 0 auto; }
+
+  /* Brand */
+  .brand-row {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin-bottom: 48px;
+  }
+  .oswald-wordmark {
+    font-weight: 700;
+    font-size: 26px;
+    letter-spacing: -0.03em;
+    color: var(--oswald-navy);
+    line-height: 1;
+  }
+  .oswald-wordmark .dot { color: var(--oswald-red); }
+  .rule { width: 1px; height: 24px; background: var(--oswald-navy); opacity: 0.25; align-self: center; }
+  .one {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 22px;
+    color: var(--oswald-navy);
+    letter-spacing: -0.015em;
+  }
+  .tag {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--oswald-navy);
+    opacity: 0.55;
+    padding-left: 6px;
+    align-self: center;
+  }
+
+  /* Hero */
+  .hero { margin-bottom: 56px; max-width: 760px; }
+  .hero .eyebrow {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--brass-deep);
+    margin-bottom: 18px;
+  }
+  .hero h1 {
+    font-family: 'Fraunces', serif;
+    font-size: 52px;
+    font-weight: 300;
+    color: var(--oswald-navy);
+    letter-spacing: -0.025em;
+    line-height: 1.05;
+    margin-bottom: 18px;
+  }
+  .hero h1 em { font-style: italic; color: var(--clay-warm); }
+  .hero .sub {
+    font-size: 17px;
+    line-height: 1.65;
+    color: var(--ink-soft);
+    max-width: 620px;
+  }
+
+  /* Cards */
+  .cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+    margin-bottom: 60px;
+  }
+  @media (max-width: 780px) {
+    .cards { grid-template-columns: 1fr; }
+  }
+
+  .card {
+    background: #fff;
+    border: 1px solid var(--rule-warm);
+    border-radius: 4px;
+    overflow: hidden;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    position: relative;
+  }
+  .card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 14px 40px rgba(27, 52, 84, 0.12);
+  }
+
+  .card-header {
+    background: linear-gradient(135deg, var(--oswald-navy) 0%, var(--oswald-navy-deep) 100%);
+    color: #fff;
+    padding: 36px 36px 32px;
+    position: relative;
+    overflow: hidden;
+  }
+  .card-header::after {
+    content: '';
+    position: absolute;
+    right: -60px;
+    bottom: -60px;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(201, 127, 94, 0.15) 0%, transparent 70%);
+  }
+  .card-eyebrow {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
+    margin-bottom: 14px;
+  }
+  .card-title {
+    font-family: 'Fraunces', serif;
+    font-size: 32px;
+    font-weight: 300;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+  }
+  .card-title em { font-style: italic; color: var(--clay-warm); }
+
+  .card-body { padding: 28px 36px 36px; }
+  .card-desc {
+    font-size: 14px;
+    line-height: 1.65;
+    color: var(--ink-soft);
+    margin-bottom: 28px;
+  }
+
+  .meta-list {
+    display: grid;
+    gap: 10px;
+    padding-bottom: 24px;
+    margin-bottom: 28px;
+    border-bottom: 1px solid var(--rule-warm);
+  }
+  .meta-row {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: 12px;
+    font-size: 12.5px;
+    font-family: 'Fraunces', serif;
+    align-items: baseline;
+  }
+  .meta-row .k {
+    color: var(--brass-deep);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .meta-row .v { color: var(--ink); line-height: 1.5; }
+
+  .card-cta {
+    display: inline-block;
+    background: var(--clay-warm);
+    color: #fff;
+    text-decoration: none;
+    padding: 14px 28px;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    border-radius: 2px;
+    transition: background 0.2s;
+  }
+  .card-cta:hover { background: #B36848; }
+
+  /* Footer */
+  .foot {
+    margin-top: 80px;
+    padding-top: 32px;
+    border-top: 1px solid var(--rule-warm);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--brass-deep);
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .foot .left { color: var(--oswald-navy); opacity: 0.7; }
+
+  @media (max-width: 600px) {
+    body { padding: 40px 20px; }
+    .hero h1 { font-size: 36px; }
+    .card-header { padding: 28px 24px 24px; }
+    .card-body { padding: 24px 24px 28px; }
+    .card-title { font-size: 24px; }
+    .meta-row { grid-template-columns: 1fr; gap: 2px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <div class="brand-row">
+    <span class="oswald-wordmark">Oswald<span class="dot">.</span></span>
+    <span class="rule"></span>
+    <span class="one">ONE</span>
+    <span class="tag">Conceptual prototypes</span>
+  </div>
+
+  <div class="hero">
+    <div class="eyebrow">A client experience exploration · 2026</div>
+    <h1>A portal worth <em>visiting</em>.</h1>
+    <p class="sub">Two working prototypes — one for the family principal, one for the CFO and audit committee — exploring what a real Oswald client hub could feel like. Click through either to see how clients might experience a quarterly scorecard, an interactive digital edition, the In Good Company introductions network, and the operational tools they'd actually use.</p>
+  </div>
+
+  <div class="cards">
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-eyebrow">For the family principal</div>
+        <div class="card-title">OswaldONE · <em>Personal</em></div>
+      </div>
+      <div class="card-body">
+        <p class="card-desc">An HNW family's view of their household — four properties, art and collections, a live wildfire response unfolding in Aspen, and an annual recap delivered as a bound digital edition.</p>
+
+        <div class="meta-list">
+          <div class="meta-row"><span class="k">Persona</span><span class="v">The Ellsworth family · Cleveland, Aspen, Naples, Palm Beach</span></div>
+          <div class="meta-row"><span class="k">Scenario</span><span class="v">Active wildfire response · Red Mountain House</span></div>
+          <div class="meta-row"><span class="k">Screens</span><span class="v">Six · Home, Household, Scorecard, In Good Company, Vault, Your Team</span></div>
+          <div class="meta-row"><span class="k">Highlight</span><span class="v">The annual recap · four interactive spreads</span></div>
+        </div>
+
+        <a href="oswaldone_demo.html" class="card-cta">Open the Personal prototype →</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-eyebrow">For the CFO &amp; audit committee</div>
+        <div class="card-title">OswaldONE · <em>Business</em></div>
+      </div>
+      <div class="card-body">
+        <p class="card-desc">A mid-cap manufacturer's view of their risk program — eleven facilities, an active cyber incident at Precision Plant 2, the coverage tower, and a quarterly board briefing delivered as a digital edition.</p>
+
+        <div class="meta-list">
+          <div class="meta-row"><span class="k">Persona</span><span class="v">Vandermark Industries · $684M revenue · 2,418 employees</span></div>
+          <div class="meta-row"><span class="k">Scenario</span><span class="v">Active ransomware response · Precision Plant 2</span></div>
+          <div class="meta-row"><span class="k">Screens</span><span class="v">Six · Home, Risk, Tower, Scorecard, In Good Company, Your Team</span></div>
+          <div class="meta-row"><span class="k">Highlight</span><span class="v">The Q1 risk briefing · four interactive spreads</span></div>
+        </div>
+
+        <a href="oswaldone_business_demo.html" class="card-cta">Open the Business prototype →</a>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="foot">
+    <span class="left">Oswald<span style="color:var(--oswald-red)">.</span> · OswaldONE · A conceptual mockup</span>
+    <span>Boondock Walker · 2026</span>
+  </div>
+
+</div>
+
+</body>
+</html>
