@@ -2,29 +2,55 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>OswaldONE · Conceptual Prototypes</title>
+<title>Oswald 360 · Conceptual Prototypes</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
 
-  :root {
-    --oswald-navy: #1B3454;
-    --oswald-navy-deep: #0E2240;
-    --oswald-red: #B5402C;
-    --peach: #F0DCC5;
-    --warm-cream: #FAF4E8;
-    --clay-warm: #C97F5E;
-    --rule-warm: #DECDB0;
-    --ink: #1B3454;
-    --ink-soft: #5F6B7A;
-    --brass-deep: #876D3B;
+    :root {
+    /* Oswald brand-aligned palette */
+    --oswald-navy: #051C2C;
+    --oswald-navy-deep: #03131B;
+    --oswald-red: #9E2A2F;
+    --oswald-blue: #00617F;
+    --oswald-blue-light: #338199;
+    --oswald-blue-soft: #4C90A5;
+
+    /* Accent and emphasis (replaces clay-warm) */
+    --accent: #9E2A2F;
+    --accent-soft: #00617F;
+
+    /* Backgrounds: tinted toward warm, but close to brand lightest-grey */
+    --warm-tint: #F5F2EB;
+    --warm-tint-deep: #EDE9DF;
+    --paper: #FFFFFF;
+    --peach: #F5F2EB;
+    --peach-deep: #EDE9DF;
+    --warm-cream: #F5F2EB;
+
+    /* Greys per brand */
+    --grey-lightest: #F3F3F3;
+    --grey-light: #E0E0E0;
+    --grey: #C7C8CA;
+    --grey-text: #4D4D4F;
+    --ink: #051C2C;
+    --ink-soft: #4D4D4F;
+    --ink-faint: #6E6E70;
+
+    /* Labels and rules — replaces brass/gold */
+    --brass: #4D4D4F;
+    --brass-deep: #4D4D4F;
+    --rule: #E0E0E0;
+    --rule-warm: #E0E0E0;
+    --rule-soft: #F0F0F0;
+
+    /* Clay-warm now maps to red (used sparingly per brand) */
+    --clay-warm: #9E2A2F;
+
   }
 
   body {
-    background: linear-gradient(180deg, #F8F0E0 0%, #F5EAD6 100%);
+    background: linear-gradient(180deg, #F5F2EB 0%, #F2EFE6 100%);
     min-height: 100vh;
     font-family: 'Inter', system-ui, sans-serif;
     color: var(--ink);
@@ -36,41 +62,72 @@
   /* Brand */
   .brand-row {
     display: flex;
-    align-items: baseline;
-    gap: 14px;
+    align-items: center;
+    gap: 16px;
     margin-bottom: 48px;
   }
-  .oswald-wordmark {
+  .brand-logo-link {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+  }
+  .brand-logo-img {
+    height: 48px;
+    width: auto;
+    display: block;
+  }
+  .brand-logo-fallback {
+    display: inline-flex;
+    flex-direction: column;
+    line-height: 1.1;
+    padding: 2px 0;
+  }
+  .brand-logo-fallback .word {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 28px;
     font-weight: 700;
-    font-size: 26px;
-    letter-spacing: -0.03em;
-    color: var(--oswald-navy);
+    color: var(--oswald-red);
+    letter-spacing: -0.005em;
     line-height: 1;
   }
-  .oswald-wordmark .dot { color: var(--oswald-red); }
-  .rule { width: 1px; height: 24px; background: var(--oswald-navy); opacity: 0.25; align-self: center; }
+  .brand-logo-fallback .word sup {
+    font-size: 9px;
+    vertical-align: super;
+    line-height: 0;
+    margin-left: 1px;
+  }
+  .brand-logo-fallback .tagline {
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+    font-size: 7px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    color: var(--oswald-red);
+    text-transform: uppercase;
+    margin-top: 2px;
+  }
+  .rule { width: 1px; height: 32px; background: var(--grey); align-self: center; }
   .one {
-    font-family: 'Fraunces', serif;
-    font-style: italic;
-    font-size: 22px;
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+    font-size: 20px;
+    font-weight: 500;
     color: var(--oswald-navy);
-    letter-spacing: -0.015em;
+    letter-spacing: -0.005em;
+    align-self: center;
   }
   .tag {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
     font-size: 10px;
-    letter-spacing: 0.22em;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: var(--oswald-navy);
-    opacity: 0.55;
-    padding-left: 6px;
+    color: var(--grey-text);
+    padding-left: 8px;
     align-self: center;
   }
 
   /* Hero */
   .hero { margin-bottom: 56px; max-width: 760px; }
   .hero .eyebrow {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
     font-size: 10px;
     letter-spacing: 0.22em;
     text-transform: uppercase;
@@ -78,9 +135,9 @@
     margin-bottom: 18px;
   }
   .hero h1 {
-    font-family: 'Fraunces', serif;
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
     font-size: 52px;
-    font-weight: 300;
+    font-weight: 400;
     color: var(--oswald-navy);
     letter-spacing: -0.025em;
     line-height: 1.05;
@@ -119,7 +176,7 @@
   }
 
   .card-header {
-    background: linear-gradient(135deg, var(--oswald-navy) 0%, var(--oswald-navy-deep) 100%);
+    background: var(--oswald-navy);
     color: #fff;
     padding: 36px 36px 32px;
     position: relative;
@@ -132,10 +189,10 @@
     bottom: -60px;
     width: 200px;
     height: 200px;
-    background: radial-gradient(circle, rgba(201, 127, 94, 0.15) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(158, 42, 47, 0.08) 0%, transparent 70%);
   }
   .card-eyebrow {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
     font-size: 10px;
     letter-spacing: 0.18em;
     text-transform: uppercase;
@@ -143,9 +200,9 @@
     margin-bottom: 14px;
   }
   .card-title {
-    font-family: 'Fraunces', serif;
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
     font-size: 32px;
-    font-weight: 300;
+    font-weight: 400;
     letter-spacing: -0.02em;
     line-height: 1.1;
   }
@@ -171,12 +228,12 @@
     grid-template-columns: 100px 1fr;
     gap: 12px;
     font-size: 12.5px;
-    font-family: 'Fraunces', serif;
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
     align-items: baseline;
   }
   .meta-row .k {
     color: var(--brass-deep);
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
     font-size: 9.5px;
     letter-spacing: 0.12em;
     text-transform: uppercase;
@@ -206,7 +263,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
     font-size: 10px;
     letter-spacing: 0.12em;
     text-transform: uppercase;
@@ -224,6 +281,36 @@
     .card-title { font-size: 24px; }
     .meta-row { grid-template-columns: 1fr; gap: 2px; }
   }
+
+  /* ============ ALTERNATING ROW BACKGROUNDS — scannable stacked content ============ */
+  .profile-row:nth-child(even),
+  .cov-row:nth-child(even),
+  .num-row:nth-child(even),
+  .legend-row:nth-child(even),
+  .match-row:nth-child(even),
+  .action-row:nth-child(even),
+  .audit-row:nth-child(even),
+  .perm-row:nth-child(even),
+  .bench-row:nth-child(even),
+  .carrier-row:nth-child(even),
+  .claim-row:nth-child(even),
+  .prem-row:nth-child(even),
+  .vendor-row:nth-child(even),
+  .meta-row:nth-child(even) {
+    background: rgba(0, 0, 0, 0.022);
+  }
+  /* Profile rows live inside containers with their own padding;
+     give the BG some horizontal breathing room so it reads as a band, not edge-to-edge */
+  .profile-row:nth-child(even),
+  .num-row:nth-child(even),
+  .legend-row:nth-child(even) {
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-left: -10px;
+    margin-right: -10px;
+    border-radius: 2px;
+  }
+
 </style>
 </head>
 <body>
@@ -231,9 +318,15 @@
 <div class="container">
 
   <div class="brand-row">
-    <span class="oswald-wordmark">Oswald<span class="dot">.</span></span>
+    <a class="brand-logo-link" href="#" aria-label="Oswald 360">
+      <img src="Oswald_360%20Logo.png" alt="Oswald 360" class="brand-logo-img"
+           onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';" />
+      <span class="brand-logo-fallback" style="display:none;">
+        <span class="word">Oswald<sup>®</sup></span>
+        <span class="tagline">A Unison Risk Advisors Company</span>
+      </span>
+    </a>
     <span class="rule"></span>
-    <span class="one">ONE</span>
     <span class="tag">Conceptual prototypes</span>
   </div>
 
@@ -248,7 +341,7 @@
     <div class="card">
       <div class="card-header">
         <div class="card-eyebrow">For the family principal</div>
-        <div class="card-title">OswaldONE · <em>Personal</em></div>
+        <div class="card-title">Oswald 360 · <em>Personal</em></div>
       </div>
       <div class="card-body">
         <p class="card-desc">An HNW family's view of their household — four properties, art and collections, a live wildfire response unfolding in Aspen, and an annual recap delivered as a bound digital edition.</p>
@@ -260,14 +353,14 @@
           <div class="meta-row"><span class="k">Highlight</span><span class="v">The annual recap · four interactive spreads</span></div>
         </div>
 
-        <a href="https://boondockwalker.github.io/Oswald-360/oswald-one_personal-demo" target="_blank" rel="noopener" class="card-cta">Open the Personal prototype →</a>
+        <a href="https://boondockwalker.github.io/Oswald-360/personal_demo" target="_blank" rel="noopener" class="card-cta">Open the Personal prototype →</a>
       </div>
     </div>
 
     <div class="card">
       <div class="card-header">
         <div class="card-eyebrow">For the CFO &amp; audit committee</div>
-        <div class="card-title">OswaldONE · <em>Business</em></div>
+        <div class="card-title">Oswald 360 · <em>Business</em></div>
       </div>
       <div class="card-body">
         <p class="card-desc">A mid-cap manufacturer's view of their risk program — eleven facilities, an active cyber incident at Precision Plant 2, the coverage tower, and a quarterly board briefing delivered as a digital edition.</p>
@@ -279,18 +372,34 @@
           <div class="meta-row"><span class="k">Highlight</span><span class="v">The Q1 risk briefing · four interactive spreads</span></div>
         </div>
 
-        <a href="https://boondockwalker.github.io/Oswald-360/oswald-one_business_demo" target="_blank" rel="noopener" class="card-cta">Open the Business prototype →</a>
+        <a href="https://boondockwalker.github.io/Oswald-360/business_demo" target="_blank" rel="noopener" class="card-cta">Open the Business prototype →</a>
       </div>
     </div>
 
   </div>
 
   <div class="foot">
-    <span class="left">Oswald<span style="color:var(--oswald-red)">.</span> · OswaldONE · A conceptual mockup</span>
+    <span class="left">Oswald 360 · A conceptual mockup</span>
     <span>Boondock Walker · 2026</span>
   </div>
 
 </div>
+
+
+<script>
+  // Force-show logo fallback if image failed to load (even when onerror didn't fire)
+  window.addEventListener('load', function() {
+    document.querySelectorAll('.brand-logo-img').forEach(function(img) {
+      if (!img.complete || !img.naturalWidth || !img.naturalHeight) {
+        img.style.display = 'none';
+        var sibling = img.nextElementSibling;
+        if (sibling && sibling.classList.contains('brand-logo-fallback')) {
+          sibling.style.display = 'inline-flex';
+        }
+      }
+    });
+  });
+</script>
 
 </body>
 </html>

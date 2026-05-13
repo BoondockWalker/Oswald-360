@@ -520,6 +520,17 @@
     --warm-cream: #F5F2EB;
     --clay-warm: #9E2A2F;
     --rule-warm: #E0E0E0;
+    /* Aliases for legacy palette variables — map to brand-aligned colors */
+    --unison: #051C2C;
+    --unison-deep: #0E2240;
+    --brass-soft: rgba(255, 255, 255, 0.7);
+    --ink-2: #4D4D4F;
+    --clay: #9E2A2F;
+    --brass: #4D4D4F;
+    --brass-deep: #4D4D4F;
+    --rule-soft: #E0E0E0;
+    --paper: #FFFFFF;
+
   }
 
   /* Slightly warmer body bg, more peach undertone */
@@ -1540,7 +1551,7 @@
   <nav>
     <div class="oswald-brand">
       <a class="brand-logo-link" href="#" aria-label="Oswald 360">
-        <img src="oswald-360-logo.png" alt="Oswald 360" class="brand-logo-img"
+        <img src="Oswald_360%20Logo.png" alt="Oswald 360" class="brand-logo-img"
              onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';" />
         <span class="brand-logo-fallback" style="display:none;">
           <span class="word">Oswald<sup>®</sup></span>
@@ -3066,5 +3077,21 @@
     setTimeout(openBook, 500);
   }
 </script>
+
+<script>
+  // Force-show logo fallback if image failed to load (even when onerror didn't fire)
+  window.addEventListener('load', function() {
+    document.querySelectorAll('.brand-logo-img').forEach(function(img) {
+      if (!img.complete || !img.naturalWidth || !img.naturalHeight) {
+        img.style.display = 'none';
+        var sibling = img.nextElementSibling;
+        if (sibling && sibling.classList.contains('brand-logo-fallback')) {
+          sibling.style.display = 'inline-flex';
+        }
+      }
+    });
+  });
+</script>
+
 </body>
 </html>
