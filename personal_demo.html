@@ -3,33 +3,48 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>OswaldONE — A Conceptual Client Hub for Oswald</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=DM+Sans:opsz,wght@9..40,300..700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<title>Oswald 360 — Personal</title>
 <style>
-  :root {
-    --ink: #0E1A26;
-    --ink-2: #1B2A3A;
-    --ink-soft: #4A5868;
-    --ink-faint: #8A95A2;
-    --paper: #F5EFE4;
-    --paper-2: #EFE7D6;
-    --paper-3: #E7DDC8;
-    --rule: #D4C8AE;
-    --rule-soft: #E2D7BE;
-    --brass: #A88A4F;
-    --brass-deep: #876D3B;
-    --brass-soft: #C9B07A;
-    --forest: #2F4F3A;
-    --clay: #B5634C;
-    --clay-soft: #D08A72;
+    :root {
+    /* Oswald brand-aligned palette */
+    --oswald-navy: #051C2C;
+    --oswald-navy-deep: #03131B;
+    --oswald-red: #9E2A2F;
+    --oswald-blue: #00617F;
+    --oswald-blue-light: #338199;
+    --oswald-blue-soft: #4C90A5;
 
-    --unison: #102f54;
-    --unison-deep: #061a35;
-    --unison-soft: #2a4d76;
-    --shadow-soft: 0 1px 2px rgba(14,26,38,.04), 0 8px 24px rgba(14,26,38,.06);
-    --shadow-card: 0 1px 1px rgba(14,26,38,.05), 0 12px 36px rgba(14,26,38,.08);
+    /* Accent and emphasis (replaces clay-warm) */
+    --accent: #9E2A2F;
+    --accent-soft: #00617F;
+
+    /* Backgrounds: tinted toward warm, but close to brand lightest-grey */
+    --warm-tint: #F5F2EB;
+    --warm-tint-deep: #EDE9DF;
+    --paper: #FFFFFF;
+    --peach: #F5F2EB;
+    --peach-deep: #EDE9DF;
+    --warm-cream: #F5F2EB;
+
+    /* Greys per brand */
+    --grey-lightest: #F3F3F3;
+    --grey-light: #E0E0E0;
+    --grey: #C7C8CA;
+    --grey-text: #4D4D4F;
+    --ink: #051C2C;
+    --ink-soft: #4D4D4F;
+    --ink-faint: #6E6E70;
+
+    /* Labels and rules — replaces brass/gold */
+    --brass: #4D4D4F;
+    --brass-deep: #4D4D4F;
+    --rule: #E0E0E0;
+    --rule-warm: #E0E0E0;
+    --rule-soft: #F0F0F0;
+
+    /* Clay-warm now maps to red (used sparingly per brand) */
+    --clay-warm: #9E2A2F;
+
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -59,7 +74,7 @@
   }
 
   .display { font-family: 'Fraunces', Georgia, serif; font-feature-settings: 'ss01'; letter-spacing: -0.01em; }
-  .mono { font-family: 'IBM Plex Mono', monospace; font-feature-settings: 'tnum'; }
+  .mono { font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; font-feature-settings: 'tnum'; }
   .eyebrow { font-family: 'DM Sans', sans-serif; font-size: 10px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--brass-deep); }
 
   .container { max-width: 1440px; margin: 0 auto; padding: 0 56px; position: relative; z-index: 1; }
@@ -67,8 +82,8 @@
   /* ============ NAV ============ */
   nav { display: flex; align-items: center; justify-content: space-between; padding: 32px 0 28px; border-bottom: 1px solid var(--rule); }
   .brand { display: flex; align-items: baseline; gap: 14px; }
-  .brand-mark { font-family: 'Fraunces', serif; font-weight: 400; font-style: italic; font-size: 28px; font-variation-settings: 'opsz' 144; color: var(--ink); letter-spacing: -0.02em; }
-  .brand-mark .ampersand { color: var(--brass); font-weight: 300; }
+  .brand-mark { font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; font-weight: 400; font-style: italic; font-size: 28px; font-variation-settings: 'opsz' 144; color: var(--ink); letter-spacing: -0.02em; }
+  .brand-mark .ampersand { color: var(--brass); font-weight: 400; }
   .brand-divider { width: 18px; height: 1px; background: var(--brass); }
   .brand-pretitle { font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-soft); font-weight: 500; }
   .nav-links { display: flex; gap: 36px; list-style: none; }
@@ -77,17 +92,17 @@
   .nav-right { display: flex; align-items: center; gap: 20px; }
   .icon-btn { width: 36px; height: 36px; display: grid; place-items: center; border: 1px solid var(--rule); border-radius: 50%; background: transparent; cursor: pointer; color: var(--ink-soft); transition: all .2s ease; }
   .icon-btn:hover { border-color: var(--brass); color: var(--ink); }
-  .principal-avatar { width: 38px; height: 38px; border-radius: 50%; background: linear-gradient(135deg, var(--unison-deep) 0%, var(--unison) 100%); color: var(--paper); display: grid; place-items: center; font-family: 'Fraunces', serif; font-style: italic; font-size: 14px; border: 1.5px solid var(--brass); }
+  .principal-avatar { width: 38px; height: 38px; border-radius: 50%; background: linear-gradient(135deg, var(--unison-deep) 0%, var(--unison) 100%); color: var(--paper); display: grid; place-items: center; font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; font-style: italic; font-size: 14px; border: 1.5px solid var(--brass); }
 
   /* ============ HERO ============ */
   .hero { padding: 56px 0 40px; display: grid; grid-template-columns: 1.4fr 1fr; gap: 72px; align-items: end; border-bottom: 1px solid var(--rule); }
   .hero-greeting .eyebrow { margin-bottom: 16px; }
-  .hero-greeting h1 { font-family: 'Fraunces', serif; font-weight: 300; font-size: 64px; line-height: 1.05; letter-spacing: -0.025em; color: var(--ink); font-variation-settings: 'opsz' 144; }
-  .hero-greeting h1 em { font-style: italic; font-weight: 300; color: var(--brass-deep); }
+  .hero-greeting h1 { font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; font-weight: 400; font-size: 64px; line-height: 1.05; letter-spacing: -0.025em; color: var(--ink); font-variation-settings: 'opsz' 144; }
+  .hero-greeting h1 em { font-style: italic; font-weight: 400; color: var(--brass-deep); }
   .hero-meta { margin-top: 20px; font-size: 13px; color: var(--ink-soft); line-height: 1.6; max-width: 480px; }
   .hero-stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px 32px; padding-bottom: 8px; }
   .stat .stat-label { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 6px; }
-  .stat .stat-value { font-family: 'Fraunces', serif; font-size: 28px; font-weight: 400; color: var(--ink); letter-spacing: -0.015em; font-feature-settings: 'tnum'; }
+  .stat .stat-value { font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; font-size: 28px; font-weight: 400; color: var(--ink); letter-spacing: -0.015em; font-feature-settings: 'tnum'; }
   .stat .stat-sub { font-size: 11px; color: var(--ink-soft); margin-top: 2px; }
   .stat .stat-sub.brass { color: var(--brass-deep); }
   .stat .stat-sub.clay { color: var(--clay); }
@@ -103,7 +118,7 @@
   .panel.elevated { box-shadow: var(--shadow-card); background: rgba(255, 252, 245, 0.85); }
   .panel-header { display: flex; align-items: baseline; justify-content: space-between; padding-bottom: 16px; border-bottom: 1px solid var(--rule-soft); margin-bottom: 22px; }
   .panel.dark .panel-header { border-bottom-color: rgba(168,138,79,.25); }
-  .panel-title { font-family: 'Fraunces', serif; font-weight: 400; font-size: 22px; color: var(--ink); letter-spacing: -0.01em; }
+  .panel-title { font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; font-weight: 400; font-size: 22px; color: var(--ink); letter-spacing: -0.01em; }
   .panel.dark .panel-title { color: var(--paper); }
   .panel-title em { font-style: italic; color: var(--brass-deep); }
   .panel.dark .panel-title em { color: var(--brass-soft); }
@@ -114,7 +129,7 @@
   .household-map { position: relative; min-height: 480px; }
   .members-strip { display: flex; align-items: center; gap: 16px; margin-bottom: 28px; padding: 16px 20px; background: var(--paper-2); border-left: 2px solid var(--brass); flex-wrap: wrap; }
   .member { display: flex; align-items: center; gap: 10px; }
-  .member-avatar { width: 32px; height: 32px; border-radius: 50%; background: var(--ink); color: var(--paper); display: grid; place-items: center; font-family: 'Fraunces', serif; font-style: italic; font-size: 12px; flex-shrink: 0; }
+  .member-avatar { width: 32px; height: 32px; border-radius: 50%; background: var(--ink); color: var(--paper); display: grid; place-items: center; font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; font-style: italic; font-size: 12px; flex-shrink: 0; }
   .member-avatar.junior { background: var(--brass); color: var(--ink); }
   .member-name { font-size: 12px; font-weight: 500; color: var(--ink); }
   .member-role { font-size: 10px; color: var(--ink-faint); letter-spacing: 0.04em; }
@@ -130,9 +145,9 @@
   }
   .property-header { padding-left: 16px; margin-bottom: 14px; }
   .property-loc { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-faint); }
-  .property-name { font-family: 'Fraunces', serif; font-size: 18px; font-weight: 400; color: var(--ink); margin-top: 2px; letter-spacing: -0.01em; }
+  .property-name { font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; font-size: 18px; font-weight: 400; color: var(--ink); margin-top: 2px; letter-spacing: -0.01em; }
   .property-meta { display: flex; justify-content: space-between; padding-top: 12px; border-top: 1px dashed var(--rule-soft); font-size: 11px; color: var(--ink-soft); }
-  .property-meta .value { color: var(--ink); font-weight: 500; font-family: 'IBM Plex Mono', monospace; font-size: 11px; }
+  .property-meta .value { color: var(--ink); font-weight: 500; font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; font-size: 11px; }
   .property-flag { margin-top: 10px; font-size: 11px; color: var(--clay); font-style: italic; }
   .property-flag.watch { color: var(--brass-deep); }
 
@@ -147,16 +162,16 @@
   .weather-text { font-size: 12.5px; line-height: 1.5; color: var(--paper); }
   .weather-text strong { color: var(--paper); font-weight: 500; }
   .weather-text .action { display: block; margin-top: 4px; font-size: 11px; color: var(--brass-soft); font-style: italic; }
-  .weather-time { font-size: 10px; letter-spacing: 0.08em; color: rgba(245, 239, 228, 0.5); font-family: 'IBM Plex Mono', monospace; text-transform: uppercase; white-space: nowrap; }
+  .weather-time { font-size: 10px; letter-spacing: 0.08em; color: rgba(245, 239, 228, 0.5); font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; text-transform: uppercase; white-space: nowrap; }
 
   /* ============ EVENTS / VAULT (dashboard) ============ */
   .events-list { display: flex; flex-direction: column; gap: 18px; }
   .event { display: grid; grid-template-columns: 44px 1fr; gap: 16px; padding-bottom: 18px; border-bottom: 1px solid var(--rule-soft); }
   .event:last-child { border-bottom: none; padding-bottom: 0; }
-  .event-date { font-family: 'Fraunces', serif; text-align: center; border-right: 1px solid var(--rule); padding-right: 16px; }
+  .event-date { font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; text-align: center; border-right: 1px solid var(--rule); padding-right: 16px; }
   .event-date .day { font-size: 22px; color: var(--ink); line-height: 1; font-weight: 400; }
   .event-date .mo { font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--brass-deep); margin-top: 4px; font-family: 'DM Sans', sans-serif; }
-  .event-body h4 { font-family: 'Fraunces', serif; font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 4px; letter-spacing: -0.005em; }
+  .event-body h4 { font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 4px; letter-spacing: -0.005em; }
   .event-body p { font-size: 12px; color: var(--ink-soft); line-height: 1.5; }
   .event-cta { display: inline-block; margin-top: 8px; font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--brass-deep); border-bottom: 1px solid var(--brass); padding-bottom: 2px; text-decoration: none; cursor: pointer; }
 
@@ -164,10 +179,10 @@
   .concierge-card { background: linear-gradient(135deg, var(--unison-deep) 0%, var(--unison) 100%); color: var(--paper); padding: 28px; border-radius: 2px; position: relative; overflow: hidden; }
   .concierge-card::before { content: ''; position: absolute; top: -40px; right: -40px; width: 160px; height: 160px; background: radial-gradient(circle, rgba(168,138,79,.18) 0%, transparent 70%); }
   .concierge-card .eyebrow { color: var(--brass-soft); }
-  .concierge-greeting { font-family: 'Fraunces', serif; font-style: italic; font-size: 22px; font-weight: 300; margin-top: 12px; line-height: 1.3; color: var(--paper); }
+  .concierge-greeting { font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; font-style: italic; font-size: 22px; font-weight: 400; margin-top: 12px; line-height: 1.3; color: var(--paper); }
   .concierge-greeting strong { font-style: normal; color: var(--brass-soft); font-weight: 400; }
   .concierge-meta { margin-top: 18px; padding-top: 16px; border-top: 1px solid rgba(168,138,79,.25); display: flex; align-items: center; gap: 12px; }
-  .duty-avatar { width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, #847151 0%, var(--brass) 100%); color: var(--ink); display: grid; place-items: center; font-family: 'Fraunces', serif; font-size: 14px; }
+  .duty-avatar { width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, #847151 0%, var(--brass) 100%); color: var(--ink); display: grid; place-items: center; font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; font-size: 14px; }
   .duty-info { font-size: 12px; line-height: 1.45; }
   .duty-info .name { font-weight: 500; color: var(--paper); }
   .duty-info .role { color: rgba(245,239,228,.6); font-size: 11px; }
@@ -188,7 +203,7 @@
   .cov-fill { height: 100%; background: var(--forest); }
   .cov-fill.warn { background: var(--brass); }
   .cov-fill.gap { background: var(--clay); }
-  .cov-status { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--ink-soft); min-width: 60px; text-align: right; }
+  .cov-status { font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; font-size: 11px; color: var(--ink-soft); min-width: 60px; text-align: right; }
   .cov-status.warn { color: var(--brass-deep); }
   .cov-status.gap { color: var(--clay); }
   .gap-callout { margin-top: 18px; padding: 14px 16px; background: rgba(181, 99, 76, 0.08); border-left: 2px solid var(--clay); font-size: 12px; color: var(--ink-2); line-height: 1.5; }
@@ -201,23 +216,23 @@
   .vault-icon { width: 28px; height: 28px; border: 1px solid var(--rule); display: grid; place-items: center; border-radius: 2px; color: var(--ink-soft); }
   .vault-text { font-size: 12.5px; color: var(--ink); line-height: 1.4; }
   .vault-text .src { display: block; font-size: 11px; color: var(--ink-faint); margin-top: 2px; }
-  .vault-time { font-size: 10px; color: var(--ink-faint); font-family: 'IBM Plex Mono', monospace; letter-spacing: 0.04em; }
+  .vault-time { font-size: 10px; color: var(--ink-faint); font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; letter-spacing: 0.04em; }
 
   /* ============ STEWARDSHIP STRIP (dashboard) ============ */
   .review-strip { margin-top: 12px; background: var(--ink); color: var(--paper); padding: 48px 56px; display: grid; grid-template-columns: 1fr 280px; gap: 56px; align-items: center; border-radius: 2px; position: relative; overflow: hidden; }
   .review-strip::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at right, rgba(168,138,79,.12) 0%, transparent 60%); pointer-events: none; }
   .review-strip .eyebrow { color: var(--brass-soft); }
-  .review-strip h2 { font-family: 'Fraunces', serif; font-weight: 300; font-size: 44px; line-height: 1.1; margin-top: 14px; letter-spacing: -0.02em; color: var(--paper); }
+  .review-strip h2 { font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; font-weight: 400; font-size: 44px; line-height: 1.1; margin-top: 14px; letter-spacing: -0.02em; color: var(--paper); }
   .review-strip h2 em { font-style: italic; color: var(--brass-soft); }
   .review-strip p { margin-top: 16px; font-size: 13.5px; line-height: 1.65; color: rgba(245,239,228,.78); max-width: 560px; }
   .review-cta { display: inline-flex; align-items: center; gap: 12px; margin-top: 24px; padding: 14px 22px; background: var(--brass); color: var(--ink); text-decoration: none; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 500; transition: background .2s ease; cursor: pointer; }
   .review-cta:hover { background: var(--brass-soft); }
   .review-book { aspect-ratio: 3/4; background: linear-gradient(135deg, var(--unison) 0%, var(--unison-deep) 100%); border: 1px solid var(--brass); box-shadow: -16px 16px 32px rgba(0,0,0,.35), 0 1px 0 rgba(168,138,79,.3) inset; padding: 28px; display: flex; flex-direction: column; justify-content: space-between; position: relative; z-index: 1; }
   .review-book::after { content: ''; position: absolute; top: 0; bottom: 0; left: 14px; width: 1px; background: rgba(168,138,79,.3); }
-  .review-book .top { font-family: 'Fraunces', serif; font-style: italic; font-size: 14px; color: var(--brass-soft); line-height: 1.3; }
-  .review-book .mid { font-family: 'Fraunces', serif; font-size: 22px; line-height: 1.15; color: var(--paper); letter-spacing: -0.01em; }
+  .review-book .top { font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; font-style: italic; font-size: 14px; color: var(--brass-soft); line-height: 1.3; }
+  .review-book .mid { font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; font-size: 22px; line-height: 1.15; color: var(--paper); letter-spacing: -0.01em; }
   .review-book .bot { font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(168,138,79,.7); font-family: 'DM Sans', sans-serif; border-top: 1px solid rgba(168,138,79,.3); padding-top: 12px; }
-  .review-book .vol { font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--brass-soft); margin-top: 6px; }
+  .review-book .vol { font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; font-size: 10px; color: var(--brass-soft); margin-top: 6px; }
 
   /* ============ FOOTER ============ */
   .footer-meta { margin-top: 48px; padding: 32px 0 56px; border-top: 1px solid var(--rule); display: flex; justify-content: space-between; align-items: center; font-size: 11px; color: var(--ink-faint); letter-spacing: 0.04em; }
@@ -242,7 +257,7 @@
   .asset-crumb { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 18px; }
   .asset-crumb a { color: var(--brass-deep); text-decoration: none; cursor: pointer; }
   .asset-crumb a:hover { color: var(--ink); }
-  .asset-title { font-family: 'Fraunces', serif; font-size: 56px; font-weight: 300; line-height: 1.05; color: var(--ink); letter-spacing: -0.025em; }
+  .asset-title { font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; font-size: 56px; font-weight: 400; line-height: 1.05; color: var(--ink); letter-spacing: -0.025em; }
   .asset-title em { font-style: italic; color: var(--brass-deep); }
   .asset-sub { font-size: 14px; color: var(--ink-soft); margin-top: 16px; line-height: 1.6; max-width: 560px; }
 
@@ -262,8 +277,8 @@
   .profile-row { padding: 12px 0; border-bottom: 1px solid var(--rule-soft); display: grid; grid-template-columns: 1fr 1fr; gap: 12px; align-items: baseline; }
   .profile-row:last-child { border-bottom: none; }
   .profile-row .k { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-faint); }
-  .profile-row .v { font-size: 13px; color: var(--ink); text-align: right; font-family: 'IBM Plex Mono', monospace; }
-  .profile-row .v.serif { font-family: 'Fraunces', serif; font-size: 14px; }
+  .profile-row .v { font-size: 13px; color: var(--ink); text-align: right; font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; }
+  .profile-row .v.serif { font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; font-size: 14px; }
 
   /* timeline */
   .timeline { position: relative; padding-left: 28px; }
@@ -274,8 +289,8 @@
   .tl-item.system::before { border-color: var(--ink-faint); background: var(--paper); }
   .tl-item.alert::before { background: var(--clay); border-color: var(--clay); }
   .tl-item.now::before { background: var(--ink); border-color: var(--brass); box-shadow: 0 0 0 4px rgba(168,138,79,.2); }
-  .tl-time { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--ink-faint); letter-spacing: 0.04em; }
-  .tl-title { font-family: 'Fraunces', serif; font-size: 14px; font-weight: 500; margin: 4px 0 4px; color: var(--ink); }
+  .tl-time { font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; font-size: 11px; color: var(--ink-faint); letter-spacing: 0.04em; }
+  .tl-title { font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; font-size: 14px; font-weight: 500; margin: 4px 0 4px; color: var(--ink); }
   .tl-body { font-size: 12.5px; color: var(--ink-soft); line-height: 1.55; }
   .tl-body em { color: var(--brass-deep); font-style: normal; font-weight: 500; }
   .tl-attach { display: inline-flex; gap: 8px; margin-top: 8px; font-size: 11px; color: var(--ink-soft); padding: 4px 10px; border: 1px solid var(--rule); border-radius: 2px; align-items: center; }
@@ -284,9 +299,9 @@
   .iot-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
   .iot-tile { padding: 14px; background: var(--paper-2); border: 1px solid var(--rule-soft); border-radius: 2px; }
   .iot-tile .label { font-size: 9.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-faint); }
-  .iot-tile .reading { font-family: 'Fraunces', serif; font-size: 22px; color: var(--ink); margin-top: 6px; line-height: 1; letter-spacing: -0.015em; }
+  .iot-tile .reading { font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; font-size: 22px; color: var(--ink); margin-top: 6px; line-height: 1; letter-spacing: -0.015em; }
   .iot-tile .reading .unit { font-size: 12px; color: var(--ink-soft); margin-left: 4px; }
-  .iot-tile .delta { font-size: 10px; margin-top: 6px; color: var(--forest); font-family: 'IBM Plex Mono', monospace; }
+  .iot-tile .delta { font-size: 10px; margin-top: 6px; color: var(--forest); font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; }
   .iot-tile .delta.warn { color: var(--brass-deep); }
   .iot-tile .delta.alert { color: var(--clay); }
 
@@ -294,8 +309,8 @@
   .action-card { padding: 16px; border: 1px solid var(--rule); background: var(--paper-2); border-radius: 2px; }
   .action-card.primary { border-color: var(--clay); background: rgba(181,99,76,.06); }
   .action-card .ah { display: flex; justify-content: space-between; align-items: baseline; }
-  .action-card .ah .t { font-family: 'Fraunces', serif; font-size: 14px; font-weight: 500; color: var(--ink); }
-  .action-card .ah .c { font-size: 11px; color: var(--ink-soft); font-family: 'IBM Plex Mono', monospace; }
+  .action-card .ah .t { font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; font-size: 14px; font-weight: 500; color: var(--ink); }
+  .action-card .ah .c { font-size: 11px; color: var(--ink-soft); font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; }
   .action-card p { font-size: 12px; color: var(--ink-soft); margin-top: 6px; line-height: 1.5; }
   .action-row { display: flex; gap: 8px; margin-top: 12px; }
   .btn { flex: 1; padding: 11px 14px; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; font-family: 'DM Sans', sans-serif; font-weight: 500; cursor: pointer; border: 1px solid var(--rule); background: transparent; color: var(--ink); transition: all .2s ease; }
@@ -317,7 +332,7 @@
   /* Coverage panel for asset */
   .coverage-asset { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-top: 28px; padding-top: 28px; border-top: 1px solid var(--rule); }
   .ca-block .label { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-faint); }
-  .ca-block .v { font-family: 'Fraunces', serif; font-size: 24px; color: var(--ink); margin-top: 6px; letter-spacing: -0.015em; }
+  .ca-block .v { font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; font-size: 24px; color: var(--ink); margin-top: 6px; letter-spacing: -0.015em; }
   .ca-block .sub { font-size: 11px; color: var(--ink-soft); margin-top: 4px; line-height: 1.45; }
 
   /* ============ INTERIOR: VAULT ============ */
@@ -329,7 +344,7 @@
   .v-folder.active { color: var(--ink); font-weight: 500; }
   .v-folder.active::before { content: '›'; color: var(--brass); }
   .v-folder span:not(.cnt) { font-size: 12.5px; color: inherit; }
-  .v-folder .cnt { font-size: 10px; font-family: 'IBM Plex Mono', monospace; color: var(--ink-faint); }
+  .v-folder .cnt { font-size: 10px; font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; color: var(--ink-faint); }
 
   .vault-main { padding: 0; }
   .vault-toolbar { display: flex; gap: 10px; margin-bottom: 28px; align-items: center; flex-wrap: wrap; }
@@ -348,26 +363,26 @@
   .doc-name { font-size: 13.5px; color: var(--ink); font-weight: 500; }
   .doc-meta { font-size: 11px; color: var(--ink-faint); margin-top: 3px; }
   .doc-tag { font-size: 9.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--brass-deep); padding: 4px 8px; border: 1px solid var(--brass-soft); border-radius: 1px; white-space: nowrap; }
-  .doc-time { font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; color: var(--ink-faint); white-space: nowrap; }
+  .doc-time { font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; font-size: 10.5px; color: var(--ink-faint); white-space: nowrap; }
 
   /* Permissions panel */
   .perm-panel { background: var(--ink); color: var(--paper); padding: 28px; border-radius: 2px; position: sticky; top: 24px; }
   .perm-panel .eyebrow { color: var(--brass-soft); }
-  .perm-doc-name { font-family: 'Fraunces', serif; font-size: 18px; margin-top: 10px; line-height: 1.3; color: var(--paper); letter-spacing: -0.01em; }
+  .perm-doc-name { font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; font-size: 18px; margin-top: 10px; line-height: 1.3; color: var(--paper); letter-spacing: -0.01em; }
   .perm-doc-sub { font-size: 11px; color: rgba(245,239,228,.55); margin-top: 6px; }
   .perm-section { margin-top: 24px; padding-top: 20px; border-top: 1px solid rgba(168,138,79,.25); }
   .perm-section .h { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--brass-soft); margin-bottom: 12px; }
   .perm-row { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; font-size: 12px; }
   .perm-row .who { color: var(--paper); }
   .perm-row .who .role { display: block; font-size: 10px; color: rgba(245,239,228,.5); margin-top: 2px; }
-  .perm-row .lvl { font-family: 'IBM Plex Mono', monospace; font-size: 10px; padding: 3px 8px; border-radius: 1px; }
+  .perm-row .lvl { font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; font-size: 10px; padding: 3px 8px; border-radius: 1px; }
   .lvl.full { background: rgba(47,79,58,.4); color: #B8D4BE; }
   .lvl.read { background: rgba(168,138,79,.25); color: var(--brass-soft); }
   .lvl.expires { background: rgba(181,99,76,.2); color: var(--clay-soft); }
   .audit-row { display: grid; grid-template-columns: 1fr auto; gap: 10px; padding: 8px 0; font-size: 11.5px; line-height: 1.4; border-bottom: 1px dashed rgba(168,138,79,.15); }
   .audit-row:last-child { border-bottom: none; }
   .audit-row .a { color: rgba(245,239,228,.85); }
-  .audit-row .t { font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: rgba(245,239,228,.45); }
+  .audit-row .t { font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; font-size: 10px; color: rgba(245,239,228,.45); }
 
   /* ============ INTERIOR: CONCIERGE THREAD ============ */
   .concierge-shell { display: grid; grid-template-columns: 280px 1fr; gap: 28px; margin-top: 36px; min-height: 720px; }
@@ -378,15 +393,15 @@
   .thread-card.active { background: var(--paper-2); border-left-color: var(--brass); }
   .thread-top { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 4px; }
   .thread-name { font-size: 12.5px; font-weight: 500; color: var(--ink); }
-  .thread-time { font-size: 10px; color: var(--ink-faint); font-family: 'IBM Plex Mono', monospace; }
+  .thread-time { font-size: 10px; color: var(--ink-faint); font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; }
   .thread-snip { font-size: 11.5px; color: var(--ink-soft); line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
   .thread-card.active .thread-snip { color: var(--ink-2); }
   .thread-card.unread .thread-name::after { content: ''; display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--clay); margin-left: 8px; vertical-align: middle; }
 
   .thread-main { display: flex; flex-direction: column; }
   .thread-header { padding: 0 0 18px; border-bottom: 1px solid var(--rule-soft); display: flex; align-items: center; gap: 16px; }
-  .thread-header-avatar { width: 52px; height: 52px; border-radius: 50%; background: linear-gradient(135deg, #847151 0%, var(--brass) 100%); color: var(--ink); display: grid; place-items: center; font-family: 'Fraunces', serif; font-size: 18px; }
-  .thread-header-info h3 { font-family: 'Fraunces', serif; font-size: 22px; font-weight: 400; color: var(--ink); letter-spacing: -0.01em; }
+  .thread-header-avatar { width: 52px; height: 52px; border-radius: 50%; background: linear-gradient(135deg, #847151 0%, var(--brass) 100%); color: var(--ink); display: grid; place-items: center; font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; font-size: 18px; }
+  .thread-header-info h3 { font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; font-size: 22px; font-weight: 400; color: var(--ink); letter-spacing: -0.01em; }
   .thread-header-info .meta { font-size: 11.5px; color: var(--ink-soft); margin-top: 4px; display: flex; align-items: center; gap: 6px; }
   .thread-header-info .meta .live-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--forest); display: inline-block; }
   .thread-header-actions { margin-left: auto; display: flex; gap: 10px; }
@@ -394,7 +409,7 @@
   .thread-body { padding: 32px 0; flex: 1; display: flex; flex-direction: column; gap: 22px; max-height: 580px; overflow-y: auto; }
   .msg { display: grid; grid-template-columns: 36px 1fr; gap: 14px; max-width: 80%; }
   .msg.from-self { grid-template-columns: 1fr 36px; margin-left: auto; }
-  .msg-avatar { width: 36px; height: 36px; border-radius: 50%; background: var(--brass); color: var(--ink); display: grid; place-items: center; font-family: 'Fraunces', serif; font-size: 12px; flex-shrink: 0; }
+  .msg-avatar { width: 36px; height: 36px; border-radius: 50%; background: var(--brass); color: var(--ink); display: grid; place-items: center; font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; font-size: 12px; flex-shrink: 0; }
   .msg.from-self .msg-avatar { background: var(--ink); color: var(--paper); border: 1.5px solid var(--brass); order: 2; }
   .msg.from-system .msg-avatar { background: transparent; color: var(--ink-faint); border: 1px dashed var(--rule); }
   .msg-bubble { padding: 14px 18px; background: var(--paper-2); border: 1px solid var(--rule-soft); border-radius: 2px; }
@@ -409,8 +424,8 @@
   .msg-attach { margin-top: 10px; padding: 10px 14px; background: var(--paper); border: 1px solid var(--rule); display: flex; gap: 10px; align-items: center; font-size: 12px; color: var(--ink-2); }
   .msg-attach svg { color: var(--brass-deep); flex-shrink: 0; }
   .msg-attach .name { font-weight: 500; }
-  .msg-attach .size { color: var(--ink-faint); font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; margin-left: auto; }
-  .msg-time { font-size: 10px; color: var(--ink-faint); font-family: 'IBM Plex Mono', monospace; margin-top: 6px; letter-spacing: 0.04em; }
+  .msg-attach .size { color: var(--ink-faint); font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; font-size: 10.5px; margin-left: auto; }
+  .msg-time { font-size: 10px; color: var(--ink-faint); font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; margin-top: 6px; letter-spacing: 0.04em; }
   .msg.from-self .msg-time { text-align: right; }
 
   .msg-day-divider { display: flex; align-items: center; gap: 14px; margin: 12px 0; }
@@ -426,7 +441,7 @@
   /* ============ INTERIOR: STEWARDSHIP REVIEW ============ */
   .review-hero { padding: 48px 0 36px; text-align: center; }
   .review-hero .eyebrow { margin-bottom: 14px; }
-  .review-hero h1 { font-family: 'Fraunces', serif; font-size: 60px; font-weight: 300; color: var(--ink); line-height: 1.05; letter-spacing: -0.025em; }
+  .review-hero h1 { font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; font-size: 60px; font-weight: 400; color: var(--ink); line-height: 1.05; letter-spacing: -0.025em; }
   .review-hero h1 em { font-style: italic; color: var(--brass-deep); }
   .review-hero p { font-size: 14px; color: var(--ink-soft); max-width: 600px; margin: 18px auto 0; line-height: 1.65; }
 
@@ -439,123 +454,125 @@
   .page { padding: 56px 56px; min-height: 600px; position: relative; }
   .page.cover { background: linear-gradient(135deg, var(--unison) 0%, var(--unison-deep) 100%); color: var(--paper); padding: 80px 56px; display: flex; flex-direction: column; justify-content: space-between; }
   .page.cover::after { content: ''; position: absolute; top: 0; bottom: 0; right: 14px; width: 1px; background: rgba(168,138,79,.3); }
-  .page.cover .top-mark { font-family: 'Fraunces', serif; font-style: italic; color: var(--brass-soft); font-size: 16px; }
+  .page.cover .top-mark { font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; font-style: italic; color: var(--brass-soft); font-size: 16px; }
   .page.cover .center { text-align: left; }
   .page.cover .center .pre { font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(168,138,79,.7); margin-bottom: 18px; }
-  .page.cover h2 { font-family: 'Fraunces', serif; font-size: 38px; font-weight: 300; line-height: 1.1; color: var(--paper); letter-spacing: -0.02em; }
+  .page.cover h2 { font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; font-size: 38px; font-weight: 400; line-height: 1.1; color: var(--paper); letter-spacing: -0.02em; }
   .page.cover h2 em { font-style: italic; color: var(--brass-soft); }
-  .page.cover .vol { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--brass-soft); letter-spacing: 0.12em; margin-top: 32px; }
+  .page.cover .vol { font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; font-size: 11px; color: var(--brass-soft); letter-spacing: 0.12em; margin-top: 32px; }
   .page.cover .bot { display: flex; justify-content: space-between; align-items: end; font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(168,138,79,.7); }
 
-  .page-num { position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--ink-faint); letter-spacing: 0.1em; }
-  .page-section { font-family: 'Fraunces', serif; font-style: italic; font-size: 13px; color: var(--brass-deep); position: absolute; top: 24px; right: 56px; letter-spacing: 0.04em; }
+  .page-num { position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; font-size: 10px; color: var(--ink-faint); letter-spacing: 0.1em; }
+  .page-section { font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; font-style: italic; font-size: 13px; color: var(--brass-deep); position: absolute; top: 24px; right: 56px; letter-spacing: 0.04em; }
   .page-section.left { right: auto; left: 56px; }
 
-  .page h3 { font-family: 'Fraunces', serif; font-size: 28px; font-weight: 400; color: var(--ink); margin-bottom: 18px; letter-spacing: -0.015em; line-height: 1.15; }
+  .page h3 { font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; font-size: 28px; font-weight: 400; color: var(--ink); margin-bottom: 18px; letter-spacing: -0.015em; line-height: 1.15; }
   .page h3 em { font-style: italic; color: var(--brass-deep); }
-  .page .lede { font-family: 'Fraunces', serif; font-size: 17px; font-style: italic; color: var(--ink-2); line-height: 1.55; margin-bottom: 22px; font-weight: 300; }
+  .page .lede { font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; font-size: 17px; font-style: italic; color: var(--ink-2); line-height: 1.55; margin-bottom: 22px; font-weight: 400; }
   .page .body-text { font-size: 13.5px; line-height: 1.7; color: var(--ink-2); }
   .page .body-text p { margin-bottom: 12px; }
-  .page .body-text p:first-letter { font-family: 'Fraunces', serif; font-size: 38px; font-weight: 400; float: left; line-height: 0.9; padding-right: 6px; padding-top: 4px; color: var(--brass-deep); font-style: italic; }
-  .signature { margin-top: 32px; font-family: 'Fraunces', serif; font-style: italic; font-size: 18px; color: var(--ink); }
+  .page .body-text p:first-letter { font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; font-size: 38px; font-weight: 400; float: left; line-height: 0.9; padding-right: 6px; padding-top: 4px; color: var(--brass-deep); font-style: italic; }
+  .signature { margin-top: 32px; font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; font-style: italic; font-size: 18px; color: var(--ink); }
   .signature .role { display: block; font-style: normal; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-faint); margin-top: 8px; font-family: 'DM Sans', sans-serif; }
 
   .ornament { text-align: center; margin: 28px 0; color: var(--brass); font-size: 14px; letter-spacing: 0.5em; }
 
   .year-stat { display: flex; justify-content: space-between; align-items: baseline; padding: 14px 0; border-bottom: 1px solid var(--rule-soft); }
   .year-stat .l { font-size: 12.5px; color: var(--ink-2); }
-  .year-stat .v { font-family: 'Fraunces', serif; font-size: 22px; color: var(--ink); letter-spacing: -0.015em; }
+  .year-stat .v { font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; font-size: 22px; color: var(--ink); letter-spacing: -0.015em; }
 
   .notable-list { display: flex; flex-direction: column; gap: 14px; }
   .notable-item { display: grid; grid-template-columns: 60px 1fr; gap: 16px; padding: 12px 0; border-bottom: 1px solid var(--rule-soft); }
   .notable-thumb { width: 60px; height: 60px; background: linear-gradient(135deg, var(--paper-3) 0%, var(--rule-soft) 100%); border: 1px solid var(--rule); }
-  .notable-info .h { font-family: 'Fraunces', serif; font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 4px; }
+  .notable-info .h { font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 4px; }
   .notable-info .s { font-size: 11.5px; color: var(--ink-soft); line-height: 1.45; }
-  .notable-info .v { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--brass-deep); margin-top: 4px; }
+  .notable-info .v { font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; font-size: 11px; color: var(--brass-deep); margin-top: 4px; }
 
   .anticipated-list { display: flex; flex-direction: column; gap: 16px; }
   .anticipated-item { padding: 14px 0 14px 18px; border-left: 1px solid var(--brass-soft); position: relative; }
   .anticipated-item::before { content: ''; position: absolute; left: -4px; top: 18px; width: 7px; height: 7px; border-radius: 50%; background: var(--brass); }
-  .anticipated-item h4 { font-family: 'Fraunces', serif; font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 4px; }
+  .anticipated-item h4 { font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 4px; }
   .anticipated-item p { font-size: 12px; color: var(--ink-soft); line-height: 1.55; }
-  .anticipated-item .when { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.06em; color: var(--brass-deep); margin-top: 4px; }
+  .anticipated-item .when { font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; font-size: 10px; letter-spacing: 0.06em; color: var(--brass-deep); margin-top: 4px; }
 
   /* ============ UNISON LOGO ============ */
   .brand-logo { height: 26px; width: auto; display: block; opacity: .92; }
   .brand-logo-wrap { display: flex; align-items: center; gap: 16px; }
   .brand-vline { width: 1px; height: 24px; background: var(--unison); opacity: .35; }
-  .brand-platform { font-family: 'Fraunces', serif; font-style: italic; font-size: 22px; font-weight: 400; color: var(--unison); letter-spacing: -0.015em; font-variation-settings: 'opsz' 144; }
-  .brand-platform .ampersand { color: var(--brass); font-weight: 300; }
-  .brand-suffix-new { font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--unison); padding: 2px 7px; border: 1px solid rgba(16,47,84,.3); border-radius: 1px; margin-left: 4px; }
+  .brand-platform { font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; font-style: italic; font-size: 22px; font-weight: 400; color: var(--unison); letter-spacing: -0.015em; font-variation-settings: 'opsz' 144; }
+  .brand-platform .ampersand { color: var(--brass); font-weight: 400; }
+  .brand-suffix-new { font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--unison); padding: 2px 7px; border: 1px solid rgba(16,47,84,.3); border-radius: 1px; margin-left: 4px; }
   .footer-logo { height: 16px; width: auto; opacity: .45; margin-right: 8px; }
   .footer-brand { display: flex; align-items: center; gap: 4px; }
 
 
   /* ============================================================
-     OSWALDONE — WARMING LAYER
+     OSWALD 360 — WARMING LAYER
      Overrides and additions on top of the original stylesheet.
      ============================================================ */
 
   :root {
-    --oswald-navy: #1B3454;
+    --oswald-navy: #051C2C;
     --oswald-navy-deep: #0E2240;
     --oswald-red: #B5402C;
-    --peach: #F0DCC5;
-    --peach-deep: #E5C8A8;
-    --warm-cream: #FAF4E8;
-    --clay-warm: #C97F5E;
-    --rule-warm: #DECDB0;
+    --peach: #F5F2EB;
+    --peach-deep: #B2CFD8;
+    --warm-cream: #F5F2EB;
+    --clay-warm: #9E2A2F;
+    --rule-warm: #E0E0E0;
   }
 
   /* Slightly warmer body bg, more peach undertone */
   body {
-    background: linear-gradient(180deg, #F8F0E0 0%, #F5EAD6 100%) !important;
+    background: linear-gradient(180deg, #F5F2EB 0%, #F2EFE6 100%) !important;
   }
 
   /* ============ OSWALD BRAND MARK ============ */
   .oswald-brand {
     display: flex;
-    align-items: baseline;
-    gap: 14px;
+    align-items: center;
+    gap: 16px;
     line-height: 1;
   }
-  .oswald-wordmark {
-    font-family: 'Inter', system-ui, sans-serif;
+  .brand-logo-link {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+  }
+  .brand-logo-img {
+    height: 44px;
+    width: auto;
+    display: block;
+  }
+  .brand-logo-fallback {
+    display: inline-flex;
+    flex-direction: column;
+    line-height: 1.1;
+    padding: 2px 0;
+  }
+  .brand-logo-fallback .word {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 26px;
     font-weight: 700;
-    font-size: 24px;
-    letter-spacing: -0.03em;
-    color: var(--oswald-navy);
+    color: var(--oswald-red);
+    letter-spacing: -0.005em;
     line-height: 1;
   }
-  .oswald-wordmark .dot {
-    color: var(--oswald-red);
-  }
-  .oswald-suffix-rule {
-    width: 1px;
-    height: 22px;
-    background: var(--oswald-navy);
-    opacity: 0.25;
-    align-self: center;
-  }
-  .oswald-one {
-    font-family: 'Fraunces', serif;
-    font-style: italic;
-    font-size: 20px;
-    font-weight: 400;
-    color: var(--oswald-navy);
-    letter-spacing: -0.015em;
-  }
-  .oswald-one-tag {
-    font-family: 'IBM Plex Mono', monospace;
+  .brand-logo-fallback .word sup {
     font-size: 9px;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--oswald-navy);
-    opacity: 0.55;
-    padding-left: 6px;
-    align-self: center;
+    vertical-align: super;
+    line-height: 0;
+    margin-left: 1px;
   }
-
+  .brand-logo-fallback .tagline {
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+    font-size: 7px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    color: var(--oswald-red);
+    text-transform: uppercase;
+    margin-top: 2px;
+  }
   /* Footer brand */
   .footer-oswald {
     font-family: 'Inter', sans-serif;
@@ -570,7 +587,7 @@
   .pillars-strip {
     margin: 24px 0 32px;
     padding: 28px 32px;
-    background: linear-gradient(135deg, #FAF4E8 0%, #F5E8D2 100%);
+    background: #F5F2EB;
     border: 1px solid var(--rule-warm);
     border-radius: 4px;
     position: relative;
@@ -582,7 +599,7 @@
     left: 28px;
     background: #F8F0E0;
     padding: 0 12px;
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
     font-size: 10px;
     letter-spacing: 0.18em;
     text-transform: uppercase;
@@ -599,7 +616,7 @@
     align-items: flex-start;
     gap: 10px;
     padding: 0 14px 0 0;
-    border-right: 1px solid rgba(135, 109, 59, 0.18);
+    border-right: 1px solid rgba(77, 77, 79, 0.18);
     cursor: pointer;
     transition: transform 0.2s;
   }
@@ -614,12 +631,12 @@
   .pillar-icon-circle {
     width: 44px;
     height: 44px;
-    background: rgba(135, 109, 59, 0.1);
+    background: rgba(77, 77, 79, 0.08);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid rgba(135, 109, 59, 0.22);
+    border: 1px solid rgba(77, 77, 79, 0.22);
   }
   .pillar-icon-circle svg {
     width: 22px;
@@ -627,14 +644,14 @@
     color: var(--oswald-navy);
   }
   .pillar-label {
-    font-family: 'Fraunces', serif;
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
     font-size: 17px;
     font-weight: 500;
     color: var(--oswald-navy);
     letter-spacing: -0.01em;
   }
   .pillar-score {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
     font-size: 11px;
     color: var(--brass-deep);
     letter-spacing: 0.04em;
@@ -651,7 +668,7 @@
 
   /* ============ SCORECARD SCREEN ============ */
   .scorecard-hero {
-    background: linear-gradient(135deg, var(--oswald-navy) 0%, var(--oswald-navy-deep) 100%);
+    background: var(--oswald-navy);
     color: #fff;
     padding: 48px 56px;
     border-radius: 4px;
@@ -666,16 +683,16 @@
     bottom: -80px;
     width: 300px;
     height: 300px;
-    background: radial-gradient(circle, rgba(201, 127, 94, 0.18) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(158, 42, 47, 0.10) 0%, transparent 70%);
   }
   .scorecard-hero .eyebrow {
     color: rgba(255, 255, 255, 0.6);
     margin-bottom: 16px;
   }
   .scorecard-hero h1 {
-    font-family: 'Fraunces', serif;
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
     font-size: 44px;
-    font-weight: 300;
+    font-weight: 400;
     color: #fff;
     margin-bottom: 12px;
     letter-spacing: -0.02em;
@@ -706,9 +723,9 @@
     position: relative;
   }
   .stat-block .num {
-    font-family: 'Fraunces', serif;
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
     font-size: 56px;
-    font-weight: 300;
+    font-weight: 400;
     color: var(--oswald-navy);
     line-height: 1;
     letter-spacing: -0.03em;
@@ -719,7 +736,7 @@
     margin-left: 4px;
   }
   .stat-block .label {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
     font-size: 10px;
     letter-spacing: 0.18em;
     text-transform: uppercase;
@@ -741,7 +758,7 @@
     margin-bottom: 36px;
   }
   .scorecard-rate-now h2 {
-    font-family: 'Fraunces', serif;
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
     font-size: 28px;
     font-weight: 400;
     color: var(--oswald-navy);
@@ -768,7 +785,7 @@
   .rate-dim .ico-circle {
     width: 38px;
     height: 38px;
-    background: rgba(135, 109, 59, 0.12);
+    background: rgba(77, 77, 79, 0.10);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -777,7 +794,7 @@
   }
   .rate-dim .ico-circle svg { width: 20px; height: 20px; color: var(--oswald-navy); }
   .rate-dim h4 {
-    font-family: 'Fraunces', serif;
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
     font-size: 15px;
     font-weight: 500;
     color: var(--oswald-navy);
@@ -805,11 +822,11 @@
     position: absolute;
     left: 0; top: 0;
     height: 100%;
-    background: linear-gradient(90deg, var(--clay-warm), var(--brass));
+    background: var(--oswald-red);
     border-radius: 2px;
   }
   .rate-num {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
     font-size: 12px;
     color: var(--oswald-navy);
     font-weight: 600;
@@ -834,7 +851,7 @@
     text-align: left;
   }
   .history-year .yr {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
     font-size: 11px;
     letter-spacing: 0.15em;
     text-transform: uppercase;
@@ -842,15 +859,15 @@
     margin-bottom: 8px;
   }
   .history-year .score {
-    font-family: 'Fraunces', serif;
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
     font-size: 38px;
-    font-weight: 300;
+    font-weight: 400;
     color: var(--oswald-navy);
     line-height: 1;
     letter-spacing: -0.02em;
   }
   .history-year .delta {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
     font-size: 11px;
     color: #2F4F3A;
     margin-top: 6px;
@@ -858,7 +875,7 @@
   .history-year .delta.flat { color: var(--ink-faint); }
 
   .testimonial-block {
-    background: linear-gradient(135deg, var(--warm-cream) 0%, var(--peach) 100%);
+    background: var(--warm-tint);
     border-radius: 3px;
     padding: 40px 44px;
     margin-bottom: 36px;
@@ -878,7 +895,7 @@
     padding-left: 22px;
   }
   .testimonial .quote {
-    font-family: 'Fraunces', serif;
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
     font-size: 17px;
     font-style: italic;
     color: var(--oswald-navy);
@@ -901,7 +918,7 @@
     margin-bottom: 36px;
   }
   .recap-cover {
-    background: linear-gradient(135deg, var(--oswald-navy) 0%, var(--oswald-navy-deep) 100%);
+    background: var(--oswald-navy);
     color: #fff;
     padding: 36px 40px;
     border-radius: 3px;
@@ -912,9 +929,9 @@
     margin-top: 18px;
   }
   .recap-cover h3 {
-    font-family: 'Fraunces', serif;
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
     font-size: 30px;
-    font-weight: 300;
+    font-weight: 400;
     line-height: 1.15;
     letter-spacing: -0.015em;
   }
@@ -935,7 +952,7 @@
 
   /* ============ IN GOOD COMPANY SCREEN ============ */
   .igc-hero {
-    background: linear-gradient(135deg, var(--peach) 0%, var(--peach-deep) 100%);
+    background: var(--warm-tint-deep);
     padding: 56px 60px;
     border-radius: 4px;
     margin-bottom: 32px;
@@ -956,9 +973,9 @@
     margin-bottom: 16px;
   }
   .igc-hero h1 {
-    font-family: 'Fraunces', serif;
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
     font-size: 48px;
-    font-weight: 300;
+    font-weight: 400;
     color: var(--oswald-navy);
     margin-bottom: 12px;
     letter-spacing: -0.025em;
@@ -985,7 +1002,7 @@
     margin-bottom: 36px;
   }
   .igc-ask h2 {
-    font-family: 'Fraunces', serif;
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
     font-size: 28px;
     font-weight: 400;
     color: var(--oswald-navy);
@@ -1017,7 +1034,7 @@
     margin-bottom: 12px;
   }
   .igc-cat .cat-title {
-    font-family: 'Fraunces', serif;
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
     font-size: 15px;
     font-weight: 500;
     color: var(--oswald-navy);
@@ -1052,18 +1069,18 @@
     width: 56px;
     height: 56px;
     border-radius: 50%;
-    background: linear-gradient(135deg, var(--brass) 0%, var(--clay-warm) 100%);
+    background: var(--oswald-blue);
     color: #fff;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: 'Fraunces', serif;
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
     font-size: 19px;
     font-weight: 400;
     letter-spacing: 0.02em;
   }
   .match-info .name {
-    font-family: 'Fraunces', serif;
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
     font-size: 16px;
     font-weight: 500;
     color: var(--oswald-navy);
@@ -1079,7 +1096,7 @@
     font-weight: 500;
   }
   .match-status {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
     font-size: 10px;
     letter-spacing: 0.1em;
     text-transform: uppercase;
@@ -1088,13 +1105,13 @@
     border-radius: 2px;
     white-space: nowrap;
   }
-  .match-status.intro { color: var(--clay-warm); border-color: var(--clay-warm); background: rgba(201, 127, 94, 0.06); }
+  .match-status.intro { color: var(--clay-warm); border-color: var(--clay-warm); background: rgba(158, 42, 47, 0.06); }
   .match-status.done { color: #2F4F3A; border-color: #2F4F3A; background: rgba(47, 79, 58, 0.06); }
-  .match-status.pending { color: var(--brass-deep); border-color: var(--brass-deep); background: rgba(135, 109, 59, 0.06); }
+  .match-status.pending { color: var(--brass-deep); border-color: var(--brass-deep); background: rgba(77, 77, 79, 0.06); }
 
   /* Podcast tile */
   .igc-podcast {
-    background: linear-gradient(135deg, var(--oswald-navy) 0%, var(--oswald-navy-deep) 100%);
+    background: var(--oswald-navy);
     color: #fff;
     padding: 36px 40px;
     border-radius: 3px;
@@ -1113,13 +1130,13 @@
     bottom: -60px;
     width: 220px;
     height: 220px;
-    background: radial-gradient(circle, rgba(201, 127, 94, 0.18) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(158, 42, 47, 0.10) 0%, transparent 70%);
   }
   .igc-podcast .eyebrow { color: rgba(255,255,255,0.5); margin-bottom: 10px; }
   .igc-podcast h3 {
-    font-family: 'Fraunces', serif;
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
     font-size: 28px;
-    font-weight: 300;
+    font-weight: 400;
     margin-bottom: 6px;
     letter-spacing: -0.015em;
     line-height: 1.15;
@@ -1175,7 +1192,7 @@
   }
 
   .book-stage {
-    background: linear-gradient(180deg, #1F1208 0%, #0E0805 100%);
+    background: #1A1A1A;
     padding: 36px 36px 26px;
     border-radius: 3px;
     position: relative;
@@ -1184,7 +1201,7 @@
   .book-spread {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    background: #FAF4E8;
+    background: #F5F2EB;
     box-shadow: 0 16px 50px rgba(0,0,0,0.5), 0 2px 10px rgba(0,0,0,0.3);
     min-height: 560px;
     position: relative;
@@ -1205,10 +1222,10 @@
   .book-page {
     padding: 52px 50px 60px;
     position: relative;
-    background: linear-gradient(135deg, #FAF4E8 0%, #F4EAD4 100%);
+    background: #F8F5EE;
   }
   .book-page .page-eyebrow {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
     font-size: 9px;
     letter-spacing: 0.22em;
     text-transform: uppercase;
@@ -1216,9 +1233,9 @@
     margin-bottom: 26px;
   }
   .book-page h2 {
-    font-family: 'Fraunces', serif;
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
     font-size: 32px;
-    font-weight: 300;
+    font-weight: 400;
     color: var(--oswald-navy);
     letter-spacing: -0.02em;
     line-height: 1.12;
@@ -1229,7 +1246,7 @@
     color: var(--clay-warm);
   }
   .book-page p {
-    font-family: 'Fraunces', serif;
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
     font-size: 14px;
     line-height: 1.7;
     color: var(--oswald-navy);
@@ -1241,7 +1258,7 @@
   .book-page .page-num {
     position: absolute;
     bottom: 22px;
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
     font-size: 10px;
     color: var(--brass-deep);
     opacity: 0.55;
@@ -1252,7 +1269,7 @@
 
   /* Cover page (the left-hand cover of spread 1) */
   .book-cover-page {
-    background: linear-gradient(135deg, var(--oswald-navy) 0%, var(--oswald-navy-deep) 100%);
+    background: var(--oswald-navy);
     color: #fff;
     padding: 52px 50px;
     display: flex;
@@ -1264,11 +1281,11 @@
     content: '';
     position: absolute;
     inset: 18px;
-    border: 1px solid rgba(201, 127, 94, 0.32);
+    border: 1px solid rgba(158, 42, 47, 0.3);
     pointer-events: none;
   }
   .book-cover-page .cover-mark {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
     font-size: 9px;
     letter-spacing: 0.22em;
     text-transform: uppercase;
@@ -1276,15 +1293,15 @@
     margin-bottom: 12px;
   }
   .book-cover-page .cover-h {
-    font-family: 'Fraunces', serif;
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
     font-size: 42px;
-    font-weight: 300;
+    font-weight: 400;
     line-height: 1.05;
     letter-spacing: -0.025em;
   }
   .book-cover-page .cover-h em { font-style: italic; color: var(--clay-warm); }
   .book-cover-page .cover-foot {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
     font-size: 10px;
     letter-spacing: 0.14em;
     text-transform: uppercase;
@@ -1297,22 +1314,22 @@
     justify-content: space-between;
     align-items: baseline;
     padding: 10px 0;
-    border-bottom: 1px solid rgba(135, 109, 59, 0.18);
+    border-bottom: 1px solid rgba(77, 77, 79, 0.18);
   }
   .book-numbers .num-row:last-child { border-bottom: none; }
   .book-numbers .num-label {
-    font-family: 'Fraunces', serif;
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
     font-size: 13px;
     color: var(--oswald-navy);
   }
   .book-numbers .num-val {
-    font-family: 'Fraunces', serif;
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
     font-size: 17px;
     color: var(--oswald-navy-deep);
     font-weight: 400;
   }
   .book-numbers .num-val .delta {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
     font-size: 10px;
     color: var(--brass-deep);
     margin-left: 8px;
@@ -1323,7 +1340,7 @@
   .book-item { margin-bottom: 18px; }
   .book-item:last-child { margin-bottom: 0; }
   .book-item .when {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
     font-size: 9.5px;
     letter-spacing: 0.16em;
     text-transform: uppercase;
@@ -1331,14 +1348,14 @@
     margin-bottom: 4px;
   }
   .book-item .what {
-    font-family: 'Fraunces', serif;
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
     font-size: 15px;
     font-weight: 500;
     color: var(--oswald-navy);
     margin-bottom: 4px;
   }
   .book-item .detail {
-    font-family: 'Fraunces', serif;
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
     font-size: 13.5px;
     color: var(--ink-soft);
     line-height: 1.55;
@@ -1368,7 +1385,7 @@
     margin-bottom: 14px;
   }
   .book-signoff .signature {
-    font-family: 'Fraunces', serif;
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
     font-style: italic;
     font-size: 19px;
     color: var(--oswald-navy);
@@ -1384,7 +1401,7 @@
   }
   .book-pages-indicator {
     text-align: center;
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
     font-size: 10px;
     letter-spacing: 0.18em;
     text-transform: uppercase;
@@ -1433,16 +1450,16 @@
     grid-template-columns: 14px 1fr auto auto;
     gap: 14px;
     align-items: center;
-    font-family: 'Fraunces', serif;
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
     font-size: 12.5px;
     padding: 7px 0;
-    border-bottom: 1px solid rgba(135, 109, 59, 0.12);
+    border-bottom: 1px solid rgba(77, 77, 79, 0.10);
   }
   .legend-row:last-child { border-bottom: none; }
   .legend-row .sw { width: 12px; height: 12px; border-radius: 2px; }
   .legend-row .lbl { color: var(--oswald-navy); }
   .legend-row .pct {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
     font-size: 10px;
     color: var(--brass-deep);
     letter-spacing: 0.06em;
@@ -1450,7 +1467,7 @@
     min-width: 32px;
   }
   .legend-row .amt {
-    font-family: 'Fraunces', serif;
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
     font-size: 13px;
     color: var(--oswald-navy-deep);
     font-weight: 500;
@@ -1461,7 +1478,7 @@
     display: flex;
     gap: 22px;
     margin-top: 14px;
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
     font-size: 9px;
     letter-spacing: 0.12em;
     text-transform: uppercase;
@@ -1475,11 +1492,41 @@
     margin-right: 6px;
   }
   .chart-caption {
-    font-family: 'Fraunces', serif;
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
     font-size: 13px;
     color: var(--ink-soft);
     line-height: 1.6;
     margin-top: 18px;
+  }
+
+
+  /* ============ ALTERNATING ROW BACKGROUNDS — scannable stacked content ============ */
+  .profile-row:nth-child(even),
+  .cov-row:nth-child(even),
+  .num-row:nth-child(even),
+  .legend-row:nth-child(even),
+  .match-row:nth-child(even),
+  .action-row:nth-child(even),
+  .audit-row:nth-child(even),
+  .perm-row:nth-child(even),
+  .bench-row:nth-child(even),
+  .carrier-row:nth-child(even),
+  .claim-row:nth-child(even),
+  .prem-row:nth-child(even),
+  .vendor-row:nth-child(even),
+  .meta-row:nth-child(even) {
+    background: rgba(0, 0, 0, 0.022);
+  }
+  /* Profile rows live inside containers with their own padding;
+     give the BG some horizontal breathing room so it reads as a band, not edge-to-edge */
+  .profile-row:nth-child(even),
+  .num-row:nth-child(even),
+  .legend-row:nth-child(even) {
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-left: -10px;
+    margin-right: -10px;
+    border-radius: 2px;
   }
 
 </style>
@@ -1492,10 +1539,14 @@
   <!-- =================== NAV =================== -->
   <nav>
     <div class="oswald-brand">
-      <span class="oswald-wordmark">Oswald<span class="dot">.</span></span>
-      <span class="oswald-suffix-rule"></span>
-      <span class="oswald-one">ONE</span>
-      <span class="oswald-one-tag">Client Hub</span>
+      <a class="brand-logo-link" href="#" aria-label="Oswald 360">
+        <img src="oswald-360-logo.png" alt="Oswald 360" class="brand-logo-img"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';" />
+        <span class="brand-logo-fallback" style="display:none;">
+          <span class="word">Oswald<sup>®</sup></span>
+          <span class="tagline">A Unison Risk Advisors Company</span>
+        </span>
+      </a>
     </div>
     <ul class="nav-links" id="nav">
       <li><a data-screen="home" class="active">Home</a></li>
@@ -1553,7 +1604,7 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
               <circle cx="12" cy="12" r="9"/>
               <path d="M12 6 L14.4 11.6 L12 16 L9.6 11.6 Z" fill="currentColor" stroke="none"/>
-              <circle cx="12" cy="12" r="1.5" fill="#FAF4E8" stroke="none"/>
+              <circle cx="12" cy="12" r="1.5" fill="#F5F2EB" stroke="none"/>
             </svg>
           </div>
           <div class="pillar-label">Guidance</div>
@@ -1686,7 +1737,7 @@
         </div>
         <div class="review-book">
           <div><div class="top">An annual recap<br>prepared for</div><div class="mid" style="margin-top:14px">The Ellsworth Household</div></div>
-          <div><div class="bot">OswaldONE</div><div class="vol">2026</div></div>
+          <div><div class="bot">Oswald 360</div><div class="vol">2026</div></div>
         </div>
       </div>
     </main>
@@ -1734,10 +1785,10 @@
 
           <div class="eyebrow" style="margin: 32px 0 14px">Notable contents</div>
           <div class="profile-list">
-            <div class="profile-row"><span class="k serif" style="font-family:'Fraunces',serif;font-size:13px;text-transform:none;letter-spacing:0;color:var(--ink-2)">Twombly drawing</span><span class="v">$2.1M</span></div>
-            <div class="profile-row"><span class="k serif" style="font-family:'Fraunces',serif;font-size:13px;text-transform:none;letter-spacing:0;color:var(--ink-2)">Patek Philippe collection</span><span class="v">$840k</span></div>
-            <div class="profile-row"><span class="k serif" style="font-family:'Fraunces',serif;font-size:13px;text-transform:none;letter-spacing:0;color:var(--ink-2)">Wine cellar (1,400 bottles)</span><span class="v">$385k</span></div>
-            <div class="profile-row"><span class="k serif" style="font-family:'Fraunces',serif;font-size:13px;text-transform:none;letter-spacing:0;color:var(--ink-2)">'67 Porsche 911S</span><span class="v">$220k</span></div>
+            <div class="profile-row"><span class="k serif" style="font-family:'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;font-size:13px;text-transform:none;letter-spacing:0;color:var(--ink-2)">Twombly drawing</span><span class="v">$2.1M</span></div>
+            <div class="profile-row"><span class="k serif" style="font-family:'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;font-size:13px;text-transform:none;letter-spacing:0;color:var(--ink-2)">Patek Philippe collection</span><span class="v">$840k</span></div>
+            <div class="profile-row"><span class="k serif" style="font-family:'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;font-size:13px;text-transform:none;letter-spacing:0;color:var(--ink-2)">Wine cellar (1,400 bottles)</span><span class="v">$385k</span></div>
+            <div class="profile-row"><span class="k serif" style="font-family:'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;font-size:13px;text-transform:none;letter-spacing:0;color:var(--ink-2)">'67 Porsche 911S</span><span class="v">$220k</span></div>
           </div>
         </section>
 
@@ -1815,10 +1866,10 @@
               <!-- house marker -->
               <circle cx="310" cy="110" r="6" fill="var(--brass)"/>
               <circle cx="310" cy="110" r="14" fill="none" stroke="var(--brass)" stroke-width=".7" opacity=".5"/>
-              <text x="320" y="115" fill="rgba(245,239,228,.8)" font-family="Fraunces" font-style="italic" font-size="12">Red Mtn House</text>
+              <text x="320" y="115" fill="rgba(245,239,228,.8)" font-family="Helvetica Neue, Arial" font-style="italic" font-size="12">Red Mtn House</text>
               <!-- distance line -->
               <path d="M180,180 L308,114" stroke="rgba(168,138,79,.5)" stroke-width=".8" stroke-dasharray="2,3"/>
-              <text x="220" y="148" fill="var(--brass-soft)" font-family="IBM Plex Mono" font-size="10">7.3 mi</text>
+              <text x="220" y="148" fill="var(--brass-soft)" font-family="Helvetica Neue, Arial" font-size="10">7.3 mi</text>
               <!-- wind -->
               <g transform="translate(60,60)" opacity=".6">
                 <path d="M0,12 L24,12 M16,4 L24,12 L16,20" stroke="var(--brass-soft)" stroke-width="1" fill="none"/>
@@ -1826,7 +1877,7 @@
               </g>
               <!-- compass -->
               <g transform="translate(360,260)" opacity=".5">
-                <text x="0" y="0" fill="rgba(245,239,228,.6)" font-family="Fraunces" font-style="italic" font-size="10">N ↑</text>
+                <text x="0" y="0" fill="rgba(245,239,228,.6)" font-family="Helvetica Neue, Arial" font-style="italic" font-size="10">N ↑</text>
               </g>
             </svg>
           </div>
@@ -1973,7 +2024,7 @@
         </div>
       </div>
 
-      <textarea placeholder="Anything specific on your mind? (Optional — but we read all of it)" style="width:100%; padding:14px 16px; border:1px solid var(--rule); border-radius:3px; font-family:'Calibri', sans-serif; font-size:14px; min-height:80px; resize:vertical; background:#FAF4E8; color:var(--ink); margin-bottom:16px;"></textarea>
+      <textarea placeholder="Anything specific on your mind? (Optional — but we read all of it)" style="width:100%; padding:14px 16px; border:1px solid var(--rule); border-radius:3px; font-family:'Calibri', sans-serif; font-size:14px; min-height:80px; resize:vertical; background:#F5F2EB; color:var(--ink); margin-bottom:16px;"></textarea>
 
       <button class="btn primary" style="padding:14px 32px;">Submit your 2026 scorecard</button>
     </div>
@@ -1981,7 +2032,7 @@
     <!-- Your history -->
     <div class="scorecard-history">
       <div class="eyebrow">Your scorecard history</div>
-      <h2 style="font-family:'Fraunces',serif; font-size:24px; font-weight:400; color:var(--oswald-navy); margin-top:4px;">Four years with Oswald.</h2>
+      <h2 style="font-family:'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; font-size:24px; font-weight:400; color:var(--oswald-navy); margin-top:4px;">Four years with Oswald.</h2>
 
       <div class="history-grid">
         <div class="history-year">
@@ -2010,7 +2061,7 @@
     <!-- Testimonials -->
     <div class="testimonial-block">
       <div class="eyebrow">What other families and businesses are telling us</div>
-      <h2 style="font-family:'Fraunces',serif; font-size:26px; font-weight:300; color:var(--oswald-navy); letter-spacing:-0.01em; margin-bottom:24px;">You're in <em style="font-style:italic; color:var(--clay-warm);">good company</em>.</h2>
+      <h2 style="font-family:'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; font-size:26px; font-weight: 400; color:var(--oswald-navy); letter-spacing:-0.01em; margin-bottom:24px;">You're in <em style="font-style:italic; color:var(--clay-warm);">good company</em>.</h2>
 
       <div class="testimonial-grid">
         <div class="testimonial">
@@ -2035,12 +2086,12 @@
     <!-- Annual recap (folded from old Review) -->
     <div class="annual-recap">
       <div class="eyebrow">Your annual recap · 2026</div>
-      <h2 style="font-family:'Fraunces',serif; font-size:24px; font-weight:400; color:var(--oswald-navy); margin-top:4px;">A year, in your hands.</h2>
+      <h2 style="font-family:'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; font-size:24px; font-weight:400; color:var(--oswald-navy); margin-top:4px;">A year, in your hands.</h2>
       <p style="font-size:14px; color:var(--ink-soft); line-height:1.6; margin-top:10px; max-width:680px;">Every November we put together a recap of the year — what changed, what we caught, what we recovered, what's coming. It's printed, bound, and mailed to Fairmount. The digital version lives here.</p>
 
       <div class="recap-cover">
         <div>
-          <div style="font-family:'IBM Plex Mono', monospace; font-size:10px; letter-spacing:0.18em; text-transform:uppercase; color:rgba(255,255,255,0.5); margin-bottom:10px;">An annual recap for</div>
+          <div style="font-family:'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; font-size:10px; letter-spacing:0.18em; text-transform:uppercase; color:rgba(255,255,255,0.5); margin-bottom:10px;">An annual recap for</div>
           <h3>The Ellsworth <em>family</em>.</h3>
           <div class="sub">2026 edition · 48 pages · Printed in Cleveland</div>
         </div>
@@ -2071,7 +2122,7 @@
               <p>A few things worth marking before you read on. Aspen held; no losses despite three active fire incidents in the valley. The Twombly traveled safely. Identity monitoring caught the LinkedIn impersonation within 24 hours.</p>
               <p>We'll see you in January for the annual review at the residence. Until then.</p>
               <p style="margin-top:22px; font-style:italic;">— Charles Whittaker</p>
-              <p style="font-family:'IBM Plex Mono', monospace; font-size:10px; color:var(--brass-deep); letter-spacing:0.1em; margin-top:-6px; text-transform:uppercase;">On behalf of your Oswald team</p>
+              <p style="font-family:'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; font-size:10px; color:var(--brass-deep); letter-spacing:0.1em; margin-top:-6px; text-transform:uppercase;">On behalf of your Oswald team</p>
               <div class="page-num">3</div>
             </div>
           </div>
@@ -2131,49 +2182,49 @@
               <!-- Horizontal stacked bar -->
               <div class="chart-stacked-bar" style="margin-top:24px;">
                 <svg viewBox="0 0 340 28" width="100%" height="28" preserveAspectRatio="none">
-                  <rect x="0"   y="0" width="170" height="28" fill="#1B3454"/>
-                  <rect x="170" y="0" width="75"  height="28" fill="#C97F5E"/>
-                  <rect x="245" y="0" width="34"  height="28" fill="#876D3B"/>
-                  <rect x="279" y="0" width="24"  height="28" fill="#A88A4F"/>
-                  <rect x="303" y="0" width="20"  height="28" fill="#C9B989"/>
-                  <rect x="323" y="0" width="17"  height="28" fill="#E5C8A8"/>
+                  <rect x="0"   y="0" width="170" height="28" fill="#051C2C"/>
+                  <rect x="170" y="0" width="75"  height="28" fill="#9E2A2F"/>
+                  <rect x="245" y="0" width="34"  height="28" fill="#00617F"/>
+                  <rect x="279" y="0" width="24"  height="28" fill="#4C90A5"/>
+                  <rect x="303" y="0" width="20"  height="28" fill="#7FB0BF"/>
+                  <rect x="323" y="0" width="17"  height="28" fill="#B2CFD8"/>
                 </svg>
               </div>
 
               <!-- Legend -->
               <div class="chart-legend">
                 <div class="legend-row">
-                  <span class="sw" style="background:#1B3454"></span>
+                  <span class="sw" style="background:#051C2C"></span>
                   <span class="lbl">Property · four residences</span>
                   <span class="pct">50%</span>
                   <span class="amt">$142k</span>
                 </div>
                 <div class="legend-row">
-                  <span class="sw" style="background:#C97F5E"></span>
+                  <span class="sw" style="background:#9E2A2F"></span>
                   <span class="lbl">Art, collections &amp; valuables</span>
                   <span class="pct">22%</span>
                   <span class="amt">$63k</span>
                 </div>
                 <div class="legend-row">
-                  <span class="sw" style="background:#876D3B"></span>
+                  <span class="sw" style="background:#00617F"></span>
                   <span class="lbl">Excess liability · umbrella</span>
                   <span class="pct">10%</span>
                   <span class="amt">$28k</span>
                 </div>
                 <div class="legend-row">
-                  <span class="sw" style="background:#A88A4F"></span>
+                  <span class="sw" style="background:#4C90A5"></span>
                   <span class="lbl">Auto · seven vehicles</span>
                   <span class="pct">7%</span>
                   <span class="amt">$20k</span>
                 </div>
                 <div class="legend-row">
-                  <span class="sw" style="background:#C9B989"></span>
+                  <span class="sw" style="background:#7FB0BF"></span>
                   <span class="lbl">Cyber &amp; identity</span>
                   <span class="pct">6%</span>
                   <span class="amt">$17k</span>
                 </div>
                 <div class="legend-row">
-                  <span class="sw" style="background:#E5C8A8"></span>
+                  <span class="sw" style="background:#B2CFD8"></span>
                   <span class="lbl">K&amp;R, employment, other</span>
                   <span class="pct">5%</span>
                   <span class="amt">$14k</span>
@@ -2191,52 +2242,52 @@
               <div style="margin-top:24px;">
                 <svg viewBox="0 0 340 200" width="100%" height="200">
                   <!-- horizontal grid lines -->
-                  <line x1="42" y1="25" x2="328" y2="25" stroke="#DECDB0" stroke-width="0.5"/>
-                  <line x1="42" y1="65" x2="328" y2="65" stroke="#DECDB0" stroke-width="0.5"/>
-                  <line x1="42" y1="105" x2="328" y2="105" stroke="#DECDB0" stroke-width="0.5"/>
-                  <line x1="42" y1="145" x2="328" y2="145" stroke="#DECDB0" stroke-width="0.5"/>
-                  <line x1="42" y1="178" x2="328" y2="178" stroke="#876D3B" stroke-width="0.7"/>
+                  <line x1="42" y1="25" x2="328" y2="25" stroke="#E0E0E0" stroke-width="0.5"/>
+                  <line x1="42" y1="65" x2="328" y2="65" stroke="#E0E0E0" stroke-width="0.5"/>
+                  <line x1="42" y1="105" x2="328" y2="105" stroke="#E0E0E0" stroke-width="0.5"/>
+                  <line x1="42" y1="145" x2="328" y2="145" stroke="#E0E0E0" stroke-width="0.5"/>
+                  <line x1="42" y1="178" x2="328" y2="178" stroke="#00617F" stroke-width="0.7"/>
 
                   <!-- y-axis labels -->
-                  <text x="38" y="28" text-anchor="end" font-size="9" font-family="IBM Plex Mono" fill="#876D3B" letter-spacing="0.04em">$360k</text>
-                  <text x="38" y="68" text-anchor="end" font-size="9" font-family="IBM Plex Mono" fill="#876D3B" letter-spacing="0.04em">$330k</text>
-                  <text x="38" y="108" text-anchor="end" font-size="9" font-family="IBM Plex Mono" fill="#876D3B" letter-spacing="0.04em">$300k</text>
-                  <text x="38" y="148" text-anchor="end" font-size="9" font-family="IBM Plex Mono" fill="#876D3B" letter-spacing="0.04em">$270k</text>
+                  <text x="38" y="28" text-anchor="end" font-size="9" font-family="Helvetica Neue, Arial" fill="#00617F" letter-spacing="0.04em">$360k</text>
+                  <text x="38" y="68" text-anchor="end" font-size="9" font-family="Helvetica Neue, Arial" fill="#00617F" letter-spacing="0.04em">$330k</text>
+                  <text x="38" y="108" text-anchor="end" font-size="9" font-family="Helvetica Neue, Arial" fill="#00617F" letter-spacing="0.04em">$300k</text>
+                  <text x="38" y="148" text-anchor="end" font-size="9" font-family="Helvetica Neue, Arial" fill="#00617F" letter-spacing="0.04em">$270k</text>
 
                   <!-- x-axis labels -->
-                  <text x="60" y="194" text-anchor="middle" font-size="9" font-family="IBM Plex Mono" fill="#876D3B" letter-spacing="0.06em">2022</text>
-                  <text x="127" y="194" text-anchor="middle" font-size="9" font-family="IBM Plex Mono" fill="#876D3B" letter-spacing="0.06em">2023</text>
-                  <text x="194" y="194" text-anchor="middle" font-size="9" font-family="IBM Plex Mono" fill="#876D3B" letter-spacing="0.06em">2024</text>
-                  <text x="261" y="194" text-anchor="middle" font-size="9" font-family="IBM Plex Mono" fill="#876D3B" letter-spacing="0.06em">2025</text>
-                  <text x="320" y="194" text-anchor="middle" font-size="9" font-family="IBM Plex Mono" fill="#876D3B" letter-spacing="0.06em">2026</text>
+                  <text x="60" y="194" text-anchor="middle" font-size="9" font-family="Helvetica Neue, Arial" fill="#00617F" letter-spacing="0.06em">2022</text>
+                  <text x="127" y="194" text-anchor="middle" font-size="9" font-family="Helvetica Neue, Arial" fill="#00617F" letter-spacing="0.06em">2023</text>
+                  <text x="194" y="194" text-anchor="middle" font-size="9" font-family="Helvetica Neue, Arial" fill="#00617F" letter-spacing="0.06em">2024</text>
+                  <text x="261" y="194" text-anchor="middle" font-size="9" font-family="Helvetica Neue, Arial" fill="#00617F" letter-spacing="0.06em">2025</text>
+                  <text x="320" y="194" text-anchor="middle" font-size="9" font-family="Helvetica Neue, Arial" fill="#00617F" letter-spacing="0.06em">2026</text>
 
                   <!-- benchmark line (dashed, navy) -->
                   <polyline points="60,98 127,80 194,57 261,38 320,28"
-                            fill="none" stroke="#1B3454" stroke-width="1.5" stroke-dasharray="3,3" opacity="0.55"/>
-                  <circle cx="60" cy="98" r="2.5" fill="#1B3454" opacity="0.55"/>
-                  <circle cx="127" cy="80" r="2.5" fill="#1B3454" opacity="0.55"/>
-                  <circle cx="194" cy="57" r="2.5" fill="#1B3454" opacity="0.55"/>
-                  <circle cx="261" cy="38" r="2.5" fill="#1B3454" opacity="0.55"/>
-                  <circle cx="320" cy="28" r="2.5" fill="#1B3454" opacity="0.55"/>
+                            fill="none" stroke="#051C2C" stroke-width="1.5" stroke-dasharray="3,3" opacity="0.55"/>
+                  <circle cx="60" cy="98" r="2.5" fill="#051C2C" opacity="0.55"/>
+                  <circle cx="127" cy="80" r="2.5" fill="#051C2C" opacity="0.55"/>
+                  <circle cx="194" cy="57" r="2.5" fill="#051C2C" opacity="0.55"/>
+                  <circle cx="261" cy="38" r="2.5" fill="#051C2C" opacity="0.55"/>
+                  <circle cx="320" cy="28" r="2.5" fill="#051C2C" opacity="0.55"/>
 
                   <!-- Oswald premium line (solid, clay) -->
                   <polyline points="60,80 127,95 194,108 261,118 320,125"
-                            fill="none" stroke="#C97F5E" stroke-width="2.2"/>
-                  <circle cx="60" cy="80" r="3" fill="#C97F5E"/>
-                  <circle cx="127" cy="95" r="3" fill="#C97F5E"/>
-                  <circle cx="194" cy="108" r="3" fill="#C97F5E"/>
-                  <circle cx="261" cy="118" r="3" fill="#C97F5E"/>
-                  <circle cx="320" cy="125" r="4.5" fill="#C97F5E" stroke="#FAF4E8" stroke-width="1.5"/>
+                            fill="none" stroke="#9E2A2F" stroke-width="2.2"/>
+                  <circle cx="60" cy="80" r="3" fill="#9E2A2F"/>
+                  <circle cx="127" cy="95" r="3" fill="#9E2A2F"/>
+                  <circle cx="194" cy="108" r="3" fill="#9E2A2F"/>
+                  <circle cx="261" cy="118" r="3" fill="#9E2A2F"/>
+                  <circle cx="320" cy="125" r="4.5" fill="#9E2A2F" stroke="#F5F2EB" stroke-width="1.5"/>
 
                   <!-- Value label on latest data point -->
-                  <text x="313" y="142" text-anchor="end" font-size="11" font-family="Fraunces" font-style="italic" fill="#1B3454" font-weight="500">$284k</text>
+                  <text x="313" y="142" text-anchor="end" font-size="11" font-family="Helvetica Neue, Arial" font-style="italic" fill="#051C2C" font-weight="500">$284k</text>
                 </svg>
               </div>
 
               <!-- Chart key -->
               <div class="chart-key">
-                <div><span class="swatch" style="background:#C97F5E"></span>Your premium</div>
-                <div><span class="swatch" style="background:#1B3454; opacity:0.55"></span>HNW market peer</div>
+                <div><span class="swatch" style="background:#9E2A2F"></span>Your premium</div>
+                <div><span class="swatch" style="background:#051C2C; opacity:0.55"></span>HNW market peer</div>
               </div>
 
               <p class="chart-caption">The market for high-net-worth coverage has risen 18% over five years. Yours has come down 8%. The gap is what working with us is meant to look like.</p>
@@ -2280,7 +2331,7 @@
                 <p>Your full edition runs forty-eight pages, including the appendices, the carrier panel, and the claims register. It arrives at Fairmount on 15 November.</p>
                 <p>A digital copy lives in your Vault, watermarked and access-logged.</p>
                 <div class="signature">— Your Oswald team</div>
-                <div style="font-family:'IBM Plex Mono', monospace; font-size:10px; letter-spacing:0.14em; color:var(--brass-deep); margin-top:24px; text-transform:uppercase;">Oswald · 2026</div>
+                <div style="font-family:'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; font-size:10px; letter-spacing:0.14em; color:var(--brass-deep); margin-top:24px; text-transform:uppercase;">Oswald · 2026</div>
               </div>
               <div class="page-num">48</div>
             </div>
@@ -2383,7 +2434,7 @@
     <!-- Recent matches -->
     <div class="igc-matches">
       <div class="eyebrow">Recent introductions</div>
-      <h2 style="font-family:'Fraunces',serif; font-size:26px; font-weight:400; color:var(--oswald-navy); letter-spacing:-0.01em; margin-top:6px;">Who we've connected you with this year.</h2>
+      <h2 style="font-family:'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; font-size:26px; font-weight:400; color:var(--oswald-navy); letter-spacing:-0.01em; margin-top:6px;">Who we've connected you with this year.</h2>
 
       <div class="match-list">
         <div class="match-row">
@@ -2632,7 +2683,7 @@
       <div style="display:flex;align-items:end;justify-content:flex-end">
         <div style="text-align:right">
           <div class="eyebrow">On duty until 9 PM ET</div>
-          <div style="font-family:'Fraunces',serif;font-size:32px;font-weight:300;color:var(--ink);margin-top:10px;letter-spacing:-0.015em;">Avg. response · <em style="color:var(--brass-deep)">2 min 14 sec</em></div>
+          <div style="font-family:'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;font-size:32px;font-weight: 400;color:var(--ink);margin-top:10px;letter-spacing:-0.015em;">Avg. response · <em style="color:var(--brass-deep)">2 min 14 sec</em></div>
           <div style="font-size:12px;color:var(--ink-soft);margin-top:8px">Across 312 conversations this year. After hours: Eleanor Saito, then on-call.</div>
         </div>
       </div>
@@ -2791,7 +2842,7 @@
           <h2>The <em>Ellsworth</em><br>Household.</h2>
           <div class="vol">2026 EDITION</div>
         </div>
-        <div class="bot"><span>OswaldONE</span><span>Cleveland · MMXXVI</span></div>
+        <div class="bot"><span>Oswald 360</span><span>Cleveland · MMXXVI</span></div>
       </div>
       <div class="page">
         <div class="page-section">A note from your team</div>
@@ -2953,7 +3004,7 @@
   <!-- =================== FOOTER =================== -->
   <div class="footer-meta">
     <div class="left">
-      <span class="footer-brand"><span class="footer-oswald">Oswald<span class="dot">.</span></span><span style="opacity:.55"> · OswaldONE Client Hub · A conceptual mockup</span></span>
+      <span class="footer-brand"><span style="color:var(--grey-text)">Oswald 360 · A conceptual mockup</span></span>
       <a>Privacy by design</a>
       <a>No data shared. Ever.</a>
     </div>

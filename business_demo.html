@@ -3,35 +3,48 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>OswaldONE Business — A Conceptual Hub for Oswald Business Clients</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=DM+Sans:opsz,wght@9..40,300..700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<title>Oswald 360 — Business</title>
 <style>
-  :root {
-    --ink: #0E1A26;
-    --ink-2: #1B2A3A;
-    --ink-soft: #4A5868;
-    --ink-faint: #8A95A2;
-    --paper: #F5EFE4;
-    --paper-2: #EFE7D6;
-    --paper-3: #E7DDC8;
-    --rule: #D4C8AE;
-    --rule-soft: #E2D7BE;
-    --brass: #A88A4F;
-    --brass-deep: #876D3B;
-    --brass-soft: #C9B07A;
-    --forest: #2F4F3A;
-    --forest-soft: #4E6E58;
-    --clay: #B5634C;
-    --clay-soft: #D08A72;
-    --slate: #455A6B;
+    :root {
+    /* Oswald brand-aligned palette */
+    --oswald-navy: #051C2C;
+    --oswald-navy-deep: #03131B;
+    --oswald-red: #9E2A2F;
+    --oswald-blue: #00617F;
+    --oswald-blue-light: #338199;
+    --oswald-blue-soft: #4C90A5;
 
-    --unison: #102f54;
-    --unison-deep: #061a35;
-    --unison-soft: #2a4d76;
-    --shadow-soft: 0 1px 2px rgba(14,26,38,.04), 0 8px 24px rgba(14,26,38,.06);
-    --shadow-card: 0 1px 1px rgba(14,26,38,.05), 0 12px 36px rgba(14,26,38,.08);
+    /* Accent and emphasis (replaces clay-warm) */
+    --accent: #9E2A2F;
+    --accent-soft: #00617F;
+
+    /* Backgrounds: tinted toward warm, but close to brand lightest-grey */
+    --warm-tint: #F5F2EB;
+    --warm-tint-deep: #EDE9DF;
+    --paper: #FFFFFF;
+    --peach: #F5F2EB;
+    --peach-deep: #EDE9DF;
+    --warm-cream: #F5F2EB;
+
+    /* Greys per brand */
+    --grey-lightest: #F3F3F3;
+    --grey-light: #E0E0E0;
+    --grey: #C7C8CA;
+    --grey-text: #4D4D4F;
+    --ink: #051C2C;
+    --ink-soft: #4D4D4F;
+    --ink-faint: #6E6E70;
+
+    /* Labels and rules — replaces brass/gold */
+    --brass: #4D4D4F;
+    --brass-deep: #4D4D4F;
+    --rule: #E0E0E0;
+    --rule-warm: #E0E0E0;
+    --rule-soft: #F0F0F0;
+
+    /* Clay-warm now maps to red (used sparingly per brand) */
+    --clay-warm: #9E2A2F;
+
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html, body { background: var(--paper); color: var(--ink); font-family: 'DM Sans', -apple-system, sans-serif; font-size: 14px; line-height: 1.5; font-feature-settings: 'ss01', 'cv11'; -webkit-font-smoothing: antialiased; }
@@ -39,7 +52,7 @@
   body::before { content: ''; position: fixed; inset: 0; pointer-events: none; opacity: .35; z-index: 0; background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .055 0 0 0 0 .102 0 0 0 0 .149 0 0 0 .045 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>"); }
 
   .display { font-family: 'Fraunces', Georgia, serif; font-feature-settings: 'ss01'; letter-spacing: -0.01em; }
-  .mono { font-family: 'IBM Plex Mono', monospace; font-feature-settings: 'tnum'; }
+  .mono { font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; font-feature-settings: 'tnum'; }
   .eyebrow { font-family: 'DM Sans', sans-serif; font-size: 10px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--brass-deep); }
 
   .container { max-width: 1440px; margin: 0 auto; padding: 0 56px; position: relative; z-index: 1; }
@@ -47,28 +60,28 @@
   /* ============ NAV ============ */
   nav { display: flex; align-items: center; justify-content: space-between; padding: 32px 0 28px; border-bottom: 1px solid var(--rule); }
   .brand { display: flex; align-items: baseline; gap: 14px; }
-  .brand-mark { font-family: 'Fraunces', serif; font-weight: 400; font-style: italic; font-size: 28px; font-variation-settings: 'opsz' 144; color: var(--ink); letter-spacing: -0.02em; }
-  .brand-mark .ampersand { color: var(--brass); font-weight: 300; }
+  .brand-mark { font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; font-weight: 400; font-style: italic; font-size: 28px; font-variation-settings: 'opsz' 144; color: var(--ink); letter-spacing: -0.02em; }
+  .brand-mark .ampersand { color: var(--brass); font-weight: 400; }
   .brand-divider { width: 18px; height: 1px; background: var(--brass); }
   .brand-pretitle { font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-soft); font-weight: 500; }
-  .brand-suffix { font-family: 'IBM Plex Mono', monospace; font-size: 9.5px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--unison); margin-left: 8px; padding: 3px 9px; border: 1px solid rgba(16,47,84,.3); border-radius: 1px; }
+  .brand-suffix { font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; font-size: 9.5px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--unison); margin-left: 8px; padding: 3px 9px; border: 1px solid rgba(16,47,84,.3); border-radius: 1px; }
   .nav-links { display: flex; gap: 36px; list-style: none; }
   .nav-links a { font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft); text-decoration: none; font-weight: 500; padding-bottom: 4px; border-bottom: 1px solid transparent; transition: all .2s ease; cursor: pointer; }
   .nav-links a:hover, .nav-links a.active { color: var(--ink); border-bottom-color: var(--brass); }
   .nav-right { display: flex; align-items: center; gap: 20px; }
   .icon-btn { width: 36px; height: 36px; display: grid; place-items: center; border: 1px solid var(--rule); border-radius: 50%; background: transparent; cursor: pointer; color: var(--ink-soft); transition: all .2s ease; }
   .icon-btn:hover { border-color: var(--brass); color: var(--ink); }
-  .principal-avatar { width: 38px; height: 38px; border-radius: 50%; background: linear-gradient(135deg, var(--unison-deep) 0%, var(--unison) 100%); color: var(--paper); display: grid; place-items: center; font-family: 'Fraunces', serif; font-style: italic; font-size: 14px; border: 1.5px solid var(--brass); }
+  .principal-avatar { width: 38px; height: 38px; border-radius: 50%; background: linear-gradient(135deg, var(--unison-deep) 0%, var(--unison) 100%); color: var(--paper); display: grid; place-items: center; font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; font-style: italic; font-size: 14px; border: 1.5px solid var(--brass); }
 
   /* ============ HERO ============ */
   .hero { padding: 56px 0 40px; display: grid; grid-template-columns: 1.4fr 1fr; gap: 72px; align-items: end; border-bottom: 1px solid var(--rule); }
   .hero-greeting .eyebrow { margin-bottom: 16px; }
-  .hero-greeting h1 { font-family: 'Fraunces', serif; font-weight: 300; font-size: 60px; line-height: 1.05; letter-spacing: -0.025em; color: var(--ink); font-variation-settings: 'opsz' 144; }
-  .hero-greeting h1 em { font-style: italic; font-weight: 300; color: var(--brass-deep); }
+  .hero-greeting h1 { font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; font-weight: 400; font-size: 60px; line-height: 1.05; letter-spacing: -0.025em; color: var(--ink); font-variation-settings: 'opsz' 144; }
+  .hero-greeting h1 em { font-style: italic; font-weight: 400; color: var(--brass-deep); }
   .hero-meta { margin-top: 20px; font-size: 13px; color: var(--ink-soft); line-height: 1.6; max-width: 480px; }
   .hero-stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px 32px; padding-bottom: 8px; }
   .stat .stat-label { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 6px; }
-  .stat .stat-value { font-family: 'Fraunces', serif; font-size: 28px; font-weight: 400; color: var(--ink); letter-spacing: -0.015em; font-feature-settings: 'tnum'; }
+  .stat .stat-value { font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; font-size: 28px; font-weight: 400; color: var(--ink); letter-spacing: -0.015em; font-feature-settings: 'tnum'; }
   .stat .stat-sub { font-size: 11px; color: var(--ink-soft); margin-top: 2px; }
   .stat .stat-sub.brass { color: var(--brass-deep); }
   .stat .stat-sub.clay { color: var(--clay); }
@@ -85,7 +98,7 @@
   .panel.elevated { box-shadow: var(--shadow-card); background: rgba(255, 252, 245, 0.85); }
   .panel-header { display: flex; align-items: baseline; justify-content: space-between; padding-bottom: 16px; border-bottom: 1px solid var(--rule-soft); margin-bottom: 22px; }
   .panel.dark .panel-header { border-bottom-color: rgba(168,138,79,.25); }
-  .panel-title { font-family: 'Fraunces', serif; font-weight: 400; font-size: 22px; color: var(--ink); letter-spacing: -0.01em; }
+  .panel-title { font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; font-weight: 400; font-size: 22px; color: var(--ink); letter-spacing: -0.01em; }
   .panel.dark .panel-title { color: var(--paper); }
   .panel-title em { font-style: italic; color: var(--brass-deep); }
   .panel.dark .panel-title em { color: var(--brass-soft); }
@@ -96,7 +109,7 @@
   .enterprise-strip { display: flex; gap: 28px; padding: 18px 22px; background: var(--paper-2); border-left: 2px solid var(--brass); margin-bottom: 24px; flex-wrap: wrap; }
   .es-stat { display: flex; flex-direction: column; gap: 2px; }
   .es-stat .l { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-faint); }
-  .es-stat .v { font-family: 'Fraunces', serif; font-size: 18px; color: var(--ink); letter-spacing: -0.01em; }
+  .es-stat .v { font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; font-size: 18px; color: var(--ink); letter-spacing: -0.01em; }
 
   .div-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-bottom: 22px; }
   .division { padding: 16px 18px; border: 1px solid var(--rule-soft); background: rgba(245,239,228,.4); position: relative; transition: all .2s; cursor: pointer; }
@@ -106,9 +119,9 @@
   @keyframes pulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(181, 99, 76, 0.4); } 50% { box-shadow: 0 0 0 6px rgba(181, 99, 76, 0); } }
   .division-h { padding-left: 16px; margin-bottom: 12px; }
   .division-h .l { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-faint); }
-  .division-h .n { font-family: 'Fraunces', serif; font-size: 16px; color: var(--ink); margin-top: 2px; letter-spacing: -0.005em; }
+  .division-h .n { font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; font-size: 16px; color: var(--ink); margin-top: 2px; letter-spacing: -0.005em; }
   .division-meta { display: flex; justify-content: space-between; padding-top: 10px; border-top: 1px dashed var(--rule-soft); font-size: 11px; color: var(--ink-soft); }
-  .division-meta .v { color: var(--ink); font-weight: 500; font-family: 'IBM Plex Mono', monospace; }
+  .division-meta .v { color: var(--ink); font-weight: 500; font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; }
   .division-flag { margin-top: 8px; font-size: 11px; color: var(--clay); font-style: italic; }
 
   /* ============ FACILITIES MAP ============ */
@@ -129,15 +142,15 @@
   .weather-text { font-size: 12.5px; line-height: 1.5; color: var(--paper); }
   .weather-text strong { color: var(--paper); font-weight: 500; }
   .weather-text .action { display: block; margin-top: 4px; font-size: 11px; color: var(--brass-soft); font-style: italic; }
-  .weather-time { font-size: 10px; letter-spacing: 0.08em; color: rgba(245, 239, 228, 0.5); font-family: 'IBM Plex Mono', monospace; text-transform: uppercase; white-space: nowrap; }
+  .weather-time { font-size: 10px; letter-spacing: 0.08em; color: rgba(245, 239, 228, 0.5); font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; text-transform: uppercase; white-space: nowrap; }
 
   /* ============ MATTERS LIST ============ */
   .matter { padding: 14px 0; border-bottom: 1px solid var(--rule-soft); display: grid; grid-template-columns: 1fr auto; gap: 12px; align-items: start; }
   .matter:last-child { border-bottom: none; }
   .matter-name { font-size: 13px; color: var(--ink); font-weight: 500; }
-  .matter-name .id { font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; color: var(--ink-faint); margin-right: 8px; letter-spacing: 0.04em; }
+  .matter-name .id { font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; font-size: 10.5px; color: var(--ink-faint); margin-right: 8px; letter-spacing: 0.04em; }
   .matter-sub { font-size: 11.5px; color: var(--ink-soft); margin-top: 3px; line-height: 1.45; }
-  .matter-status { font-family: 'IBM Plex Mono', monospace; font-size: 10px; padding: 4px 9px; letter-spacing: 0.06em; }
+  .matter-status { font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; font-size: 10px; padding: 4px 9px; letter-spacing: 0.06em; }
   .matter-status.active { background: rgba(181,99,76,.12); color: var(--clay); }
   .matter-status.review { background: rgba(168,138,79,.16); color: var(--brass-deep); }
   .matter-status.tracking { background: rgba(47,79,58,.12); color: var(--forest); }
@@ -148,23 +161,23 @@
   .cov-row-mini:last-child { border-bottom: none; }
   .cov-row-mini .n { font-size: 12.5px; color: var(--ink); }
   .cov-row-mini .n .s { display: block; font-size: 10.5px; color: var(--ink-faint); margin-top: 2px; }
-  .cov-row-mini .lim { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--ink-2); }
+  .cov-row-mini .lim { font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; font-size: 11px; color: var(--ink-2); }
   .cov-row-mini .car { font-size: 10.5px; color: var(--ink-soft); font-style: italic; min-width: 88px; text-align: right; }
 
   /* ============ BENCH CARD (home) ============ */
   .bench-card { background: linear-gradient(135deg, var(--unison-deep) 0%, var(--unison) 100%); color: var(--paper); padding: 28px; border-radius: 2px; position: relative; overflow: hidden; }
   .bench-card::before { content: ''; position: absolute; top: -40px; right: -40px; width: 160px; height: 160px; background: radial-gradient(circle, rgba(168,138,79,.18) 0%, transparent 70%); }
   .bench-card .eyebrow { color: var(--brass-soft); }
-  .bench-card h3 { font-family: 'Fraunces', serif; font-style: italic; font-size: 22px; font-weight: 300; margin-top: 12px; line-height: 1.3; color: var(--paper); }
+  .bench-card h3 { font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; font-style: italic; font-size: 22px; font-weight: 400; margin-top: 12px; line-height: 1.3; color: var(--paper); }
   .bench-card h3 strong { font-style: normal; color: var(--brass-soft); font-weight: 400; }
   .bench-roster { margin-top: 20px; padding-top: 18px; border-top: 1px solid rgba(168,138,79,.25); display: grid; gap: 12px; }
   .bench-row { display: grid; grid-template-columns: 32px 1fr auto; gap: 12px; align-items: center; }
-  .bench-mini-avatar { width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(135deg, #847151, var(--brass)); color: var(--ink); display: grid; place-items: center; font-family: 'Fraunces', serif; font-size: 11px; }
+  .bench-mini-avatar { width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(135deg, #847151, var(--brass)); color: var(--ink); display: grid; place-items: center; font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; font-size: 11px; }
   .bench-mini-avatar.alt { background: linear-gradient(135deg, #4a6058, var(--forest-soft)); color: var(--paper); }
   .bench-mini-info { font-size: 12px; line-height: 1.45; }
   .bench-mini-info .nm { font-weight: 500; color: var(--paper); }
   .bench-mini-info .rl { color: rgba(245,239,228,.55); font-size: 10.5px; }
-  .bench-mini-stat { font-family: 'IBM Plex Mono', monospace; font-size: 9.5px; color: rgba(245,239,228,.5); letter-spacing: 0.04em; }
+  .bench-mini-stat { font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; font-size: 9.5px; color: rgba(245,239,228,.5); letter-spacing: 0.04em; }
   .bench-action { margin-top: 22px; }
   .bench-btn { width: 100%; border: 1px solid var(--brass); background: var(--brass); color: var(--ink); padding: 12px 14px; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; font-family: 'DM Sans', sans-serif; font-weight: 500; cursor: pointer; transition: all .2s ease; }
   .bench-btn:hover { background: var(--brass-soft); }
@@ -172,23 +185,23 @@
   /* ============ CLAIMS PANEL (home) ============ */
   .claims-summary { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-bottom: 18px; padding-bottom: 18px; border-bottom: 1px solid var(--rule-soft); }
   .claims-summary .s { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-faint); }
-  .claims-summary .v { font-family: 'Fraunces', serif; font-size: 22px; color: var(--ink); margin-top: 4px; letter-spacing: -0.015em; }
+  .claims-summary .v { font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; font-size: 22px; color: var(--ink); margin-top: 4px; letter-spacing: -0.015em; }
   .claims-summary .d { font-size: 10.5px; color: var(--ink-soft); margin-top: 2px; }
   .claim-row { display: grid; grid-template-columns: 1fr 80px auto; gap: 14px; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--rule-soft); }
   .claim-row:last-child { border-bottom: none; }
   .claim-row .nm { font-size: 12px; color: var(--ink); }
-  .claim-row .nm .s { display: block; font-size: 10.5px; color: var(--ink-faint); margin-top: 1px; font-family: 'IBM Plex Mono', monospace; letter-spacing: 0.04em; }
+  .claim-row .nm .s { display: block; font-size: 10.5px; color: var(--ink-faint); margin-top: 1px; font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; letter-spacing: 0.04em; }
   .claim-row .ln { font-size: 10.5px; color: var(--ink-soft); letter-spacing: 0.04em; text-transform: uppercase; }
-  .claim-row .am { font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; color: var(--ink-2); text-align: right; }
+  .claim-row .am { font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; font-size: 11.5px; color: var(--ink-2); text-align: right; }
 
   /* ============ EVENTS / RENEWALS ============ */
   .events-list { display: flex; flex-direction: column; gap: 18px; }
   .event { display: grid; grid-template-columns: 44px 1fr; gap: 16px; padding-bottom: 18px; border-bottom: 1px solid var(--rule-soft); }
   .event:last-child { border-bottom: none; padding-bottom: 0; }
-  .event-date { font-family: 'Fraunces', serif; text-align: center; border-right: 1px solid var(--rule); padding-right: 16px; }
+  .event-date { font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; text-align: center; border-right: 1px solid var(--rule); padding-right: 16px; }
   .event-date .day { font-size: 22px; color: var(--ink); line-height: 1; font-weight: 400; }
   .event-date .mo { font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--brass-deep); margin-top: 4px; font-family: 'DM Sans', sans-serif; }
-  .event-body h4 { font-family: 'Fraunces', serif; font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 4px; letter-spacing: -0.005em; }
+  .event-body h4 { font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 4px; letter-spacing: -0.005em; }
   .event-body p { font-size: 12px; color: var(--ink-soft); line-height: 1.5; }
   .event-cta { display: inline-block; margin-top: 8px; font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--brass-deep); border-bottom: 1px solid var(--brass); padding-bottom: 2px; text-decoration: none; cursor: pointer; }
 
@@ -196,17 +209,17 @@
   .briefing-strip { margin-top: 12px; background: var(--ink); color: var(--paper); padding: 48px 56px; display: grid; grid-template-columns: 1fr 280px; gap: 56px; align-items: center; border-radius: 2px; position: relative; overflow: hidden; cursor: pointer; }
   .briefing-strip::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at right, rgba(168,138,79,.12) 0%, transparent 60%); pointer-events: none; }
   .briefing-strip .eyebrow { color: var(--brass-soft); }
-  .briefing-strip h2 { font-family: 'Fraunces', serif; font-weight: 300; font-size: 42px; line-height: 1.1; margin-top: 14px; letter-spacing: -0.02em; color: var(--paper); }
+  .briefing-strip h2 { font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; font-weight: 400; font-size: 42px; line-height: 1.1; margin-top: 14px; letter-spacing: -0.02em; color: var(--paper); }
   .briefing-strip h2 em { font-style: italic; color: var(--brass-soft); }
   .briefing-strip p { margin-top: 16px; font-size: 13.5px; line-height: 1.65; color: rgba(245,239,228,.78); max-width: 560px; }
   .briefing-cta { display: inline-flex; align-items: center; gap: 12px; margin-top: 24px; padding: 14px 22px; background: var(--brass); color: var(--ink); text-decoration: none; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 500; transition: background .2s ease; cursor: pointer; }
   .briefing-cta:hover { background: var(--brass-soft); }
   .briefing-book { aspect-ratio: 3/4; background: linear-gradient(135deg, var(--unison) 0%, var(--unison-deep) 100%); border: 1px solid var(--brass); box-shadow: -16px 16px 32px rgba(0,0,0,.35), 0 1px 0 rgba(168,138,79,.3) inset; padding: 28px; display: flex; flex-direction: column; justify-content: space-between; position: relative; z-index: 1; }
   .briefing-book::after { content: ''; position: absolute; top: 0; bottom: 0; left: 14px; width: 1px; background: rgba(168,138,79,.3); }
-  .briefing-book .top { font-family: 'Fraunces', serif; font-style: italic; font-size: 13px; color: var(--brass-soft); line-height: 1.3; }
-  .briefing-book .mid { font-family: 'Fraunces', serif; font-size: 22px; line-height: 1.15; color: var(--paper); letter-spacing: -0.01em; }
+  .briefing-book .top { font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; font-style: italic; font-size: 13px; color: var(--brass-soft); line-height: 1.3; }
+  .briefing-book .mid { font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; font-size: 22px; line-height: 1.15; color: var(--paper); letter-spacing: -0.01em; }
   .briefing-book .bot { font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(168,138,79,.7); font-family: 'DM Sans', sans-serif; border-top: 1px solid rgba(168,138,79,.3); padding-top: 12px; }
-  .briefing-book .vol { font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--brass-soft); margin-top: 6px; }
+  .briefing-book .vol { font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; font-size: 10px; color: var(--brass-soft); margin-top: 6px; }
 
   /* ============ FOOTER ============ */
   .footer-meta { margin-top: 48px; padding: 32px 0 56px; border-top: 1px solid var(--rule); display: flex; justify-content: space-between; align-items: center; font-size: 11px; color: var(--ink-faint); letter-spacing: 0.04em; }
@@ -226,7 +239,7 @@
   .asset-crumb { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 18px; }
   .asset-crumb a { color: var(--brass-deep); text-decoration: none; cursor: pointer; }
   .asset-crumb a:hover { color: var(--ink); }
-  .asset-title { font-family: 'Fraunces', serif; font-size: 52px; font-weight: 300; line-height: 1.05; color: var(--ink); letter-spacing: -0.025em; }
+  .asset-title { font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; font-size: 52px; font-weight: 400; line-height: 1.05; color: var(--ink); letter-spacing: -0.025em; }
   .asset-title em { font-style: italic; color: var(--brass-deep); }
   .asset-sub { font-size: 14px; color: var(--ink-soft); margin-top: 16px; line-height: 1.6; max-width: 580px; }
   .status-banner { display: flex; align-items: center; gap: 14px; padding: 16px 20px; background: linear-gradient(90deg, rgba(181,99,76,.12) 0%, rgba(181,99,76,.04) 100%); border: 1px solid rgba(181,99,76,.3); border-left: 3px solid var(--clay); border-radius: 2px; }
@@ -243,8 +256,8 @@
   .profile-row { padding: 12px 0; border-bottom: 1px solid var(--rule-soft); display: grid; grid-template-columns: 1fr 1fr; gap: 12px; align-items: baseline; }
   .profile-row:last-child { border-bottom: none; }
   .profile-row .k { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-faint); }
-  .profile-row .v { font-size: 12.5px; color: var(--ink); text-align: right; font-family: 'IBM Plex Mono', monospace; }
-  .profile-row .v.serif { font-family: 'Fraunces', serif; font-size: 14px; }
+  .profile-row .v { font-size: 12.5px; color: var(--ink); text-align: right; font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; }
+  .profile-row .v.serif { font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; font-size: 14px; }
 
   /* timeline */
   .timeline { position: relative; padding-left: 28px; }
@@ -255,8 +268,8 @@
   .tl-item.system::before { border-color: var(--ink-faint); background: var(--paper); }
   .tl-item.alert::before { background: var(--clay); border-color: var(--clay); }
   .tl-item.now::before { background: var(--ink); border-color: var(--brass); box-shadow: 0 0 0 4px rgba(168,138,79,.2); }
-  .tl-time { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--ink-faint); letter-spacing: 0.04em; }
-  .tl-title { font-family: 'Fraunces', serif; font-size: 14px; font-weight: 500; margin: 4px 0 4px; color: var(--ink); }
+  .tl-time { font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; font-size: 11px; color: var(--ink-faint); letter-spacing: 0.04em; }
+  .tl-title { font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; font-size: 14px; font-weight: 500; margin: 4px 0 4px; color: var(--ink); }
   .tl-body { font-size: 12.5px; color: var(--ink-soft); line-height: 1.55; }
   .tl-body em { color: var(--brass-deep); font-style: normal; font-weight: 500; }
   .tl-attach { display: inline-flex; gap: 8px; margin-top: 8px; font-size: 11px; color: var(--ink-soft); padding: 4px 10px; border: 1px solid var(--rule); border-radius: 2px; align-items: center; }
@@ -264,9 +277,9 @@
   .iot-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
   .iot-tile { padding: 14px; background: var(--paper-2); border: 1px solid var(--rule-soft); border-radius: 2px; }
   .iot-tile .label { font-size: 9.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-faint); }
-  .iot-tile .reading { font-family: 'Fraunces', serif; font-size: 20px; color: var(--ink); margin-top: 6px; line-height: 1; letter-spacing: -0.015em; }
+  .iot-tile .reading { font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; font-size: 20px; color: var(--ink); margin-top: 6px; line-height: 1; letter-spacing: -0.015em; }
   .iot-tile .reading .unit { font-size: 11px; color: var(--ink-soft); margin-left: 4px; }
-  .iot-tile .delta { font-size: 10px; margin-top: 6px; color: var(--forest); font-family: 'IBM Plex Mono', monospace; }
+  .iot-tile .delta { font-size: 10px; margin-top: 6px; color: var(--forest); font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; }
   .iot-tile .delta.warn { color: var(--brass-deep); }
   .iot-tile .delta.alert { color: var(--clay); }
 
@@ -274,8 +287,8 @@
   .action-card { padding: 16px; border: 1px solid var(--rule); background: var(--paper-2); border-radius: 2px; }
   .action-card.primary { border-color: var(--clay); background: rgba(181,99,76,.06); }
   .action-card .ah { display: flex; justify-content: space-between; align-items: baseline; }
-  .action-card .ah .t { font-family: 'Fraunces', serif; font-size: 14px; font-weight: 500; color: var(--ink); }
-  .action-card .ah .c { font-size: 11px; color: var(--ink-soft); font-family: 'IBM Plex Mono', monospace; }
+  .action-card .ah .t { font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; font-size: 14px; font-weight: 500; color: var(--ink); }
+  .action-card .ah .c { font-size: 11px; color: var(--ink-soft); font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; }
   .action-card p { font-size: 12px; color: var(--ink-soft); margin-top: 6px; line-height: 1.5; }
   .action-row { display: flex; gap: 8px; margin-top: 12px; }
   .btn { flex: 1; padding: 11px 14px; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; font-family: 'DM Sans', sans-serif; font-weight: 500; cursor: pointer; border: 1px solid var(--rule); background: transparent; color: var(--ink); transition: all .2s ease; }
@@ -289,14 +302,14 @@
   .vendor-row:last-child { border-bottom: none; }
   .vendor-row .nm { font-size: 12.5px; color: var(--ink); font-weight: 500; }
   .vendor-row .nm .s { display: block; font-size: 11px; color: var(--ink-soft); font-weight: 400; margin-top: 2px; }
-  .vendor-row .st { font-family: 'IBM Plex Mono', monospace; font-size: 9.5px; padding: 3px 8px; letter-spacing: 0.06em; }
+  .vendor-row .st { font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; font-size: 9.5px; padding: 3px 8px; letter-spacing: 0.06em; }
   .vendor-row .st.engaged { background: rgba(47,79,58,.14); color: var(--forest); }
   .vendor-row .st.standby { background: rgba(168,138,79,.16); color: var(--brass-deep); }
   .vendor-row .st.contacted { background: rgba(69,90,107,.16); color: var(--slate); }
 
   .coverage-asset { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-top: 28px; padding-top: 28px; border-top: 1px solid var(--rule); }
   .ca-block .label { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-faint); }
-  .ca-block .v { font-family: 'Fraunces', serif; font-size: 22px; color: var(--ink); margin-top: 6px; letter-spacing: -0.015em; }
+  .ca-block .v { font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; font-size: 22px; color: var(--ink); margin-top: 6px; letter-spacing: -0.015em; }
   .ca-block .sub { font-size: 11px; color: var(--ink-soft); margin-top: 4px; line-height: 1.45; }
 
   /* ============ TOWER SCREEN ============ */
@@ -309,24 +322,24 @@
   .tower-layer.do { border-left-color: var(--forest-soft); }
   .tower-layer.prop { border-left-color: var(--clay-soft); }
   .tower-layer.umb { border-left-color: var(--brass); }
-  .tower-layer .ll { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--ink-faint); }
-  .tower-layer .lm { font-family: 'Fraunces', serif; font-size: 14px; color: var(--ink); font-weight: 500; }
+  .tower-layer .ll { font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; font-size: 11px; color: var(--ink-faint); }
+  .tower-layer .lm { font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; font-size: 14px; color: var(--ink); font-weight: 500; }
   .tower-layer .lm .s { display: block; font-size: 10.5px; color: var(--ink-soft); font-family: 'DM Sans', sans-serif; font-weight: 400; margin-top: 2px; }
   .tower-layer .lc { text-align: right; font-size: 11.5px; color: var(--ink-2); }
-  .tower-layer .lc .car { display: block; font-size: 10px; color: var(--ink-faint); margin-top: 2px; font-family: 'IBM Plex Mono', monospace; }
+  .tower-layer .lc .car { display: block; font-size: 10px; color: var(--ink-faint); margin-top: 2px; font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; }
 
   .tower-line { padding: 28px 0; border-top: 1px dashed var(--rule); margin-top: 8px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; text-align: center; }
   .tower-line .l { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-faint); }
-  .tower-line .v { font-family: 'Fraunces', serif; font-size: 22px; color: var(--ink); margin-top: 4px; letter-spacing: -0.015em; }
+  .tower-line .v { font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; font-size: 22px; color: var(--ink); margin-top: 4px; letter-spacing: -0.015em; }
 
   .carrier-table { display: flex; flex-direction: column; }
   .carrier-row { display: grid; grid-template-columns: 1fr auto auto auto; gap: 16px; align-items: center; padding: 13px 0; border-bottom: 1px solid var(--rule-soft); }
   .carrier-row:last-child { border-bottom: none; }
   .carrier-row .cn { font-size: 13px; color: var(--ink); font-weight: 500; }
   .carrier-row .cn .s { display: block; font-size: 10.5px; color: var(--ink-faint); margin-top: 1px; }
-  .carrier-row .am { font-family: 'IBM Plex Mono', monospace; font-size: 10px; padding: 3px 8px; background: rgba(47,79,58,.12); color: var(--forest); letter-spacing: 0.06em; }
+  .carrier-row .am { font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; font-size: 10px; padding: 3px 8px; background: rgba(47,79,58,.12); color: var(--forest); letter-spacing: 0.06em; }
   .carrier-row .am.warn { background: rgba(168,138,79,.16); color: var(--brass-deep); }
-  .carrier-row .ex { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--ink-2); text-align: right; }
+  .carrier-row .ex { font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; font-size: 11px; color: var(--ink-2); text-align: right; }
   .carrier-row .rd { font-size: 11px; color: var(--ink-soft); white-space: nowrap; }
 
   .premium-table { display: flex; flex-direction: column; margin-top: 8px; }
@@ -335,25 +348,25 @@
   .prem-row .ln { font-size: 12.5px; color: var(--ink); }
   .prem-bar-wrap { background: var(--rule-soft); height: 4px; border-radius: 2px; overflow: hidden; }
   .prem-bar { height: 100%; background: var(--brass); }
-  .prem-row .am { font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: var(--ink-2); text-align: right; min-width: 70px; }
-  .prem-row .yo { font-size: 10.5px; color: var(--forest); font-family: 'IBM Plex Mono', monospace; min-width: 50px; text-align: right; }
+  .prem-row .am { font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; font-size: 12px; color: var(--ink-2); text-align: right; min-width: 70px; }
+  .prem-row .yo { font-size: 10.5px; color: var(--forest); font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; min-width: 50px; text-align: right; }
   .prem-row .yo.up { color: var(--clay); }
 
   .renewal-cal { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 8px; }
   .ren-card { padding: 14px; background: var(--paper-2); border: 1px solid var(--rule-soft); border-radius: 2px; }
   .ren-card .qm { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--brass-deep); font-weight: 500; }
-  .ren-card .ct { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--ink-faint); margin-top: 2px; }
+  .ren-card .ct { font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; font-size: 11px; color: var(--ink-faint); margin-top: 2px; }
   .ren-card .ls { margin-top: 12px; display: flex; flex-direction: column; gap: 6px; }
   .ren-card .li { font-size: 11.5px; color: var(--ink); display: flex; justify-content: space-between; }
-  .ren-card .li span { font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--ink-soft); }
+  .ren-card .li span { font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; font-size: 10px; color: var(--ink-soft); }
 
   /* ============ BENCH SCREEN ============ */
   .bench-hero { padding: 48px 0 36px; text-align: center; border-bottom: 1px solid var(--rule); }
-  .bench-hero h1 { font-family: 'Fraunces', serif; font-size: 56px; font-weight: 300; color: var(--ink); line-height: 1.05; letter-spacing: -0.025em; }
+  .bench-hero h1 { font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; font-size: 56px; font-weight: 400; color: var(--ink); line-height: 1.05; letter-spacing: -0.025em; }
   .bench-hero h1 em { font-style: italic; color: var(--brass-deep); }
   .bench-hero p { font-size: 14px; color: var(--ink-soft); max-width: 640px; margin: 18px auto 0; line-height: 1.65; }
   .bench-section-title { display: flex; align-items: center; justify-content: space-between; margin: 56px 0 22px; padding-bottom: 14px; border-bottom: 1px solid var(--rule); }
-  .bench-section-title h2 { font-family: 'Fraunces', serif; font-size: 26px; font-weight: 400; letter-spacing: -0.01em; color: var(--ink); }
+  .bench-section-title h2 { font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; font-size: 26px; font-weight: 400; letter-spacing: -0.01em; color: var(--ink); }
   .bench-section-title h2 em { font-style: italic; color: var(--brass-deep); }
   .bench-section-title .meta { font-size: 11.5px; color: var(--ink-soft); font-style: italic; }
 
@@ -363,11 +376,11 @@
   .person.featured { background: var(--ink); color: var(--paper); border-color: var(--ink-2); }
   .person-top { display: flex; gap: 14px; align-items: center; padding-bottom: 16px; border-bottom: 1px solid var(--rule-soft); margin-bottom: 16px; }
   .person.featured .person-top { border-bottom-color: rgba(168,138,79,.25); }
-  .person-avatar { width: 50px; height: 50px; border-radius: 50%; background: linear-gradient(135deg, #847151, var(--brass)); color: var(--ink); display: grid; place-items: center; font-family: 'Fraunces', serif; font-size: 16px; flex-shrink: 0; }
+  .person-avatar { width: 50px; height: 50px; border-radius: 50%; background: linear-gradient(135deg, #847151, var(--brass)); color: var(--ink); display: grid; place-items: center; font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; font-size: 16px; flex-shrink: 0; }
   .person-avatar.alt1 { background: linear-gradient(135deg, #4a6058, var(--forest-soft)); color: var(--paper); }
   .person-avatar.alt2 { background: linear-gradient(135deg, #6b4f48, var(--clay-soft)); color: var(--paper); }
   .person-avatar.alt3 { background: linear-gradient(135deg, var(--slate), #5a7186); color: var(--paper); }
-  .person-name { font-family: 'Fraunces', serif; font-size: 17px; font-weight: 500; color: var(--ink); letter-spacing: -0.005em; }
+  .person-name { font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; font-size: 17px; font-weight: 500; color: var(--ink); letter-spacing: -0.005em; }
   .person.featured .person-name { color: var(--paper); }
   .person-title { font-size: 11px; color: var(--ink-soft); margin-top: 2px; letter-spacing: 0.04em; }
   .person.featured .person-title { color: var(--brass-soft); }
@@ -375,21 +388,21 @@
   .person.featured .person-platform { color: var(--brass-soft); border-color: rgba(168,138,79,.4); }
   .person-body { font-size: 12px; color: var(--ink-soft); line-height: 1.55; }
   .person.featured .person-body { color: rgba(245,239,228,.7); }
-  .person-recent { margin-top: 12px; padding-top: 12px; border-top: 1px dashed var(--rule-soft); font-size: 10.5px; color: var(--ink-faint); font-family: 'IBM Plex Mono', monospace; letter-spacing: 0.04em; }
+  .person-recent { margin-top: 12px; padding-top: 12px; border-top: 1px dashed var(--rule-soft); font-size: 10.5px; color: var(--ink-faint); font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; letter-spacing: 0.04em; }
   .person.featured .person-recent { border-top-color: rgba(168,138,79,.2); color: rgba(245,239,228,.45); }
 
   .bench-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
   .specialty { padding: 18px; border: 1px solid var(--rule-soft); background: rgba(245,239,228,.45); border-radius: 2px; transition: all .2s; cursor: pointer; }
   .specialty:hover { border-color: var(--brass); background: var(--paper-2); }
-  .specialty .sn { font-family: 'Fraunces', serif; font-size: 15px; font-weight: 500; color: var(--ink); margin-bottom: 6px; letter-spacing: -0.005em; }
+  .specialty .sn { font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; font-size: 15px; font-weight: 500; color: var(--ink); margin-bottom: 6px; letter-spacing: -0.005em; }
   .specialty .lead { font-size: 11.5px; color: var(--ink-2); }
   .specialty .lead .pl { display: block; font-size: 9.5px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--brass-deep); margin-top: 4px; }
-  .specialty .cnt { font-size: 10.5px; color: var(--ink-faint); margin-top: 10px; padding-top: 10px; border-top: 1px dashed var(--rule-soft); font-family: 'IBM Plex Mono', monospace; letter-spacing: 0.04em; }
+  .specialty .cnt { font-size: 10.5px; color: var(--ink-faint); margin-top: 10px; padding-top: 10px; border-top: 1px dashed var(--rule-soft); font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; letter-spacing: 0.04em; }
 
   /* ============ BRIEFING (review) SCREEN ============ */
   .review-hero { padding: 48px 0 36px; text-align: center; }
   .review-hero .eyebrow { margin-bottom: 14px; }
-  .review-hero h1 { font-family: 'Fraunces', serif; font-size: 56px; font-weight: 300; color: var(--ink); line-height: 1.05; letter-spacing: -0.025em; }
+  .review-hero h1 { font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; font-size: 56px; font-weight: 400; color: var(--ink); line-height: 1.05; letter-spacing: -0.025em; }
   .review-hero h1 em { font-style: italic; color: var(--brass-deep); }
   .review-hero p { font-size: 14px; color: var(--ink-soft); max-width: 600px; margin: 18px auto 0; line-height: 1.65; }
   .review-toolbar { display: flex; justify-content: center; gap: 24px; padding: 24px 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); margin-bottom: 56px; flex-wrap: wrap; }
@@ -401,26 +414,26 @@
   .page { padding: 56px 56px; min-height: 600px; position: relative; }
   .page.cover { background: linear-gradient(135deg, var(--unison) 0%, var(--unison-deep) 100%); color: var(--paper); padding: 80px 56px; display: flex; flex-direction: column; justify-content: space-between; }
   .page.cover::after { content: ''; position: absolute; top: 0; bottom: 0; right: 14px; width: 1px; background: rgba(168,138,79,.3); }
-  .page.cover .top-mark { font-family: 'Fraunces', serif; font-style: italic; color: var(--brass-soft); font-size: 16px; }
+  .page.cover .top-mark { font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; font-style: italic; color: var(--brass-soft); font-size: 16px; }
   .page.cover .center .pre { font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(168,138,79,.7); margin-bottom: 18px; }
-  .page.cover h2 { font-family: 'Fraunces', serif; font-size: 38px; font-weight: 300; line-height: 1.1; color: var(--paper); letter-spacing: -0.02em; }
+  .page.cover h2 { font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; font-size: 38px; font-weight: 400; line-height: 1.1; color: var(--paper); letter-spacing: -0.02em; }
   .page.cover h2 em { font-style: italic; color: var(--brass-soft); }
-  .page.cover .vol { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--brass-soft); letter-spacing: 0.12em; margin-top: 32px; }
+  .page.cover .vol { font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; font-size: 11px; color: var(--brass-soft); letter-spacing: 0.12em; margin-top: 32px; }
   .page.cover .bot { display: flex; justify-content: space-between; align-items: end; font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(168,138,79,.7); }
-  .page-num { position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--ink-faint); letter-spacing: 0.1em; }
-  .page-section { font-family: 'Fraunces', serif; font-style: italic; font-size: 13px; color: var(--brass-deep); position: absolute; top: 24px; right: 56px; letter-spacing: 0.04em; }
+  .page-num { position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; font-size: 10px; color: var(--ink-faint); letter-spacing: 0.1em; }
+  .page-section { font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; font-style: italic; font-size: 13px; color: var(--brass-deep); position: absolute; top: 24px; right: 56px; letter-spacing: 0.04em; }
   .page-section.left { right: auto; left: 56px; }
-  .page h3 { font-family: 'Fraunces', serif; font-size: 26px; font-weight: 400; color: var(--ink); margin-bottom: 18px; letter-spacing: -0.015em; line-height: 1.15; }
+  .page h3 { font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; font-size: 26px; font-weight: 400; color: var(--ink); margin-bottom: 18px; letter-spacing: -0.015em; line-height: 1.15; }
   .page h3 em { font-style: italic; color: var(--brass-deep); }
-  .page .lede { font-family: 'Fraunces', serif; font-size: 16px; font-style: italic; color: var(--ink-2); line-height: 1.55; margin-bottom: 22px; font-weight: 300; }
+  .page .lede { font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; font-size: 16px; font-style: italic; color: var(--ink-2); line-height: 1.55; margin-bottom: 22px; font-weight: 400; }
   .page .body-text { font-size: 13px; line-height: 1.7; color: var(--ink-2); }
   .page .body-text p { margin-bottom: 12px; }
-  .signature { margin-top: 28px; font-family: 'Fraunces', serif; font-style: italic; font-size: 17px; color: var(--ink); }
+  .signature { margin-top: 28px; font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; font-style: italic; font-size: 17px; color: var(--ink); }
   .signature .role { display: block; font-style: normal; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-faint); margin-top: 8px; font-family: 'DM Sans', sans-serif; }
 
   .quarter-stat { display: flex; justify-content: space-between; align-items: baseline; padding: 12px 0; border-bottom: 1px solid var(--rule-soft); }
   .quarter-stat .l { font-size: 12px; color: var(--ink-2); }
-  .quarter-stat .v { font-family: 'Fraunces', serif; font-size: 20px; color: var(--ink); letter-spacing: -0.015em; }
+  .quarter-stat .v { font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; font-size: 20px; color: var(--ink); letter-spacing: -0.015em; }
   .quarter-stat .v.green { color: var(--forest); }
   .quarter-stat .v.red { color: var(--clay); }
 
@@ -428,12 +441,12 @@
 
   .event-of-note { padding: 16px 0 16px 18px; border-left: 1px solid var(--brass-soft); position: relative; margin-bottom: 12px; }
   .event-of-note::before { content: ''; position: absolute; left: -4px; top: 22px; width: 7px; height: 7px; border-radius: 50%; background: var(--brass); }
-  .event-of-note h4 { font-family: 'Fraunces', serif; font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 4px; }
+  .event-of-note h4 { font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 4px; }
   .event-of-note p { font-size: 12px; color: var(--ink-soft); line-height: 1.55; }
-  .event-of-note .when { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.06em; color: var(--brass-deep); margin-bottom: 4px; display: block; }
+  .event-of-note .when { font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; font-size: 10px; letter-spacing: 0.06em; color: var(--brass-deep); margin-bottom: 4px; display: block; }
 
   .recommendation { padding: 14px 18px; background: rgba(168,138,79,.08); border-left: 2px solid var(--brass); margin-bottom: 12px; }
-  .recommendation .rh { font-family: 'Fraunces', serif; font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 4px; }
+  .recommendation .rh { font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 4px; }
   .recommendation p { font-size: 11.5px; color: var(--ink-2); line-height: 1.55; }
   .recommendation .ra { display: inline-block; margin-top: 6px; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--brass-deep); font-family: 'DM Sans', sans-serif; }
 
@@ -441,76 +454,78 @@
   .brand-logo { height: 26px; width: auto; display: block; opacity: .92; }
   .brand-logo-wrap { display: flex; align-items: center; gap: 16px; }
   .brand-vline { width: 1px; height: 24px; background: var(--unison); opacity: .35; }
-  .brand-platform { font-family: 'Fraunces', serif; font-style: italic; font-size: 22px; font-weight: 400; color: var(--unison); letter-spacing: -0.015em; font-variation-settings: 'opsz' 144; }
-  .brand-platform .ampersand { color: var(--brass); font-weight: 300; }
-  .brand-suffix-new { font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--unison); padding: 2px 7px; border: 1px solid rgba(16,47,84,.3); border-radius: 1px; margin-left: 4px; }
+  .brand-platform { font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; font-style: italic; font-size: 22px; font-weight: 400; color: var(--unison); letter-spacing: -0.015em; font-variation-settings: 'opsz' 144; }
+  .brand-platform .ampersand { color: var(--brass); font-weight: 400; }
+  .brand-suffix-new { font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--unison); padding: 2px 7px; border: 1px solid rgba(16,47,84,.3); border-radius: 1px; margin-left: 4px; }
   .footer-logo { height: 16px; width: auto; opacity: .45; margin-right: 8px; }
   .footer-brand { display: flex; align-items: center; gap: 4px; }
 
 
   /* ============================================================
-     OSWALDONE BUSINESS — WARMING LAYER
+     OSWALD 360 BUSINESS — WARMING LAYER
      ============================================================ */
 
   :root {
-    --oswald-navy: #1B3454;
+    --oswald-navy: #051C2C;
     --oswald-navy-deep: #0E2240;
     --oswald-red: #B5402C;
-    --peach: #F0DCC5;
-    --peach-deep: #E5C8A8;
-    --warm-cream: #FAF4E8;
-    --clay-warm: #C97F5E;
-    --rule-warm: #DECDB0;
+    --peach: #F5F2EB;
+    --peach-deep: #B2CFD8;
+    --warm-cream: #F5F2EB;
+    --clay-warm: #9E2A2F;
+    --rule-warm: #E0E0E0;
   }
 
   body {
-    background: linear-gradient(180deg, #F8F0E0 0%, #F5EAD6 100%) !important;
+    background: linear-gradient(180deg, #F5F2EB 0%, #F2EFE6 100%) !important;
   }
 
   /* ============ OSWALD BRAND MARK ============ */
   .oswald-brand {
     display: flex;
-    align-items: baseline;
-    gap: 14px;
+    align-items: center;
+    gap: 16px;
     line-height: 1;
   }
-  .oswald-wordmark {
-    font-family: 'Inter', system-ui, sans-serif;
+  .brand-logo-link {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+  }
+  .brand-logo-img {
+    height: 44px;
+    width: auto;
+    display: block;
+  }
+  .brand-logo-fallback {
+    display: inline-flex;
+    flex-direction: column;
+    line-height: 1.1;
+    padding: 2px 0;
+  }
+  .brand-logo-fallback .word {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 26px;
     font-weight: 700;
-    font-size: 24px;
-    letter-spacing: -0.03em;
-    color: var(--oswald-navy);
+    color: var(--oswald-red);
+    letter-spacing: -0.005em;
     line-height: 1;
   }
-  .oswald-wordmark .dot {
-    color: var(--oswald-red);
-  }
-  .oswald-suffix-rule {
-    width: 1px;
-    height: 22px;
-    background: var(--oswald-navy);
-    opacity: 0.25;
-    align-self: center;
-  }
-  .oswald-one {
-    font-family: 'Fraunces', serif;
-    font-style: italic;
-    font-size: 20px;
-    font-weight: 400;
-    color: var(--oswald-navy);
-    letter-spacing: -0.015em;
-  }
-  .oswald-one-tag {
-    font-family: 'IBM Plex Mono', monospace;
+  .brand-logo-fallback .word sup {
     font-size: 9px;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--oswald-navy);
-    opacity: 0.55;
-    padding-left: 6px;
-    align-self: center;
+    vertical-align: super;
+    line-height: 0;
+    margin-left: 1px;
   }
-
+  .brand-logo-fallback .tagline {
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+    font-size: 7px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    color: var(--oswald-red);
+    text-transform: uppercase;
+    margin-top: 2px;
+  }
   /* Footer brand */
   .footer-oswald {
     font-family: 'Inter', sans-serif;
@@ -525,7 +540,7 @@
   .pillars-strip {
     margin: 24px 0 32px;
     padding: 28px 32px;
-    background: linear-gradient(135deg, #FAF4E8 0%, #F5E8D2 100%);
+    background: #F5F2EB;
     border: 1px solid var(--rule-warm);
     border-radius: 4px;
     position: relative;
@@ -537,7 +552,7 @@
     left: 28px;
     background: #F8F0E0;
     padding: 0 12px;
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
     font-size: 10px;
     letter-spacing: 0.18em;
     text-transform: uppercase;
@@ -554,7 +569,7 @@
     align-items: flex-start;
     gap: 10px;
     padding: 0 14px 0 0;
-    border-right: 1px solid rgba(135, 109, 59, 0.18);
+    border-right: 1px solid rgba(77, 77, 79, 0.18);
     cursor: pointer;
     transition: transform 0.2s;
   }
@@ -563,12 +578,12 @@
   .pillar-icon-circle {
     width: 44px;
     height: 44px;
-    background: rgba(135, 109, 59, 0.1);
+    background: rgba(77, 77, 79, 0.08);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid rgba(135, 109, 59, 0.22);
+    border: 1px solid rgba(77, 77, 79, 0.22);
   }
   .pillar-icon-circle svg {
     width: 22px;
@@ -576,14 +591,14 @@
     color: var(--oswald-navy);
   }
   .pillar-label {
-    font-family: 'Fraunces', serif;
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
     font-size: 17px;
     font-weight: 500;
     color: var(--oswald-navy);
     letter-spacing: -0.01em;
   }
   .pillar-score {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
     font-size: 11px;
     color: var(--brass-deep);
     letter-spacing: 0.04em;
@@ -600,7 +615,7 @@
 
   /* ============ SCORECARD SCREEN ============ */
   .scorecard-hero {
-    background: linear-gradient(135deg, var(--oswald-navy) 0%, var(--oswald-navy-deep) 100%);
+    background: var(--oswald-navy);
     color: #fff;
     padding: 48px 56px;
     border-radius: 4px;
@@ -615,16 +630,16 @@
     bottom: -80px;
     width: 300px;
     height: 300px;
-    background: radial-gradient(circle, rgba(201, 127, 94, 0.18) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(158, 42, 47, 0.10) 0%, transparent 70%);
   }
   .scorecard-hero .eyebrow {
     color: rgba(255, 255, 255, 0.6);
     margin-bottom: 16px;
   }
   .scorecard-hero h1 {
-    font-family: 'Fraunces', serif;
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
     font-size: 44px;
-    font-weight: 300;
+    font-weight: 400;
     color: #fff;
     margin-bottom: 12px;
     letter-spacing: -0.02em;
@@ -655,9 +670,9 @@
     position: relative;
   }
   .stat-block .num {
-    font-family: 'Fraunces', serif;
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
     font-size: 56px;
-    font-weight: 300;
+    font-weight: 400;
     color: var(--oswald-navy);
     line-height: 1;
     letter-spacing: -0.03em;
@@ -668,7 +683,7 @@
     margin-left: 4px;
   }
   .stat-block .label {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
     font-size: 10px;
     letter-spacing: 0.18em;
     text-transform: uppercase;
@@ -690,7 +705,7 @@
     margin-bottom: 36px;
   }
   .scorecard-rate-now h2 {
-    font-family: 'Fraunces', serif;
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
     font-size: 28px;
     font-weight: 400;
     color: var(--oswald-navy);
@@ -717,7 +732,7 @@
   .rate-dim .ico-circle {
     width: 38px;
     height: 38px;
-    background: rgba(135, 109, 59, 0.12);
+    background: rgba(77, 77, 79, 0.10);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -726,7 +741,7 @@
   }
   .rate-dim .ico-circle svg { width: 20px; height: 20px; color: var(--oswald-navy); }
   .rate-dim h4 {
-    font-family: 'Fraunces', serif;
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
     font-size: 15px;
     font-weight: 500;
     color: var(--oswald-navy);
@@ -754,11 +769,11 @@
     position: absolute;
     left: 0; top: 0;
     height: 100%;
-    background: linear-gradient(90deg, var(--clay-warm), var(--brass));
+    background: var(--oswald-red);
     border-radius: 2px;
   }
   .rate-num {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
     font-size: 12px;
     color: var(--oswald-navy);
     font-weight: 600;
@@ -780,7 +795,7 @@
     margin-top: 24px;
   }
   .history-year .yr {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
     font-size: 11px;
     letter-spacing: 0.15em;
     text-transform: uppercase;
@@ -788,22 +803,22 @@
     margin-bottom: 8px;
   }
   .history-year .score {
-    font-family: 'Fraunces', serif;
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
     font-size: 38px;
-    font-weight: 300;
+    font-weight: 400;
     color: var(--oswald-navy);
     line-height: 1;
     letter-spacing: -0.02em;
   }
   .history-year .delta {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
     font-size: 11px;
     color: #2F4F3A;
     margin-top: 6px;
   }
 
   .testimonial-block {
-    background: linear-gradient(135deg, var(--warm-cream) 0%, var(--peach) 100%);
+    background: var(--warm-tint);
     border-radius: 3px;
     padding: 40px 44px;
     margin-bottom: 36px;
@@ -822,7 +837,7 @@
     padding-left: 22px;
   }
   .testimonial .quote {
-    font-family: 'Fraunces', serif;
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
     font-size: 16.5px;
     font-style: italic;
     color: var(--oswald-navy);
@@ -845,7 +860,7 @@
     margin-bottom: 36px;
   }
   .recap-cover {
-    background: linear-gradient(135deg, var(--oswald-navy) 0%, var(--oswald-navy-deep) 100%);
+    background: var(--oswald-navy);
     color: #fff;
     padding: 36px 40px;
     border-radius: 3px;
@@ -856,9 +871,9 @@
     margin-top: 18px;
   }
   .recap-cover h3 {
-    font-family: 'Fraunces', serif;
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
     font-size: 28px;
-    font-weight: 300;
+    font-weight: 400;
     line-height: 1.15;
     letter-spacing: -0.015em;
   }
@@ -879,7 +894,7 @@
 
   /* ============ IN GOOD COMPANY SCREEN ============ */
   .igc-hero {
-    background: linear-gradient(135deg, var(--peach) 0%, var(--peach-deep) 100%);
+    background: var(--warm-tint-deep);
     padding: 56px 60px;
     border-radius: 4px;
     margin-bottom: 32px;
@@ -900,9 +915,9 @@
     margin-bottom: 16px;
   }
   .igc-hero h1 {
-    font-family: 'Fraunces', serif;
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
     font-size: 46px;
-    font-weight: 300;
+    font-weight: 400;
     color: var(--oswald-navy);
     margin-bottom: 12px;
     letter-spacing: -0.025em;
@@ -929,7 +944,7 @@
     margin-bottom: 36px;
   }
   .igc-ask h2 {
-    font-family: 'Fraunces', serif;
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
     font-size: 28px;
     font-weight: 400;
     color: var(--oswald-navy);
@@ -961,7 +976,7 @@
     margin-bottom: 12px;
   }
   .igc-cat .cat-title {
-    font-family: 'Fraunces', serif;
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
     font-size: 15px;
     font-weight: 500;
     color: var(--oswald-navy);
@@ -994,18 +1009,18 @@
     width: 56px;
     height: 56px;
     border-radius: 50%;
-    background: linear-gradient(135deg, var(--brass) 0%, var(--clay-warm) 100%);
+    background: var(--oswald-blue);
     color: #fff;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: 'Fraunces', serif;
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
     font-size: 19px;
     font-weight: 400;
     letter-spacing: 0.02em;
   }
   .match-info .name {
-    font-family: 'Fraunces', serif;
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
     font-size: 16px;
     font-weight: 500;
     color: var(--oswald-navy);
@@ -1021,7 +1036,7 @@
     font-weight: 500;
   }
   .match-status {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
     font-size: 10px;
     letter-spacing: 0.1em;
     text-transform: uppercase;
@@ -1030,13 +1045,13 @@
     border-radius: 2px;
     white-space: nowrap;
   }
-  .match-status.intro { color: var(--clay-warm); border-color: var(--clay-warm); background: rgba(201, 127, 94, 0.06); }
+  .match-status.intro { color: var(--clay-warm); border-color: var(--clay-warm); background: rgba(158, 42, 47, 0.06); }
   .match-status.done { color: #2F4F3A; border-color: #2F4F3A; background: rgba(47, 79, 58, 0.06); }
-  .match-status.pending { color: var(--brass-deep); border-color: var(--brass-deep); background: rgba(135, 109, 59, 0.06); }
+  .match-status.pending { color: var(--brass-deep); border-color: var(--brass-deep); background: rgba(77, 77, 79, 0.06); }
 
   /* Podcast tile */
   .igc-podcast {
-    background: linear-gradient(135deg, var(--oswald-navy) 0%, var(--oswald-navy-deep) 100%);
+    background: var(--oswald-navy);
     color: #fff;
     padding: 36px 40px;
     border-radius: 3px;
@@ -1055,13 +1070,13 @@
     bottom: -60px;
     width: 220px;
     height: 220px;
-    background: radial-gradient(circle, rgba(201, 127, 94, 0.18) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(158, 42, 47, 0.10) 0%, transparent 70%);
   }
   .igc-podcast .eyebrow { color: rgba(255,255,255,0.5); margin-bottom: 10px; }
   .igc-podcast h3 {
-    font-family: 'Fraunces', serif;
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
     font-size: 28px;
-    font-weight: 300;
+    font-weight: 400;
     margin-bottom: 6px;
     letter-spacing: -0.015em;
     line-height: 1.15;
@@ -1114,7 +1129,7 @@
   }
 
   .book-stage {
-    background: linear-gradient(180deg, #1F1208 0%, #0E0805 100%);
+    background: #1A1A1A;
     padding: 36px 36px 26px;
     border-radius: 3px;
     position: relative;
@@ -1123,7 +1138,7 @@
   .book-spread {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    background: #FAF4E8;
+    background: #F5F2EB;
     box-shadow: 0 16px 50px rgba(0,0,0,0.5), 0 2px 10px rgba(0,0,0,0.3);
     min-height: 560px;
     position: relative;
@@ -1144,10 +1159,10 @@
   .book-page {
     padding: 52px 50px 60px;
     position: relative;
-    background: linear-gradient(135deg, #FAF4E8 0%, #F4EAD4 100%);
+    background: #F8F5EE;
   }
   .book-page .page-eyebrow {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
     font-size: 9px;
     letter-spacing: 0.22em;
     text-transform: uppercase;
@@ -1155,9 +1170,9 @@
     margin-bottom: 26px;
   }
   .book-page h2 {
-    font-family: 'Fraunces', serif;
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
     font-size: 32px;
-    font-weight: 300;
+    font-weight: 400;
     color: var(--oswald-navy);
     letter-spacing: -0.02em;
     line-height: 1.12;
@@ -1168,7 +1183,7 @@
     color: var(--clay-warm);
   }
   .book-page p {
-    font-family: 'Fraunces', serif;
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
     font-size: 14px;
     line-height: 1.7;
     color: var(--oswald-navy);
@@ -1180,7 +1195,7 @@
   .book-page .page-num {
     position: absolute;
     bottom: 22px;
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
     font-size: 10px;
     color: var(--brass-deep);
     opacity: 0.55;
@@ -1191,7 +1206,7 @@
 
   /* Cover page */
   .book-cover-page {
-    background: linear-gradient(135deg, var(--oswald-navy) 0%, var(--oswald-navy-deep) 100%);
+    background: var(--oswald-navy);
     color: #fff;
     padding: 52px 50px;
     display: flex;
@@ -1203,11 +1218,11 @@
     content: '';
     position: absolute;
     inset: 18px;
-    border: 1px solid rgba(201, 127, 94, 0.32);
+    border: 1px solid rgba(158, 42, 47, 0.3);
     pointer-events: none;
   }
   .book-cover-page .cover-mark {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
     font-size: 9px;
     letter-spacing: 0.22em;
     text-transform: uppercase;
@@ -1215,15 +1230,15 @@
     margin-bottom: 12px;
   }
   .book-cover-page .cover-h {
-    font-family: 'Fraunces', serif;
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
     font-size: 38px;
-    font-weight: 300;
+    font-weight: 400;
     line-height: 1.05;
     letter-spacing: -0.025em;
   }
   .book-cover-page .cover-h em { font-style: italic; color: var(--clay-warm); }
   .book-cover-page .cover-foot {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
     font-size: 10px;
     letter-spacing: 0.14em;
     text-transform: uppercase;
@@ -1236,22 +1251,22 @@
     justify-content: space-between;
     align-items: baseline;
     padding: 10px 0;
-    border-bottom: 1px solid rgba(135, 109, 59, 0.18);
+    border-bottom: 1px solid rgba(77, 77, 79, 0.18);
   }
   .book-numbers .num-row:last-child { border-bottom: none; }
   .book-numbers .num-label {
-    font-family: 'Fraunces', serif;
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
     font-size: 13px;
     color: var(--oswald-navy);
   }
   .book-numbers .num-val {
-    font-family: 'Fraunces', serif;
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
     font-size: 17px;
     color: var(--oswald-navy-deep);
     font-weight: 400;
   }
   .book-numbers .num-val .delta {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
     font-size: 10px;
     color: var(--brass-deep);
     margin-left: 8px;
@@ -1262,7 +1277,7 @@
   .book-item { margin-bottom: 18px; }
   .book-item:last-child { margin-bottom: 0; }
   .book-item .when {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
     font-size: 9.5px;
     letter-spacing: 0.16em;
     text-transform: uppercase;
@@ -1270,14 +1285,14 @@
     margin-bottom: 4px;
   }
   .book-item .what {
-    font-family: 'Fraunces', serif;
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
     font-size: 15px;
     font-weight: 500;
     color: var(--oswald-navy);
     margin-bottom: 4px;
   }
   .book-item .detail {
-    font-family: 'Fraunces', serif;
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
     font-size: 13.5px;
     color: var(--ink-soft);
     line-height: 1.55;
@@ -1307,7 +1322,7 @@
     margin-bottom: 14px;
   }
   .book-signoff .signature {
-    font-family: 'Fraunces', serif;
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
     font-style: italic;
     font-size: 19px;
     color: var(--oswald-navy);
@@ -1323,7 +1338,7 @@
   }
   .book-pages-indicator {
     text-align: center;
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
     font-size: 10px;
     letter-spacing: 0.18em;
     text-transform: uppercase;
@@ -1372,16 +1387,16 @@
     grid-template-columns: 14px 1fr auto auto;
     gap: 14px;
     align-items: center;
-    font-family: 'Fraunces', serif;
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
     font-size: 12.5px;
     padding: 7px 0;
-    border-bottom: 1px solid rgba(135, 109, 59, 0.12);
+    border-bottom: 1px solid rgba(77, 77, 79, 0.10);
   }
   .legend-row:last-child { border-bottom: none; }
   .legend-row .sw { width: 12px; height: 12px; border-radius: 2px; }
   .legend-row .lbl { color: var(--oswald-navy); }
   .legend-row .pct {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
     font-size: 10px;
     color: var(--brass-deep);
     letter-spacing: 0.06em;
@@ -1389,7 +1404,7 @@
     min-width: 32px;
   }
   .legend-row .amt {
-    font-family: 'Fraunces', serif;
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
     font-size: 13px;
     color: var(--oswald-navy-deep);
     font-weight: 500;
@@ -1400,7 +1415,7 @@
     display: flex;
     gap: 22px;
     margin-top: 14px;
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
     font-size: 9px;
     letter-spacing: 0.12em;
     text-transform: uppercase;
@@ -1414,11 +1429,41 @@
     margin-right: 6px;
   }
   .chart-caption {
-    font-family: 'Fraunces', serif;
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
     font-size: 13px;
     color: var(--ink-soft);
     line-height: 1.6;
     margin-top: 18px;
+  }
+
+
+  /* ============ ALTERNATING ROW BACKGROUNDS — scannable stacked content ============ */
+  .profile-row:nth-child(even),
+  .cov-row:nth-child(even),
+  .num-row:nth-child(even),
+  .legend-row:nth-child(even),
+  .match-row:nth-child(even),
+  .action-row:nth-child(even),
+  .audit-row:nth-child(even),
+  .perm-row:nth-child(even),
+  .bench-row:nth-child(even),
+  .carrier-row:nth-child(even),
+  .claim-row:nth-child(even),
+  .prem-row:nth-child(even),
+  .vendor-row:nth-child(even),
+  .meta-row:nth-child(even) {
+    background: rgba(0, 0, 0, 0.022);
+  }
+  /* Profile rows live inside containers with their own padding;
+     give the BG some horizontal breathing room so it reads as a band, not edge-to-edge */
+  .profile-row:nth-child(even),
+  .num-row:nth-child(even),
+  .legend-row:nth-child(even) {
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-left: -10px;
+    margin-right: -10px;
+    border-radius: 2px;
   }
 
 </style>
@@ -1431,10 +1476,14 @@
   <!-- =================== NAV =================== -->
   <nav>
     <div class="oswald-brand">
-      <span class="oswald-wordmark">Oswald<span class="dot">.</span></span>
-      <span class="oswald-suffix-rule"></span>
-      <span class="oswald-one">ONE</span>
-      <span class="oswald-one-tag">Business</span>
+      <a class="brand-logo-link" href="#" aria-label="Oswald 360">
+        <img src="oswald-360-logo.png" alt="Oswald 360" class="brand-logo-img"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';" />
+        <span class="brand-logo-fallback" style="display:none;">
+          <span class="word">Oswald<sup>®</sup></span>
+          <span class="tagline">A Unison Risk Advisors Company</span>
+        </span>
+      </a>
     </div>
     <ul class="nav-links" id="nav">
       <li><a data-screen="home" class="active">Home</a></li>
@@ -1488,7 +1537,7 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
               <circle cx="12" cy="12" r="9"/>
               <path d="M12 6 L14.4 11.6 L12 16 L9.6 11.6 Z" fill="currentColor" stroke="none"/>
-              <circle cx="12" cy="12" r="1.5" fill="#FAF4E8" stroke="none"/>
+              <circle cx="12" cy="12" r="1.5" fill="#F5F2EB" stroke="none"/>
             </svg>
           </div>
           <div class="pillar-label">Guidance</div>
@@ -1574,7 +1623,7 @@
               <!-- facility markers -->
               <!-- Cleveland HQ -->
               <circle cx="490" cy="180" r="6" fill="var(--brass)"/>
-              <text x="500" y="178" fill="rgba(245,239,228,.7)" font-family="Fraunces" font-style="italic" font-size="11">Cleveland HQ</text>
+              <text x="500" y="178" fill="rgba(245,239,228,.7)" font-family="Helvetica Neue, Arial" font-style="italic" font-size="11">Cleveland HQ</text>
               <!-- Strongsville cluster -->
               <circle cx="478" cy="195" r="5" fill="var(--clay)"/>
               <circle cx="478" cy="195" r="11" fill="none" stroke="var(--clay)" stroke-width=".6" opacity=".6"/>
@@ -1595,7 +1644,7 @@
               <circle cx="490" cy="220" r="3.2" fill="var(--forest)"/>
               <circle cx="475" cy="170" r="3.2" fill="var(--forest)"/>
               <!-- compass -->
-              <text x="60" y="320" fill="rgba(245,239,228,.4)" font-family="IBM Plex Mono" font-size="9">11 facilities · 3 countries · 2,418 employees</text>
+              <text x="60" y="320" fill="rgba(245,239,228,.4)" font-family="Helvetica Neue, Arial" font-size="9">11 facilities · 3 countries · 2,418 employees</text>
             </svg>
           </div>
           <div class="fac-legend">
@@ -1773,7 +1822,7 @@
         </div>
         <div class="briefing-book">
           <div><div class="top">Q1 2026<br>Risk Briefing</div><div class="mid" style="margin-top:14px">Vandermark Industries</div></div>
-          <div><div class="bot">OswaldONE</div><div class="vol">Q1 2026</div></div>
+          <div><div class="bot">Oswald 360</div><div class="vol">Q1 2026</div></div>
         </div>
       </div>
     </main>
@@ -1830,11 +1879,11 @@
 
           <div class="eyebrow" style="margin: 32px 0 14px">Stakeholders briefed</div>
           <div class="profile-list">
-            <div class="profile-row"><span class="k serif" style="font-family:'Fraunces',serif;font-size:13px;text-transform:none;letter-spacing:0;color:var(--ink-2)">M. Chen, CFO</span><span class="v">06:00 ET</span></div>
-            <div class="profile-row"><span class="k serif" style="font-family:'Fraunces',serif;font-size:13px;text-transform:none;letter-spacing:0;color:var(--ink-2)">R. Patel, GC</span><span class="v">06:00 ET</span></div>
-            <div class="profile-row"><span class="k serif" style="font-family:'Fraunces',serif;font-size:13px;text-transform:none;letter-spacing:0;color:var(--ink-2)">A. Brennan, CISO</span><span class="v">02:54 ET</span></div>
-            <div class="profile-row"><span class="k serif" style="font-family:'Fraunces',serif;font-size:13px;text-transform:none;letter-spacing:0;color:var(--ink-2)">James Vandermark, CEO</span><span class="v">07:15 ET</span></div>
-            <div class="profile-row"><span class="k serif" style="font-family:'Fraunces',serif;font-size:13px;text-transform:none;letter-spacing:0;color:var(--ink-2)">Audit committee chair</span><span class="v">Pending · 14:30</span></div>
+            <div class="profile-row"><span class="k serif" style="font-family:'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;font-size:13px;text-transform:none;letter-spacing:0;color:var(--ink-2)">M. Chen, CFO</span><span class="v">06:00 ET</span></div>
+            <div class="profile-row"><span class="k serif" style="font-family:'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;font-size:13px;text-transform:none;letter-spacing:0;color:var(--ink-2)">R. Patel, GC</span><span class="v">06:00 ET</span></div>
+            <div class="profile-row"><span class="k serif" style="font-family:'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;font-size:13px;text-transform:none;letter-spacing:0;color:var(--ink-2)">A. Brennan, CISO</span><span class="v">02:54 ET</span></div>
+            <div class="profile-row"><span class="k serif" style="font-family:'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;font-size:13px;text-transform:none;letter-spacing:0;color:var(--ink-2)">James Vandermark, CEO</span><span class="v">07:15 ET</span></div>
+            <div class="profile-row"><span class="k serif" style="font-family:'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;font-size:13px;text-transform:none;letter-spacing:0;color:var(--ink-2)">Audit committee chair</span><span class="v">Pending · 14:30</span></div>
           </div>
         </section>
 
@@ -2183,7 +2232,7 @@
         </div>
       </div>
 
-      <textarea placeholder="Anything specific on your mind? (Optional — but we read all of it)" style="width:100%; padding:14px 16px; border:1px solid var(--rule); border-radius:3px; font-family:'Calibri', sans-serif; font-size:14px; min-height:80px; resize:vertical; background:#FAF4E8; color:var(--ink); margin-bottom:16px;"></textarea>
+      <textarea placeholder="Anything specific on your mind? (Optional — but we read all of it)" style="width:100%; padding:14px 16px; border:1px solid var(--rule); border-radius:3px; font-family:'Calibri', sans-serif; font-size:14px; min-height:80px; resize:vertical; background:#F5F2EB; color:var(--ink); margin-bottom:16px;"></textarea>
 
       <button class="btn primary" style="padding:14px 32px;">Submit your Q2 2026 scorecard</button>
     </div>
@@ -2191,7 +2240,7 @@
     <!-- Vandermark history -->
     <div class="scorecard-history">
       <div class="eyebrow">Vandermark scorecard history</div>
-      <h2 style="font-family:'Fraunces',serif; font-size:24px; font-weight:400; color:var(--oswald-navy); margin-top:4px;">Four quarters with Oswald.</h2>
+      <h2 style="font-family:'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; font-size:24px; font-weight:400; color:var(--oswald-navy); margin-top:4px;">Four quarters with Oswald.</h2>
 
       <div class="history-grid">
         <div class="history-year">
@@ -2220,7 +2269,7 @@
     <!-- Testimonials -->
     <div class="testimonial-block">
       <div class="eyebrow">What other CFOs, GCs, and operations leaders are telling us</div>
-      <h2 style="font-family:'Fraunces',serif; font-size:26px; font-weight:300; color:var(--oswald-navy); letter-spacing:-0.01em; margin-bottom:24px;">You're in <em style="font-style:italic; color:var(--clay-warm);">good company</em>.</h2>
+      <h2 style="font-family:'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; font-size:26px; font-weight: 400; color:var(--oswald-navy); letter-spacing:-0.01em; margin-bottom:24px;">You're in <em style="font-style:italic; color:var(--clay-warm);">good company</em>.</h2>
 
       <div class="testimonial-grid">
         <div class="testimonial">
@@ -2245,12 +2294,12 @@
     <!-- Quarterly briefing recap (folded from Briefing screen) -->
     <div class="quarterly-recap">
       <div class="eyebrow">Your most recent briefing · Q1 2026</div>
-      <h2 style="font-family:'Fraunces',serif; font-size:24px; font-weight:400; color:var(--oswald-navy); margin-top:4px;">A quarter, in your hands.</h2>
+      <h2 style="font-family:'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; font-size:24px; font-weight:400; color:var(--oswald-navy); margin-top:4px;">A quarter, in your hands.</h2>
       <p style="font-size:14px; color:var(--ink-soft); line-height:1.6; margin-top:10px; max-width:680px;">Every quarter we pull together a board-ready risk briefing — the quarter's claims activity, key events, recommendations, and what's coming. It's delivered one week before the board meeting on 10 June.</p>
 
       <div class="recap-cover">
         <div>
-          <div style="font-family:'IBM Plex Mono', monospace; font-size:10px; letter-spacing:0.18em; text-transform:uppercase; color:rgba(255,255,255,0.5); margin-bottom:10px;">A quarterly briefing for</div>
+          <div style="font-family:'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; font-size:10px; letter-spacing:0.18em; text-transform:uppercase; color:rgba(255,255,255,0.5); margin-bottom:10px;">A quarterly briefing for</div>
           <h3>Vandermark Industries, <em>Inc.</em></h3>
           <div class="sub">Q1 2026 · Audit committee edition · Prepared by your Oswald team</div>
         </div>
@@ -2281,7 +2330,7 @@
               <p>The carrier panel held. We renegotiated cyber primary effective 1 May — a 6.4% rate reduction with tightened ransomware sublimit language. The captive contribution covered our planned share of the Strongsville workers' comp severity.</p>
               <p>A few items worth your attention ahead of the 10 June meeting.</p>
               <p style="margin-top:22px; font-style:italic;">— David Reinhardt</p>
-              <p style="font-family:'IBM Plex Mono', monospace; font-size:10px; color:var(--brass-deep); letter-spacing:0.1em; margin-top:-6px; text-transform:uppercase;">Lead on your account · On behalf of your Oswald team</p>
+              <p style="font-family:'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; font-size:10px; color:var(--brass-deep); letter-spacing:0.1em; margin-top:-6px; text-transform:uppercase;">Lead on your account · On behalf of your Oswald team</p>
               <div class="page-num">3</div>
             </div>
           </div>
@@ -2341,42 +2390,42 @@
               <!-- Horizontal stacked bar -->
               <div class="chart-stacked-bar" style="margin-top:24px;">
                 <svg viewBox="0 0 340 28" width="100%" height="28" preserveAspectRatio="none">
-                  <rect x="0"   y="0" width="187" height="28" fill="#1B3454"/>
-                  <rect x="187" y="0" width="71"  height="28" fill="#C97F5E"/>
-                  <rect x="258" y="0" width="64"  height="28" fill="#876D3B"/>
-                  <rect x="322" y="0" width="11"  height="28" fill="#A88A4F"/>
-                  <rect x="333" y="0" width="7"   height="28" fill="#C9B989"/>
+                  <rect x="0"   y="0" width="187" height="28" fill="#051C2C"/>
+                  <rect x="187" y="0" width="71"  height="28" fill="#9E2A2F"/>
+                  <rect x="258" y="0" width="64"  height="28" fill="#00617F"/>
+                  <rect x="322" y="0" width="11"  height="28" fill="#4C90A5"/>
+                  <rect x="333" y="0" width="7"   height="28" fill="#7FB0BF"/>
                 </svg>
               </div>
 
               <!-- Legend -->
               <div class="chart-legend">
                 <div class="legend-row">
-                  <span class="sw" style="background:#1B3454"></span>
+                  <span class="sw" style="background:#051C2C"></span>
                   <span class="lbl">Insurance premium · net</span>
                   <span class="pct">55%</span>
                   <span class="amt">$5.21M</span>
                 </div>
                 <div class="legend-row">
-                  <span class="sw" style="background:#C97F5E"></span>
+                  <span class="sw" style="background:#9E2A2F"></span>
                   <span class="lbl">Retained losses · YTD</span>
                   <span class="pct">21%</span>
                   <span class="amt">$2.00M</span>
                 </div>
                 <div class="legend-row">
-                  <span class="sw" style="background:#876D3B"></span>
+                  <span class="sw" style="background:#00617F"></span>
                   <span class="lbl">Captive contribution</span>
                   <span class="pct">19%</span>
                   <span class="amt">$1.80M</span>
                 </div>
                 <div class="legend-row">
-                  <span class="sw" style="background:#A88A4F"></span>
+                  <span class="sw" style="background:#4C90A5"></span>
                   <span class="lbl">Risk engineering &amp; control</span>
                   <span class="pct">3%</span>
                   <span class="amt">$0.30M</span>
                 </div>
                 <div class="legend-row">
-                  <span class="sw" style="background:#C9B989"></span>
+                  <span class="sw" style="background:#7FB0BF"></span>
                   <span class="lbl">Brokerage &amp; advisory</span>
                   <span class="pct">2%</span>
                   <span class="amt">$0.20M</span>
@@ -2396,50 +2445,50 @@
               <div style="margin-top:24px;">
                 <svg viewBox="0 0 340 200" width="100%" height="200">
                   <!-- horizontal grid lines -->
-                  <line x1="42" y1="25" x2="328" y2="25" stroke="#DECDB0" stroke-width="0.5"/>
-                  <line x1="42" y1="65" x2="328" y2="65" stroke="#DECDB0" stroke-width="0.5"/>
-                  <line x1="42" y1="105" x2="328" y2="105" stroke="#DECDB0" stroke-width="0.5"/>
-                  <line x1="42" y1="145" x2="328" y2="145" stroke="#DECDB0" stroke-width="0.5"/>
-                  <line x1="42" y1="178" x2="328" y2="178" stroke="#876D3B" stroke-width="0.7"/>
+                  <line x1="42" y1="25" x2="328" y2="25" stroke="#E0E0E0" stroke-width="0.5"/>
+                  <line x1="42" y1="65" x2="328" y2="65" stroke="#E0E0E0" stroke-width="0.5"/>
+                  <line x1="42" y1="105" x2="328" y2="105" stroke="#E0E0E0" stroke-width="0.5"/>
+                  <line x1="42" y1="145" x2="328" y2="145" stroke="#E0E0E0" stroke-width="0.5"/>
+                  <line x1="42" y1="178" x2="328" y2="178" stroke="#00617F" stroke-width="0.7"/>
 
                   <!-- y-axis labels -->
-                  <text x="38" y="28" text-anchor="end" font-size="9" font-family="IBM Plex Mono" fill="#876D3B" letter-spacing="0.04em">$3.0M</text>
-                  <text x="38" y="68" text-anchor="end" font-size="9" font-family="IBM Plex Mono" fill="#876D3B" letter-spacing="0.04em">$2.6M</text>
-                  <text x="38" y="108" text-anchor="end" font-size="9" font-family="IBM Plex Mono" fill="#876D3B" letter-spacing="0.04em">$2.2M</text>
-                  <text x="38" y="148" text-anchor="end" font-size="9" font-family="IBM Plex Mono" fill="#876D3B" letter-spacing="0.04em">$1.8M</text>
+                  <text x="38" y="28" text-anchor="end" font-size="9" font-family="Helvetica Neue, Arial" fill="#00617F" letter-spacing="0.04em">$3.0M</text>
+                  <text x="38" y="68" text-anchor="end" font-size="9" font-family="Helvetica Neue, Arial" fill="#00617F" letter-spacing="0.04em">$2.6M</text>
+                  <text x="38" y="108" text-anchor="end" font-size="9" font-family="Helvetica Neue, Arial" fill="#00617F" letter-spacing="0.04em">$2.2M</text>
+                  <text x="38" y="148" text-anchor="end" font-size="9" font-family="Helvetica Neue, Arial" fill="#00617F" letter-spacing="0.04em">$1.8M</text>
 
                   <!-- Column bars (4 quarters) -->
                   <!-- Q2 '25: $2.7M -->
-                  <rect x="65"  y="48" width="38" height="130" fill="#1B3454" opacity="0.78"/>
-                  <text x="84" y="194" text-anchor="middle" font-size="9" font-family="IBM Plex Mono" fill="#876D3B" letter-spacing="0.06em">Q2 '25</text>
+                  <rect x="65"  y="48" width="38" height="130" fill="#051C2C" opacity="0.78"/>
+                  <text x="84" y="194" text-anchor="middle" font-size="9" font-family="Helvetica Neue, Arial" fill="#00617F" letter-spacing="0.06em">Q2 '25</text>
 
                   <!-- Q3 '25: $2.6M -->
-                  <rect x="128" y="58" width="38" height="120" fill="#1B3454" opacity="0.78"/>
-                  <text x="147" y="194" text-anchor="middle" font-size="9" font-family="IBM Plex Mono" fill="#876D3B" letter-spacing="0.06em">Q3 '25</text>
+                  <rect x="128" y="58" width="38" height="120" fill="#051C2C" opacity="0.78"/>
+                  <text x="147" y="194" text-anchor="middle" font-size="9" font-family="Helvetica Neue, Arial" fill="#00617F" letter-spacing="0.06em">Q3 '25</text>
 
                   <!-- Q4 '25: $2.4M -->
-                  <rect x="191" y="78" width="38" height="100" fill="#1B3454" opacity="0.78"/>
-                  <text x="210" y="194" text-anchor="middle" font-size="9" font-family="IBM Plex Mono" fill="#876D3B" letter-spacing="0.06em">Q4 '25</text>
+                  <rect x="191" y="78" width="38" height="100" fill="#051C2C" opacity="0.78"/>
+                  <text x="210" y="194" text-anchor="middle" font-size="9" font-family="Helvetica Neue, Arial" fill="#00617F" letter-spacing="0.06em">Q4 '25</text>
 
                   <!-- Q1 '26: $2.3M (highlighted in clay) -->
-                  <rect x="254" y="88" width="38" height="90" fill="#C97F5E"/>
-                  <text x="273" y="194" text-anchor="middle" font-size="9" font-family="IBM Plex Mono" fill="#1B3454" letter-spacing="0.06em" font-weight="600">Q1 '26</text>
+                  <rect x="254" y="88" width="38" height="90" fill="#9E2A2F"/>
+                  <text x="273" y="194" text-anchor="middle" font-size="9" font-family="Helvetica Neue, Arial" fill="#051C2C" letter-spacing="0.06em" font-weight="600">Q1 '26</text>
 
                   <!-- Plan line (dashed, navy) -->
-                  <line x1="55" y1="50" x2="113" y2="50" stroke="#1B3454" stroke-width="1.5" stroke-dasharray="3,3" opacity="0.7"/>
-                  <line x1="118" y1="55" x2="176" y2="55" stroke="#1B3454" stroke-width="1.5" stroke-dasharray="3,3" opacity="0.7"/>
-                  <line x1="181" y1="60" x2="239" y2="60" stroke="#1B3454" stroke-width="1.5" stroke-dasharray="3,3" opacity="0.7"/>
-                  <line x1="244" y1="78" x2="302" y2="78" stroke="#1B3454" stroke-width="1.5" stroke-dasharray="3,3" opacity="0.7"/>
+                  <line x1="55" y1="50" x2="113" y2="50" stroke="#051C2C" stroke-width="1.5" stroke-dasharray="3,3" opacity="0.7"/>
+                  <line x1="118" y1="55" x2="176" y2="55" stroke="#051C2C" stroke-width="1.5" stroke-dasharray="3,3" opacity="0.7"/>
+                  <line x1="181" y1="60" x2="239" y2="60" stroke="#051C2C" stroke-width="1.5" stroke-dasharray="3,3" opacity="0.7"/>
+                  <line x1="244" y1="78" x2="302" y2="78" stroke="#051C2C" stroke-width="1.5" stroke-dasharray="3,3" opacity="0.7"/>
 
                   <!-- Value label on Q1 '26 -->
-                  <text x="273" y="82" text-anchor="middle" font-size="11" font-family="Fraunces" font-style="italic" fill="#1B3454" font-weight="500">$2.3M</text>
+                  <text x="273" y="82" text-anchor="middle" font-size="11" font-family="Helvetica Neue, Arial" font-style="italic" fill="#051C2C" font-weight="500">$2.3M</text>
                 </svg>
               </div>
 
               <!-- Chart key -->
               <div class="chart-key">
-                <div><span class="swatch" style="background:#C97F5E; height:8px; border-radius:1px;"></span>Actual TCoR</div>
-                <div><span class="swatch" style="background:#1B3454; opacity:0.7"></span>Plan</div>
+                <div><span class="swatch" style="background:#9E2A2F; height:8px; border-radius:1px;"></span>Actual TCoR</div>
+                <div><span class="swatch" style="background:#051C2C; opacity:0.7"></span>Plan</div>
               </div>
 
               <p class="chart-caption">Four quarters of steady improvement against plan. Q1 came in 6.1% under, driven by the Strongsville WC severity recovery and the cyber primary renegotiation effective 1 May.</p>
@@ -2483,7 +2532,7 @@
                 <p>Your full briefing runs nine sections, including the carrier panel, the claims register, the materiality memo, and the captive structure narrative.</p>
                 <p>Bound copies are delivered to each director one week ahead of the 10 June board meeting. A digital copy lives in your Vault, watermarked and access-logged.</p>
                 <div class="signature">— Your Oswald team</div>
-                <div style="font-family:'IBM Plex Mono', monospace; font-size:10px; letter-spacing:0.14em; color:var(--brass-deep); margin-top:24px; text-transform:uppercase;">Oswald · Q1 2026</div>
+                <div style="font-family:'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; font-size:10px; letter-spacing:0.14em; color:var(--brass-deep); margin-top:24px; text-transform:uppercase;">Oswald · Q1 2026</div>
               </div>
               <div class="page-num">28</div>
             </div>
@@ -2588,7 +2637,7 @@
     <!-- Recent matches -->
     <div class="igc-matches">
       <div class="eyebrow">Recent introductions</div>
-      <h2 style="font-family:'Fraunces',serif; font-size:26px; font-weight:400; color:var(--oswald-navy); letter-spacing:-0.01em; margin-top:6px;">Who we've connected Vandermark with this year.</h2>
+      <h2 style="font-family:'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; font-size:26px; font-weight:400; color:var(--oswald-navy); letter-spacing:-0.01em; margin-top:6px;">Who we've connected Vandermark with this year.</h2>
 
       <div class="match-list">
         <div class="match-row">
@@ -2815,7 +2864,7 @@
     </div>
 
     <div style="text-align:center; margin: 56px 0 24px;">
-      <p style="font-size:13px; color:var(--ink-soft); max-width:560px; margin: 0 auto; line-height:1.65; font-style:italic; font-family:'Fraunces', serif;">
+      <p style="font-size:13px; color:var(--ink-soft); max-width:560px; margin: 0 auto; line-height:1.65; font-style:italic; font-family:'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;">
         "The platform structure is invisible to the client by design — but visible to those who want to see it. Eleven practices. One team. One number to call."
       </p>
       <button class="btn primary" style="margin-top:24px; padding:14px 28px;">Open the full directory</button>
@@ -2848,7 +2897,7 @@
           <h2>Vandermark<br>Industries, <em>Inc.</em></h2>
           <div class="vol">Q1 2026 · COPY № 0001 OF 9</div>
         </div>
-        <div class="bot"><span>OswaldONE</span><span>Cleveland · 2026</span></div>
+        <div class="bot"><span>Oswald 360</span><span>Cleveland · 2026</span></div>
       </div>
       <div class="page">
         <div class="page-section">From the Lead</div>
@@ -3004,7 +3053,7 @@
   <!-- =================== FOOTER =================== -->
   <div class="footer-meta">
     <div class="left">
-      <span class="footer-brand"><span class="footer-oswald">Oswald<span class="dot">.</span></span><span style="opacity:.55"> · OswaldONE Business · A conceptual mockup</span></span>
+      <span class="footer-brand"><span style="color:var(--grey-text)">Oswald 360 · A conceptual mockup</span></span>
       <a>Privacy by design</a>
       <a>Audit-logged · access-controlled</a>
     </div>
