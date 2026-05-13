@@ -130,7 +130,7 @@
   .members-strip { display: flex; align-items: center; gap: 16px; margin-bottom: 28px; padding: 16px 20px; background: var(--paper-2); border-left: 2px solid var(--brass); flex-wrap: wrap; }
   .member { display: flex; align-items: center; gap: 10px; }
   .member-avatar { width: 32px; height: 32px; border-radius: 50%; background: var(--ink); color: var(--paper); display: grid; place-items: center; font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; font-style: italic; font-size: 12px; flex-shrink: 0; }
-  .member-avatar.junior { background: var(--brass); color: var(--ink); }
+  .member-avatar.junior { background: var(--ink-soft); color: var(--paper); }
   .member-name { font-size: 12px; font-weight: 500; color: var(--ink); }
   .member-role { font-size: 10px; color: var(--ink-faint); letter-spacing: 0.04em; }
   .properties-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
@@ -520,6 +520,14 @@
     --warm-cream: #F5F2EB;
     --clay-warm: #9E2A2F;
     --rule-warm: #E0E0E0;
+    /* Status indicator accent colors */
+    --forest: #2F4F3A;
+    --forest-soft: #7A9D8B;
+    --clay-soft: #C5836F;
+    --slate: #5A7186;
+    /* Box-shadow tokens */
+    --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.06), 0 4px 12px rgba(0, 0, 0, 0.04);
+    --shadow-soft: 0 2px 8px rgba(0, 0, 0, 0.05);
     /* Aliases for legacy palette variables — map to brand-aligned colors */
     --unison: #051C2C;
     --unison-deep: #0E2240;
@@ -549,6 +557,7 @@
     display: inline-flex;
     align-items: center;
     text-decoration: none;
+    cursor: pointer;
   }
   .brand-logo-img {
     height: 44px;
@@ -1565,8 +1574,8 @@
   <!-- =================== NAV =================== -->
   <nav>
     <div class="oswald-brand">
-      <a class="brand-logo-link" href="#" aria-label="Oswald 360">
-        <img src="Oswald_360%20Logo.png" alt="Oswald 360" class="brand-logo-img"
+      <a class="brand-logo-link" href="#" aria-label="Oswald 360 — home" onclick="switchScreen('home'); return false;">
+        <img src="Oswald_360_logo.svg" alt="Oswald 360" class="brand-logo-img"
              onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';" />
         <span class="brand-logo-fallback" style="display:none;">
           <span class="word">Oswald<sup>®</sup></span>
